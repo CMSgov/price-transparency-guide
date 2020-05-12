@@ -1,0 +1,41 @@
+{
+  "plan_name": "Need sample",
+  "plan_id_type": "sample",
+  "plan_id": "12345XX9876543",
+  "market_type": "group",
+  "out_of_network":[{ 
+    "type": "service",
+    "name": "surgery of a specific kind",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A8004",
+    "description": "description of the surgery being done.",
+    "payments": [{ 
+      "allowed_amount": 5000.00,
+      "npi": [1234567890, 1234567891]
+    }]
+  }, { 
+    "type": "service",
+    "name": "surgery of a specific kind",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A8004",
+    "description": "description of the surgery being done.",
+    "payments": [{ 
+      "allowed_amount": 100000.00,
+      "npi": [ 1234567990 ]
+    }]
+  },{ 
+    "type": "service",
+    "name": "surgery of a specific kind",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A8004",
+    "description": "description of the surgery being done.",
+    "payments": [{ 
+      "allowed_amount": 100000.00,
+      "npi": [ 1234567090 ]
+    }]
+  }],
+  "last_updated_on": "2020-08-27"
+}

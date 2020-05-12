@@ -1,0 +1,54 @@
+{
+  "plan_name": "we need an example",
+  "plan_id_type": "HIOS",
+  "plan_id": "12345XX9876543",
+  "market_type": "group",
+  "in_network": [{ 
+    "type": "item",
+    "name": "hospital bed",
+    "expiration_date": "2020-08-27",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A0999",
+    "description": "A bed of some sort",
+    "negotiated_rates": [{
+      "negotiated_rate": 10000.00,
+      "providers":[ 3911647310 ]
+    }, {
+      "negotiated_rate": 15000.00,
+      "providers":[ 3911647311 ]
+    }, {
+      "negotiated_rate": 20000.00,
+      "providers":[ 3911647313, 3911647314, 3911647315 ]
+    }]
+  },{ 
+    "type": "item",
+    "name": "hospital bed",
+    "expiration_date": "2020-08-27",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A0999",
+    "description": "A bed of some sort",
+    "negotiated_rates": [{ 
+      "negotiated_rate": 10000.00,
+      "providers":[ 
+        3911647411
+      ]
+    }]
+  },{ 
+    "type": "item",
+    "name": "hospital bed",
+    "expiration_date": "2020-08-27",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A0999",
+    "description": "A bed of some sort",
+    "negotiated_rates": [{ 
+      "negotiated_rate": 10000.00,
+      "providers":[ 
+        3911647511
+      ]
+    }]
+  }],
+  "last_updated_on": "2020-08-27"
+}
