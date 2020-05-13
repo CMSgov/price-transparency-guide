@@ -1,5 +1,5 @@
 # price-transparency-guide
-The technical implementation guide for the TriDepartmental price transparency rule, [Transparency in Coverage](https://www.federalregister.gov/documents/2019/11/27/2019-25011/transparency-in-coverag).
+The technical implementation guide for the TriDepartmental price transparency rule, [Transparency in Coverage](https://www.federalregister.gov/documents/2019/11/27/2019-25011/transparency-in-coverag){:target="_blank"}.
 
 Overview
 ========
