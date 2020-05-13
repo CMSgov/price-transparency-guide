@@ -121,7 +121,7 @@ This type defines a negotiated rate object.
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
 | **plan_id** | Plan ID | String | If available, this will be either the plan's [EIN](https://en.wikipedia.org/wiki/Employer_Identification_Number) or the 14-character, HIOS-generated Plan ID number. (Plan IDs must be unique, even across different markets.) | No |
 | **market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
-| **out_of_network** | Out-Of-Network | Array | An array of [out-of-network object types](#out-of--network-object) | Yes |
+| **out_of_network** | Out-Of-Network | Array | An array of [out-of-network object types](#out-of-network-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
 
 #### Out-Of-Network Object
