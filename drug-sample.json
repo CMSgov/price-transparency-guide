@@ -1,57 +1,33 @@
 {
-  "plan_name": "medicare",
+  "plan_name": "Fake Company X PPO plan",
   "plan_id_type": "HIOS",
   "plan_id": "12345XX9876543",
-  "market_type": "individual",
-
-
-  // Lowering premiums vs out of pocket costs (cost sharing)
-  // There is an industry argument in lower premiums overall vs specific cost sharing.
+  "market_type": "group",
   "drugs": [{
-    "drug_name": "The generic name of the drug", 
-    "drug_type": "branded", // This could either "branded" or "generic" type? 
-    "ndc_11": "11 digit number", 
-    "hcpc_code": "", // needed now?
-
-    // TODO: determine "list price" or "MAC". 
-    // NOTE: for generics, ideally the MAC would be used (the is bc this number would be more relevant to the consumer/member/bene), if not, then the list price would be used
-    "list_price": xxx.xx,
+    "type": "branded", 
+    "name": "Name of the drug", 
+    "ndc_8": "xxxxxxxx",
+    "ndc_11": ["111-1111-01", "111-1111-02", "111-1111-03"],
     
-    // Does it make more since to use the MAC (maximum allowable cost). This number is set by the plan
-    // The MAC doesn't not exist for branded drugs. This is used bc of how frequent the price changes. The flux of generic drug pricing needs to be protected against.
-    // TODO: determine if MAC is an industry-wide accepted term. We might need to find the commonly accepted definition and include that in the rule.
-    "maximum_allowable_cost": xxx.xx,
-
-
-    // The discounts/rebates that go into this price are proprietary. This would be an aggregate and would "black box" the specific discounts?
-    // The manufacturers are potentially the ones that don't want the rebates to be "released" -- plans might not be as concerned.
-
-    // NOTE: there are discounts that aren't tied specifically to the drug (e.g. total volume that could provide something like a 3% discount across all or some drugs)
-    // NOTE: Medicaid MCOs are included thus you do not have to worry about "340b"? discounts.
-    // Pricing for generics will be easier. Most likely less concessions tied to generics than branded. This number would require going through claims history for x amount of months.
-    // NOTE: this would be required for both generics and branded drugs.
-    "historical_net_amount": xxx.xx,
-
-    "npi":[ 3911647310, 3911647310, 3911647210, 3211647310, 2911647310, 3912647310]
-  },
-
-
-
-
-
-
-
-    // Old schema with 'net unit price'
+    // This is an optimization question. Would this structure results in a smaller file for the list price implementation?
     "prices": [{ 
-      "plan_name": "bcbs standard plan",
-      "plan_id_type": "bcbs standard plan",
-      "plan_id": "bcbs standard plan",
-      "net_unit_price": 0.0001, 
+      "history_net_price": 1.00, // The plan paid this amount to the pharmacy with all discounts 
+      "negotiated_price": 10.00, // This is the pharmacy payment that the bene's price is based off of
       "providers":[ 3911647310 ],  
       "pharmacies":[ 3911647310, 3911647310 ] 
-    },{
-      "net_unit_price": 0.0002,
-      "pharmacies":[ 3911647310, 3911647310, 3911647210, 3211647310, 2911647310, 3912647310]
     }]
   }]
 }
+
+// Does the list price for a drug change for a given company's plans? I would expect a company to get a single list price -- the actual plan that the company puts together doesn't separately get different list prices, right?
+
+
+
+
+
+// CMS might alright have list price information.
+// This information might not be allowed to publish the list prices in the public.
+
+// The plan and PBM never actually touch the list price. They are paying a dispensing fee that goes back to the manufactur
+
+// Other way to look at this: require manu to report their prices.
