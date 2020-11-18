@@ -1,8 +1,0 @@
-{
-  "plan_name": string,
-  "plan_id_type": string,
-  "plan_id": string,
-  "market_type": string,
-  "in_network": [{ InNetwork }],
-  "last_updated_on": string
-}
