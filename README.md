@@ -12,7 +12,7 @@ All machine-readable files must conform to a non-proprietary, open standards for
 Background
 ==========
 
-Beginning in 2019, CMS worked to define a schema for sharing data in a machine-readable format that would allow for greater price transparency of both items and services that healthcare providers, health insurance issuers, and self-insured group health plans  provide to consumers before they receive care. These files are intended to be used by technical people that could then build services, APIs, mobile applications, or anything else the market can think of to empower consumers to make informed decisions when it comes to managing their own care.
+Beginning in 2019, CMS worked to define a schema for sharing data in a machine-readable format that would allow for greater price transparency of both items and services that healthcare providers, health insurance issuers, and self-insured group health plans provide to consumers before they receive care. These files are intended to be used by technical people that could then build services, APIs, mobile applications, or anything else the market can think of to empower consumers to make informed decisions when it comes to managing their own care.
 
 Developer Documentation
 =======================
@@ -80,11 +80,13 @@ For example, the following would be the required naming for CMS:
 Schemas
 =======
 
-### In-Network Negotiated Rates File
+### In-Network File
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **plan_name** | Plan Name | String | The name of the plan of which these prices are set for the given items and services | Yes |
+| **reporting_entity_name** | Entity Name | String | The legal name of the entity publishing the machine-readable file. | Yes |
+| **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
+| **plan_name** | Plan Name | String | The legal name of the entity publishing the machine-readable file. | Yes |
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
 | **plan_id** | Plan ID | String | If available, this will be either the plan's [EIN](https://en.wikipedia.org/wiki/Employer_Identification_Number) or the 14-character, HIOS-generated Plan ID number. (Plan IDs must be unique, even across different markets.) | No |
 | **market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |

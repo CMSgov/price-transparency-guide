@@ -3,6 +3,8 @@
   // Product ID is produced when submitting to HIOS. 16-digit ID. 
   // These ID only are for the marketplace. We need IDs for employer sponsored, self-insured id
   // Plan
+  "reporting_entity_name": "medicare",
+  "reporting_entity_type": "medicare",
   "plan_name": "medicare",
   "plan_id_type": "HIOS",
   "plan_id": "12345XX9876543",
