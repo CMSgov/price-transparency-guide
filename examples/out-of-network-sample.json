@@ -1,0 +1,77 @@
+{
+  "plan_name": "Need sample",
+  "plan_id_type": "sample",
+  "plan_id": "12345XX9876543",
+  "market_type": "group",
+  "out_of_network":[{ 
+    "type": "service",
+    "name": "surgery of a specific kind",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A8004",
+    "description": "description of the surgery being done.",
+   
+    // TODO: Determine what a structure would look like for each NPI/CPT combination, list all billed amounts that would be greater than 20 total.
+    "payments": [{  
+      "billed_amount": 10000.00, // This is the number that the provider is submitting 
+      "allowed_amount": 6000.00, // This is the number that the insurer will pay that provider
+      "npi": 1234567890,
+      "tin": 1234567890, // removing this would scale the file quicker than the service code.
+      "service_code": "01"
+    },{ 
+      "billed_amount": 11000.00, 
+      "allowed_amount": 8000.00,
+      "npi": 1234567890,
+      "tin": 1234567890,
+      "service_code": "01"
+    }],
+    
+   // OPEN QUESTIONS: do all providers (NPIs) under an organization (TIN) typically bill for the same amount for any given service/procedure?
+   // for each employer, all payments for each
+    "allowed_amounts": [{ 
+      "tin": 1234567890, // top level
+      "service_code": "01", // ASSUMPTION: top level bc it shouldn't change as much.
+      "payments": [{
+        "allowed_amount": 8000.00, // In the rule, "each unique allowed amount..."
+        "providers":[{
+          "npi": [1234567891,1234567892,1234567893,1234567893],
+          "billed_amount": 9000.00
+        },{
+          "npi": 1234567890,
+          "billed_amount": 10000.00
+        }]
+      },{
+        "allowed_amount": 8000.00,
+        "providers":[{
+          "npi": 1234567890,
+          "billed_amount": 9000.00
+        }]
+      }]
+    }],
+
+
+    { 
+    "type": "service",
+    "name": "surgery of a specific kind",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A8004",
+    "description": "description of the surgery being done.",
+    "payments": [{ 
+      "allowed_amount": 100000.00,
+      "npi": [ 1234567990 ]
+    }]
+  },{ 
+    "type": "service",
+    "name": "surgery of a specific kind",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "1.0",
+    "billing_code": "A8004",
+    "description": "description of the surgery being done.",
+    "payments": [{ 
+      "allowed_amount": 100000.00,
+      "npi": [ 1234567090 ]
+    }]
+  }],
+  "last_updated_on": "2020-08-27"
+// TODO: 1/2 pager comparing CSV formats to JSON/XML formats -> talking file size.}

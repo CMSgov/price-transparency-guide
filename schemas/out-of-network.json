@@ -1,0 +1,8 @@
+{
+  "plan_name": string,
+  "plan_id_type": string,
+  "plan_id": string,
+  "market_type": string,
+  "out_of_network":[{ OutOfNetwork }],
+  "last_updated_on": string
+}
