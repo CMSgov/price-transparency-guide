@@ -1,12 +1,10 @@
 # Price Transparency Guide
 The technical implementation guide for the TriDepartmental price transparency rule, [Transparency in Coverage](https://www.federalregister.gov/documents/2019/11/27/2019-25011/transparency-in-coverag).
 
-*This implementation guide has not been finalized and is subject to change before the finalization of the rule.*
-
 Overview
 ========
 
-This repository set of schemas describing a data format (encoded as JSON, XML, and CSV) for Transparency in Coverage.
+This repository contains a set of schemas describing a data format (example implementations are encoded as JSON and XML) for the Transparency in Coverage final rule.
 All machine-readable files must conform to a non-proprietary, open standards format that is platform independent and made available to the public without restrictions that would impede the re-use of that information.
 
 Background
@@ -28,7 +26,7 @@ Content type - Non-Proprietary, Open Format
 There are plenty of great formats to work with that will meet the needs for Transparency in Coverage:
 * [JSON](https://www.json.org/)
 * [XML](http://www.xml.org/)
-* [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
+* [YAML](https://yaml.org/)
 
 Examples of proprietary formats that do *not* meet this definition would be:
 * [PDF](https://en.wikipedia.org/wiki/PDF)
@@ -55,16 +53,16 @@ There three required flat files associated with Transparency in Coverage:
 * In-Network Prescription Drugs
 
 **In-Network Negotiated Rates File**
-Under the proposed rules, a plan or issuer must disclose in-network provider negotiated rates through a machine-readable file. The “negotiated rate” is the amount a plan or issuer (or a third party on behalf of the plan or issuer) has contractually agreed to pay an in-network provider for covered items and services.
+Under the finalized rules, a plan or issuer must disclose in-network provider negotiated rates for all items and services through a machine-readable file.
 
 **Out-Of-Network Allowed Amounts File**
-Under the proposed rules, a plan or issuer must disclose certain data elements to the public, including allowed amounts for out-of-network providers, through a machine-readable file.
+Under the finalized rules, a plan or issuer must disclose certain data elements to the public, including the billed and allowed amounts for out-of-network providers, through a machine-readable file.
 
 **In-Network Prescription Drugs File**
-Under the proposed rules, a plan or issuer must disclose in-network prescription drug negotiated rates through a machine-readable file.
+Under the finalized rules, a plan or issuer must disclose in-network prescription drug's historical net price and negotiated rate through a machine-readable file.
 
 The associated names for those files are:
-* `negotiated-rates`
+* `in-network-rates`
 * `allowed-amounts`
 * `prescription-drugs`
 
@@ -184,5 +182,6 @@ This type defines a drug price object
 | **pharmacies** | Negotiated Rate |	Array | Negotiated rates with respect to each covered item or service under a plan or coverage. Where a plan or issuer reimburses providers for an item or service based on a formula or reference based-pricing (such as a percentage of a Medicare reimbursement rate), the plan or issuer must provide the calculated dollar amount of the negotiated rate for each provider. Negotiated rates must be clearly associated with the provider’s National Provider Identifier, which is accessible by providers, plans and issuers. | Yes |
 
 ### Examples
-* [In-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/in-network-sample.json)
-* [Out-of-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/out-of-network-sample.json)
+* [In-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/in-network-sample.json)
+* [Out-of-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/out-of-network-sample.json)
+* [Prescription Drug Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/out-of-network-sample.json)
