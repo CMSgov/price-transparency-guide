@@ -1,5 +1,5 @@
-# Price Transparency Guide
-The technical implementation guide for the TriDepartmental price transparency rule, [Transparency in Coverage](https://www.federalregister.gov/documents/2019/11/27/2019-25011/transparency-in-coverag).
+# Transparency in Coverage
+The technical implementation guide for the machine readable files as required by the [Transparency in Coverage](https://www.federalregister.gov/documents/2019/11/27/2019-25011/transparency-in-coverag) final rules (85 FR 72158).
 
 Overview
 ========
@@ -10,7 +10,9 @@ All machine-readable files must conform to a non-proprietary, open standards for
 Background
 ==========
 
-Beginning in 2019, CMS worked to define a schema for sharing data in a machine-readable format that would allow for greater price transparency of both items and services that healthcare providers, health insurance issuers, and self-insured group health plans provide to consumers before they receive care. These files are intended to be used by technical people that could then build services, APIs, mobile applications, or anything else the market can think of to empower consumers to make informed decisions when it comes to managing their own care.
+The Departments of the Treasury, Labor, and Health and Human Services (the Departments) have issued the Transparency in Coverage final rules (85 FR 72158) on November 12, 2020. The final rules require non-grandfathered group health plans and health insurance issuers in the individual and group markets (plans and issuers) to disclose certain pricing information. Under the final rules a plan or issuer must disclose in-network negotiated rates, billed and out-of-network allowed, and in-network drug prices (including both “negotiated rates” and “historical net prices”) through three machine-readable files posted on an internet website.  
+
+Plans and issuers are required to make these files public for plan or policy years beginning on or after January 1, 2022.
 
 Developer Documentation
 =======================
