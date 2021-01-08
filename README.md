@@ -99,23 +99,32 @@ This type defines an in-network object.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **type** | Type | String | This attribute defines the category of charge. Allowed valued are: "item" and "service" | Yes |
+| **payment_type** | Payment Type | String | An indication as to whether a reimbursement arrangement other than a standard fee-for-service model applies. Allowed values: "bundle" or "capitation"| No |
 | **name** | Name | String | This is name of the item/service that is offered | Yes |
-| **expiration_date** | Expiration Date | String | The expiration date of each provider-specific negotiated rate that applies to each item or service (including rates for both individual and bundled items and services). | Yes |
 | **billing_code_type** | Billing Code Type | String | Allowed values: "CPT", "HCPCS", "ICD", and "DRG" | Yes |
 | **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare is currently using ICD's version 10 | Yes |
-| **billing_code** | Billing Code | String | The code for the item/service | Yes |
+| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. | Yes |
 | **description** | Description | String | Brief description of the item/service | No |
-| **negotiated_rates** | Negotiated Rates | Array | This is an array of [negotiated rate objects types](#negotiated-rate-object) | Yes |
+| **negotiated_rates** | Negotiated Rates | Array | This is an array of [negotiated rate details object types](#negotiated-rate-details-object) | Yes |
 
-#### Negotiated Rate Object
+#### Negotiated Rate Details Object
 
 This type defines a negotiated rate object.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **negotiated_rate** | Negotiated Rate |	Number | Negotiated rates with respect to each covered item or service under a plan or coverage. Where a plan or issuer reimburses providers for an item or service based on a formula or reference based-pricing (such as a percentage of a Medicare reimbursement rate), the plan or issuer must provide the calculated dollar amount of the negotiated rate for each provider. Negotiated rates must be clearly associated with the provider’s National Provider Identifier, which is accessible by providers, plans and issuers. | Yes |
-| **providers** | Providers | Array | An array of provider identification numbers (NPI) | Yes |
+| **negotiated_rate** | Negotiated Rate |	Object | This [object](#negotiated-rate-object) defines information about the type of negotiated rate as well as the dollar amount of the negotiated rate | Yes |
+| **providers** | Providers | Array | An array of provider identification numbers (NPI). This can be a list of type 1 and type 2 NPIs | Yes |
+| **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
+| **service_code** | Place of Service Code | String | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided | Yes |
+
+# Negotiated Rate Object
+| Field | Name | Type | Definition | Required |
+| ----- | ---- | ---- | ---------- | -------- |
+| **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "Negotiated", "Derived", and "Fee Schedule"| Yes |
+| **negotiated_price** | Negotiated Price | Number | The negotiated dollar amount based on the `negotiation_type` | Yes |
+| **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
+
 
 ### Out-Of-Network Allowed Amount File
 
