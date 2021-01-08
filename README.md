@@ -161,10 +161,14 @@ This schema describes the Rx attributes that are necessary for the drug flat fil
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **plan_name** | Plan Name | String | This attribute defines the category of charge. Allowed valued are: "item" and "service" | Yes |
-| **plan_id_type** | Name | String | This is name of the item/service that is offered | Yes |
-| **plan_id** | Expiration Date | String | The expiration date of each provider-specific negotiated rate that applies to each item or service (including rates for both individual and bundled items and services). | Yes |
-| **drugs** | Drugs | Array | Allowed values: "CPT", "HCPCS", "NDC", and "DRG" | Yes |
+| **reporting_entity_name** | Entity Name | String | The legal name of the entity publishing the machine-readable file. | Yes |
+| **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
+| **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company (for example, “Maximum Health Plan: Alpha Insurance Group”). | Yes |
+| **plan_id_type** | Plan ID Type | String | Allowed values: "EIN" and "HIOS" | Yes |
+| **plan_id** | Plan ID | String | The 14-digit Health Insurance Oversight System (HIOS) identifier, or, if the 14-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN), for each coverage option offered by a plan or issuer | Yes |
+| **market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
+| **drugs** | Drugs |	Array | An array of [drug information objects](#drug-object) | Yes |
+| **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
 
 #### Drug Object
 
@@ -172,12 +176,10 @@ This type defines a drug object
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **brand_drug_name** | Negotiated Rate |	Number | Negotiated rates with respect to each covered item or service under a plan or coverage. Where a plan or issuer reimburses providers for an item or service based on a formula or reference based-pricing (such as a percentage of a Medicare reimbursement rate), the plan or issuer must provide the calculated dollar amount of the negotiated rate for each provider. Negotiated rates must be clearly associated with the provider’s National Provider Identifier, which is accessible by providers, plans and issuers. | Yes |
-| **generic_drug_name** | Negotiated Rate |	Number | Negotiated rates with respect to each covered item or service under a plan or coverage. Where a plan or issuer reimburses providers for an item or service based on a formula or reference based-pricing (such as a percentage of a Medicare reimbursement rate), the plan or issuer must provide the calculated dollar amount of the negotiated rate for each provider. Negotiated rates must be clearly associated with the provider’s National Provider Identifier, which is accessible by providers, plans and issuers. | Yes |
-| **ndc_11** | Providers | Array | An array of NPI numbers | Yes |
-| **hpcp_code** | Negotiated Rate |	Number | Negotiated rates with respect to each covered item or service under a plan or coverage. Where a plan or issuer reimburses providers for an item or service based on a formula or reference based-pricing (such as a percentage of a Medicare reimbursement rate), the plan or issuer must provide the calculated dollar amount of the negotiated rate for each provider. Negotiated rates must be clearly associated with the provider’s National Provider Identifier, which is accessible by providers, plans and issuers. | Yes |
-| **unit_of_measurement** | Negotiated Rate |	Number | Negotiated rates with respect to each covered item or service under a plan or coverage. Where a plan or issuer reimburses providers for an item or service based on a formula or reference based-pricing (such as a percentage of a Medicare reimbursement rate), the plan or issuer must provide the calculated dollar amount of the negotiated rate for each provider. Negotiated rates must be clearly associated with the provider’s National Provider Identifier, which is accessible by providers, plans and issuers. | Yes |
-| **prices** | Negotiated Rate |	Array | Negotiated rates with respect to each covered item or service under a plan or coverage. Where a plan or issuer reimburses providers for an item or service based on a formula or reference based-pricing (such as a percentage of a Medicare reimbursement rate), the plan or issuer must provide the calculated dollar amount of the negotiated rate for each provider. Negotiated rates must be clearly associated with the provider’s National Provider Identifier, which is accessible by providers, plans and issuers. | Yes |
+| **drug_name** | Drug Name |	String | The proprietary and nonproprietary name assigned to the National Drug Code (NDC) by the Food and Drug Administration (FDA). | Yes |
+| **drug_type** | Drug Type |	String | Allowed values: "branded", "generic", or "biosimilar" | Yes |
+| **ndc** | National Drug Code | String | A unique 10-digit or 11-digit, 3-segment number assigned by the FDA, which provides a universal product identifier for drugs in the United States.  Data reporting will be on the **first 8 digits** of the full 10-digit or 11-digit NDCs. The last 2 digits of the full 10-digit or 11-digit NDC specify quantity and do not have an impact on the negotiated rate or historic net price. | Yes |
+| **prices** | Prices | Array | An array of [drug price objects](#drug-price-object) | Yes |
 
 #### Drug Price Object
 
