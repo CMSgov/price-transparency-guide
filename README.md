@@ -192,7 +192,10 @@ This type defines a drug price object
 | **administration_fee** | Administration Fee | Number | The fee, reflected as a dollar amount, charged by the Pharmacy Benefit Manager to the plan or issuer for administrating each prescription. This fee must be reflected separately only for the negotiated rate data element. | Yes |
 | **dispensing_fee** | Dispensing Fee | Number | The fee, reflected as a dollar amount, for dispensing a prescription applied at the point of sale. This fee must be reflected separately only for the negotiated rate data element. | Yes |
 | **transaction_fee** | Transaction Fee |	Number | Any fees, reflected as a dollar amount, assessed when processing a prescription that is not associated with the administrative or dispensing fee. This fee must be reflected separately only for the negotiated rate data element. | Yes |
-| **pharmacies** | Negotiated Rate |	Array | Negotiated rates with respect to each covered item or service under a plan or coverage. Where a plan or issuer reimburses providers for an item or service based on a formula or reference based-pricing (such as a percentage of a Medicare reimbursement rate), the plan or issuer must provide the calculated dollar amount of the negotiated rate for each provider. Negotiated rates must be clearly associated with the provider’s National Provider Identifier, which is accessible by providers, plans and issuers. | Yes |
+| **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
+| **service_code** | Place of Service Code | String | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided | Yes |
+| **pharmacies** | Negotiated Rate |	Array | Pharmacy Array Object | Yes |
+
 
 ### Examples
 * [In-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/in-network-sample.json)
