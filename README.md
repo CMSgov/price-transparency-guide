@@ -124,7 +124,7 @@ The negotiated price object contains negotiated pricing information that the typ
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", and "fee schedule"| Yes |
+| **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", and "fee schedule". See additional notes. | Yes |
 | **negotiated_rate** | Negotiated Rate | Number | The dollar amount based on the `negotiation_type` | Yes |
 | **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
 
@@ -176,7 +176,7 @@ The payment object documents the allowed amounts the plan has paid for the servi
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **allowed_amount** | Allowed Amount | Number | The allowed amount must be reported as the actual dollar amount the plan or issuer paid to the out-of-network provider for a particular covered item or service, plus the participant’s, beneficiary’s, or enrollee’s share of the cost. | Yes |
+| **allowed_amount** | Allowed Amount | Number | The allowed amount must be reported as the actual dollar amount the plan or issuer paid to the out-of-network provider for a particular covered item or service, plus the participant’s, beneficiary’s, or enrollee’s share of the cost. See additional notes. | Yes |
 | **providers** | Providers |	Array | An array of [provider objects](#provider-object) | Yes |
 
 ##### Additional Notes
@@ -223,9 +223,9 @@ This type defines a drug price object
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **historical_net_price** | Historical Net Price |	Number | The retrospective average amount paid, reflected as a dollar amount, by a plan or issuer to an in-network provider for a prescription drug. | Yes |
+| **historical_net_price** | Historical Net Price |	Number | The retrospective average amount paid, reflected as a dollar amount, by a plan or issuer to an in-network provider for a prescription drug. See additional notes. | Yes |
 | **historical_net_reporting_period** | Historical Net Price Reporting Period |	String | The date in which the reporting period for the `historical_net_price` ended. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
-| **negotiated_rate** | Negotiated Rate |	Number | The amount, reflected as a dollar amount, that a plan or issuer has contractually agreed to pay an in-network provider. | Yes |
+| **negotiated_rate** | Negotiated Rate |	Number | The amount, reflected as a dollar amount, that a plan or issuer has contractually agreed to pay an in-network provider. See additional notes. | Yes |
 | **administrative_fee** | Administrative Fee | Number | The fee, reflected as a dollar amount, charged by the Pharmacy Benefit Manager to the plan or issuer for administrating each prescription. This fee must be reflected separately only for the negotiated rate data element. | Yes |
 | **dispensing_fee** | Dispensing Fee | Number | The fee, reflected as a dollar amount, for dispensing a prescription applied at the point of sale. This fee must be reflected separately only for the negotiated rate data element. | Yes |
 | **transaction_fee** | Transaction Fee |	Number | Any fees, reflected as a dollar amount, assessed when processing a prescription that is not associated with the administrative or dispensing fee. This fee must be reflected separately only for the negotiated rate data element. | Yes |
