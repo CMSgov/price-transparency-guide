@@ -113,18 +113,26 @@ This type defines a negotiated rate object.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **negotiated_rate** | Negotiated Rate |	Object | The [negotiated rate object](#negotiated-rate-object) defines information about the type of negotiated rate as well as the dollar amount of the negotiated rate | Yes |
+| **negotiated_price** | Negotiated Price |	Object | The [negotiated price object](#negotiated-price-object) defines information about the type of negotiated rate as well as the dollar amount of the negotiated rate | Yes |
 | **providers** | Providers | Array | An array of provider identification numbers (NPI). This can be a list of type 1 and type 2 NPIs | Yes |
 | **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
 | **service_code** | Place of Service Code | String | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided | Yes |
 
-#### Negotiated Rate Object
+#### Negotiated Price Object
+
+The negotiated price object contains negotiated pricing information that the type of negotiation for the covered item or service.
+
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "Negotiated", "Derived", and "Fee Schedule"| Yes |
-| **negotiated_price** | Negotiated Price | Number | The negotiated dollar amount based on the `negotiation_type` | Yes |
+| **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", and "fee schedule"| Yes |
+| **negotiated_rate** | Negotiated Rate | Number | The dollar amount based on the `negotiation_type` | Yes |
 | **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
 
+##### Additional Notes
+For `negotiated_type` there are three allowable values: "negotiated", "derived", and "fee schedule". The value are defined as:
+* `negotiated`: If applicable, the negotiated rate, reflected as a dollar amount, for each covered item or service under the plan or coverage that the plan or issuer has contractually agreed to pay an in-network provider, except for prescription drugs that are subject to a fee-for-service reimbursement arrangement, which must be reported in the prescription drug machine-readable file. If the negotiated rate is subject to change based upon participant, beneficiary, or enrollee-specific characteristics, these dollar amounts should be reflected as the base negotiated rate applicable to the item or service prior to adjustments for participant, beneficiary, or enrollee-specific characteristics.
+* `derived`: If applicable, the price that a plan or issuer assigns to an item or service for the purpose of internal accounting, reconciliation with providers or submitting data in accordance with the requirements of 45 CFR 153.710(c).
+* `fee schedule`: If applicable, the rate for a covered item or service from a particular in-network provider, or providers that a group health plan or health insurance issuer uses to determine a participant’s, beneficiary’s, or enrollee’s cost-sharing liability for the item or service, when that rate is different from the negotiated rate.
 
 ### Out-Of-Network Allowed Amount File
 
@@ -141,6 +149,8 @@ This type defines a negotiated rate object.
 
 #### Out-Of-Network Object
 
+The out-of-network object contains information related to the service that was provided out-of-network.
+
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **name** | Name | String | The name of each item or service for which the costs are payable, in whole or in part, under the terms of the plan or coverage. | Yes |
@@ -152,6 +162,8 @@ This type defines a negotiated rate object.
 
 #### Allowed Amounts Object
 
+The allowed amounts object documents the entity or business and service code in where the service was provided out-of-network.
+
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
@@ -159,6 +171,8 @@ This type defines a negotiated rate object.
 | **payments** | Payments |	Array | An array of [out-of-network payments objects](#out-of-network-payment-object) | Yes |
 
 #### Out-Of-Network Payment Object
+
+The payment object documents the allowed amounts the plan has paid for the service that was provided out-of-network.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
@@ -169,6 +183,8 @@ This type defines a negotiated rate object.
 The `allowed_amount` is each unique allowed amount, reflected as a dollar amount, that a plan or issuer paid for a covered item or service furnished by an out-of-network provider during the 90-day time period that begins 180 days prior to the publication date of the machine-readable file. To protect patient privacy, a plan or issuer must not provide out-of-network allowed amount data for a particular provider and a particular item or service when compliance would require the plan or issuer to report out-of-network allowed amounts paid to a particular provider in connection with fewer than 20 different claims for payment. Issuers, service providers, or other parties with which the plan or issuer has contracted may aggregate out-of-network allowed amounts for more than one plan or insurance policy or contract. If information is aggregated, the 20 minimum claims threshold applies at the plan or issuer level.
 
 #### Provider Object
+
+The provider object defines the list of NPIs and their billed charges for the service provided out-of-network.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
