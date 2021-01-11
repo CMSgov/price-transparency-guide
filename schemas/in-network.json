@@ -1,8 +1,75 @@
 {
-  "plan_name": string,
-  "plan_id_type": string,
-  "plan_id": string,
-  "market_type": string,
-  "in_network": [{ InNetwork }],
-  "last_updated_on": string
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "in_network": {
+      "type": "object",
+      "properties": {
+        "payment_type": { "enum": [ "fee_for_service", "bundle", "capitation" ] },
+        "name": { "type": "string" },
+        "billing_code_type": { "enum": [ "CPT", "HCPCS", "ICD", "DRG" ] },
+        "billing_code_type_version": { "type": "string" },
+        "billing_code": { "type": "string" },
+        "description": { "type": "string" },
+        "negotiated_rates": {
+          "type": "array",
+          "$ref": "#/definitions/negotiated_rates",
+          "default": []
+        }
+      },
+      "required": ["payment_type", "name", "billing_code_type", "billing_code_type_version", "billing_code", "negotiated_rates"]
+    },
+
+    "negotiated_rates": {
+      "type": "object",
+      "properties": {
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "uniqueItems": true, 
+          "default": []
+        },
+        "tin": { "type": "string" },
+        "service_code": { 
+          "type": "string",
+          "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
+        },
+        "negotiated_price": {
+          "$ref": "#/definitions/negotiated_price"
+        }
+      },
+      "required": [ "providers", "tin", "service_code", "negotiated_price" ]
+    },
+
+    "negotiated_price": {
+      "type": "object",
+      "properties": {
+        "negotiated_type": { "type": "string" },
+        "negotiated_rate": { "type": "number" },
+        "expiration_date": { "type": "string", "format": "date" }
+      },
+      "required": [ "negotiated_type", "negotiated_rate", "expiration_date" ]
+    }
+  },
+
+
+  "type": "object",
+
+  "properties": {
+    "reporting_entity_name": { "type": "string" },
+    "reporting_entity_type": { "type": "string" },
+    "plan_name": { "type": "string" },
+    "plan_id_type": { "type": "string" },
+    "plan_id": { "type": "string" },
+    "plan_market_type": { "enum": [ "group", "individual" ] },
+    "last_update_on": { "type": "string", "format": "date" },
+    "in_network": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/in_network" },
+      "default": []
+    }
+  },
+  "required": ["reporting_entity_name", "reporting_entity_type", "plan_name", "plan_id_type", "plan_id", "plan_market_type", "last_update_on"]
+
 }
