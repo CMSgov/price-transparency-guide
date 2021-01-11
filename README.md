@@ -143,7 +143,7 @@ For `negotiated_type` there are three allowable values: "negotiated", "derived",
 | **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company (for example, “Maximum Health Plan: Alpha Insurance Group”). | Yes |
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" or "HIOS" | No |
 | **plan_id** | Plan ID | String | The 14-digit Health Insurance Oversight System (HIOS) identifier, or, if the 14-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number [(EIN)](https://en.wikipedia.org/wiki/Employer_Identification_Number), for each coverage option offered by a plan or issuer. | Yes |
-| **market_type** | Market Type | String | Allowed values: "group" or "individual" | Yes |
+| **plan_market_type** | Market Type | String | Allowed values: "group" or "individual" | Yes |
 | **out_of_network** | Out Of Network | Array | An array of [out-of-network object types](#out-of-network-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
 
@@ -202,7 +202,7 @@ This schema describes the Rx attributes that are necessary for the drug flat fil
 | **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company (for example, “Maximum Health Plan: Alpha Insurance Group”). | Yes |
 | **plan_id_type** | Plan ID Type | String | Allowed values: "EIN" and "HIOS" | Yes |
 | **plan_id** | Plan ID | String | The 14-digit Health Insurance Oversight System (HIOS) identifier, or, if the 14-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN), for each coverage option offered by a plan or issuer | Yes |
-| **market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
+| **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
 | **drugs** | Drugs |	Array | An array of [drug information objects](#drug-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
 
