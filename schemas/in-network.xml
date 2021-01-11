@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<_schema>http://json-schema.org/draft-06/schema#</_schema>
+<definitions>
+    <in_network>
+        <type>object</type>
+        <properties>
+            <payment_type>
+                <enum>fee_for_service</enum>
+                <enum>bundle</enum>
+                <enum>capitation</enum>
+            </payment_type>
+            <name>
+                <type>string</type>
+            </name>
+            <billing_code_type>
+                <enum>CPT</enum>
+                <enum>HCPCS</enum>
+                <enum>ICD</enum>
+                <enum>DRG</enum>
+            </billing_code_type>
+            <billing_code_type_version>
+                <type>string</type>
+            </billing_code_type_version>
+            <billing_code>
+                <type>string</type>
+            </billing_code>
+            <description>
+                <type>string</type>
+            </description>
+            <negotiated_rates>
+                <type>array</type>
+                <_ref>#/definitions/negotiated_rates</_ref>
+            </negotiated_rates>
+        </properties>
+        <required>payment_type</required>
+        <required>name</required>
+        <required>billing_code_type</required>
+        <required>billing_code_type_version</required>
+        <required>billing_code</required>
+        <required>negotiated_rates</required>
+    </in_network>
+    <negotiated_rates>
+        <type>object</type>
+        <properties>
+            <providers>
+                <type>array</type>
+                <items>
+                    <type>number</type>
+                </items>
+                <uniqueItems>true</uniqueItems>
+            </providers>
+            <tin>
+                <type>string</type>
+            </tin>
+            <service_code>
+                <type>string</type>
+                <_ref>https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set</_ref>
+            </service_code>
+            <negotiated_price>
+                <_ref>#/definitions/negotiated_price</_ref>
+            </negotiated_price>
+        </properties>
+        <required>providers</required>
+        <required>tin</required>
+        <required>service_code</required>
+        <required>negotiated_price</required>
+    </negotiated_rates>
+    <negotiated_price>
+        <type>object</type>
+        <properties>
+            <negotiated_type>
+                <type>string</type>
+            </negotiated_type>
+            <negotiated_rate>
+                <type>number</type>
+            </negotiated_rate>
+            <expiration_date>
+                <type>string</type>
+                <format>date</format>
+            </expiration_date>
+        </properties>
+        <required>negotiated_type</required>
+        <required>negotiated_rate</required>
+        <required>expiration_date</required>
+    </negotiated_price>
+</definitions>
+<type>object</type>
+<properties>
+    <reporting_entity_name>
+        <type>string</type>
+    </reporting_entity_name>
+    <reporting_entity_type>
+        <type>string</type>
+    </reporting_entity_type>
+    <plan_name>
+        <type>string</type>
+    </plan_name>
+    <plan_id_type>
+        <type>string</type>
+    </plan_id_type>
+    <plan_id>
+        <type>string</type>
+    </plan_id>
+    <plan_market_type>
+        <enum>group</enum>
+        <enum>individual</enum>
+    </plan_market_type>
+    <last_update_on>
+        <type>string</type>
+        <format>date</format>
+    </last_update_on>
+    <in_network>
+        <type>array</type>
+        <items>
+            <_ref>#/definitions/in_network</_ref>
+        </items>
+    </in_network>
+</properties>
+<required>reporting_entity_name</required>
+<required>reporting_entity_type</required>
+<required>plan_name</required>
+<required>plan_id_type</required>
+<required>plan_id</required>
+<required>plan_market_type</required>
+<required>last_update_on</required>
+
