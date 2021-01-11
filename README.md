@@ -130,6 +130,8 @@ This type defines a negotiated rate object.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
+| **reporting_entity_name** | Entity Name | String | The legal name of the entity publishing the machine-readable file. | Yes |
+| **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
 | **plan_name** | Plan Name | String | The name of the plan of which these prices are set for the given items and services | Yes |
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
 | **plan_id** | Plan ID | String | If available, this will be either the plan's [EIN](https://en.wikipedia.org/wiki/Employer_Identification_Number) or the 14-character, HIOS-generated Plan ID number. (Plan IDs must be unique, even across different markets.) | No |
@@ -153,7 +155,7 @@ This type defines a negotiated rate object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **allowed_amount** | Allowed Amount | Number | The actual amount paid to the provider for the service performed after all deductions and calculations are performed. This does not include the amount paid fee for service on a capitated service. | Yes |
-| **npi** | National Provider Index | Array | An array of provider identification numbers (NPI) | Yes |
+| **npi** | National Provider Identifier | Array | An array of provider identification numbers (NPI) | Yes |
 
 ### Rx file schema
 
@@ -188,14 +190,26 @@ This type defines a drug price object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **historical_net_price** | Historical Net Price |	Number | The retrospective average amount paid, reflected as a dollar amount, by a plan or issuer to an in-network provider for the 90-day period beginning 180 days before the file publication date, including any in-network pharmacy or other prescription drug dispenser, for a prescription drug, inclusive of any reasonably allocated rebates, discounts, chargebacks, fees, and any additional price concessions received by the plan or issuer with respect to the prescription drug or prescription drug service.  The historic net price must be reported at the billing unit level as defined by the NCPDP. The standard contains three units. Each “EA,” Milliliter “ML,” or Gram “GM.” | Yes |
+| **historical_net_price_reporting_period** | Historical Net Price Reporting Period |	String | The date in which the reporting period for the `historical_net_price` ended. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
 | **negotiated_rate** | Negotiated Rate |	Number | The amount, reflected as a dollar amount, that a plan or issuer has contractually agreed to pay an in-network provider, including an in-network pharmacy or other prescription drug dispenser, whether directly or indirectly, including through a third-party administrator or pharmacy benefit manager, for prescription drugs. The negotiated rate must be reported at the billing unit level as defined by NCPDP. The standard contains three units “EA,” “ML,” or “GM.” Fees that are assessed at the point of sale must be reflected separately as a dollar amount (see Dispensing Fee, Administrative Fee, and Transaction Fee data elements). | Yes |
 | **administration_fee** | Administration Fee | Number | The fee, reflected as a dollar amount, charged by the Pharmacy Benefit Manager to the plan or issuer for administrating each prescription. This fee must be reflected separately only for the negotiated rate data element. | Yes |
 | **dispensing_fee** | Dispensing Fee | Number | The fee, reflected as a dollar amount, for dispensing a prescription applied at the point of sale. This fee must be reflected separately only for the negotiated rate data element. | Yes |
 | **transaction_fee** | Transaction Fee |	Number | Any fees, reflected as a dollar amount, assessed when processing a prescription that is not associated with the administrative or dispensing fee. This fee must be reflected separately only for the negotiated rate data element. | Yes |
 | **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
 | **service_code** | Place of Service Code | String | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided | Yes |
-| **pharmacies** | Negotiated Rate |	Array | Pharmacy Array Object | Yes |
+| **providers** | Providers |	Array | A list of different [providers objects](#provider-object) that have specific negotiated rates for the specific `ndc` | Yes |
 
+#### Provider Object
+
+Different types of providers and pharmacies that have the specific negotiated rate and historical net price for the defined NDC.
+
+| Field | Name | Type | Definition | Required |
+| ----- | ---- | ---- | ---------- | -------- |
+| **pharmacy_id_type** | Provider ID Type |	String | Allowed values: “NCPDP ID,” “NCPDP Chain Code,” or “NPI”. Note: NPIs must be of type 2 to be included in `pharmacy_ids` | Yes |
+| **pharmacy_ids** | Pharmacy IDs | Array | The National Council for Prescription Drug Programs (NCPDP) ID5 - The unique 7-digit number assigned by the NCPDP to every licensed pharmacy and non-Pharmacy Dispensing Site (NPDS) in the United States and its territories.  This number represents a unique pharmacy entity or line of business and is used to identify licensed pharmacies and NPDSs to insurance companies, health care providers, and other entities. 
+
+The NCPDP Chain Code6 - The ID number provided by the NCPDP that represents a group of pharmacies under the same ownership.  If the plan or issuer includes the NCPDP Chain Code, it must also include the NCPDP IDs for each pharmacy that is represented in the group of pharmacies that are identified by the NCPDP Chain Code. | Yes |
+| **npi** | National Provider Identifier | Array | An array of provider identification numbers (NPI) | Yes |
 
 ### Examples
 * [In-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/in-network-sample.json)
