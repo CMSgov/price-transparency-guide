@@ -4,8 +4,8 @@
     <in_network>
         <type>object</type>
         <properties>
-            <payment_type>
-                <enum>fee_for_service</enum>
+            <negotiation_type>
+                <enum>ffs</enum>
                 <enum>bundle</enum>
                 <enum>capitation</enum>
             </payment_type>

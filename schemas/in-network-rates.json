@@ -4,7 +4,7 @@
     "in_network": {
       "type": "object",
       "properties": {
-        "payment_type": { "enum": [ "fee_for_service", "bundle", "capitation" ] },
+        "negotiation_type": { "enum": [ "ffs", "bundle", "capitation" ] },
         "name": { "type": "string" },
         "billing_code_type": { "enum": [ "CPT", "HCPCS", "ICD", "DRG" ] },
         "billing_code_type_version": { "type": "string" },
