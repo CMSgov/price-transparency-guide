@@ -263,6 +263,4 @@ The `pharmacy_ids` element is dependent on the `pharmacy_id_type`. The following
 
 
 ### Examples
-* [In-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/in-network-sample.json)
-* [Out-of-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/out-of-network-sample.json)
-* [Prescription Drug Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/out-of-network-sample.json)
+* [Implementation Examples](https://github.com/CMSgov/price-transparency-guide/tree/master/examples)
