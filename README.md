@@ -251,8 +251,16 @@ Different types of providers and pharmacies that have the specific negotiated ra
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **pharmacy_id_type** | Provider ID Type |	String | Allowed values: “NCPDP ID,” “NCPDP Chain Code,” or “NPI”. Note: NPIs must be of type 2 to be included in `pharmacy_ids` | Yes |
-| **pharmacy_ids** | Pharmacy IDs | Array | The National Council for Prescription Drug Programs (NCPDP) ID5 - The unique 7-digit number assigned by the NCPDP to every licensed pharmacy and non-Pharmacy Dispensing Site (NPDS) in the United States and its territories. This number represents a unique pharmacy entity or line of business and is used to identify licensed pharmacies and NPDSs to insurance companies, health care providers, and other entities. The NCPDP Chain Code6 - The ID number provided by the NCPDP that represents a group of pharmacies under the same ownership.  If the plan or issuer includes the NCPDP Chain Code, it must also include the NCPDP IDs for each pharmacy that is represented in the group of pharmacies that are identified by the NCPDP Chain Code. | Yes |
+| **pharmacy_ids** | Pharmacy IDs | Array | The pharmacy idenifier based on the `phaarmacy_id_type`. See Additional Notes | Yes |
 | **npi** | National Provider Identifier | Array | An array of provider identification numbers (NPI) | Yes |
+
+##### Additional Notes
+
+The `pharmacy_ids` element is dependent on the `pharmacy_id_type`. The following `pharmacy_id_type` values are allowed:
+* `NCPDP ID` - [The National Council for Prescription Drug Programs (NCPDP) ID](https://www.resdac.org/cms-data/variables/ncpdp-pharmacy-identifier-pharmacy-characteristics) - The unique 7-digit number assigned by the NCPDP to every licensed pharmacy and non-Pharmacy Dispensing Site (NPDS) in the United States and its territories. This number represents a unique pharmacy entity or line of business and is used to identify licensed pharmacies and NPDSs to insurance companies, health care providers, and other entities.
+* `NCPDP Chain Code` - [The NCPDP Chain Code](https://accessonline.ncpdp.org/Resources/Help/NCPDP%20Part%202%20Training%20Guide%20v1.04.pdf) - The ID number provided by the NCPDP that represents a group of pharmacies under the same ownership. If the plan or issuer includes the NCPDP Chain Code, it must also include the NCPDP IDs for each pharmacy that is represented in the group of pharmacies that are identified by the NCPDP Chain Code.
+* `NPI` - [The NPI Type 2](https://www.cms.gov/Outreach-and-Education/Medicare-Learning-Network-MLN/MLNProducts/downloads/NPI-What-You-Need-To-Know.pdf) - The unique 10-digit identification number issued to a provider by CMS for an organization of health care providers, such as a medical group or pharmacy.
+
 
 ### Examples
 * [In-Network Sample](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/in-network-sample.json)
