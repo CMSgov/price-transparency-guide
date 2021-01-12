@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "drugs": {
+      "type": "object",
+      "properties": {
+        "drug_name": { "type": "string" },
+        "drug_type": { "enum": [ "branded", "generic", "biosimilar" ] },
+        "ndc": { "type": "string" },
+        "prices": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/prices" },
+          "default": []
+        }
+      },
+      "required": [ "drug_name", "drug_type", "ndc", "prices" ]
+    },
+
+    "prices": {
+      "type": "object",
+      "properties": {
+        "historical_net_price": { "type": "number" },
+        "historical_net_reporting_period": { "type": "string", "format": "date" },
+        "negotiated_rate": { "type": "number" },
+        "administrative_fee": { "type": "number" },
+        "dispensing_fee": { "type": "number" },
+        "transaction_fee": { "type": "number" },
+        "tin": { "type": "string" },
+        "service_code": {
+          "type": "string",
+          "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
+        },
+        "providers": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/providers" },
+          "default": []
+        }
+      },
+      "required": [ "historical_net_price", "historical_net_reporting_period", "negotiated_rate", "administrative_fee", "dispensing_fee", "transaction_fee", "tin", "providers" ]
+    },
+
+    "providers": {
+      "type": "object",
+      "properties": {
+        "pharmacy_id_type": { "type": "string" },
+        "pharmacy_ids": { 
+          "type": "array",
+          "items": { "type": "number" },
+          "default": [],
+          "uniqueItems": true
+        },
+        "npi": { 
+          "type": "array",
+          "items": { "type": "number" },
+          "default": [],
+          "uniqueItems": true
+        }
+      },
+      "required": [ "pharmacy_id_type", "pharmacy_ids", "npi" ]
+    }
+  },
+
+
+  "type": "object",
+  "properties": {
+    "reporting_entity_name": { "type": "string" },
+    "reporting_entity_type": { "type": "string" },
+    "plan_name": { "type": "string" },
+    "plan_id_type": { "type": "string" },
+    "plan_id": { "type": "string" },
+    "plan_market_type": { "enum": [ "group", "individual" ] },
+    "last_update_on": { "type": "string", "format": "date" },
+    "drugs": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/drugs" },
+      "default": []
+    }
+  },
+  "required": ["reporting_entity_name", "reporting_entity_type", "plan_name", "plan_id_type", "plan_id", "plan_market_type", "last_update_on"]
+}

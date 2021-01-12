@@ -1,0 +1,77 @@
+{
+  "plan_name": "Medicare Part D",
+  "plan_id_type": "HIOS",
+  "plan_id": "12345XX9876543",
+  "market_type": "group",
+  "drugs": [{
+    "type": "branded", 
+    "name": "Name of the drug", 
+    "ndc_8": "111-1111", // Potentially 100k-1Ms of NDCs. Followup: is there a minimum list of NDCs that should be required?
+    "ndc_11": ["111-1111-01", "111-1111-02", "111-1111-03"],
+    
+    "prices": [{ 
+      "history_net_price": 1.00, // The plan paid this amount to the pharmacy with all discounts. Dispense and admin fees.
+      "negotiated_price": 10.00, // This is the pharmacy payment that the bene's price is based off of. Between the PBM and the health plan. You can back into the rebates here.
+
+      // Including these two can still drive innovation without being too specific. --Tom (Deloitte)
+      "administration_fee": "xxx.xx",
+      "transaction_fee": "xxx.xx",
+      "dispensing_fee": "xxx.xx", // do we want to capture this here?
+
+      "tin": "xxxxxxx",
+      "service_code": "02", 
+
+      // Type 2 NPIs or NABP? At what level does it matter? Would this remove the need for a TIN/Service Code number?
+      "pharmacy_chain":[{
+        "pharmacy_chain_id": [123450], // Larger groups of pharmacies: CVS, Walgreens, etc
+        "pharmacy_id_type": "NABP", // Only allowed values: NABP, NPI
+        "pharmacy_ids": [3911647310, 3911647310],  // These are companies/businesses
+      },
+
+
+      {
+        "pharmacy_id_type": "NCPDP ID", 
+        "pharmacy_ids": [3911647310, 3911647310]
+      },{
+        "pharmacy_id_type": "NCPDP Chain Code", 
+        "pharmacy_ids": [3911647310, 3911647310]
+      },{
+        "pharmacy_id_type": "NPI", 
+        "pharmacy_chain_id": [1391164731,1391164731,1391164731] 
+      }],
+      
+
+
+
+
+
+      "providers": [3911647310], // Type 1 NPIs. These are individuals. For example, this could be a Part B scenario. 
+    },
+
+    { 
+      "history_net_price": 1.00, 
+      "negotiated_price": 10.00,
+      
+      "additional_fees": "xxx.xx", 
+      "dispensing_fee": "xxx.xx", // Provider -> Beneificary
+      "admin_fee": "xxx.xx", // Manufact -> PBM
+
+      "tin": "xxxxxxx",
+      "service_code": "02", 
+
+      "pharmacy_chain":[{
+        "pharmacy_id_type": "NCPDP", 
+        "pharmacy_ids": [3911647310, 3911647310]
+      },{
+        "pharmacy_id_type": "NPI", 
+        "pharmacy_ids": [3911647310, 3911647310]
+      },{
+        "pharmacy_chain_id": [123450] 
+      }],
+      
+
+
+      "providers": [3911647310]
+    }]
+  }]
+}
