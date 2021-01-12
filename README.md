@@ -73,7 +73,7 @@ File Naming Convention
 The following is the required naming standard for each file: `<YYYY-MM-DD>_<payer or issuer name>_<plan name>_<file type name>.json`
 
 For example, the following would be the required naming for CMS:
-* `2020-01-05_cms_medicare_negotiated-rates.json`
+* `2020-01-05_cms_medicare_in-network-rates.json`
 * `2020-01-05_cms_medicare_allowed-amounts.json`
 * `2020-01-05_cms_medicare_prescription-drugs.json`
 
