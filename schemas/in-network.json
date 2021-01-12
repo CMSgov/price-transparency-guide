@@ -24,9 +24,7 @@
       "properties": {
         "providers": {
           "type": "array",
-          "items": {
-            "type": "number"
-          },
+          "items": { "type": "number" },
           "uniqueItems": true, 
           "default": []
         },
