@@ -4,7 +4,7 @@
     <in_network>
         <type>object</type>
         <properties>
-            <negotiation_type>
+            <negotiation_arrangement>
                 <enum>ffs</enum>
                 <enum>bundle</enum>
                 <enum>capitation</enum>
@@ -69,7 +69,9 @@
         <type>object</type>
         <properties>
             <negotiated_type>
-                <type>string</type>
+                <enum>negotiated</enum>
+                <enum>derived</enum>
+                <enum>fee schedule</enum>
             </negotiated_type>
             <negotiated_rate>
                 <type>number</type>

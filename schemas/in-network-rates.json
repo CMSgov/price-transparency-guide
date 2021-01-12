@@ -4,7 +4,7 @@
     "in_network": {
       "type": "object",
       "properties": {
-        "negotiation_type": { "enum": [ "ffs", "bundle", "capitation" ] },
+        "negotiation_arrangement": { "enum": [ "ffs", "bundle", "capitation" ] },
         "name": { "type": "string" },
         "billing_code_type": { "enum": [ "CPT", "HCPCS", "ICD", "DRG" ] },
         "billing_code_type_version": { "type": "string" },
@@ -43,7 +43,7 @@
     "negotiated_price": {
       "type": "object",
       "properties": {
-        "negotiated_type": { "type": "string" },
+        "negotiated_type": { "enum": [ "negotiated", "derived", "fee schedule" ] },
         "negotiated_rate": { "type": "number" },
         "expiration_date": { "type": "string", "format": "date" }
       },
