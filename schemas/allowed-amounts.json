@@ -11,7 +11,6 @@
         "description": { "type": "string" },
         "allowed_amounts": {
           "type": "array",
-          "$ref": "",
           "items": { "$ref": "#/definitions/allowed_amounts" },
           "default": []
         }
@@ -63,7 +62,6 @@
       "required": [ "billed_charge", "npi" ]
     }
   },
-
 
   "type": "object",
   "properties": {
