@@ -14,7 +14,7 @@
     "billing_code": "27447",
     "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
     "negotiated_rates": [{
-      "providers": ["1111111111", "2222222222", "3333333333", "4444444444", "5555555555"],
+      "providers": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
       "tin": "11-1111111",
       "negotiated_price": {
         "negotiated_type": "negotiated",
@@ -22,7 +22,7 @@
         "expiration_date": "2022-01-01"
       }
     },{
-      "providers": ["6666666666", "7777777777", "8888888888", "9999999999"],
+      "providers": [6666666666, 7777777777, 8888888888, 9999999999],
       "tin": "22-2222222",
       "negotiated_price": {
         "negotiated_type": "negotiated",
@@ -38,7 +38,7 @@
     "billing_code": "27448",
     "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint",
     "negotiated_rates": [{
-      "providers": ["1111111111", "2222222222", "3333333333", "4444444444", "5555555555"],
+      "providers": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
       "tin": "11-1111111",
       "negotiated_price": {
         "negotiated_type": "negotiated",
@@ -46,7 +46,7 @@
         "expiration_date": "2022-01-01"
       }
     },{
-      "providers": ["6666666666", "7777777777", "8888888888", "9999999999"],
+      "providers": [6666666666, 7777777777, 8888888888, 9999999999],
       "tin": "22-2222222",
       "negotiated_price": {
         "negotiated_type": "negotiated",
