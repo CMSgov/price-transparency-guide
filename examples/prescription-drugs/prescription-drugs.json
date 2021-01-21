@@ -1,84 +1,38 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "definitions": {
-    "out_of_network": {
-      "type": "object",
-      "properties": {
-        "name": { "type": "string" },
-        "billing_code_type": { "enum": [ "CPT", "HCPCS", "ICD", "DRG" ] },
-        "billing_code_type_version": { "type": "string" },
-        "billing_code": { "type": "string" },
-        "description": { "type": "string" },
-        "allowed_amounts": {
-          "type": "array",
-          "$ref": "",
-          "items": { "$ref": "#/definitions/allowed_amounts" },
-          "default": []
-        }
-      },
-      "required": [ "name", "billing_code_type", "billing_code_type_version", "billing_code", "allowed_amounts"]
-    },
+  "reporting_entity_name": "medicare",
+  "reporting_entity_type": "medicare",
+  "plan_name": "medicare",
+  "plan_id_type": "HIOS",
+  "plan_id": "12345XX9876543",
+  "plan_market_type": "individual",
+  "last_updated_on": "2020-08-27",
+  "drugs": [{
+    "drug_name": "Simvastatin", 
+    "drug_type": "generic", 
+    "ndc": "16729-004",
+      
+    "prices": [{ 
+      "historical_net_price": 0.01,
+      "historical_net_reporting_period": "2020-08-28",
+      "negotiated_rate": 0.1,
+      "administrative_fee": 0.02,
+      "dispensing_fee": 2,
+      "transaction_fee": 0.005,
+      "tin": "11-1111111",
+      "service_code": "01",
+      "npi": [ 2222222222, 33333333333, 4444444444, 555555555 ],
 
-    "allowed_amounts": {
-      "type": "object",
-      "properties": {
-        "tin": { "type": "string" },
-        "service_code": {
-          "type": "string",
-          "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
-        },
-        "payments": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/payments" },
-          "default": []
-        }
-      },
-      "required": [ "tin", "service_code", "payments" ]
-    },
+      "pharmacies":[{
+        "pharmacy_id_type": "ncpdp id",
+        "pharmacy_ids": [ 1111111, 22222222, 3333333, 4444444 ]
+      },{
+        "pharmacy_id_type": "ncpdp chain code",
+        "pharmacy_ids": [ 1111111, 22222222, 3333333, 4444444 ]
+      },{
+        "pharmacy_id_type": "npi",
+        "pharmacy_ids": [ 111111111, 2222222222, 333333333, 444444444 ]
+      }]
 
-    "payments": {
-      "type": "object",
-      "properties": {
-        "allowed_amount": { "type": "number" },
-        "providers": { 
-          "type": "array",
-          "items": { "$ref": "#/definitions/providers" },
-          "default": []
-        }
-      },
-      "required": [ "allowed_amount", "providers" ]
-    },
-
-    "providers": {
-      "type": "object",
-      "properties": {
-        "billed_charge": { "type": "number" },
-        "npi": { 
-          "type": "array",
-          "items": { "type": "number" },
-          "default": [],
-          "uniqueItems": true
-        }
-      },
-      "required": [ "billed_charge", "npi" ]
-    }
-  },
-
-
-  "type": "object",
-  "properties": {
-    "reporting_entity_name": { "type": "string" },
-    "reporting_entity_type": { "type": "string" },
-    "plan_name": { "type": "string" },
-    "plan_id_type": { "type": "string" },
-    "plan_id": { "type": "string" },
-    "plan_market_type": { "enum": [ "group", "individual" ] },
-    "last_update_on": { "type": "string", "format": "date" },
-    "out_of_network": {
-      "type": "array",
-      "items": { "$ref": "#/definitions/out_of_network" },
-      "default": []
-    }
-  },
-  "required": ["reporting_entity_name", "reporting_entity_type", "plan_name", "plan_id_type", "plan_id", "plan_market_type", "last_update_on"]
+    }]
+  }]
 }
