@@ -38,7 +38,7 @@
         },
         "pharmacies": {
           "type": "array",
-          "items": { "$ref": "#/definitions/providers" },
+          "items": { "$ref": "#/definitions/pharmacies" },
           "default": []
         }
       },
