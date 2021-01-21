@@ -38,7 +38,8 @@ This type defines a drug price object
 | **transaction_fee** | Transaction Fee |	Number | Any fees, reflected as a dollar amount, assessed when processing a prescription that is not associated with the administrative or dispensing fee. This fee must be reflected separately only for the negotiated rate data element. | Yes |
 | **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
 | **service_code** | Place of Service Code | String | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided | Yes |
-| **providers** | Providers |	Array | A list of different [providers objects](#provider-object) that have specific negotiated rates for the specific `ndc` | Yes |
+| **npi** | National Provider Identifier | Array | An array of *type 1* individual national provider identification numbers (NPI) | No |
+| **pharmacies** | Providers |	Array | A list of different [providers objects](#provider-object) that have specific negotiated rates for the specific `ndc` | No |
 
 ##### Additional Notes
 The `historical_net_price` is the average dollar price for the 90-day period beginning 180 days before the file publication date, including any in-network pharmacy or other prescription drug dispenser, for a prescription drug, inclusive of any _reasonably allocated rebates, discounts, chargebacks, fees, and any additional price concessions received by the plan or issuer_ with respect to the prescription drug or prescription drug service.  The historic net price must be reported at the billing unit level as defined by the NCPDP. The standard contains three units: Each “EA,” Milliliter “ML,” or Gram “GM.”
@@ -51,15 +52,14 @@ The `negotiated_rate` is the rate agreed to pay an in-network provider, includin
 
 Fees that are assessed at the point of sale must be reflected separately as a dollar amount (see `dispensing_fee`, `administrative_fee`, and `transaction_fee` data elements).
 
-#### Provider Object
+#### Pharmacies Object
 
-Different types of providers and pharmacies that have the specific negotiated rate and historical net price for the defined NDC.
+Different types of pharmacies that have the specific negotiated rate and historical net price for the defined `pharmacy_id_type`.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **pharmacy_id_type** | Provider ID Type |	String | Allowed values: “NCPDP ID,” “NCPDP Chain Code,” or “NPI”. Note: NPIs must be of type 2 to be included in `pharmacy_ids` | Yes |
+| **pharmacy_id_type** | Provider ID Type |	String | Allowed values: “NCPDP ID,” “NCPDP Chain Code,” or “NPI”. Note: NPIs must be of *type 2* to be included in `pharmacy_ids` | Yes |
 | **pharmacy_ids** | Pharmacy IDs | Array | The pharmacy idenifier based on the `phaarmacy_id_type`. See Additional Notes | Yes |
-| **npi** | National Provider Identifier | Array | An array of provider identification numbers (NPI) | Yes |
 
 ##### Additional Notes
 

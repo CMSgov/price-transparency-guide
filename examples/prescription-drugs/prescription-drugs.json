@@ -1,62 +1,66 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
-    "drugs": {
+    "out_of_network": {
       "type": "object",
       "properties": {
-        "drug_name": { "type": "string" },
-        "drug_type": { "enum": [ "branded", "generic", "biosimilar" ] },
-        "ndc": { "type": "string" },
-        "prices": {
+        "name": { "type": "string" },
+        "billing_code_type": { "enum": [ "CPT", "HCPCS", "ICD", "DRG" ] },
+        "billing_code_type_version": { "type": "string" },
+        "billing_code": { "type": "string" },
+        "description": { "type": "string" },
+        "allowed_amounts": {
           "type": "array",
-          "items": { "$ref": "#/definitions/prices" },
+          "$ref": "",
+          "items": { "$ref": "#/definitions/allowed_amounts" },
           "default": []
         }
       },
-      "required": [ "drug_name", "drug_type", "ndc", "prices" ]
+      "required": [ "name", "billing_code_type", "billing_code_type_version", "billing_code", "allowed_amounts"]
     },
 
-    "prices": {
+    "allowed_amounts": {
       "type": "object",
       "properties": {
-        "historical_net_price": { "type": "number" },
-        "historical_net_reporting_period": { "type": "string", "format": "date" },
-        "negotiated_rate": { "type": "number" },
-        "administrative_fee": { "type": "number" },
-        "dispensing_fee": { "type": "number" },
-        "transaction_fee": { "type": "number" },
         "tin": { "type": "string" },
         "service_code": {
           "type": "string",
           "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
         },
-        "npi": { 
+        "payments": {
           "type": "array",
-          "items": { "type": "number" },
-          "default": [],
-          "uniqueItems": true
-        },
-        "pharmacies": {
+          "items": { "$ref": "#/definitions/payments" },
+          "default": []
+        }
+      },
+      "required": [ "tin", "service_code", "payments" ]
+    },
+
+    "payments": {
+      "type": "object",
+      "properties": {
+        "allowed_amount": { "type": "number" },
+        "providers": { 
           "type": "array",
           "items": { "$ref": "#/definitions/providers" },
           "default": []
         }
       },
-      "required": [ "historical_net_price", "historical_net_reporting_period", "negotiated_rate", "administrative_fee", "dispensing_fee", "transaction_fee", "tin", "providers" ]
+      "required": [ "allowed_amount", "providers" ]
     },
 
-    "pharmacies": {
+    "providers": {
       "type": "object",
       "properties": {
-        "pharmacy_id_type": { "enum": [ "ncpdp id", "ncpdp chain code", "npi" ] },
-        "pharmacy_ids": { 
+        "billed_charge": { "type": "number" },
+        "npi": { 
           "type": "array",
           "items": { "type": "number" },
           "default": [],
           "uniqueItems": true
         }
       },
-      "required": [ "pharmacy_id_type", "pharmacy_ids" ]
+      "required": [ "billed_charge", "npi" ]
     }
   },
 
@@ -70,9 +74,9 @@
     "plan_id": { "type": "string" },
     "plan_market_type": { "enum": [ "group", "individual" ] },
     "last_update_on": { "type": "string", "format": "date" },
-    "drugs": {
+    "out_of_network": {
       "type": "array",
-      "items": { "$ref": "#/definitions/drugs" },
+      "items": { "$ref": "#/definitions/out_of_network" },
       "default": []
     }
   },
