@@ -32,6 +32,21 @@
         "pharmacy_id_type": "npi",
         "pharmacy_ids": [ 111111111, 2222222222, 333333333, 444444444 ]
       }]
+    },{ 
+      "historical_net_price": 0.05,
+      "historical_net_reporting_period": "2020-08-28",
+      "negotiated_rate": 0.5,
+      "administrative_fee": 0.02,
+      "dispensing_fee": 2,
+      "transaction_fee": 0.005,
+      "tin": "22-2222222",
+      "service_code": "05",
+      "npi": [ 9999999999 ],
+
+      "pharmacies":[{
+        "pharmacy_id_type": "npi",
+        "pharmacy_ids": [ 111111111, 2222222222, 333333333, 444444444 ]
+      }]
 
     }]
   }]
