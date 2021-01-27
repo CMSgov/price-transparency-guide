@@ -25,8 +25,17 @@ This type defines an in-network object.
 | **description** | Description | String | Brief description of the item/service | No |
 | **negotiated_rates** | Negotiated Rates | Array | This is an array of [negotiated rate details object types](#negotiated-rate-details-object) | Yes |
 | **bundled_codes** | Bundled Codes | Array | This is an array of [bundle code objects](#bundle-code-object). This array contains all the different codes in a bundle if `bundle` is selected for `negotiation_arrangement` | No |
+| **covered_services** | Covered Service | Array | This is an array of [covered services objects](#covered-services-object). This array contains all the different codes in a capitation arrangement if `capitation` is selected for `negotiation_arrangement` | No |
 
 #### Bundle Code Object
+| Field | Name | Type | Definition | Required |
+| ----- | ---- | ---- | ---------- | -------- |
+| **billing_code_type** | Billing Code Type | String | Allowed values: "CPT", "HCPCS", "ICD", and "DRG" | Yes |
+| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare is currently using ICD's version 10 | Yes |
+| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. | Yes |
+| **description** | Description | String | Brief description of the item/service | No |
+
+#### Covered Services Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **billing_code_type** | Billing Code Type | String | Allowed values: "CPT", "HCPCS", "ICD", and "DRG" | Yes |
