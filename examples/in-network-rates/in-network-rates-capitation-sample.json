@@ -1,0 +1,49 @@
+{
+  "reporting_entity_name": "medicare",
+  "reporting_entity_type": "medicare",
+  "plan_name": "medicare",
+  "plan_id_type": "HIOS",
+  "plan_id": "12345XX9876543",
+  "plan_market_type": "individual",
+  "last_updated_on": "2020-08-27",
+  "in_network": [{ 
+    "negotiation_arrangement": "capitation",
+    "name": "Primary Care Capitation",
+    "capitation_id": "12345",
+    "description": "Typical items and services for a primary care provider",
+    "negotiated_rates": [{
+      "negotiated_rate": 1400.00,
+      "providers": [{
+        "tin": "",
+        "service_code": "01",
+        "npi": ["6666666666", "7777777777", "8888888888", "9999999999"]
+      },{
+        "tin": "",
+        "service_code": "01",
+        "npi": ["1111111111", "2222222222", "3333333333", "4444444444"]
+      }]
+    },{
+      "negotiated_rate": 2000.00,
+      "providers": [{
+        "tin": "",
+        "service_code": "02",
+        "npi": ["6666666666", "7777777777", "8888888888", "9999999999"]
+      },{
+        "tin": "",
+        "service_code": "02",
+        "npi": ["1111111111", "2222222222", "3333333333", "4444444444"]
+      }]
+    }],
+    "covered_services": [{
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2020",
+      "billing_code": "27447",
+      "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
+    },{
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2020",
+      "billing_code": "27446",
+      "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
+    }]
+  }]
+}
