@@ -15,13 +15,18 @@
           "$ref": "#/definitions/negotiated_rates",
           "default": []
         },
+        "covered_services": {
+          "type": "array",
+          "$ref": "#/definitions/covered_services",
+          "default": []
+        },
         "bundled_codes": {
           "type": "array",
           "$ref": "#/definitions/bundle_codes",
           "default": []
         }
       },
-      "required": ["payment_type", "name", "billing_code_type", "billing_code_type_version", "billing_code", "negotiated_rates"]
+      "required": ["payment_type", "name" ]
     },
 
     "bundled_codes": {
@@ -34,6 +39,18 @@
       },
       "required": ["billing_code_type", "billing_code_type_version", "billing_code", "description"]
     },
+
+    "covered_services": {
+      "type": "object",
+      "properties": {
+        "billing_code_type": { "type": "string" },
+        "billing_code_type_version": { "type": "string" },
+        "billing_code": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["billing_code_type", "billing_code_type_version", "billing_code", "description"]
+    },
+
 
     "negotiated_rates": {
       "type": "object",
