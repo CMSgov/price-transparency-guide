@@ -37,7 +37,7 @@
         "billing_code": { "type": "string" },
         "description": { "type": "string" }
       },
-      "required": ["billing_code_type", "billing_code_type_version", "billing_code", "description"]
+      "required": ["billing_code_type", "billing_code_type_version", "billing_code"]
     },
 
     "covered_services": {
@@ -48,7 +48,7 @@
         "billing_code": { "type": "string" },
         "description": { "type": "string" }
       },
-      "required": ["billing_code_type", "billing_code_type_version", "billing_code", "description"]
+      "required": ["billing_code_type", "billing_code_type_version", "billing_code"]
     },
 
 
