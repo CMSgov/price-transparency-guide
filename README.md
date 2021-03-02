@@ -17,7 +17,7 @@ Plans and issuers are required to make these files public for plan or policy yea
 Keeping Up To Date
 ==================
 
-Github allows for people to track and keep up-to-date with any changes for any repository. If you wish to follow and track the changes that happen on this repo, please both leverage the "Watch" feature and select "All activity". This will email the user that has "watched" the specific repository.
+Github allows for people to track and keep up-to-date with any changes for any repository. If you wish to follow and track the changes that happen on this repo, please leverage the "Watch" feature found at the top of the repository and select "All activity". This will email the user that has "watched" the specific repository.
 
 Developer Documentation
 =======================
