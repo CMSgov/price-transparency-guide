@@ -14,6 +14,11 @@ The Departments of the Treasury, Labor, and Health and Human Services (the Depar
 
 Plans and issuers are required to make these files public for plan or policy years beginning on or after January 1, 2022.
 
+Keeping Up To Date
+==================
+
+Github allows for people to track and keep up-to-date with any changes for any repository. If you wish to follow and track the changes that happen on this repo, please both leverage the "Watch" feature and select "All activity". This will email the user that has "watched" the specific repository.
+
 Developer Documentation
 =======================
 
