@@ -8,7 +8,7 @@
                 <enum>ffs</enum>
                 <enum>bundle</enum>
                 <enum>capitation</enum>
-            </payment_type>
+            </negotiation_arrangement>
             <name>
                 <type>string</type>
             </name>
