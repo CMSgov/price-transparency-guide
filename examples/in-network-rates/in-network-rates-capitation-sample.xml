@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <plan_id>12345XX9876543</plan_id>
+  <plan_id_type>HIOS</plan_id_type>
+  <plan_market_type>individual</plan_market_type>
+  <plan_name>medicare</plan_name>
+  <reporting_entity_name>medicare</reporting_entity_name>
+  <reporting_entity_type>medicare</reporting_entity_type>
+  <last_updated_on>2020-08-27</last_updated_on>
+  <in_network>
+    <item>
+      <negotiation_arrangement>capitation</negotiation_arrangement>
+      <name>Primary Care Capitation</name>
+      <description>Typical items and services for a primary care provider</description>
+      <covered_services>
+        <item>
+          <billing_code>27447</billing_code>
+          <billing_code_type>CPT</billing_code_type>
+          <billing_code_type_version>2020</billing_code_type_version>
+          <description>Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint</description>
+        </item>
+        <item>
+          <billing_code>27446</billing_code>
+          <billing_code_type>CPT</billing_code_type>
+          <billing_code_type_version>2020</billing_code_type_version>
+          <description>Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint</description>
+        </item>
+      </covered_services>
+      <negotiated_rates>
+        <item>
+          <negotiated_rate>1400.0</negotiated_rate>
+          <providers>
+            <item>
+              <npi>
+                <item>6666666666</item>
+                <item>7777777777</item>
+                <item>8888888888</item>
+                <item>9999999999</item>
+              </npi>
+              <service_code>01</service_code>
+              <tin />
+            </item>
+            <item>
+              <npi>
+                <item>1111111111</item>
+                <item>2222222222</item>
+                <item>3333333333</item>
+                <item>4444444444</item>
+              </npi>
+              <service_code>01</service_code>
+              <tin />
+            </item>
+          </providers>
+        </item>
+        <item>
+          <negotiated_rate>2000.0</negotiated_rate>
+          <providers>
+            <item>
+              <npi>
+                <item>6666666666</item>
+                <item>7777777777</item>
+                <item>8888888888</item>
+                <item>9999999999</item>
+              </npi>
+              <service_code>02</service_code>
+              <tin />
+            </item>
+            <item>
+              <npi>
+                <item>1111111111</item>
+                <item>2222222222</item>
+                <item>3333333333</item>
+                <item>4444444444</item>
+              </npi>
+              <service_code>02</service_code>
+              <tin />
+            </item>
+          </providers>
+        </item>
+      </negotiated_rates>
+    </item>
+  </in_network>
+</root>
