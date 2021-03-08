@@ -9,7 +9,6 @@
   "in_network": [{ 
     "negotiation_arrangement": "capitation",
     "name": "Primary Care Capitation",
-    "capitation_id": "12345",
     "description": "Typical items and services for a primary care provider",
     "negotiated_rates": [{
       "negotiated_rate": 1400.00,
