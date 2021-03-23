@@ -46,6 +46,13 @@ These machine-readable files post made available to the public without restricti
 
 The location of the these URLs *must* be provided over HTTPS to ensure the integrity of the data.
 
+Robots.txt
+----------
+
+To allow for search engine discoverability, neither a `robots.txt` file nor `meta` tag on the page where the files are hosted will have rules such that give instructions to web crawlers to not index the page.
+
+This is typically follows the format of `<meta name="robots" content="noindex, nofollow>"` or for a `robots.txt` file the usable of the `Disallow` directive.
+
 Special Data Types
 ------------------
 
