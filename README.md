@@ -99,3 +99,12 @@ Schemas
 Examples
 ========
 * [Implementation Examples](https://github.com/CMSgov/price-transparency-guide/tree/master/examples)
+
+Getting Involved
+================
+
+The healthcare ecosystem is complex with what seems like an infinite amount of plan and issuer implementations. There are no doubt going to be questions for these various situations and the requirements found in the Transparency in Coverage rule. Currently, there are two ways in which the community can get involved:
+* [Github Issues](https://guides.github.com/features/issues/) - Where people discuss issues related to the project.
+* [Github Discussions](https://github.com/CMSgov/price-transparency-guide/discussions) - Use these channels for conversational topics (for example, “How do I…“ or “What do you think about…“ instead of bug reports or feature requests).
+
+Before posting a comment, issue, or question, please search through existing discussions and issues. There is a good chance that the topic in questions is already being discussed.
