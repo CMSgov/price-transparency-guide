@@ -16,6 +16,7 @@
     "negotiated_rates": [{
       "providers": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
       "tin": "11-1111111",
+      "service_code": "01",
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 123.45,
@@ -24,6 +25,7 @@
     },{
       "providers": [6666666666, 7777777777, 8888888888, 9999999999],
       "tin": "22-2222222",
+      "service_code": "01",
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 120.45,
@@ -40,6 +42,7 @@
     "negotiated_rates": [{
       "providers": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
       "tin": "11-1111111",
+      "service_code": "01",
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 12003.45,
@@ -48,6 +51,7 @@
     },{
       "providers": [6666666666, 7777777777, 8888888888, 9999999999],
       "tin": "22-2222222",
+      "service_code": "01",
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 12.45,
