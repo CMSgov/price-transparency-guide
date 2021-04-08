@@ -34,6 +34,7 @@
         <required>billing_code_type_version</required>
         <required>billing_code</required>
         <required>allowed_amounts</required>
+        <required>description</required>
     </out_of_network>
     <allowed_amounts>
         <type>object</type>

@@ -15,7 +15,7 @@
           "default": []
         }
       },
-      "required": [ "name", "billing_code_type", "billing_code_type_version", "billing_code", "allowed_amounts"]
+      "required": [ "name", "billing_code_type", "billing_code_type_version", "billing_code", "allowed_amounts", "description"]
     },
 
     "allowed_amounts": {
