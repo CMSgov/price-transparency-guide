@@ -82,10 +82,10 @@ The associated names for those files are:
 
 File Naming Convention  
 -------------------------
-The following is the required naming standard for each file: `<YYYY-MM-DD>_<payer or issuer name>_<plan name>_<file type name>.json`
+The following is the required naming standard for each file: `<YYYY-MM-DD>_<payer or issuer name>_<plan name>_<file type name>.<file extension>`
 For payer or issuer's names and plan names that have spaces (i.e. "healthplan 100"), those spaces would be replaced with dashes `-`
 
-For example, the following would be the required naming for CMS:
+For example, the following would be the required naming for CMS building a JSON file:
 * `2020-01-05_cms_medicare_in-network-rates.json`
 * `2020-01-05_cms_medicare_allowed-amounts.json`
 * `2020-01-05_cms_medicare_prescription-drugs.json`
