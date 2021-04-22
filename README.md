@@ -90,7 +90,7 @@ For example, the following would be the required naming for CMS building a JSON 
 * `2020-01-05_cms_medicare_allowed-amounts.json`
 * `2020-01-05_cms_medicare_prescription-drugs.json`
 
-An example of a plan named `healthcare 100` with an issuer's name `issuer abc`, the following would be the naming output:
+An example of a plan named `healthcare 100` with an issuer's name `issuer abc` producing a JSON file, the following would be the naming output:
 * `2020-01-05_issuer-abc_healthcare-100_in-network-rates.json`
 * `2020-01-05_issuer-abc_healthcare-100_allowed-amounts.json`
 * `2020-01-05_issuer-abc_healthcare-100_prescription-drugs.json`
