@@ -42,7 +42,7 @@ Examples of proprietary formats that do *not* meet this definition would be:
 Public Discoverability
 ----------------------
 
-These machine-readable files post made available to the public without restrictions that would impede the re-use of that information.
+These machine-readable files must be made available to the public without restrictions that would impede the re-use of that information.
 
 The location of the these URLs *must* be provided over HTTPS to ensure the integrity of the data.
 
