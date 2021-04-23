@@ -84,6 +84,7 @@ File Naming Convention
 -------------------------
 The following is the required naming standard for each file: `<YYYY-MM-DD>_<payer or issuer name>_<plan name>_<file type name>.<file extension>`
 For payer or issuer's names and plan names that have spaces (i.e. "healthplan 100"), those spaces would be replaced with dashes `-`
+Only alphanumeric characters are allowed in the file name. No special characters such as `'`' are allowed. Special characters are either to be removed completely or replaced with `-`.
 
 For example, the following would be the required naming for CMS building a JSON file:
 * `2020-01-05_cms_medicare_in-network-rates.json`
