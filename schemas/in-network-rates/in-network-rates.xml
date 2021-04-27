@@ -107,10 +107,10 @@
         <enum>group</enum>
         <enum>individual</enum>
     </plan_market_type>
-    <last_update_on>
+    <last_updated_on>
         <type>string</type>
         <format>date</format>
-    </last_update_on>
+    </last_updated_on>
     <in_network>
         <type>array</type>
         <items>
@@ -124,5 +124,5 @@
 <required>plan_id_type</required>
 <required>plan_id</required>
 <required>plan_market_type</required>
-<required>last_update_on</required>
+<required>last_updated_on</required>
 
