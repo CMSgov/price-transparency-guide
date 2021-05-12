@@ -62,7 +62,7 @@ The negotiated price object contains negotiated pricing information that the typ
 | ----- | ---- | ---- | ---------- | -------- |
 | **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", and "fee schedule". See additional notes. | Yes |
 | **negotiated_rate** | Negotiated Rate | Number | The dollar amount based on the `negotiation_type` | Yes |
-| **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
+| **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD). See additional notes. | Yes |
 
 ##### Additional Notes
 For `negotiated_type` there are three allowable values: "negotiated", "derived", and "fee schedule". The value are defined as:
@@ -70,3 +70,6 @@ For `negotiated_type` there are three allowable values: "negotiated", "derived",
 * `derived`: If applicable, the price that a plan or issuer assigns to an item or service for the purpose of internal accounting, reconciliation with providers or submitting data in accordance with the requirements of 45 CFR 153.710(c).
 * `fee schedule`: If applicable, the rate for a covered item or service from a particular in-network provider, or providers that a group health plan or health insurance issuer uses to determine a participant’s, beneficiary’s, or enrollee’s cost-sharing liability for the item or service, when that rate is different from the negotiated rate.
 
+For `expiration_date`, there may be a situation when a contract arrangement is "[evergreen](https://www.investopedia.com/terms/e/evergreen.asp)". For evergreen contracts that automatically renew on a date provided in the contract, the expiration date you include should be the day immediately before the day of the automatic renewal.
+
+In situation where there is not expiration date ([see discussion here](https://github.com/CMSgov/price-transparency-guide/discussions/42)), the value `9999-12-31` would be entered.
