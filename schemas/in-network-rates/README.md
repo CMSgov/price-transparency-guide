@@ -76,7 +76,7 @@ In situation where there is not expiration date ([see discussion here](https://g
 
 
 ##### Additional Notes Concerning `billing_code_type`
-Negotiated rates for items and services can come from a variety of billing code standards. The list of possible allowed values is in the following table with the name of the standard and the values   representing that standard that would be expected if being reported on. For standards that are used for negotiated rate that are not in the following table, please open a [discussion](https://github. com/CMSgov/price-transparency-guide/discussions) to potentially add a new standard to the table.
+Negotiated rates for items and services can come from a variety of billing code standards. The list of possible allowed values is in the following table with the name of the standard and the values representing that standard that would be expected if being reported on. For standards that are used for negotiated rate that are not in the following table, please open a [discussion](https://github.com/CMSgov/price-transparency-guide/discussions) to potentially add a new standard to the table.
 
 | Standard Name | Reporting Value | Additional Information |
 | ------------- | --------------- | ---------------------- |
