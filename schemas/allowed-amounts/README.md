@@ -18,7 +18,7 @@ The out-of-network object contains information related to the service that was p
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **name** | Name | String | The name of each item or service for which the costs are payable, in whole or in part, under the terms of the plan or coverage. | Yes |
-| **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-`billing_code_type`) at the bottom of this document. | Yes |
+| **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
 | **billing_code** | Billing Code | String | The `billing_code_type` code for the item/service | Yes |
 | **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
 | **description** | Description | String | Brief description of the item or service. In the case of items and services that are associated with common billing codes (such as the HCPCS codes), the codes’ associated short text description may be provided. In the case of NDCs for prescription drugs, the plain language description must be the proprietary and nonproprietary names assigned to the NDC by the FDA | Yes |
