@@ -65,6 +65,7 @@ Negotiated rates for items and services can come from a variety of billing code 
 | National Drug Code | NDC | [FDA NDC Background](https://www.fda.gov/drugs/development-approval-process-drugs/national-drug-code-database-background-information) |
 | Healthcare Common Procedural Coding System | HCPCS | [CMS HCPCS](https://www.cms.gov/Medicare/Coding/MedHCPCSGenInfo) |
 | Revenue Code | RC | [What is a revenue code](https://www.e2emedicalbilling.com/blog/what-is-revenue-code/) |
+| International Classification of Diseases | ICD | [ICD background](https://en.wikipedia.org/wiki/International_Classification_of_Diseases) |
 | Medicare Severity Diagnosis Related Groups | MS-DRG | [CMS DRGs](https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/AcuteInpatientPPS/MS-DRG-Classifications-and-Software) |
 | Refined Diagnosis Related Groups | R-DRG | |
 | Severity Diagnosis Related Groups | S-DRG | |
