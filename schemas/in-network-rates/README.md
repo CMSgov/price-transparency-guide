@@ -91,3 +91,7 @@ Negotiated rates for items and services can come from a variety of billing code 
 | All Patient Diagnosis Related Groups | AP-DRG | |
 | All Patient Refined Diagnosis Related Groups | APR-DRG | [AHRQ documentation](https://www.hcup-us.ahrq.gov/db/nation/nis/APR-DRGsV20MethodologyOverviewandBibliography.pdf) |
 | Ambulatory Payment Classifications | APC | [APC background information](https://www.acep.org/administration/reimbursement/reimbursement-faqs/apc-ambulatory-payment-classifications-faq/#question0) |
+| Local Code Processing |LOCAL | |
+| Enhanced Ambulatory Patient Grouping | EAPG | |
+| Health Insurance Prospective Payment System | HIPPS | |
+| Current Dental Terminology | CDT |  |
