@@ -26,7 +26,7 @@
           "default": []
         }
       },
-      "required": ["payment_type", "name" ]
+      "required": ["negotiation_arrangement", "name", "billing_code_type", "billing_code_type_version", "negotiated_rates"]
     },
 
     "bundled_codes": {

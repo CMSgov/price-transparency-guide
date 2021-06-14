@@ -39,7 +39,7 @@
                 <_ref>#/definitions/negotiated_rates</_ref>
             </negotiated_rates>
         </properties>
-        <required>payment_type</required>
+        <required>negotiation_arrangement</required>
         <required>name</required>
         <required>billing_code_type</required>
         <required>billing_code_type_version</required>
