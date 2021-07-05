@@ -61,7 +61,7 @@ Dates should be strings in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8
 Different Flat Files
 --------------------
 
-There three required flat files associated with Transparency in Coverage:
+There are three required flat files associated with Transparency in Coverage:
 * In-Network Negotiated Rates
 * Out-Of-Network Allowed Amounts
 * In-Network Prescription Drugs
