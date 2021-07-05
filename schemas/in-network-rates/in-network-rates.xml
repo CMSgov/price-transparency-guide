@@ -24,6 +24,10 @@
                 <enum>APR-DRG</enum>
                 <enum>APC</enum>
                 <enum>NDC</enum>
+                <enum>HIPPS</enum>
+                <enum>LOCAL</enum>
+                <enum>EAPG</enum>
+                <enum>CDT</enum>
             </billing_code_type>
             <billing_code_type_version>
                 <type>string</type>
