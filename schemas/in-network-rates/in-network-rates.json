@@ -12,17 +12,17 @@
         "description": { "type": "string" },
         "negotiated_rates": {
           "type": "array",
-          "$ref": "#/definitions/negotiated_rates",
+          "items": { "$ref": "#/definitions/negotiated_rates" },
           "default": []
         },
         "covered_services": {
           "type": "array",
-          "$ref": "#/definitions/covered_services",
+          "items": { "$ref": "#/definitions/covered_services" },
           "default": []
         },
         "bundled_codes": {
           "type": "array",
-          "$ref": "#/definitions/bundle_codes",
+          "items": { "$ref": "#/definitions/bundle_codes" },
           "default": []
         }
       },

@@ -74,6 +74,6 @@ Negotiated rates for items and services can come from a variety of billing code 
 | All Patient Refined Diagnosis Related Groups | APR-DRG | [AHRQ documentation](https://www.hcup-us.ahrq.gov/db/nation/nis/APR-DRGsV20MethodologyOverviewandBibliography.pdf) |
 | Ambulatory Payment Classifications | APC | [APC background information](https://www.acep.org/administration/reimbursement/reimbursement-faqs/apc-ambulatory-payment-classifications-faq/#question0) |
 | Local Processing  | LOCAL | |
-| Enhanced Ambulatory Patient Grouping | EAPG | |
-| Health Insurance Prospective Payment System | HIPPS | | 
-| Current Dental Terminology | CDT | | 
+| Enhanced Ambulatory Patient Grouping | EAPG |[EAPG](https://www.3m.com/3M/en_US/health-information-systems-us/drive-value-based-care/patient-classification-methodologies/enhanced-apgs/) |
+| Health Insurance Prospective Payment System | HIPPS | [HIPPS](https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/ProspMedicareFeeSvcPmtGen/HIPPSCodes)| 
+| Current Dental Terminology | CDT | [CDT](https://www.ada.org/en/publications/cdt)  | 
