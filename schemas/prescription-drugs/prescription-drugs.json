@@ -42,7 +42,7 @@
           "default": []
         }
       },
-      "required": [ "historical_net_price", "historical_net_reporting_period", "negotiated_rate", "administrative_fee", "dispensing_fee", "transaction_fee", "tin", "providers" ]
+      "required": [ "historical_net_price", "historical_net_reporting_period", "negotiated_rate", "administrative_fee", "dispensing_fee", "transaction_fee", "tin", "service_code" ]
     },
 
     "pharmacies": {
@@ -69,12 +69,12 @@
     "plan_id_type": { "type": "string" },
     "plan_id": { "type": "string" },
     "plan_market_type": { "enum": [ "group", "individual" ] },
-    "last_update_on": { "type": "string", "format": "date" },
+    "last_updated_on": { "type": "string", "format": "date" },
     "drugs": {
       "type": "array",
       "items": { "$ref": "#/definitions/drugs" },
       "default": []
     }
   },
-  "required": ["reporting_entity_name", "reporting_entity_type", "plan_name", "plan_id_type", "plan_id", "plan_market_type", "last_update_on"]
+  "required": ["reporting_entity_name", "reporting_entity_type", "plan_name", "plan_id_type", "plan_id", "plan_market_type", "last_updated_on"]
 }
