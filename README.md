@@ -19,6 +19,13 @@ Keeping Up To Date
 
 Github allows for people to track and keep up-to-date with any changes for any repository. If you wish to follow and track the changes that happen on this repo, please leverage the "Watch" feature found at the top of the repository and select "All activity". This will email the user that has "watched" the specific repository.
 
+Guidance
+========
+
+Transparency in Coverage rule guidance is released on [CMS'](https://www.cms.gov) website. You can find recently released guidance here:
+* [https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs#Affordable_Care_Act](https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs#Affordable_Care_Act)
+* [https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf](https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf)
+
 Developer Documentation
 =======================
 
