@@ -12,7 +12,7 @@ Background
 
 The Departments of the Treasury, Labor, and Health and Human Services (the Departments) have issued the Transparency in Coverage final rules (85 FR 72158) on November 12, 2020. The final rules require non-grandfathered group health plans and health insurance issuers in the individual and group markets (plans and issuers) to disclose certain pricing information. Under the final rules a plan or issuer must disclose in-network negotiated rates, billed and out-of-network allowed, and in-network drug prices (including both "negotiated rates" and "historical net prices") through three machine-readable files posted on an internet website.  
 
-Plans and issuers are required to make these files public for plan or policy years beginning on or after January 1, 2022.
+Plans and issuers are required to make these files public for plan or policy years beginning on or after July 1, 2022.
 
 Keeping Up To Date
 ==================
@@ -72,6 +72,7 @@ There are three required flat files associated with Transparency in Coverage:
 * In-Network Negotiated Rates
 * Out-Of-Network Allowed Amounts
 * In-Network Prescription Drugs
+  * NOTE: Per released guidance, the departments will defer enforcement of the TiC Final Rules’ requirement of the prescription drug pricing file pending further rulemaking.
 
 **In-Network Negotiated Rates File**
 Under the finalized rules, a plan or issuer must disclose in-network provider negotiated rates for all items and services through a machine-readable file.
