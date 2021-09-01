@@ -124,3 +124,14 @@ The healthcare ecosystem is complex with what seems like an infinite amount of p
 * [Github Discussions](https://github.com/CMSgov/price-transparency-guide/discussions) - Use these channels for conversational topics (for example, "How do I&hellip;" or "What do you think about&hellip;" instead of bug reports or feature requests).
 
 Before posting a comment, issue, or question, please search through existing discussions and issues. There is a good chance that the topic in questions is already being discussed.
+
+Versioning
+==========
+
+With any type software development, progression happens through bug fixes, new content, or changing requirements. The technical development of this schema is no different. CMS will be following the standard versioning found in many software development projects with including a major, minor, and patch number to represent the current version of the schema. The following is the guiding principles for version updates:
+
+MAJOR version when incompatible changes are introduced,
+MINOR version when attributes/values are introduced or removed in a backwards compatible manner, and
+PATCH version when backwards compatible bug fixes are introduced.
+
+The major version will be finalized to 1.0.0 for the schema to adhere to the July 2022 implementation date.
