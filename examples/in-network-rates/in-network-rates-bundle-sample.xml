@@ -7,6 +7,7 @@
   <reporting_entity_name>medicare</reporting_entity_name>
   <reporting_entity_type>medicare</reporting_entity_type>
   <last_updated_on>2020-08-27</last_updated_on>
+  <version>1.0.0</version>
   <in_network>
     <item>
       <billing_code>81.54</billing_code>

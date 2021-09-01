@@ -91,4 +91,5 @@
   <plan_name>medicare</plan_name>
   <reporting_entity_name>medicare</reporting_entity_name>
   <reporting_entity_type>medicare</reporting_entity_type>
+  <version>1.0.0</version>
 </root>
