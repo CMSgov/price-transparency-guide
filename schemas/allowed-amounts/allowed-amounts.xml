@@ -116,6 +116,9 @@
         <type>string</type>
         <format>date</format>
     </last_update_on>
+    <version>
+        <type>string</type>
+    </version>
     <out_of_network>
         <type>array</type>
         <items>

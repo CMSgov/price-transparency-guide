@@ -10,6 +10,7 @@
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
 | **in_network** | In-Network | Array | An array of [in-network object types](#in-network-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
+| **version** | Version | String | The version of the schema for the produced information | No |
 
 #### In-Network Object
 

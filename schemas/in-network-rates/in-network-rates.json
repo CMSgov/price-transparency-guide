@@ -95,6 +95,7 @@
     "plan_id": { "type": "string" },
     "plan_market_type": { "enum": [ "group", "individual" ] },
     "last_updated_on": { "type": "string", "format": "date" },
+    "version": { "type": "string" },
     "in_network": {
       "type": "array",
       "items": { "$ref": "#/definitions/in_network" },

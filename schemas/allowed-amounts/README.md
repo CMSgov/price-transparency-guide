@@ -10,6 +10,7 @@
 | **plan_market_type** | Market Type | String | Allowed values: "group" or "individual" | Yes |
 | **out_of_network** | Out Of Network | Array | An array of [out-of-network object types](#out-of-network-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
+| **version** | Version | String | The version of the schema for the produced information | No |
 
 #### Out-Of-Network Object
 

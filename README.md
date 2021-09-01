@@ -134,4 +134,4 @@ MAJOR version when incompatible changes are introduced,
 MINOR version when attributes/values are introduced or removed in a backwards compatible manner, and
 PATCH version when backwards compatible bug fixes are introduced.
 
-The major version will be finalized to 1.0.0 for the schema to adhere to the July 2022 implementation date.
+The major version will be finalized to 1.0.0 for the schema to adhere to the July 2022 implementation date. Versioning of the schema can be tracked in the VERSION.md file.

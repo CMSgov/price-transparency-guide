@@ -122,6 +122,9 @@
         <type>string</type>
         <format>date</format>
     </last_updated_on>
+    <version>
+        <type>string</type>
+    </version>
     <in_network>
         <type>array</type>
         <items>
