@@ -39,7 +39,7 @@ This type defines a drug price object
 | **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
 | **service_code** | Place of Service Code | String | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided | Yes |
 | **npi** | National Provider Identifier | Array | An array of *type 1* individual national provider identification numbers (NPI) | No |
-| **pharmacies** | Providers |	Array | A list of different [providers objects](#provider-object) that have specific negotiated rates for the specific `ndc` | No |
+| **pharmacies** | Pharmacies |	Array | A list of different [pharmacies objects](#pharmacies-object) that have specific negotiated rates for the specific `ndc` | No |
 
 ##### Additional Notes
 The `historical_net_price` is the average dollar price for the 90-day period beginning 180 days before the file publication date, including any in-network pharmacy or other prescription drug dispenser, for a prescription drug, inclusive of any _reasonably allocated rebates, discounts, chargebacks, fees, and any additional price concessions received by the plan or issuer_ with respect to the prescription drug or prescription drug service.  The historic net price must be reported at the billing unit level as defined by the NCPDP. The standard contains three units: Each “EA,” Milliliter “ML,” or Gram “GM.”
