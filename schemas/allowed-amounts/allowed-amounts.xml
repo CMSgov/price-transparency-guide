@@ -43,7 +43,7 @@
                 <type>string</type>
             </tin>
             <service_code>
-                <type>string</type>
+                <type>array</type>
                 <_ref>https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set</_ref>
             </service_code>
             <payments>

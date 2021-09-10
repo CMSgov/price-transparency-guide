@@ -63,22 +63,22 @@
             <tin>
                 <type>string</type>
             </tin>
-            <service_code>
-                <type>string</type>
-                <_ref>https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set</_ref>
-            </service_code>
             <negotiated_price>
                 <_ref>#/definitions/negotiated_price</_ref>
             </negotiated_price>
         </properties>
         <required>providers</required>
         <required>tin</required>
-        <required>service_code</required>
         <required>negotiated_price</required>
     </negotiated_rates>
     <negotiated_price>
         <type>object</type>
         <properties>
+            <service_code>
+                <type>array</type>
+                <_ref>https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set</_ref>
+                <uniqueItems>true</uniqueItems>
+            </service_code>
             <negotiated_type>
                 <enum>negotiated</enum>
                 <enum>derived</enum>
@@ -92,6 +92,7 @@
                 <format>date</format>
             </expiration_date>
         </properties>
+        <required>service_code</required>
         <required>negotiated_type</required>
         <required>negotiated_rate</required>
         <required>expiration_date</required>

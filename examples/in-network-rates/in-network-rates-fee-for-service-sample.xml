@@ -13,6 +13,12 @@
             <expiration_date>2022-01-01</expiration_date>
             <negotiated_rate>123.45</negotiated_rate>
             <negotiated_type>negotiated</negotiated_type>
+            <service_code>
+              <item>01</item>
+              <item>02</item>
+              <item>03</item>
+              <item>04</item>
+            </service_code>
           </negotiated_price>
           <providers>
             <item>1111111111</item>
@@ -21,7 +27,6 @@
             <item>4444444444</item>
             <item>5555555555</item>
           </providers>
-          <service_code>01</service_code>
           <tin>11-1111111</tin>
         </item>
         <item>
@@ -29,6 +34,11 @@
             <expiration_date>2022-01-01</expiration_date>
             <negotiated_rate>120.45</negotiated_rate>
             <negotiated_type>negotiated</negotiated_type>
+            <service_code>
+              <item>05</item>
+              <item>06</item>
+              <item>07</item>
+            </service_code>
           </negotiated_price>
           <providers>
             <item>6666666666</item>
@@ -36,7 +46,6 @@
             <item>8888888888</item>
             <item>9999999999</item>
           </providers>
-          <service_code>01</service_code>
           <tin>22-2222222</tin>
         </item>
       </negotiated_rates>
@@ -54,6 +63,11 @@
             <expiration_date>2022-01-01</expiration_date>
             <negotiated_rate>12003.45</negotiated_rate>
             <negotiated_type>negotiated</negotiated_type>
+            <service_code>
+              <item>08</item>
+              <item>09</item>
+              <item>10</item>
+            </service_code>
           </negotiated_price>
           <providers>
             <item>1111111111</item>
@@ -62,7 +76,6 @@
             <item>4444444444</item>
             <item>5555555555</item>
           </providers>
-          <service_code>01</service_code>
           <tin>11-1111111</tin>
         </item>
         <item>
@@ -70,6 +83,11 @@
             <expiration_date>2022-01-01</expiration_date>
             <negotiated_rate>12.45</negotiated_rate>
             <negotiated_type>negotiated</negotiated_type>
+            <service_code>
+              <item>10</item>
+              <item>19</item>
+              <item>11</item>
+            </service_code>
           </negotiated_price>
           <providers>
             <item>6666666666</item>
@@ -77,7 +95,6 @@
             <item>8888888888</item>
             <item>9999999999</item>
           </providers>
-          <service_code>01</service_code>
           <tin>22-2222222</tin>
         </item>
       </negotiated_rates>

@@ -62,25 +62,28 @@
           "default": []
         },
         "tin": { "type": "string" },
-        "service_code": { 
-          "type": "string",
-          "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
-        },
         "negotiated_price": {
           "$ref": "#/definitions/negotiated_price"
         }
       },
-      "required": [ "providers", "tin", "service_code", "negotiated_price" ]
+      "required": [ "providers", "tin", "negotiated_price" ]
     },
 
     "negotiated_price": {
       "type": "object",
       "properties": {
+        "service_code": { 
+          "type": "array",
+          "items": { 
+            "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set" 
+          },
+          "uniqueItems": true
+        },
         "negotiated_type": { "enum": [ "negotiated", "derived", "fee schedule" ] },
         "negotiated_rate": { "type": "number" },
         "expiration_date": { "type": "string", "format": "date" }
       },
-      "required": [ "negotiated_type", "negotiated_rate", "expiration_date" ]
+      "required": [ "negotiated_type", "service_code", "negotiated_rate", "expiration_date" ]
     }
   },
 
