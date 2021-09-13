@@ -35,6 +35,11 @@
             <expiration_date>2022-01-01</expiration_date>
             <negotiated_rate>20000.0</negotiated_rate>
             <negotiated_type>negotiated</negotiated_type>
+            <service_code>
+              <item>05</item>
+              <item>05</item>
+              <item>06</item>
+            </service_code>
           </negotiated_price>
           <providers>
             <item>1111111111</item>
@@ -50,6 +55,11 @@
             <expiration_date>2022-01-01</expiration_date>
             <negotiated_rate>25000.0</negotiated_rate>
             <negotiated_type>negotiated</negotiated_type>
+            <service_code>
+              <item>05</item>
+              <item>05</item>
+              <item>06</item>
+            </service_code>
           </negotiated_price>
           <providers>
             <item>6666666666</item>

@@ -20,7 +20,8 @@
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 20000.00,
-        "expiration_date": "2022-01-01"
+        "expiration_date": "2022-01-01",
+        "service_code": ["05", "06", "07"]
       }
     },{
       "providers": ["6666666666", "7777777777", "8888888888", "9999999999"],
@@ -28,7 +29,8 @@
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 25000.00,
-        "expiration_date": "2022-01-01"
+        "expiration_date": "2022-01-01",
+        "service_code": ["05", "06", "07"]
       }
     }],
     "bundled_codes": [{
