@@ -15,7 +15,7 @@
     "description": "office or other outpatient visits for the evaluation and management of an established patient, which requires at least two of these three key components: a detailed history, a detailed examination and medical decision making of moderate complexity",
     "allowed_amounts": [{
       "tin": "1234567890",
-      "service_code": "01",
+      "service_code": ["01", "02", "03"],
       "payments": [{
         "allowed_amount": 25.00,
         "providers": [{
