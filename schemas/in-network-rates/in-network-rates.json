@@ -84,6 +84,16 @@
         "expiration_date": { "type": "string", "format": "date" }
       },
       "required": [ "negotiated_type", "service_code", "negotiated_rate", "expiration_date" ]
+    },
+    "reporting_plans": {
+      "type": "object",
+      "properties": {
+        "plan_name": { "type": "string" },
+        "plan_id_type": { "type": "string" },
+        "plan_id": { "type": "string" },
+        "plan_market_type": { "enum": [ "group", "individual" ] }
+       },
+      "required": ["plan_name", "plan_id_type", "plan_id", "plan_market_type"]
     }
   },
 
@@ -93,10 +103,12 @@
   "properties": {
     "reporting_entity_name": { "type": "string" },
     "reporting_entity_type": { "type": "string" },
-    "plan_name": { "type": "string" },
-    "plan_id_type": { "type": "string" },
-    "plan_id": { "type": "string" },
-    "plan_market_type": { "enum": [ "group", "individual" ] },
+    "reporting_plans": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/reporting_plans" },
+      "uniqueItems": true,
+      "default": []
+    },
     "last_updated_on": { "type": "string", "format": "date" },
     "version": { "type": "string" },
     "in_network": {
@@ -105,6 +117,6 @@
       "default": []
     }
   },
-  "required": ["reporting_entity_name", "reporting_entity_type", "plan_name", "plan_id_type", "plan_id", "plan_market_type", "last_updated_on"]
+  "required": ["reporting_entity_name", "reporting_entity_type", "reporting_plans", "last_updated_on", "in_network"]
 
 }
