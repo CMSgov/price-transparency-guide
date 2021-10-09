@@ -4,7 +4,7 @@
   "reporting_plans":[{
     "plan_name": "medicare",
     "plan_id_type": "hios",
-    "plan_id": "11111111111,
+    "plan_id": "11111111111",
     "plan_market_type": "individual"
   },{
     "plan_name": "medicaid",
