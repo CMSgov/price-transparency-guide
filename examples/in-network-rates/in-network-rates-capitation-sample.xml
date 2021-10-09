@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-  <plan_id>12345XX9876543</plan_id>
-  <plan_id_type>HIOS</plan_id_type>
-  <plan_market_type>individual</plan_market_type>
-  <plan_name>medicare</plan_name>
+  <reporting_plans>
+    <item>
+      <plan_id>11111111111</plan_id>
+      <plan_id_type>HIOS</plan_id_type>
+      <plan_market_type>individual</plan_market_type>
+      <plan_name>medicaid</plan_name>
+    </item>
+    <item>
+      <plan_id>00000000000</plan_id>
+      <plan_id_type>HIOS</plan_id_type>
+      <plan_market_type>individual</plan_market_type>
+      <plan_name>medicare</plan_name>
+    </item>
+  </reporting_plans>
   <reporting_entity_name>medicare</reporting_entity_name>
   <reporting_entity_type>medicare</reporting_entity_type>
   <last_updated_on>2020-08-27</last_updated_on>
