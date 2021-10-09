@@ -11,7 +11,7 @@
 
 #### Reporting Plans Object
 
-Information about the plan that is being reported on for the allowed amounts. Multiple `Reporting Plan Objects` can be included in this array for all of the plans that have identical negotiated rates in the `out_of_network` array.
+Information about the plan that is being reported on for the allowed amounts. Multiple `Reporting Plan Objects` can be included in this array for all of the plans that have identical out-of-network objects in the `out_of_network` array.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
