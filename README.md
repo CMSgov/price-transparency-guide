@@ -1,4 +1,4 @@
-![CMS Transparency in Coverage](resources/images/TiC_banner.png?raw=true "Transparency in Coverage")
+[![CMS Transparency in Coverage](resources/images/TiC_banner.png?raw=true "Transparency in Coverage")](https://www.cms.gov/healthplan-price-transparency)
 
 # Transparency in Coverage
 The technical implementation guide for the machine readable files as required by the [Transparency in Coverage](https://www.federalregister.gov/documents/2019/11/27/2019-25011/transparency-in-coverag) final rules ([85 FR 72158](https://www.govinfo.gov/app/details/FR-2020-11-12/2020-24591)).
