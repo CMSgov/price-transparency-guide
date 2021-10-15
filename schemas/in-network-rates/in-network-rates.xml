@@ -55,22 +55,33 @@
         <properties>
             <providers>
                 <type>array</type>
-                <items>
-                    <type>number</type>
-                </items>
+                <_ref>#/definitions/providers</_ref>
                 <uniqueItems>true</uniqueItems>
             </providers>
-            <tin>
-                <type>string</type>
-            </tin>
             <negotiated_price>
                 <_ref>#/definitions/negotiated_price</_ref>
             </negotiated_price>
         </properties>
         <required>providers</required>
-        <required>tin</required>
         <required>negotiated_price</required>
     </negotiated_rates>
+    <providers> 
+      <type>object</type>
+      <properties>
+        <npi>
+          <type>array</type>
+            <items>
+              <type>number</type>
+            </items>
+            <uniqueItems>true</uniqueItems>
+        </npi>
+        <tin>
+            <type>string</type>
+        </tin>
+        <required>npi</required>
+        <required>tin</required>
+      </properties>
+    </providers> 
     <negotiated_price>
         <type>object</type>
         <properties>
