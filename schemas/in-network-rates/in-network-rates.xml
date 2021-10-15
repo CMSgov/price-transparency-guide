@@ -61,7 +61,7 @@
             <negotiated_price>
                 <_ref>#/definitions/negotiated_price</_ref>
             </negotiated_price>
-        </properties>
+       </properties>
         <required>providers</required>
         <required>negotiated_price</required>
     </negotiated_rates>
