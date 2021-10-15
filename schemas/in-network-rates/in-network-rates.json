@@ -4,119 +4,254 @@
     "in_network": {
       "type": "object",
       "properties": {
-        "negotiation_arrangement": { "enum": [ "ffs", "bundle", "capitation" ] },
-        "name": { "type": "string" },
-        "billing_code_type": { "enum": [ "CPT", "HCPCS", "ICD", "MS-DRG", "R-DRG", "S-DRG", "APS-DRG", "AP-DRG", "APR-DRG", "APC",  "NDC", "HIPPS", "LOCAL", "EAPG", "CDT" ] },
-        "billing_code_type_version": { "type": "string" },
-        "billing_code": { "type": "string" },
-        "description": { "type": "string" },
+        "negotiation_arrangement": {
+          "enum": [
+            "ffs",
+            "bundle",
+            "capitation"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "billing_code_type": {
+          "enum": [
+            "CPT",
+            "HCPCS",
+            "ICD",
+            "MS-DRG",
+            "R-DRG",
+            "S-DRG",
+            "APS-DRG",
+            "AP-DRG",
+            "APR-DRG",
+            "APC",
+            "NDC",
+            "HIPPS",
+            "LOCAL",
+            "EAPG",
+            "CDT"
+          ]
+        },
+        "billing_code_type_version": {
+          "type": "string"
+        },
+        "billing_code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
         "negotiated_rates": {
           "type": "array",
-          "items": { "$ref": "#/definitions/negotiated_rates" },
+          "items": {
+            "$ref": "#/definitions/negotiated_rates"
+          },
           "default": []
         },
         "covered_services": {
           "type": "array",
-          "items": { "$ref": "#/definitions/covered_services" },
+          "items": {
+            "$ref": "#/definitions/covered_services"
+          },
           "default": []
         },
         "bundled_codes": {
           "type": "array",
-          "items": { "$ref": "#/definitions/bundle_codes" },
+          "items": {
+            "$ref": "#/definitions/bundle_codes"
+          },
           "default": []
         }
       },
-      "required": ["negotiation_arrangement", "name", "billing_code_type", "billing_code_type_version", "billing_code", "negotiated_rates"]
+      "required": [
+        "negotiation_arrangement",
+        "name",
+        "billing_code_type",
+        "billing_code_type_version",
+        "billing_code",
+        "negotiated_rates"
+      ]
     },
-
     "bundled_codes": {
       "type": "object",
       "properties": {
-        "billing_code_type": { "type": "string" },
-        "billing_code_type_version": { "type": "string" },
-        "billing_code": { "type": "string" },
-        "description": { "type": "string" }
+        "billing_code_type": {
+          "type": "string"
+        },
+        "billing_code_type_version": {
+          "type": "string"
+        },
+        "billing_code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
       },
-      "required": ["billing_code_type", "billing_code_type_version", "billing_code"]
+      "required": [
+        "billing_code_type",
+        "billing_code_type_version",
+        "billing_code"
+      ]
     },
-
     "covered_services": {
       "type": "object",
       "properties": {
-        "billing_code_type": { "type": "string" },
-        "billing_code_type_version": { "type": "string" },
-        "billing_code": { "type": "string" },
-        "description": { "type": "string" }
+        "billing_code_type": {
+          "type": "string"
+        },
+        "billing_code_type_version": {
+          "type": "string"
+        },
+        "billing_code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
       },
-      "required": ["billing_code_type", "billing_code_type_version", "billing_code"]
+      "required": [
+        "billing_code_type",
+        "billing_code_type_version",
+        "billing_code"
+      ]
     },
-
-
+    "providers": {
+      "type": "object",
+      "properties": {
+        "npi": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "tin": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "npi",
+        "tin"
+      ]
+    },
     "negotiated_rates": {
       "type": "object",
       "properties": {
         "providers": {
           "type": "array",
-          "items": { "type": "number" },
-          "uniqueItems": true, 
+          "items": {
+            "$ref": "#/definitions/providers"
+          },
+          "uniqueItems": true,
           "default": []
         },
-        "tin": { "type": "string" },
         "negotiated_price": {
           "$ref": "#/definitions/negotiated_price"
         }
       },
-      "required": [ "providers", "tin", "negotiated_price" ]
+      "required": [
+        "providers",
+        "negotiated_price"
+      ]
     },
-
     "negotiated_price": {
       "type": "object",
       "properties": {
-        "service_code": { 
+        "service_code": {
           "type": "array",
-          "items": { 
-            "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set" 
+          "items": {
+            "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
           },
           "uniqueItems": true
         },
-        "negotiated_type": { "enum": [ "negotiated", "derived", "fee schedule" ] },
-        "negotiated_rate": { "type": "number" },
-        "expiration_date": { "type": "string", "format": "date" }
+        "negotiated_type": {
+          "enum": [
+            "negotiated",
+            "derived",
+            "fee schedule"
+          ]
+        },
+        "negotiated_rate": {
+          "type": "number"
+        },
+        "expiration_date": {
+          "type": "string",
+          "format": "date"
+        }
       },
-      "required": [ "negotiated_type", "service_code", "negotiated_rate", "expiration_date" ]
+      "required": [
+        "negotiated_type",
+        "service_code",
+        "negotiated_rate",
+        "expiration_date"
+      ]
     },
     "reporting_plans": {
       "type": "object",
       "properties": {
-        "plan_name": { "type": "string" },
-        "plan_id_type": { "type": "string" },
-        "plan_id": { "type": "string" },
-        "plan_market_type": { "enum": [ "group", "individual" ] }
-       },
-      "required": ["plan_name", "plan_id_type", "plan_id", "plan_market_type"]
+        "plan_name": {
+          "type": "string"
+        },
+        "plan_id_type": {
+          "type": "string"
+        },
+        "plan_id": {
+          "type": "string"
+        },
+        "plan_market_type": {
+          "enum": [
+            "group",
+            "individual"
+          ]
+        }
+      },
+      "required": [
+        "plan_name",
+        "plan_id_type",
+        "plan_id",
+        "plan_market_type"
+      ]
     }
   },
-
-
   "type": "object",
-
   "properties": {
-    "reporting_entity_name": { "type": "string" },
-    "reporting_entity_type": { "type": "string" },
+    "reporting_entity_name": {
+      "type": "string"
+    },
+    "reporting_entity_type": {
+      "type": "string"
+    },
     "reporting_plans": {
       "type": "array",
-      "items": { "$ref": "#/definitions/reporting_plans" },
+      "items": {
+        "$ref": "#/definitions/reporting_plans"
+      },
       "uniqueItems": true,
       "default": []
     },
-    "last_updated_on": { "type": "string", "format": "date" },
-    "version": { "type": "string" },
+    "last_updated_on": {
+      "type": "string",
+      "format": "date"
+    },
+    "version": {
+      "type": "string"
+    },
     "in_network": {
       "type": "array",
-      "items": { "$ref": "#/definitions/in_network" },
+      "items": {
+        "$ref": "#/definitions/in_network"
+      },
       "default": []
     }
   },
-  "required": ["reporting_entity_name", "reporting_entity_type", "reporting_plans", "last_updated_on", "in_network"]
-
+  "required": [
+    "reporting_entity_name",
+    "reporting_entity_type",
+    "reporting_plans",
+    "last_updated_on",
+    "in_network"
+  ]
 }
