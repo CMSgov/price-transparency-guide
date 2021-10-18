@@ -49,6 +49,7 @@
         <required>billing_code_type_version</required>
         <required>billing_code</required>
         <required>negotiated_rates</required>
+        <required>description</required>
     </in_network>
     <negotiated_rates>
         <type>object</type>
