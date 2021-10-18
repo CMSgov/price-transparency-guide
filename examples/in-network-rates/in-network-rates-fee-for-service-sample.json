@@ -22,8 +22,13 @@
     "billing_code": "27447",
     "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
     "negotiated_rates": [{
-      "providers": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-      "tin": "11-1111111",
+      "provider_groups": [{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+        "tin": "11-1111111"
+      },{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+        "tin": "22-2222222"
+      }],
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 123.45,
@@ -31,8 +36,10 @@
         "service_code": ["01", "02", "03", "04"]
       }
     },{
-      "providers": [6666666666, 7777777777, 8888888888, 9999999999],
-      "tin": "22-2222222",
+    "provider_groups": [{
+      "npi": [6666666666, 7777777777, 8888888888, 9999999999],
+      "tin": "22-2222222"
+    }],
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 120.45,
@@ -48,8 +55,13 @@
     "billing_code": "27448",
     "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint",
     "negotiated_rates": [{
-      "providers": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-      "tin": "11-1111111",
+      "provider_groups": [{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+        "tin": "11-1111111"
+      },{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+        "tin": "22-2222222"
+      }],
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 12003.45,
@@ -57,8 +69,10 @@
         "service_code": ["08", "09", "10"]
       }
     },{
-      "providers": [6666666666, 7777777777, 8888888888, 9999999999],
-      "tin": "22-2222222",
+      "provider_groups": [{
+        "npi": [6666666666, 7777777777, 8888888888, 9999999999],
+        "tin": "22-2222222"
+      }],
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 12.45,

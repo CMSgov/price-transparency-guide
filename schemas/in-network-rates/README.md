@@ -59,7 +59,12 @@ This type defines a negotiated rate object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **negotiated_price** | Negotiated Price |	Object | The [negotiated price object](#negotiated-price-object) defines information about the type of negotiated rate as well as the dollar amount of the negotiated rate | Yes |
-| **providers** | Providers | Array | An array of individual (type 1) provider identification numbers (NPI). | Yes |
+| **provider_groups** | Provider Groups | Array  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
+
+#### Providers Object
+| Field | Name | Type | Definition | Required |
+| ----- | ---- | ---- | ---------- | -------- |
+| **npi** | NPI | Array | An array of individual (type 1) provider identification numbers (NPI). | Yes |
 | **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
 
 #### Negotiated Price Object
