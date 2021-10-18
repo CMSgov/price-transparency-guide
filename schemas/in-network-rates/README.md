@@ -42,7 +42,7 @@ This type defines an in-network object.
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
 | **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
 | **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. | Yes |
-| **description** | Description | String | Brief description of the item/service | No |
+| **description** | Description | String | Brief description of the item/service | Yes |
 
 #### Covered Services Object
 | Field | Name | Type | Definition | Required |
@@ -50,7 +50,7 @@ This type defines an in-network object.
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
 | **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
 | **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. | Yes |
-| **description** | Description | String | Brief description of the item/service | No |
+| **description** | Description | String | Brief description of the item/service | Yes |
 
 #### Negotiated Rate Details Object
 
