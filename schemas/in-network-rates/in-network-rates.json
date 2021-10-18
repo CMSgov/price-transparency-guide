@@ -26,7 +26,7 @@
           "default": []
         }
       },
-      "required": ["negotiation_arrangement", "name", "billing_code_type", "billing_code_type_version", "billing_code", "negotiated_rates"]
+      "required": ["negotiation_arrangement", "name", "billing_code_type", "billing_code_type_version", "billing_code", "negotiated_rates", "description"]
     },
 
     "bundled_codes": {
@@ -37,7 +37,7 @@
         "billing_code": { "type": "string" },
         "description": { "type": "string" }
       },
-      "required": ["billing_code_type", "billing_code_type_version", "billing_code"]
+      "required": ["billing_code_type", "billing_code_type_version", "billing_code", "description"]
     },
 
     "covered_services": {
@@ -48,7 +48,7 @@
         "billing_code": { "type": "string" },
         "description": { "type": "string" }
       },
-      "required": ["billing_code_type", "billing_code_type_version", "billing_code"]
+      "required": ["billing_code_type", "billing_code_type_version", "billing_code", "description"]
     },
 
 
