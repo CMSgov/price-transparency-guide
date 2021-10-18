@@ -54,16 +54,16 @@
     <negotiated_rates>
         <type>object</type>
         <properties>
-            <providers>
+            <provider_groups>
                 <type>array</type>
                 <_ref>#/definitions/providers</_ref>
                 <uniqueItems>true</uniqueItems>
-            </providers>
+            </provider_groups>
             <negotiated_price>
                 <_ref>#/definitions/negotiated_price</_ref>
             </negotiated_price>
        </properties>
-        <required>providers</required>
+        <required>provider_groups</required>
         <required>negotiated_price</required>
     </negotiated_rates>
     <providers> 

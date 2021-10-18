@@ -143,7 +143,7 @@
     "negotiated_rates": {
       "type": "object",
       "properties": {
-        "providers": {
+        "provider_groups": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/providers"
@@ -156,7 +156,7 @@
         }
       },
       "required": [
-        "providers",
+        "provider_groups",
         "negotiated_price"
       ]
     },
