@@ -22,14 +22,13 @@
     "billing_code": "81.54",
     "description": "Total Knee Replacement",
     "negotiated_rates": [{
-      "providers": [{
+      "provider_groups": [{
         "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
         "tin": "11-1111111"
       },{
         "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
         "tin": "22-2222222"
       }],
-      "tin": "11-1111111",
       "negotiated_price": {
         "negotiated_type": "negotiated",
         "negotiated_rate": 20000.00,
@@ -37,7 +36,7 @@
         "service_code": ["05", "06", "07"]
       }
     },{
-      "providers":[{
+      "provider_groups":[{
         "npi": ["6666666666", "7777777777", "8888888888", "9999999999"],
         "tin": "22-2222222"
       }],
