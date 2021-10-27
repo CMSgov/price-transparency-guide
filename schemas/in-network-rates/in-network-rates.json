@@ -151,8 +151,13 @@
           "uniqueItems": true,
           "default": []
         },
-        "negotiated_price": {
-          "$ref": "#/definitions/negotiated_price"
+        "negotiated_prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/negotiated_price"
+          },
+          "uniqueItems": true,
+          "default": []
         }
       },
       "required": [

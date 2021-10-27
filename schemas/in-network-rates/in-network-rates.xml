@@ -59,9 +59,11 @@
                 <_ref>#/definitions/providers</_ref>
                 <uniqueItems>true</uniqueItems>
             </provider_groups>
-            <negotiated_price>
+            <negotiated_prices>
+                <type>array</type>
                 <_ref>#/definitions/negotiated_price</_ref>
-            </negotiated_price>
+                <uniqueItems>true</uniqueItems>
+            </negotiated_prices>
        </properties>
         <required>provider_groups</required>
         <required>negotiated_price</required>
