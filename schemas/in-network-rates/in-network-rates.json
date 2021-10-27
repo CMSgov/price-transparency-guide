@@ -59,7 +59,7 @@
         "bundled_codes": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/bundle_codes"
+            "$ref": "#/definitions/bundled_codes"
           },
           "default": []
         }
