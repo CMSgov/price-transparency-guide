@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "providers.json",
+  "properties": {
+    "providerGroupId": { "type": "number" },
+    "npi": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "tin": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "providerGroupId",
+    "npi",
+    "tin"
+  ]
+}
