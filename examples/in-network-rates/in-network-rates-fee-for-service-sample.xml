@@ -83,16 +83,18 @@
       <name>Femur and Knee Joint Repair</name>
       <negotiated_rates>
         <item>
-          <negotiated_price>
-            <expiration_date>2022-01-01</expiration_date>
-            <negotiated_rate>12003.45</negotiated_rate>
-            <negotiated_type>negotiated</negotiated_type>
-            <service_code>
-              <item>08</item>
-              <item>09</item>
-              <item>10</item>
-            </service_code>
-          </negotiated_price>
+          <negotiated_prices>
+            <item>
+              <expiration_date>2022-01-01</expiration_date>
+              <negotiated_rate>12003.45</negotiated_rate>
+              <negotiated_type>negotiated</negotiated_type>
+              <service_code>
+                <item>08</item>
+                <item>09</item>
+                <item>10</item>
+              </service_code>
+            </item>
+          </negotiated_prices>
           <provider_groups>
             <item>
               <providers>
@@ -120,16 +122,18 @@
           </provider_groups>
         </item>
         <item>
-          <negotiated_price>
-            <expiration_date>2022-01-01</expiration_date>
-            <negotiated_rate>12.45</negotiated_rate>
-            <negotiated_type>negotiated</negotiated_type>
-            <service_code>
-              <item>10</item>
-              <item>19</item>
-              <item>11</item>
-            </service_code>
-          </negotiated_price>
+          <negotiated_prices>
+            <item>
+              <expiration_date>2022-01-01</expiration_date>
+              <negotiated_rate>12.45</negotiated_rate>
+              <negotiated_type>negotiated</negotiated_type>
+              <service_code>
+                <item>10</item>
+                <item>19</item>
+                <item>11</item>
+              </service_code>
+            </item>
+          </negotiated_prices>
           <provider_groups>
             <item>
               <providers>
