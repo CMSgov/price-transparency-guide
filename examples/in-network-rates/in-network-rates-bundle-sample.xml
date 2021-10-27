@@ -41,43 +41,55 @@
       <name>Total Knee Replacement</name>
       <negotiated_rates>
         <item>
-          <negotiated_price>
-            <expiration_date>2022-01-01</expiration_date>
-            <negotiated_rate>20000.0</negotiated_rate>
-            <negotiated_type>negotiated</negotiated_type>
-            <service_code>
-              <item>05</item>
-              <item>05</item>
-              <item>06</item>
-            </service_code>
-          </negotiated_price>
-          <providers>
-            <item>1111111111</item>
-            <item>2222222222</item>
-            <item>3333333333</item>
-            <item>4444444444</item>
-            <item>5555555555</item>
-          </providers>
-          <tin>11-1111111</tin>
+          <negotiated_prices>
+            <item>
+              <expiration_date>2022-01-01</expiration_date>
+              <negotiated_rate>20000.0</negotiated_rate>
+              <negotiated_type>negotiated</negotiated_type>
+              <service_code>
+                <item>05</item>
+                <item>05</item>
+                <item>06</item>
+              </service_code>
+            </item>
+          </negotiated_prices>
+          <provider_groups>
+            <item>
+              <providers>
+                <item>1111111111</item>
+                <item>2222222222</item>
+                <item>3333333333</item>
+                <item>4444444444</item>
+                <item>5555555555</item>
+              </providers>
+              <tin>11-1111111</tin>
+            </item>
+          </provider_groups>
         </item>
         <item>
-          <negotiated_price>
-            <expiration_date>2022-01-01</expiration_date>
-            <negotiated_rate>25000.0</negotiated_rate>
-            <negotiated_type>negotiated</negotiated_type>
-            <service_code>
-              <item>05</item>
-              <item>05</item>
-              <item>06</item>
-            </service_code>
-          </negotiated_price>
-          <providers>
-            <item>6666666666</item>
-            <item>7777777777</item>
-            <item>8888888888</item>
-            <item>9999999999</item>
-          </providers>
-          <tin>22-2222222</tin>
+          <negotiated_prices>
+            <item>
+              <expiration_date>2022-01-01</expiration_date>
+              <negotiated_rate>25000.0</negotiated_rate>
+              <negotiated_type>negotiated</negotiated_type>
+              <service_code>
+                <item>05</item>
+                <item>05</item>
+                <item>06</item>
+              </service_code>
+            </item>
+          </negotiated_prices>
+          <provider_groups>
+            <item>
+              <providers>
+                <item>6666666666</item>
+                <item>7777777777</item>
+                <item>8888888888</item>
+                <item>9999999999</item>
+              </providers>
+              <tin>22-2222222</tin>
+            </item>
+          </provider_groups>
         </item>
       </negotiated_rates>
       <negotiation_arrangement>bundle</negotiation_arrangement>
