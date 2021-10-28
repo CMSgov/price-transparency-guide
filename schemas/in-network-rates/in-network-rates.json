@@ -59,7 +59,7 @@
         "bundled_codes": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/bundle_codes"
+            "$ref": "#/definitions/bundled_codes"
           },
           "default": []
         }
@@ -162,7 +162,7 @@
       },
       "required": [
         "provider_groups",
-        "negotiated_price"
+        "negotiated_prices"
       ]
     },
     "negotiated_price": {
