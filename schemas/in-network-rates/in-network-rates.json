@@ -162,7 +162,7 @@
       },
       "required": [
         "provider_groups",
-        "negotiated_price"
+        "negotiated_prices"
       ]
     },
     "negotiated_price": {
