@@ -45,7 +45,7 @@
         "npi": [6666666666, 7777777777, 8888888888, 9999999999],
         "tin": "22-2222222"
       }],
-      "negotiated_price": [{
+      "negotiated_prices": [{
         "negotiated_type": "negotiated",
         "negotiated_rate": 120.45,
         "expiration_date": "2022-01-01",
