@@ -159,22 +159,10 @@
           "uniqueItems": true,
           "default": []
         },
-        "provider_references":{
-          "type": "array",
-          "items": {
-            "$ref": "providers.json#/provider_group_id"
-          },
-          "uniqueItems": true,
-          "default": []
-        },
         "negotiated_price": {
           "$ref": "#/definitions/negotiated_price"
         }
       },
-      "oneOf":[
-        {"required": ["provider_references"]},
-        {"required": ["provider_groups"]}
-      ],
       "required": [
         "provider_groups",
         "negotiated_prices"

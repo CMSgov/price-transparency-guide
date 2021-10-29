@@ -21,7 +21,7 @@
     "allowed_amounts": {
       "type": "object",
       "properties": {
-        "t,in": { "type": "string" },
+        "tin": { "type": "string" },
         "service_code": {
           "type": "array",
           "items": {
