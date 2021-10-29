@@ -16,7 +16,7 @@
     }
   },
   "required": [
-    "providerGroupId",
+    "provider_group_id",
     "npi",
     "tin"
   ]
