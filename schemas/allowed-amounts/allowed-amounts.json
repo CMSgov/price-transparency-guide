@@ -21,11 +21,12 @@
     "allowed_amounts": {
       "type": "object",
       "properties": {
-        "tin": { "type": "string" },
+        "t,in": { "type": "string" },
         "service_code": {
           "type": "array",
           "items": {
-            "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
+            "type": "string",
+            "$ref": "../common/service-code-reference.json#/properties/service_code"
           },
           "uniqueItems": true
         },
