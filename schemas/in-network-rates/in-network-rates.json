@@ -162,7 +162,7 @@
         "provider_references":{
           "type": "array",
           "items": {
-            "$ref": "providers.json#/providerGroupId"
+            "$ref": "providers.json#/provider_group_id"
           },
           "uniqueItems": true,
           "default": []

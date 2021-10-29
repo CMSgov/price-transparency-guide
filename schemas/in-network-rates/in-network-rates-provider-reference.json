@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "providers.json",
   "properties": {
-    "providerGroupId": { "type": "number" },
+    "provider_group_id": { "type": "number" },
     "npi": {
       "type": "array",
       "items": {
