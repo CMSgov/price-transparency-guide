@@ -143,6 +143,14 @@
     "negotiated_rates": {
       "type": "object",
       "properties": {
+        "negotiated_prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/negotiated_price"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
         "provider_groups": {
           "type": "array",
           "items": {
@@ -151,13 +159,6 @@
           "uniqueItems": true,
           "default": []
         },
-        "negotiated_prices": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/negotiated_price"
-          },
-          "uniqueItems": true,
-          "default": []
         "provider_references":{
           "type": "array",
           "items": {
@@ -171,8 +172,8 @@
         }
       },
       "oneOf":[
-        "required": ["provider_references"],
-        "required": ["provider_groups"]
+        {"required": ["provider_references"]},
+        {"required": ["provider_groups"]}
       ],
       "required": [
         "provider_groups",
@@ -185,7 +186,8 @@
         "service_code": {
           "type": "array",
           "items": {
-            "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
+            "type": "string",
+            "$ref": "../common/service-code-reference.json#/properties/service_code"
           },
           "uniqueItems": true
         },
