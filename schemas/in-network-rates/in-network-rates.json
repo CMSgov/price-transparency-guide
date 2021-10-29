@@ -192,6 +192,12 @@
           },
           "uniqueItems": true
         },
+        "billing_class": {
+          "enum": [
+            "facility",
+            "non-facility"
+          ]
+        },
         "negotiated_type": {
           "enum": [
             "negotiated",
@@ -209,10 +215,20 @@
       },
       "required": [
         "negotiated_type",
-        "service_code",
+        "billing_class",
         "negotiated_rate",
         "expiration_date"
-      ]
+      ],
+      "if": {
+        "properties": {
+          "billing_class": { "const": "non-facility" }
+        }
+      },
+      "then": {
+        "required": [
+          "service_code"
+        ]
+      }
     },
     "reporting_plans": {
       "type": "object",
