@@ -26,13 +26,13 @@
       "payments": [{
         "allowed_amount": 25.00,
         "providers": [{
-          "billed_amount": 50.00,
+          "billed_charge": 50.00,
           "npi": [1234567891,1234567892,1234567893,1234567893]
         },{
-          "billed_amount": 60.00,
+          "billed_charge": 60.00,
           "npi": [1111111111]
         },{
-          "billed_amount": 70.00,
+          "billed_charge": 70.00,
           "npi": [2222222222,3333333333,4444444444,5555555555]
         }]
       }]
