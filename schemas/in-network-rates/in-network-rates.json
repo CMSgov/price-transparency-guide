@@ -143,6 +143,14 @@
     "negotiated_rates": {
       "type": "object",
       "properties": {
+        "negotiated_prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/negotiated_price"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
         "provider_groups": {
           "type": "array",
           "items": {
@@ -151,13 +159,8 @@
           "uniqueItems": true,
           "default": []
         },
-        "negotiated_prices": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/negotiated_price"
-          },
-          "uniqueItems": true,
-          "default": []
+        "negotiated_price": {
+          "$ref": "#/definitions/negotiated_price"
         }
       },
       "required": [
