@@ -181,8 +181,8 @@
         },
         "billing_class": {
           "enum": [
-            "facility",
-            "non-facility"
+            "professional",
+            "facility"
           ]
         },
         "negotiated_type": {
@@ -208,7 +208,7 @@
       ],
       "if": {
         "properties": {
-          "billing_class": { "const": "non-facility" }
+          "billing_class": { "const": "professional" }
         }
       },
       "then": {
