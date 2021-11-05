@@ -79,18 +79,18 @@
           <uniqueItems>true</uniqueItems>
         </npi>
         <tin>
-            <type>object</type>
-            <properties>
-              <type>
-                <enum>ein</enum>
-                <enum>npi</enum>
-              </type>
-              <value>
-                <type>string</type>
-              </value>
-            </properties>
-            <required>type</required>
-            <required>value</required>
+          <type>object</type>
+          <properties>
+            <type>
+              <enum>ein</enum>
+              <enum>npi</enum>
+            </type>
+            <value>
+              <type>string</type>
+            </value>
+          </properties>
+          <required>type</required>
+          <required>value</required>
         </tin>
       </properties>
       <required>npi</required>
