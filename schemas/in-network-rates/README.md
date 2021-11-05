@@ -71,11 +71,11 @@ This type defines a negotiated rate object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **type** | Type | String | Allowed values: "tin" and "npi". | Yes |
-| **value** | Value | String | Either the unique identification number issued by the Internal Revenue Service (IRS) for type "tin" or the provider's npi. | Yes |
+| **value** | Value | String | Either the unique identification number issued by the Internal Revenue Service (IRS) for type "tin" or the provider's npi for type "npi". | Yes |
 
 ##### Additional Notes
 
-For most businesses reporting cases, a tax identification number (tin) is used to represent a business. There are situations where a provider's social security number is still used as a tin. In order to keep private personally identifable information out of these files, substitue the provider's npi number for the social security number. When a npi number is used, it is assumed that the provider would otherwise be reporting by their social security number.
+For most businesses reporting cases, a tax identification number (tin) is used to represent a business. There are situations where a provider's social security number is still used as a tin. In order to keep private personally identifiable information out of these files, substitute the provider's npi number for the social security number. When a npi number is used, it is assumed that the provider would otherwise be reporting by their social security number.
 
 #### Negotiated Price Object
 
