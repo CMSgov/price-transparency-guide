@@ -53,7 +53,10 @@
                 <item>02</item>
                 <item>03</item>
               </service_code>
-              <tin>22-2222222</tin>
+              <tin>
+                 <type>ein</type>
+                 <value>22-2222222</value>
+               </tin>
             </item>
             <item>
               <npi>
@@ -67,7 +70,10 @@
                 <item>02</item>
                 <item>03</item>
               </service_code>
-              <tin>22-2222222</tin>
+              <tin>
+                 <type>ein</type>
+                 <value>22-2222222</value>
+               </tin>
             </item>
           </providers>
         </item>
@@ -86,7 +92,10 @@
                 <item>02</item>
                 <item>03</item>
               </service_code>
-              <tin>22-2222222</tin>
+              <tin>
+                 <type>ein</type>
+                 <value>22-2222222</value>
+               </tin>
             </item>
             <item>
               <npi>
@@ -100,7 +109,10 @@
                 <item>02</item>
                 <item>03</item>
               </service_code>
-              <tin>22-2222222</tin>
+              <tin>
+                 <type>ein</type>
+                 <value>22-2222222</value>
+               </tin>
             </item>
           </providers>
         </item>
