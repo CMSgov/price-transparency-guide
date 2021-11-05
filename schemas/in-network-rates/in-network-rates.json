@@ -132,7 +132,20 @@
           "default": []
         },
         "tin": {
-          "type": "string"
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["ein", "npi"]
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
         }
       },
       "required": [

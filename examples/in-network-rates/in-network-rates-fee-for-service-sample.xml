@@ -30,7 +30,10 @@
                   <item>4444444444</item>
                   <item>5555555555</item>
                 </npi>
-                <tin>11-1111111</tin>
+                <tin>
+                  <type>ein</type>
+                  <value>11-1111111</value>
+                </tin>
               </providers>
             </item>
             <item>
@@ -41,7 +44,10 @@
                   <item>8888888888</item>
                   <item>9999999999</item>
                 </npi>
-                <tin>22-2222222</tin>
+                <tin>
+                  <type>ein</type>
+                  <value>22-2222222</value>
+                </tin>
               </providers>
             </item>
           </provider_groups>
@@ -67,7 +73,10 @@
                   <item>4444444444</item>
                   <item>5555555555</item>
                 </npi>
-                <tin>11-1111111</tin>
+                <tin>
+                  <type>ein</type>
+                  <value>11-1111111</value>
+                </tin>
               </providers>
             </item>
           </provider_groups>
@@ -105,7 +114,10 @@
                   <item>4444444444</item>
                   <item>5555555555</item>
                 </npi>
-                <tin>11-1111111</tin>
+                <tin>
+                  <type>ein</type>
+                  <value>11-1111111</value>
+                </tin>
               </providers>
             </item>
             <item>
@@ -116,7 +128,10 @@
                   <item>8888888888</item>
                   <item>9999999999</item>
                 </npi>
-                <tin>22-2222222</tin>
+                <tin>
+                  <type>ein</type>
+                  <value>22-2222222</value>
+                </tin>
               </providers>
             </item>
           </provider_groups>
@@ -143,7 +158,10 @@
                   <item>8888888888</item>
                   <item>9999999999</item>
                 </npi>
-                <tin>22-2222222</tin>
+                <tin>
+                  <type>ein</type>
+                  <value>22-2222222</value>
+                </tin>
               </providers>
             </item>
           </provider_groups>
