@@ -65,7 +65,17 @@ This type defines a negotiated rate object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **npi** | NPI | Array | An array of individual (type 1) provider identification numbers (NPI). | Yes |
-| **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
+| **ein** | Employer Identification Number | Object | The [employer identifier object](#employer-identifier-object) contain tax information on the place of business | Yes |
+
+#### Employer Identifier Object
+| Field | Name | Type | Definition | Required |
+| ----- | ---- | ---- | ---------- | -------- |
+| **type** | Type | String | Allowed values: "tin" and "npi". | Yes |
+| **value** | Value | String | Either the unique identification number issued by the Internal Revenue Service (IRS) for type "tin" or the provider's npi. | Yes |
+
+##### Additional Notes
+
+For most businesses reporting cases, a tax identification number (tin) is used to represent a business. There are situations where a provider's social security number is still used as a tin. In order to keep private personally identifable information out of these files, substitue the provider's npi number for the social security number. When a npi number is used, it is assumed that the provider would otherwise be reporting by their social security number.
 
 #### Negotiated Price Object
 

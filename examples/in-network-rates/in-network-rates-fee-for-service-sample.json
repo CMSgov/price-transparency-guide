@@ -24,10 +24,16 @@
     "negotiated_rates": [{
       "provider_groups": [{
         "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-        "tin": "11-1111111"
+        "tin":{
+          "type": "ein",
+          "value": "11-1111111"
+        }
       },{
         "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-        "tin": "22-2222222"
+        "tin":{
+          "type": "ein",
+          "value": "22-2222222"
+        }
       }],
       "negotiated_prices": [{
         "negotiated_type": "negotiated",
@@ -43,7 +49,10 @@
       },{
       "provider_groups": [{
         "npi": [6666666666, 7777777777, 8888888888, 9999999999],
-        "tin": "22-2222222"
+        "tin":{
+          "type": "ein",
+          "value": "22-2222222"
+        }
       }],
       "negotiated_prices": [{
         "negotiated_type": "negotiated",
@@ -62,10 +71,16 @@
     "negotiated_rates": [{
       "provider_groups": [{
         "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-        "tin": "11-1111111"
+        "tin":{
+          "type": "ein",
+          "value": "11-1111111"
+        }
       },{
         "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-        "tin": "22-2222222"
+        "tin":{
+          "type": "ein",
+          "value": "22-2222222"
+        }
       }],
       "negotiated_prices": [{
         "negotiated_type": "negotiated",
@@ -75,8 +90,11 @@
       }]
     },{
       "provider_groups": [{
-        "npi": [6666666666, 7777777777, 8888888888, 9999999999],
-        "tin": "22-2222222"
+        "npi": [6666666666],
+        "tin":{
+          "type": "npi",
+          "value": "6666666666"
+        }
       }],
       "negotiated_prices": [{
         "negotiated_type": "negotiated",
