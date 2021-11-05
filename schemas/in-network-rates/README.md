@@ -65,13 +65,13 @@ This type defines a negotiated rate object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **npi** | NPI | Array | An array of individual (type 1) provider identification numbers (NPI). | Yes |
-| **ein** | Employer Identification Number | Object | The [employer identifier object](#employer-identifier-object) contains tax information on the place of business | Yes |
+| **tin** | Tax Identification Number | Object | The [tax identifier object](#tas-identifier-object) contains tax information on the place of business | Yes |
 
-#### Employer Identifier Object
+#### Tax Identifier Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **type** | Type | String | Allowed values: "tin" and "npi". | Yes |
-| **value** | Value | String | Either the unique identification number issued by the Internal Revenue Service (IRS) for type "tin" or the provider's npi for type "npi". | Yes |
+| **type** | Type | String | Allowed values: "ein" and "npi". | Yes |
+| **value** | Value | String | Either the unique identification number issued by the Internal Revenue Service (IRS) for type "ein" or the provider's npi for type "npi". | Yes |
 
 ##### Additional Notes
 
