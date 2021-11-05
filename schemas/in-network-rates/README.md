@@ -65,7 +65,7 @@ This type defines a negotiated rate object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **npi** | NPI | Array | An array of individual (type 1) provider identification numbers (NPI). | Yes |
-| **ein** | Employer Identification Number | Object | The [employer identifier object](#employer-identifier-object) contain tax information on the place of business | Yes |
+| **ein** | Employer Identification Number | Object | The [employer identifier object](#employer-identifier-object) contains tax information on the place of business | Yes |
 
 #### Employer Identifier Object
 | Field | Name | Type | Definition | Required |
