@@ -87,7 +87,7 @@
       "uniqueItems": true,
       "default": []
     },
-    "last_updated_on": { "type": "string", "format": "date" },
+    "last_updated_on": { "type": "string" },
     "version": { "type": "string" },
     "out_of_network": {
       "type": "array",
