@@ -21,7 +21,18 @@
     "allowed_amounts": {
       "type": "object",
       "properties": {
-        "tin": { "type": "string" },
+        "tin": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["ein", "npi"]
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
         "service_code": {
           "type": "array",
           "items": {
