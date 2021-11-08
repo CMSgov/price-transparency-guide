@@ -40,7 +40,19 @@
         <type>object</type>
         <properties>
             <tin>
-                <type>string</type>
+                <type>object</type>
+                <properties>
+                   <type>
+                       <type>string</type>
+                       <enum>ein</enum>
+                       <enum>npi</enum>
+                   </type>
+                   <value>
+                       <type>string</type>
+                   </value>
+                </properties>
+                <required>type</required>
+                <required>value</required>
             </tin>
             <service_code>
                 <type>array</type>

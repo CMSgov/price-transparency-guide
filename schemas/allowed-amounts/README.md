@@ -39,9 +39,19 @@ The allowed amounts object documents the entity or business and service code in 
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **tin** | Tax Identification Number | String | The unique identification number issued either by the Social Security Administration or by the Internal Revenue Service (IRS). | Yes |
+| **tin** | Tax Identification Number | Object | The [tax identifier object](#tas-identifier-object) contains tax information on the place of business | Yes |
 | **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided | Yes |
 | **payments** | Payments |	Array | An array of [out-of-network payments objects](#out-of-network-payment-object) | Yes |
+
+#### Tax Identifier Object
+| Field | Name | Type | Definition | Required |
+| ----- | ---- | ---- | ---------- | -------- |
+| **type** | Type | String | Allowed values: "ein" and "npi". | Yes |
+| **value** | Value | String | Either the unique identification number issued by the Internal Revenue Service (IRS) for type "ein" or the provider's npi for type "npi". | Yes |
+
+##### Additional Notes
+
+For most businesses reporting cases, a tax identification number (tin) is used to represent a business. There are situations where a provider's social security number is still used as a tin. In order to keep private personally identifiable information out of these files, substitute the provider's npi number for the social security number. When a npi number is used, it is assumed that the provider would otherwise be reporting by their social security number.
 
 #### Out-Of-Network Payment Object
 
