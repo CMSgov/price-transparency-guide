@@ -14,7 +14,7 @@
   }],
   "last_updated_on": "2020-08-27",
   "version": "1.0.0",
-  "in_network": [{ 
+  "in_network": [{
     "negotiation_arrangement": "ffs",
     "name": "Knee Replacement",
     "billing_code_type": "CPT",
@@ -39,14 +39,13 @@
         "negotiated_type": "negotiated",
         "negotiated_rate": 123.45,
         "expiration_date": "2022-01-01",
-        "service_code": ["01", "02", "03", "04"],
-        "billing_class": "non-facility"
+        "service_code": ["18", "19", "11"],
+        "billing_class": "professional"
       },{
         "negotiated_type": "negotiated",
         "negotiated_rate": 1230.45,
         "expiration_date": "2022-01-01",
-        "service_code": ["19"],
-        "billing_class": "facility"
+        "billing_class": "institutional"
       }]
       },{
       "provider_groups": [{
@@ -61,7 +60,7 @@
         "negotiated_rate": 120.45,
         "expiration_date": "2022-01-01",
         "service_code": ["05", "06", "07"],
-        "billing_class": "non-facility"
+        "billing_class": "professional"
       }]
     }]
   },{
@@ -89,8 +88,8 @@
         "negotiated_type": "negotiated",
         "negotiated_rate": 12003.45,
         "expiration_date": "2022-01-01",
-        "service_code": ["08", "09", "10"],
-        "billing_class": "non-facility"
+        "service_code": ["18", "19", "11"],
+        "billing_class": "professional"
       }]
     },{
       "provider_groups": [{
@@ -105,7 +104,7 @@
         "negotiated_rate": 12.45,
         "expiration_date": "2022-01-01",
         "service_code": ["18", "19", "11"],
-        "billing_class": "non-facility"
+        "billing_class": "institutional"
       }]
     }]
   }]
