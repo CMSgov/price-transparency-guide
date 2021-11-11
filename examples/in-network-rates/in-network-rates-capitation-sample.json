@@ -36,7 +36,7 @@
         "negotiated_type": "negotiated",
         "negotiated_rate": 20000.00,
         "expiration_date": "2022-01-01",
-        "service_code": ["05", "06", "07"]
+        "billing_class": "institutional"
       }]
     },{
       "provider_groups":[{
@@ -50,7 +50,8 @@
         "negotiated_type": "negotiated",
         "negotiated_rate": 25000.00,
         "expiration_date": "2022-01-01",
-        "service_code": ["05", "06", "07"]
+        "service_code": ["05", "06", "07"],
+        "billing_class": "professional"
       }]
     }],
     "covered_services": [{

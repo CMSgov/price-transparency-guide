@@ -86,7 +86,8 @@ The negotiated price object contains negotiated pricing information that the typ
 | **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", and "fee schedule". See additional notes. | Yes |
 | **negotiated_rate** | Negotiated Rate | Number | The dollar amount based on the `negotiation_type` | Yes |
 | **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD). See additional notes. | Yes |
-| **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided | Yes |
+| **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided. When attribute of `billing_class` has the value of "professional", `service_code` is required.  | No |
+| **billing_class** | Billing Class | String | Allowed values: "professional", "institutional" | Yes |
 
 ##### Additional Notes
 For `negotiated_type` there are three allowable values: "negotiated", "derived", and "fee schedule". The value are defined as:

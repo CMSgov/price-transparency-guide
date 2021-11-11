@@ -41,13 +41,29 @@
           },
           "uniqueItems": true
         },
+        "billing_class": {
+           "enum": [
+             "professional",
+             "institutional"
+           ]
+         },
         "payments": {
           "type": "array",
           "items": { "$ref": "#/definitions/payments" },
           "default": []
         }
       },
-      "required": [ "tin", "service_code", "payments" ]
+      "required": [ "tin", "billing_class", "payments" ],
+      "if": {
+         "properties": {
+           "billing_class": { "const": "professional" }
+         }
+       },
+       "then": {
+         "required": [
+           "service_code"
+         ]
+       }
     },
 
     "payments": {

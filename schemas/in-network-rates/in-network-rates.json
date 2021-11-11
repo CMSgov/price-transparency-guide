@@ -171,9 +171,6 @@
           },
           "uniqueItems": true,
           "default": []
-        },
-        "negotiated_price": {
-          "$ref": "#/definitions/negotiated_price"
         }
       },
       "required": [
@@ -192,6 +189,12 @@
           },
           "uniqueItems": true
         },
+        "billing_class": {
+          "enum": [
+            "professional",
+            "institutional"
+          ]
+        },
         "negotiated_type": {
           "enum": [
             "negotiated",
@@ -209,10 +212,20 @@
       },
       "required": [
         "negotiated_type",
-        "service_code",
+        "billing_class",
         "negotiated_rate",
         "expiration_date"
-      ]
+      ],
+      "if": {
+        "properties": {
+          "billing_class": { "const": "professional" }
+        }
+      },
+      "then": {
+        "required": [
+          "service_code"
+        ]
+      }
     },
     "reporting_plans": {
       "type": "object",

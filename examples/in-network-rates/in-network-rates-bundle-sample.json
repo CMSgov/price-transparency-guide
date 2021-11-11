@@ -14,7 +14,7 @@
   }],
   "last_updated_on": "2020-08-27",
   "version": "1.0.0",
-  "in_network": [{ 
+  "in_network": [{
     "negotiation_arrangement": "bundle",
     "name": "Total Knee Replacement",
     "billing_code_type": "ICD",
@@ -39,7 +39,8 @@
         "negotiated_type": "negotiated",
         "negotiated_rate": 20000.00,
         "expiration_date": "2022-01-01",
-        "service_code": ["05", "06", "07"]
+        "service_code": ["05", "06", "07"],
+        "billing_class": "professional"
       }]
     },{
       "provider_groups":[{
@@ -53,7 +54,8 @@
         "negotiated_type": "negotiated",
         "negotiated_rate": 25000.00,
         "expiration_date": "2022-01-01",
-        "service_code": ["05", "06", "07"]
+        "service_code": ["05", "06", "07"],
+        "billing_class": "professional"
       }]
     }],
     "bundled_codes": [{
