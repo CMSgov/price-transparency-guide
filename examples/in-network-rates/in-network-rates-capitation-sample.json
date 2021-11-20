@@ -18,6 +18,9 @@
     "negotiation_arrangement": "capitation",
     "name": "Primary Care Capitation",
     "description": "Typical items and services for a primary care provider",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "2020",
+    "billing_code": "27447",
     "negotiated_rates": [{
       "provider_groups": [{
         "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
