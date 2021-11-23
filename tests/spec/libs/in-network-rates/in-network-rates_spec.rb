@@ -1,6 +1,5 @@
 require "spec_helper"
 require "json"
-JsonMatchers.schema_root = "../schemas/in-network-rates"
 
 describe "in network schema" do
   it "has a valid json schema" do
