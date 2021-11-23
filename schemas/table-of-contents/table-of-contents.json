@@ -1,3 +1,88 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "$schema":"http://json-schema.org/draft-07/schema#",
+  "definitions":{
+    "file_location": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        }
+      }
+    },
+    "reporting_structure":{
+      "type":"object",
+      "properties":{
+        "reporting_plans":{
+          "type":"array",
+          "items":{
+            "$ref":"#/definitions/reporting_plans"
+          },
+          "uniqueItems":true,
+          "default":[]
+        },
+        "in_network_file":{
+          "$ref":"#/definitions/file_location"
+        },
+        "allowed_amount_file":{
+          "$ref":"#/definitions/file_location"
+        }
+      },
+      "required":[
+        "reporting_plans",
+        "in_network_file",
+        "allowed_amount_file"
+      ]
+    },
+    "reporting_plans":{
+      "type":"object",
+      "properties":{
+        "plan_name":{
+          "type":"string"
+        },
+        "plan_id_type":{
+          "type":"string"
+        },
+        "plan_id":{
+          "type":"string"
+        },
+        "plan_market_type":{
+          "enum":[
+            "group",
+            "individual"
+          ]
+        }
+      },
+      "required":[
+        "plan_name",
+        "plan_id_type",
+        "plan_id",
+        "plan_market_type"
+      ]
+    }
+  },
+  "type":"object",
+  "properties":{
+    "reporting_entity_name":{
+      "type":"string"
+    },
+    "reporting_entity_type":{
+      "type":"string"
+    },
+    "reporting_structure":{
+      "type":"array",
+      "items":{
+        "$ref":"#/definitions/reporting_structure"
+      },
+      "uniqueItems":true,
+      "default":[]
+    }
+  },
+  "required":[
+    "reporting_entity_name",
+    "reporting_entity_type",
+    "reporting_structure"
+  ]
 }
