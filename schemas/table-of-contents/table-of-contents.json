@@ -10,7 +10,11 @@
         "location": {
           "type": "string"
         }
-      }
+      },
+      "required":[
+        "description",
+        "location"
+      ]
     },
     "reporting_structure":{
       "type":"object",
