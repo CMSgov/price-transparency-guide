@@ -96,11 +96,12 @@ The producers of the files have the option to group multiple plans together with
 
 Payer/Issuers are still allowed to build both in-network and allowed-amount files for a single plan. The naming conventions will be different for each.
 
-#### Single Plan Files
-The following is the required naming standard for each file: `<YYYY-MM-DD>_<payer or issuer name>_<plan name>_<file type name>.<file extension>`
-For payer or issuer's names and plan names that have spaces (i.e. "healthplan 100"), those spaces would be replaced with dashes `-`
+For payer or issuer's names that have spaces, those spaces would be replaced with dashes `-`
 
 Only alphanumeric characters are allowed in the file name. No special characters such as `'` are allowed. Special characters are either to be removed completely or replaced with `-`.
+
+#### Single Plan Files
+The following is the required naming standard for each file: `<YYYY-MM-DD>_<payer or issuer name>_<plan name>_<file type name>.<file extension>`
 
 For example, the following would be the required naming for CMS building a JSON file:
 * `2020-01-05_cms_medicare_in-network-rates.json`
@@ -114,9 +115,6 @@ An example of a plan named `healthcare 100` with an issuer's name `issuer abc` p
 If multiple plans are to be included in a single file, a `table-of-contents` file will be required. The naming standard will be applied to the `table-of-contents` file and both the `in-network` and `allowed-amounts` files will not have any naming standards.
 
 The following is the required naming standard for the `table-of-contents` file: `<YYYY-MM-DD>_<payer or issuer name>_index.<file extension>`
-For payer or issuer's names that have spaces, those spaces would be replaced with dashes `-`
-
-Only alphanumeric characters are allowed in the file name. No special characters such as `'` are allowed. Special characters are either to be removed completely or replaced with `-`.
 
 For example, the following would be the required naming for CMS building a JSON file that includes Medicare and Medicaid plans:
 * `2020-01-05_cms_index.json`
