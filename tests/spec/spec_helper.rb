@@ -16,7 +16,7 @@
 #
 
 require "json_matchers/rspec"
-JsonMatchers.schema_root = "../schemas/in-network-rates"
+JsonMatchers.schema_root = "../schemas/"
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

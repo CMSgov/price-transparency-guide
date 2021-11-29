@@ -286,9 +286,6 @@
     }
   },
   "required": [
-    "reporting_entity_name",
-    "reporting_entity_type",
-    "reporting_plans",
     "last_updated_on",
     "in_network"
   ]

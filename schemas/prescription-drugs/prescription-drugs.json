@@ -27,8 +27,7 @@
         "transaction_fee": { "type": "number" },
         "tin": { "type": "string" },
         "service_code": {
-          "type": "string",
-          "$ref": "https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set"
+          "type": "string"
         },
         "npi": { 
           "type": "array",
