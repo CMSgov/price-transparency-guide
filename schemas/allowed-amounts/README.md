@@ -4,21 +4,17 @@
 | ----- | ---- | ---- | ---------- | -------- |
 | **reporting_entity_name** | Entity Name | String | The legal name of the entity publishing the machine-readable file. | Yes |
 | **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
+| **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company. | No |
+| **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
+| **plan_id** | Plan ID | String | The 14-digit Health Insurance Oversight System (HIOS) identifier, or, if the 14-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for    each plan or coverage offered by a plan or issuer. | No |
+| **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **reporting_plans** | Allowed Amount Plans | Array  | An array of [reporting plan object types](#reporting-plans-object) | Yes |
 | **out_of_network** | Out Of Network | Array | An array of [out-of-network object types](#out-of-network-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
 | **version** | Version | String | The version of the schema for the produced information | No |
 
-#### Reporting Plans Object
-
-Information about the plan that is being reported on for the allowed amounts. Multiple `Reporting Plan Objects` can be included in this array for all of the plans that have identical out-of-network objects in the `out_of_network` array.
-
-| Field | Name | Type | Definition | Required |
-| ----- | ---- | ---- | ---------- | -------- |
-| **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company. | Yes |
-| **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | Yes |
-| **plan_id** | Plan ID | String | The 14-digit Health Insurance Oversight System (HIOS) identifier, or, if the 14-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for    each plan or coverage offered by a plan or issuer. | Yes |
-| **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
+##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`
+These attributes are not required for files that will be reporting multiple plans per file but ARE REQUIRED for single plans that are being reported that do not wish to create a table-of-content file. For payers/issuers that will be reporting multiple plans per file, these attributes will be required in a table-of-contents file.
 
 #### Out-Of-Network Object
 

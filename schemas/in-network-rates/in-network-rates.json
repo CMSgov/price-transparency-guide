@@ -230,21 +230,6 @@
     "reporting_plans": {
       "type": "object",
       "properties": {
-        "plan_name": {
-          "type": "string"
-        },
-        "plan_id_type": {
-          "type": "string"
-        },
-        "plan_id": {
-          "type": "string"
-        },
-        "plan_market_type": {
-          "enum": [
-            "group",
-            "individual"
-          ]
-        }
       },
       "required": [
         "plan_name",
@@ -262,13 +247,20 @@
     "reporting_entity_type": {
       "type": "string"
     },
-    "reporting_plans": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/reporting_plans"
-      },
-      "uniqueItems": true,
-      "default": []
+    "plan_name": {
+      "type": "string"
+    },
+    "plan_id_type": {
+      "type": "string"
+    },
+    "plan_id": {
+      "type": "string"
+    },
+    "plan_market_type": {
+      "enum": [
+        "group",
+        "individual"
+      ]
     },
     "last_updated_on": {
       "type": "string",
@@ -288,5 +280,11 @@
   "required": [
     "last_updated_on",
     "in_network"
-  ]
+  ],
+  "dependentRequired": {
+    "plan_name": ["plan_id_type", "plan_id", "plan_market_type"],
+    "plan_id_type": ["plan_name", "plan_id", "plan_market_type"],
+    "plan_id": ["plan_name","plan_id_type", "plan_market_type"],
+    "plan_market_type": ["plan_name", "plan_id_type", "plan_id"]
+  }
 }

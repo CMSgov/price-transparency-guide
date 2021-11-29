@@ -1,0 +1,65 @@
+{
+  "reporting_entity_name": "cms",
+  "reporting_entity_type": "cms",
+  "plan_name": "medicaid",
+  "plan_id_type": "hios",
+  "plan_id": "11111111111",
+  "plan_market_type": "individual",
+  "last_updated_on": "2020-08-27",
+  "version": "1.0.0",
+  "in_network": [{ 
+    "negotiation_arrangement": "capitation",
+    "name": "Primary Care Capitation",
+    "description": "Typical items and services for a primary care provider",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "2020",
+    "billing_code": "27447",
+    "negotiated_rates": [{
+      "provider_groups": [{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+         "tin":{
+           "type": "ein",
+           "value": "11-1111111"
+         }
+      },{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+         "tin":{
+           "type": "ein",
+           "value": "22-2222222"
+         }
+      }],
+      "negotiated_prices": [{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 20000.00,
+        "expiration_date": "2022-01-01",
+        "billing_class": "institutional"
+      }]
+    },{
+      "provider_groups":[{
+        "npi": [6666666666, 7777777777, 8888888888, 9999999999],
+         "tin":{
+           "type": "ein",
+           "value": "22-2222222"
+         }
+      }],
+      "negotiated_prices": [{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 25000.00,
+        "expiration_date": "2022-01-01",
+        "service_code": ["05", "06", "07"],
+        "billing_class": "professional"
+      }]
+    }],
+    "covered_services": [{
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2020",
+      "billing_code": "27447",
+      "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
+    },{
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2020",
+      "billing_code": "27446",
+      "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
+    }]
+  }]
+}

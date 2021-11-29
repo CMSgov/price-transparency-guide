@@ -11,12 +11,12 @@ describe "allowed amounts schema" do
   end
 
   it "validates the allowed amounts example" do
-    json_data = JSON.parse(File.read("../examples/allowed-amounts/allowed-amounts.json"))
+    json_data = JSON.parse(File.read("../examples/allowed-amounts/allowed-amounts-single-plan-sample.json"))
     expect(json_data).to match_response_schema("allowed-amounts/allowed-amounts")
   end
 
   it "validates the allowed amounts empty example" do
-    json_data = JSON.parse(File.read("../examples/allowed-amounts/allowed-amounts-empty.json"))
+    json_data = JSON.parse(File.read("../examples/allowed-amounts/allowed-amounts-single-plan-empty-sample.json"))
 
     expect(json_data).to match_response_schema("allowed-amounts/allowed-amounts")
   end

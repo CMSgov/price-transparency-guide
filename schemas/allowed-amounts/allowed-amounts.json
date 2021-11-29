@@ -91,16 +91,6 @@
         }
       },
       "required": [ "billed_charge", "npi" ]
-    },
-    "reporting_plans": {
-      "type": "object",
-      "properties": {
-        "plan_name": { "type": "string" },
-        "plan_id_type": { "type": "string" },
-        "plan_id": { "type": "string" },
-        "plan_market_type": { "enum": [ "group", "individual" ] }
-      },
-      "required": ["plan_name", "plan_id_type", "plan_id", "plan_market_type"]
     }
   },
 
@@ -108,12 +98,10 @@
   "properties": {
     "reporting_entity_name": { "type": "string" },
     "reporting_entity_type": { "type": "string" },
-    "reporting_plans": {
-      "type": "array",
-      "items": { "$ref": "#/definitions/reporting_plans" },
-      "uniqueItems": true,
-      "default": []
-    },
+    "plan_name": { "type": "string" },
+    "plan_id_type": { "type": "string" },
+    "plan_id": { "type": "string" },
+    "plan_market_type": { "enum": [ "group", "individual" ] },
     "last_updated_on": { "type": "string" },
     "version": { "type": "string" },
     "out_of_network": {
@@ -122,5 +110,11 @@
       "default": []
     }
   },
-  "required": ["reporting_entity_name", "reporting_entity_type", "reporting_plans", "last_updated_on"]
+  "required": ["reporting_entity_name", "reporting_entity_type", "last_updated_on"],
+  "dependentRequired": {
+    "plan_name": ["plan_id_type", "plan_id", "plan_market_type"],
+    "plan_id_type": ["plan_name", "plan_id", "plan_market_type"],
+    "plan_id": ["plan_name","plan_id_type", "plan_market_type"],
+    "plan_market_type": ["plan_name", "plan_id_type", "plan_id"]
+  }
 }
