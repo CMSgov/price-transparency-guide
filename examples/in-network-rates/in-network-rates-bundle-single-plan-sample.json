@@ -1,0 +1,66 @@
+{
+  "reporting_entity_name": "cms",
+  "reporting_entity_type": "cms",
+  "plan_name": "medicare",
+  "plan_id_type": "hios",
+  "plan_id": "0000000000",
+  "plan_market_type": "individual",
+  "last_updated_on": "2020-08-27",
+  "version": "1.0.0",
+  "in_network": [{
+    "negotiation_arrangement": "bundle",
+    "name": "Total Knee Replacement",
+    "billing_code_type": "ICD",
+    "billing_code_type_version": "9",
+    "billing_code": "81.54",
+    "description": "Total Knee Replacement",
+    "negotiated_rates": [{
+      "provider_groups": [{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+        "tin": {
+          "type": "ein",
+          "value": "11-1111111"
+        }
+      },{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+        "tin": {
+          "type": "ein",
+          "value": "22-2222222"
+        }
+      }],
+      "negotiated_prices": [{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 20000.00,
+        "expiration_date": "2022-01-01",
+        "service_code": ["05", "06", "07"],
+        "billing_class": "professional"
+      }]
+    },{
+      "provider_groups":[{
+        "npi": [6666666666, 7777777777, 8888888888, 9999999999],
+        "tin": {
+          "type": "npi",
+          "value": "6666666666"
+        }
+      }],
+      "negotiated_prices": [{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 25000.00,
+        "expiration_date": "2022-01-01",
+        "service_code": ["05", "06", "07"],
+        "billing_class": "professional"
+      }]
+    }],
+    "bundled_codes": [{
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2020",
+      "billing_code": "27447",
+      "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
+    },{
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2020",
+      "billing_code": "27446",
+      "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
+    }]
+  }]
+}

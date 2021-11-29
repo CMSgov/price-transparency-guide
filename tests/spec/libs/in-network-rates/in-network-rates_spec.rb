@@ -11,13 +11,13 @@ describe "in network schema" do
   end
 
   it "has valid JSON fee-for-service example" do
-    json_data = JSON.parse(File.read("../examples/in-network-rates/in-network-rates-fee-for-service-sample.json"))
+    json_data = JSON.parse(File.read("../examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json"))
 
     expect(json_data).to match_response_schema("in-network-rates/in-network-rates")
   end
 
   it "has valid JSON bundle example" do
-    json_data = JSON.parse(File.read("../examples/in-network-rates/in-network-rates-bundle-sample.json"))
+    json_data = JSON.parse(File.read("../examples/in-network-rates/in-network-rates-bundle-single-plan-sample.json"))
 
     expect(json_data).to match_response_schema("in-network-rates/in-network-rates")
   end
