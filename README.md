@@ -9,10 +9,14 @@ Overview
 This repository contains a set of schemas describing a data format (example implementations are encoded as JSON and XML) for the Transparency in Coverage final rule.
 All machine-readable files must conform to a non-proprietary, open standards format that is platform independent and made available to the public without restrictions that would impede the re-use of that information.
 
+**Consistent with the Departments’ August 20, 2021 guidance (see below “Guidance” section), the Departments have not promulgated any final guidance with respect to the form and manner for the Prescription Drug File.**
+
+**Any material currently or previously published on this site with respect to the form and manner of the Prescription Drug File has been superseded and is not guidance of the Departments.**
+
 Background
 ==========
 
-The Departments of the Treasury, Labor, and Health and Human Services (the Departments) have issued the Transparency in Coverage final rules (85 FR 72158) on November 12, 2020. The final rules require non-grandfathered group health plans and health insurance issuers in the individual and group markets (plans and issuers) to disclose certain pricing information. Under the final rules a plan or issuer must disclose in-network negotiated rates, billed and out-of-network allowed, and in-network drug prices (including both "negotiated rates" and "historical net prices") through three machine-readable files posted on an internet website.  
+The Departments of the Treasury, Labor, and Health and Human Services (the Departments) have issued the Transparency in Coverage final rules (85 FR 72158) on November 12, 2020. The final rules require non-grandfathered group health plans and health insurance issuers in the individual and group markets (plans and issuers) to disclose certain pricing information. Under the final rules a plan or issuer must disclose in-network negotiated rates, and billed and out-of-network allowed through two machine-readable files posted on an internet website.
 
 Plans and issuers are required to make these files public for plan or policy years beginning on or after July 1, 2022.
 
@@ -73,8 +77,6 @@ Different Flat Files
 There are three required flat files associated with Transparency in Coverage:
 * In-Network Negotiated Rates
 * Out-Of-Network Allowed Amounts
-* In-Network Prescription Drugs
-  * NOTE: Per released guidance, the departments will defer enforcement of the TiC Final Rules’ requirement of the prescription drug pricing file pending further rulemaking.
 
 **In-Network Negotiated Rates File**
 Under the finalized rules, a plan or issuer must disclose in-network provider negotiated rates for all items and services through a machine-readable file.
@@ -82,13 +84,9 @@ Under the finalized rules, a plan or issuer must disclose in-network provider ne
 **Out-Of-Network Allowed Amounts File**
 Under the finalized rules, a plan or issuer must disclose certain data elements to the public, including the billed and allowed amounts for out-of-network providers, through a machine-readable file.
 
-**In-Network Prescription Drugs File**
-Under the finalized rules, a plan or issuer must disclose in-network prescription drug's historical net price and negotiated rate through a machine-readable file.
-
 The associated names for those files are:
 * `in-network-rates`
 * `allowed-amounts`
-* `prescription-drugs`
 
 File Naming Convention  
 -------------------------
@@ -100,18 +98,15 @@ Only alphanumeric characters are allowed in the file name. No special characters
 For example, the following would be the required naming for CMS building a JSON file:
 * `2020-01-05_cms_medicare_in-network-rates.json`
 * `2020-01-05_cms_medicare_allowed-amounts.json`
-* `2020-01-05_cms_medicare_prescription-drugs.json`
 
 An example of a plan named `healthcare 100` with an issuer's name `issuer abc` producing a JSON file, the following would be the naming output:
 * `2020-01-05_issuer-abc_healthcare-100_in-network-rates.json`
 * `2020-01-05_issuer-abc_healthcare-100_allowed-amounts.json`
-* `2020-01-05_issuer-abc_healthcare-100_prescription-drugs.json`
 
 Schemas
 =======
 * [In-Network Rates](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/in-network-rates)
 * [Allowed Amounts](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/allowed-amounts)
-* [Prescription Drugs](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/prescription-drugs)
 
 
 Examples
