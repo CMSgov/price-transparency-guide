@@ -1,1 +1,0 @@
-Consistent with the Departments’ guidance published [August 20, 2021](https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf), we are not promulgating “form and manner” guidance at this time. Any material currently or previously published on this page has been superseded and is not guidance of the Departments.
