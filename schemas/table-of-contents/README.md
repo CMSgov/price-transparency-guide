@@ -12,8 +12,11 @@ The Reporting Structure object maps assoicated plans to their in-network and all
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **reporting_plans** | In-Network Plans | Array  | An array of [reporting plan object types](#reporting-plans-object) | Yes |
-| **in_network_file** | In Network File List | Object | The [file location object](#file-location-object) contains the location of the in-network file for the associated [reporting plan object.](#reporting-plans-object) | Yes |
-| **allowed_amount_file** | Allowed Amount File List | Object | The [file location object](#file-location-object) contains the location of the allowed amounts file for the associated [reporting plan object.](#reporting-plans-object) | Yes |
+| **in_network_file** | In Network File List | Object | The [file location object](#file-location-object) contains the location of the in-network file for the associated [reporting plan object.](#reporting-plans-object) | No |
+| **allowed_amount_file** | Allowed Amount File List | Object | The [file location object](#file-location-object) contains the location of the allowed amounts file for the associated [reporting plan object.](#reporting-plans-object) | No |
+
+#### Additional Notes Concerning `in_network_file` and `allowed_amount_file`
+At least one of these attributes need to be present in the `reporting_structure` object.
 
 #### Reporting Plans Object
 | Field | Name | Type | Definition | Required |
@@ -28,3 +31,74 @@ The Reporting Structure object maps assoicated plans to their in-network and all
 | ----- | ---- | ---- | ---------- | -------- |
 | **description** | Description | String | Description of the file included | Yes | 
 | **location** | Description | String | A full fully qualified domain name on where the in-network data can be downloaded | Yes | 
+
+In the following example:
+* `Plan A` and `Plan B` have identical negotiated rates for all items/services for the **in-network** file. (in-network-file-1.json)
+* `Plan C` is unique with its negotiated rates. (in-network-file-2.json)
+* `Plan A` and `Plan C` both didn't meet the 20 claim threshold for any services for the **allowed amounts** file. (allowed-amounts-file-empty.json)
+* `Plan B` met the 20 claim threshold for multiple services for the **allowed amounts** file. (allowed-amounts-file-1.json)
+* `Plan A`, `Plan B`, and `Plan C` all have different HIOS numbers, they are different products.
+
+```json
+{
+  "reporting_entity_name":"...",
+  "reporting_entity_type":"...",
+  "reporting_structure":[
+    {
+      "reporting_plans":[{
+          "plan_name":"Plan A",
+          "plan_id_type":"hios",
+          "plan_id":"0000000000",
+          "plan_market_type":"individual"
+        },{
+          "plan_name":"Plan B",
+          "plan_id_type":"hios",
+          "plan_id":"11111111111",
+          "plan_market_type":"individual"
+        }],
+      "in_network_file":{
+        "description":"in-network file",
+        "location":"https://www.some_site.com/files/in-network-file-1.json"
+      }
+    },{
+      "reporting_plans":[{
+          "plan_name":"Plan C",
+          "plan_id_type":"hios",
+          "plan_id":"222222222",
+          "plan_market_type":"individual"
+        }],
+      "in_network_file":{
+        "description":"in-network file",
+        "location":"https://www.some_site.com/files/in-network-file-2.json"
+      },
+      "allowed_amount_file":{
+        "description":"allowed amount file",
+        "location":"https://www.some_site.com/files/allowed-amounts-file-empty.json"
+      }
+    },{
+      "reporting_plans":[
+        {
+          "plan_name":"Plan A",
+          "plan_id_type":"hios",
+          "plan_id":"0000000000",
+          "plan_market_type":"individual"
+        }],
+      "allowed_amount_file":{
+        "description":"allowed amount file",
+        "location":"https://www.some_site.com/files/allowed-amounts-file-empty.json"
+      }
+    },{
+      "reporting_plans":[
+        {
+          "plan_name":"Plan B",
+          "plan_id_type":"hios",
+          "plan_id":"11111111111",
+          "plan_market_type":"individual"
+        }],
+      "allowed_amount_file":{
+        "description":"allowed amount file",
+        "location":"https://www.some_site.com/files/allowed-amounts-file-1.json"
+      }
+    }]
+}
+```

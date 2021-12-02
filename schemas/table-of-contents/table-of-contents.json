@@ -34,10 +34,12 @@
           "$ref":"#/definitions/file_location"
         }
       },
+      "anyOf": [
+        { "required": ["in_network_file"] },
+        { "required": ["allowed_amount_file"] }
+      ],
       "required":[
-        "reporting_plans",
-        "in_network_file",
-        "allowed_amount_file"
+        "reporting_plans"
       ]
     },
     "reporting_plans":{
