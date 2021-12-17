@@ -120,6 +120,19 @@
         "description"
       ]
     },
+    "provider_references": {
+      "type": "object",
+      "properties": {
+        "provider_group_id": { "type": "number" },
+        "provider_group": {
+          "$ref": "#/definitions/providers"
+        }
+      },
+      "required": [
+        "provider_group_id",
+        "provider_group"
+      ]
+    },
     "providers": {
       "type": "object",
       "properties": {
@@ -171,10 +184,21 @@
           },
           "uniqueItems": true,
           "default": []
+        },
+        "provider_references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/provider_references/properties/provider_group_id"
+          },
+          "uniqueItems": true,
+          "default": []
         }
       },
+      "oneOf": [
+        { "required": ["provider_references"] },
+        { "required": ["provider_groups"] }
+      ],
       "required": [
-        "provider_groups",
         "negotiated_prices"
       ]
     },
@@ -276,6 +300,13 @@
     },
     "version": {
       "type": "string"
+    },
+    "provider_references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/provider_references"
+      },
+      "default": []
     },
     "in_network": {
       "type": "array",
