@@ -1,0 +1,41 @@
+{
+   "reporting_entity_name": "medicare",
+   "reporting_entity_type": "medicare",
+   "reporting_structure": [{
+     "reporting_plans": [{
+       "plan_name": "medicaid",
+       "plan_id_type": "hios",
+       "plan_id": "11111111111",
+       "plan_market_type": "individual"
+     },{
+       "plan_name": "medicare",
+       "plan_id_type": "hios",
+       "plan_id": "0000000000",
+       "plan_market_type": "individual"
+     }],
+     "in_network_file": {
+       "description": "in-network file",
+       "location": "https://www.some_site.com/files/in-network-file-123456.json"
+     },
+     "allowed_amount_file": {
+       "description": "allowed amount file",
+       "location": "https://www.some_site.com/files/allowed-amount-file-987665.json"
+     }
+  },{
+     "reporting_plans": [{
+       "plan_name": "chip",
+       "plan_id_type": "hios",
+       "plan_id": "33333333333",
+       "plan_market_type": "group"
+     }],
+     "in_network_file": {
+       "description": "in-network file",
+       "location": "https://www.some_site.com/files/chip-in-network-file.json"
+     },
+     "allowed_amount_file": {
+       "description": "allowed amount file",
+       "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"
+     }
+  }]
+}
+
