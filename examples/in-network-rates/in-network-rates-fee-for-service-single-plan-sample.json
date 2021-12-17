@@ -1,0 +1,111 @@
+{
+  "reporting_entity_name": "medicare",
+  "reporting_entity_type": "medicare",
+  "plan_name": "medicaid",
+  "plan_id_type": "hios",
+  "plan_id": "11111111111",
+  "plan_market_type": "individual",
+  "last_updated_on": "2020-08-27",
+  "version": "1.0.0",
+  "provider_references":[{
+    "provider_group_id": 1,
+    "provider_group": {
+      "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+      "tin":{
+        "type": "ein",
+        "value": "11-1111111"
+      }
+    }
+  },{
+    "provider_group_id": 2,
+    "provider_group": {
+      "npi": [1111111111],
+      "tin": {
+        "type": "ein",
+        "value": "22-2222222"
+      }
+    }
+  }],
+  "in_network": [{
+    "negotiation_arrangement": "ffs",
+    "name": "Knee Replacement",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "2020",
+    "billing_code": "27447",
+    "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
+    "negotiated_rates": [{
+      "provider_groups": [{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+        "tin":{
+          "type": "ein",
+          "value": "11-1111111"
+        }
+      },{
+        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+        "tin":{
+          "type": "ein",
+          "value": "22-2222222"
+        }
+      }],
+      "negotiated_prices": [{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 123.45,
+        "expiration_date": "2022-01-01",
+        "service_code": ["18", "19", "11"],
+        "billing_class": "professional"
+      },{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 1230.45,
+        "expiration_date": "2022-01-01",
+        "billing_class": "institutional"
+      }]
+      },{
+      "provider_groups": [{
+        "npi": [6666666666, 7777777777, 8888888888, 9999999999],
+        "tin":{
+          "type": "ein",
+          "value": "22-2222222"
+        }
+      }],
+      "negotiated_prices": [{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 120.45,
+        "expiration_date": "2022-01-01",
+        "service_code": ["05", "06", "07"],
+        "billing_class": "professional"
+      }]
+    }]
+  },{
+    "negotiation_arrangement": "ffs",
+    "name": "Femur and Knee Joint Repair",
+    "billing_code_type": "CPT",
+    "billing_code_type_version": "2020",
+    "billing_code": "27448",
+    "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint",
+    "negotiated_rates": [{
+      "provider_references": [1],
+      "negotiated_prices": [{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 12003.45,
+        "expiration_date": "2022-01-01",
+        "service_code": ["18", "19", "11"],
+        "billing_class": "professional"
+      }]
+    },{
+      "provider_groups": [{
+        "npi": [6666666666],
+        "tin":{
+          "type": "npi",
+          "value": "6666666666"
+        }
+      }],
+      "negotiated_prices": [{
+        "negotiated_type": "negotiated",
+        "negotiated_rate": 12.45,
+        "expiration_date": "2022-01-01",
+        "service_code": ["18", "19", "11"],
+        "billing_class": "institutional"
+      }]
+    }]
+  }]
+}
