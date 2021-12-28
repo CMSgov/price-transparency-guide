@@ -226,8 +226,11 @@
             "fee schedule"
           ]
         },
+        "billing_class_modifier": {
+          "type": "string"
+        },
         "negotiated_rate": {
-          "type": "number"
+          "type": "numbe"
         },
         "expiration_date": {
           "type": "string",
