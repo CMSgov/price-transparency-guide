@@ -79,11 +79,12 @@ For most businesses reporting cases, a tax identification number (tin) is used t
 
 #### Provider Reference Object
 
-This type defines a provider reference object.
+This type defines a provider reference object. This object is used in the `provider_references` array found on the root object of the in-network object. The Provider Group Id is a unique interger ID that is defined by the user to be referenced in the [Negotiated Rate Details Object](#negotiated-rate-details-object) in the `provider_references` array`. An example of using provider references can be found in the definition of [provider reference
+objects](https://github.com/CMSgov/price-transparency-guide/blob/documentation-fix/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L28) and then the usages of the `provider_group_id`s in the [negotiated rate object](https://github.com/CMSgov/price-transparency-guide/blob/documentation-fix/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L86).
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **provider_group_id** | Provider Group Id |	Number | The primary key for the associated `provider_group` object | Yes |
+| **provider_group_id** | Provider Group Id |	Number | The unique, primary key for the associated `provider_group` object | Yes |
 | **provider_group** | Provider Group | Object  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
 
 #### Negotiated Price Object
