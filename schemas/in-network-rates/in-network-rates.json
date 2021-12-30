@@ -230,7 +230,7 @@
           "type": "string"
         },
         "negotiated_rate": {
-          "type": "numbe"
+          "type": "number"
         },
         "expiration_date": {
           "type": "string",
