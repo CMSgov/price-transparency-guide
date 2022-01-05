@@ -42,11 +42,19 @@
           "uniqueItems": true
         },
         "billing_class": {
-           "enum": [
-             "professional",
-             "institutional"
-           ]
-         },
+          "enum": [
+            "professional",
+            "institutional"
+          ]
+        },
+        "billing_class_modifier": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
         "payments": {
           "type": "array",
           "items": { "$ref": "#/definitions/payments" },
