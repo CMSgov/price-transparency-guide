@@ -52,7 +52,8 @@
         "negotiated_rate": 123.45,
         "expiration_date": "2022-01-01",
         "service_code": ["18", "19", "11"],
-        "billing_class": "professional"
+        "billing_class": "professional",
+        "billing_code_modifier": ["AS"]
       },{
         "negotiated_type": "negotiated",
         "negotiated_rate": 1230.45,

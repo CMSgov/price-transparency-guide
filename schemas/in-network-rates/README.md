@@ -79,8 +79,7 @@ For most businesses reporting cases, a tax identification number (tin) is used t
 
 #### Provider Reference Object
 
-This type defines a provider reference object. This object is used in the `provider_references` array found on the root object of the in-network object. The Provider Group Id is a unique interger ID that is defined by the user to be referenced in the [Negotiated Rate Details Object](#negotiated-rate-details-object) in the `provider_references` array. An example of using provider references can be found in the definition of [provider reference
-objects](https://github.com/CMSgov/price-transparency-guide/blob/documentation-fix/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L28) and then the usages of the `provider_group_id`s in the [negotiated rate object](https://github.com/CMSgov/price-transparency-guide/blob/documentation-fix/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L86).
+This type defines a provider reference object. This object is used in the `provider_references` array found on the root object of the in-network object. The Provider Group Id is a unique interger ID that is defined by the user to be referenced in the [Negotiated Rate Details Object](#negotiated-rate-details-object) in the `provider_references` array. An example of using provider references can be found in the definition of [provider reference objects](https://github.com/CMSgov/price-transparency-guide/blob/documentation-fix/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L28) and then the usages of the `provider_group_id`s in the [negotiated rate object](https://github.com/CMSgov/price-transparency-guide/blob/documentation-fix/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L86).
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
@@ -98,6 +97,7 @@ The negotiated price object contains negotiated pricing information that the typ
 | **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD). See additional notes. | Yes |
 | **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided. When attribute of `billing_class` has the value of "professional", `service_code` is required.  | No |
 | **billing_class** | Billing Class | String | Allowed values: "professional", "institutional" | Yes |
+| **billing_code_modifier** | Billing Code Modifier | Array | An array of strings. There are certain billing code types that allow for modifiers (e.g. The CPT coding type allows for modifiers). If a negotiated rate for a billing code type is dependent on a modifier for the reported item or service, then an additional negotiated price object should be included to represent the difference. | No |
 
 ##### Additional Notes
 For `negotiated_type` there are three allowable values: "negotiated", "derived", and "fee schedule". The value are defined as:
