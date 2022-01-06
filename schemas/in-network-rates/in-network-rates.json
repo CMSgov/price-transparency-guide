@@ -226,6 +226,14 @@
             "fee schedule"
           ]
         },
+        "billing_class_modifier": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
         "negotiated_rate": {
           "type": "number"
         },
