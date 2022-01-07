@@ -9,13 +9,7 @@
   "version": "1.0.0",
   "provider_references":[{
     "provider_group_id": 1,
-    "provider_group": {
-      "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-      "tin":{
-        "type": "ein",
-        "value": "11-1111111"
-      }
-    }
+    "location": "https://www.cms.gov/some_provider_group.json"
   },{
     "provider_group_id": 2,
     "provider_group": {

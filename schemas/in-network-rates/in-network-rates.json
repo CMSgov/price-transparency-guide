@@ -126,11 +126,19 @@
         "provider_group_id": { "type": "number" },
         "provider_group": {
           "$ref": "#/definitions/providers"
+        },
+        "location": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
         }
       },
+      "anyOf": [
+         { "required": ["location"] },
+         { "required": ["provider_group"] }
+       ],
       "required": [
-        "provider_group_id",
-        "provider_group"
+        "provider_group_id"
       ]
     },
     "providers": {
