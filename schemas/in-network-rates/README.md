@@ -84,7 +84,11 @@ This type defines a provider reference object. This object is used in the `provi
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **provider_group_id** | Provider Group Id |	Number | The unique, primary key for the associated `provider_group` object | Yes |
-| **provider_group** | Provider Group | Object  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
+| **provider_group** | Provider Group | Object  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | No |
+| **location** | Location | String  | A fully qualified domain name on where the provider group data can be downloaded. The file must validate against the requirements found in the [provider reference](https://github.com/CMSgov/price-transparency-guide/tree/external-references/schemas/provider-reference). Examples can be found [here](https://github.com/CMSgov/price-transparency-guide/blob/external-references/examples/provider-reference/provider-reference.json) | No |
+
+##### Additional Notes Concerning `provider_group`, `location`
+Either a `provider_group` or `location` attribute will be required in the Provider Reference Object.
 
 #### Negotiated Price Object
 
