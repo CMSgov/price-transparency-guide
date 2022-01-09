@@ -84,7 +84,7 @@ This type defines a provider reference object. This object is used in the `provi
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **provider_group_id** | Provider Group Id |	Number | The unique, primary key for the associated `provider_group` object | Yes |
-| **provider_group** | Provider Group | Object  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
+| **provider_groups** | Provider Groups | Array  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
 
 #### Negotiated Price Object
 
