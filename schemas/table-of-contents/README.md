@@ -12,11 +12,11 @@ The Reporting Structure object maps assoicated plans to their in-network and all
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **reporting_plans** | In-Network Plans | Array  | An array of [reporting plan object types](#reporting-plans-object) | Yes |
-| **in_network_file** | In Network File List | Object | The [file location object](#file-location-object) contains the location of the in-network file for the associated [reporting plan object.](#reporting-plans-object) | No |
+| **in_network_files** | In Network File List | Array | An array of [file location objects](#file-location-object) contains the location of the in-network file for the associated [reporting plan object.](#reporting-plans-object) | No |
 | **allowed_amount_file** | Allowed Amount File List | Object | The [file location object](#file-location-object) contains the location of the allowed amounts file for the associated [reporting plan object.](#reporting-plans-object) | No |
 
-#### Additional Notes Concerning `in_network_file` and `allowed_amount_file`
-At least one of these attributes need to be present in the `reporting_structure` object.
+#### Additional Notes Concerning `in_network_files` and `allowed_amount_file`
+At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/table-of-contents/table-of-contents.json#L37-L40) of these attributes need to be present in the `reporting_structure` object. The location of the files defined in `in_network_files` and `allowed_amount_file` are required to be valid [in-network](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/in-network-rates) and [allowed amounts](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/allowed-amounts) files.
 
 #### Reporting Plans Object
 | Field | Name | Type | Definition | Required |

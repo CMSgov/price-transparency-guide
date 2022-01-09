@@ -24,15 +24,19 @@
                 </items>
                 <uniqueItems>true</uniqueItems>
             </reporting_plans>
-            <in_network_file>
-                <_ref>#/definitions/file_location</_ref>
-            </in_network_file>
+            <in_network_files>
+                <type>array</type>
+                <items>
+                    <_ref>#/definitions/file_location</_ref>
+                </items>
+                <uniqueItems>true</uniqueItems>
+            </in_network_files>
             <allowed_amount_file>
                 <_ref>#/definitions/file_location</_ref>
             </allowed_amount_file>
         </properties>
         <anyOf>
-            <required>in_network_file</required>
+            <required>in_network_files</required>
         </anyOf>
         <anyOf>
             <required>allowed_amount_file</required>
