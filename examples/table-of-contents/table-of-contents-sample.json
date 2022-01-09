@@ -17,8 +17,8 @@
        "description": "in-network file",
        "location": "https://www.some_site.com/files/in-network-file-123456.json"
      },{
-       "description": "iin-network file",
-       "location": "https://www.some_site.com/files/in-network-file-123456.json"
+       "description": "behavioral in-network shared file",
+       "location": "https://www.some_site.com/files/behavioral-health-0000.json"
      }],
      "allowed_amount_file": {
        "description": "allowed amount file",
