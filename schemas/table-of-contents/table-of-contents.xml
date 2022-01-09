@@ -1,2 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <_schema>http://json-schema.org/draft-07/schema#</_schema>
+<definitions>
+    <file_location>
+        <type>object</type>
+        <properties>
+            <description>
+                <type>string</type>
+            </description>
+            <location>
+                <type>string</type>
+            </location>
+        </properties>
+        <required>description</required>
+        <required>location</required>
+    </file_location>
+    <reporting_structure>
+        <type>object</type>
+        <properties>
+            <reporting_plans>
+                <type>array</type>
+                <items>
+                    <_ref>#/definitions/reporting_plans</_ref>
+                </items>
+                <uniqueItems>true</uniqueItems>
+            </reporting_plans>
+            <in_network_file>
+                <_ref>#/definitions/file_location</_ref>
+            </in_network_file>
+            <allowed_amount_file>
+                <_ref>#/definitions/file_location</_ref>
+            </allowed_amount_file>
+        </properties>
+        <anyOf>
+            <required>in_network_file</required>
+        </anyOf>
+        <anyOf>
+            <required>allowed_amount_file</required>
+        </anyOf>
+        <required>reporting_plans</required>
+    </reporting_structure>
+    <reporting_plans>
+        <type>object</type>
+        <properties>
+            <plan_name>
+                <type>string</type>
+            </plan_name>
+            <plan_id_type>
+                <type>string</type>
+            </plan_id_type>
+            <plan_id>
+                <type>string</type>
+            </plan_id>
+            <plan_market_type>
+                <enum>group</enum>
+                <enum>individual</enum>
+            </plan_market_type>
+        </properties>
+        <required>plan_name</required>
+        <required>plan_id_type</required>
+        <required>plan_id</required>
+        <required>plan_market_type</required>
+    </reporting_plans>
+</definitions>
+<type>object</type>
+<properties>
+    <reporting_entity_name>
+        <type>string</type>
+    </reporting_entity_name>
+    <reporting_entity_type>
+        <type>string</type>
+    </reporting_entity_type>
+    <reporting_structure>
+        <type>array</type>
+        <items>
+            <_ref>#/definitions/reporting_structure</_ref>
+        </items>
+        <uniqueItems>true</uniqueItems>
+    </reporting_structure>
+</properties>
+<required>reporting_entity_name</required>
+<required>reporting_entity_type</required>
+<required>reporting_structure</required>
+
