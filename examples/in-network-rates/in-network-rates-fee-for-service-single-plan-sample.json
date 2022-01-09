@@ -9,22 +9,28 @@
   "version": "1.0.0",
   "provider_references":[{
     "provider_group_id": 1,
-    "provider_group": {
+    "provider_groups": [{
       "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
       "tin":{
         "type": "ein",
         "value": "11-1111111"
       }
-    }
+    },{
+      "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+      "tin":{
+        "type": "ein",
+        "value": "22-2222222"
+      }
+    }]
   },{
     "provider_group_id": 2,
-    "provider_group": {
+    "provider_groups": [{
       "npi": [1111111111],
       "tin": {
         "type": "ein",
         "value": "22-2222222"
       }
-    }
+    }]
   }],
   "in_network": [{
     "negotiation_arrangement": "ffs",
