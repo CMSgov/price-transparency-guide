@@ -68,7 +68,7 @@ In the following example:
           "plan_market_type":"individual"
         }],
       "in_network_files":[{
-        "description":"in-network file primaruy",
+        "description":"in-network file primary",
         "location":"https://www.some_site.com/files/in-network-file-1.json"
       },
       {
