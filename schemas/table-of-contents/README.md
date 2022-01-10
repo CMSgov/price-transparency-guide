@@ -68,12 +68,12 @@ In the following example:
           "plan_market_type":"individual"
         }],
       "in_network_files":[{
-        "description":"out-of-network file",
-        "location":"https://www.some_site.com/files/out-of-network-file-2.json"
+        "description":"in-network file primaruy",
+        "location":"https://www.some_site.com/files/in-network-file-1.json"
       },
       {
-        "description":"in-network file",
-        "location":"https://www.some_site.com/files/in-network-file-2.json"
+        "description":"behavioral health shared file",
+        "location":"https://www.some_site.com/files/BH-health-shared-0002.json"
       }],
       "allowed_amount_file":{
         "description":"allowed amount file",
