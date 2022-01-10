@@ -67,10 +67,14 @@ In the following example:
           "plan_id":"222222222",
           "plan_market_type":"individual"
         }],
-      "in_network_file":{
+      "in_network_files":[{
+        "description":"out-of-network file",
+        "location":"https://www.some_site.com/files/out-of-network-file-2.json"
+      },
+      {
         "description":"in-network file",
         "location":"https://www.some_site.com/files/in-network-file-2.json"
-      },
+      }],
       "allowed_amount_file":{
         "description":"allowed amount file",
         "location":"https://www.some_site.com/files/allowed-amounts-file-empty.json"
