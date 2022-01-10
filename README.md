@@ -119,14 +119,6 @@ The following is the required naming standard for the `table-of-contents` file: 
 For example, the following would be the required naming for CMS building a JSON file that includes Medicare and Medicaid plans:
 * `2020-01-05_cms_index.json`
 
-#### Multiple Plans Per File
-If multiple plans are to be included in a single file, a `table-of-contents` file will be required. The naming standard will be applied to the `table-of-contents` file and both the `in-network` and `allowed-amounts` files will not have any naming standards.
-
-The following is the required naming standard for the `table-of-contents` file: `<YYYY-MM-DD>_<payer or issuer name>_index.<file extension>`
-
-For example, the following would be the required naming for CMS building a JSON file that includes Medicare and Medicaid plans:
-* `2020-01-05_cms_index.json`
-
 Schemas
 =======
 * [In-Network Rates](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/in-network-rates)
