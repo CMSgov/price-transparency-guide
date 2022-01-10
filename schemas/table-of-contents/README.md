@@ -56,10 +56,10 @@ In the following example:
           "plan_id":"11111111111",
           "plan_market_type":"individual"
         }],
-      "in_network_file":{
+      "in_network_files":[{
         "description":"in-network file",
         "location":"https://www.some_site.com/files/in-network-file-1.json"
-      }
+      }]
     },{
       "reporting_plans":[{
           "plan_name":"Plan C",
