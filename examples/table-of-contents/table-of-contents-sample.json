@@ -13,10 +13,13 @@
        "plan_id": "0000000000",
        "plan_market_type": "individual"
      }],
-     "in_network_file": {
+     "in_network_files": [{
        "description": "in-network file",
        "location": "https://www.some_site.com/files/in-network-file-123456.json"
-     },
+     },{
+       "description": "behavioral in-network shared file",
+       "location": "https://www.some_site.com/files/behavioral-health-0000.json"
+     }],
      "allowed_amount_file": {
        "description": "allowed amount file",
        "location": "https://www.some_site.com/files/allowed-amount-file-987665.json"
@@ -28,10 +31,10 @@
        "plan_id": "33333333333",
        "plan_market_type": "group"
      }],
-     "in_network_file": {
+     "in_network_files": [{
        "description": "in-network file",
        "location": "https://www.some_site.com/files/chip-in-network-file.json"
-     },
+     }],
      "allowed_amount_file": {
        "description": "allowed amount file",
        "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"

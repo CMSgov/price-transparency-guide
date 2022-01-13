@@ -28,6 +28,7 @@
                 <enum>LOCAL</enum>
                 <enum>EAPG</enum>
                 <enum>CDT</enum>
+                <enum>RC</enum>
             </billing_code_type>
             <billing_code_type_version>
                 <type>string</type>
@@ -107,6 +108,23 @@
         <required>billing_code</required>
         <required>description</required>
     </covered_services>
+    <provider_references>
+        <type>object</type>
+        <properties>
+            <provider_group_id>
+                <type>number</type>
+            </provider_group_id>
+            <provider_groups>
+                <type>array</type>
+                <items>
+                    <_ref>#/definitions/providers</_ref>
+                </items>
+                <uniqueItems>true</uniqueItems>
+            </provider_groups>
+        </properties>
+        <required>provider_group_id</required>
+        <required>provider_groups</required>
+    </provider_references>
     <providers>
         <type>object</type>
         <properties>
@@ -153,11 +171,20 @@
                 </items>
                 <uniqueItems>true</uniqueItems>
             </provider_groups>
-            <negotiated_price>
-                <_ref>#/definitions/negotiated_price</_ref>
-            </negotiated_price>
+            <provider_references>
+                <type>array</type>
+                <items>
+                    <_ref>#/definitions/provider_references/properties/provider_group_id</_ref>
+                </items>
+                <uniqueItems>true</uniqueItems>
+            </provider_references>
         </properties>
-        <required>provider_groups</required>
+        <oneOf>
+            <required>provider_references</required>
+        </oneOf>
+        <oneOf>
+            <required>provider_groups</required>
+        </oneOf>
         <required>negotiated_prices</required>
     </negotiated_rates>
     <negotiated_price>
@@ -269,11 +296,22 @@
                 </items>
                 <uniqueItems>true</uniqueItems>
             </service_code>
+            <billing_class>
+                <enum>professional</enum>
+                <enum>institutional</enum>
+            </billing_class>
             <negotiated_type>
                 <enum>negotiated</enum>
                 <enum>derived</enum>
                 <enum>fee schedule</enum>
             </negotiated_type>
+            <billing_class_modifier>
+                <type>array</type>
+                <items>
+                    <type>string</type>
+                </items>
+                <uniqueItems>true</uniqueItems>
+            </billing_class_modifier>
             <negotiated_rate>
                 <type>number</type>
             </negotiated_rate>
@@ -283,32 +321,20 @@
             </expiration_date>
         </properties>
         <required>negotiated_type</required>
-        <required>service_code</required>
+        <required>billing_class</required>
         <required>negotiated_rate</required>
         <required>expiration_date</required>
+        <if>
+            <properties>
+                <billing_class>
+                    <const>professional</const>
+                </billing_class>
+            </properties>
+        </if>
+        <then>
+            <required>service_code</required>
+        </then>
     </negotiated_price>
-    <reporting_plans>
-        <type>object</type>
-        <properties>
-            <plan_name>
-                <type>string</type>
-            </plan_name>
-            <plan_id_type>
-                <type>string</type>
-            </plan_id_type>
-            <plan_id>
-                <type>string</type>
-            </plan_id>
-            <plan_market_type>
-                <enum>group</enum>
-                <enum>individual</enum>
-            </plan_market_type>
-        </properties>
-        <required>plan_name</required>
-        <required>plan_id_type</required>
-        <required>plan_id</required>
-        <required>plan_market_type</required>
-    </reporting_plans>
 </definitions>
 <type>object</type>
 <properties>
@@ -318,13 +344,19 @@
     <reporting_entity_type>
         <type>string</type>
     </reporting_entity_type>
-    <reporting_plans>
-        <type>array</type>
-        <items>
-            <_ref>#/definitions/reporting_plans</_ref>
-        </items>
-        <uniqueItems>true</uniqueItems>
-    </reporting_plans>
+    <plan_name>
+        <type>string</type>
+    </plan_name>
+    <plan_id_type>
+        <type>string</type>
+    </plan_id_type>
+    <plan_id>
+        <type>string</type>
+    </plan_id>
+    <plan_market_type>
+        <enum>group</enum>
+        <enum>individual</enum>
+    </plan_market_type>
     <last_updated_on>
         <type>string</type>
         <description>This is a date format of YYYY-MM-DD</description>
@@ -332,6 +364,12 @@
     <version>
         <type>string</type>
     </version>
+    <provider_references>
+        <type>array</type>
+        <items>
+            <_ref>#/definitions/provider_references</_ref>
+        </items>
+    </provider_references>
     <in_network>
         <type>array</type>
         <items>
@@ -341,6 +379,19 @@
 </properties>
 <required>reporting_entity_name</required>
 <required>reporting_entity_type</required>
-<required>reporting_plans</required>
 <required>last_updated_on</required>
 <required>in_network</required>
+<dependentRequired>
+    <plan_name>plan_id_type</plan_name>
+    <plan_name>plan_id</plan_name>
+    <plan_name>plan_market_type</plan_name>
+    <plan_id_type>plan_name</plan_id_type>
+    <plan_id_type>plan_id</plan_id_type>
+    <plan_id_type>plan_market_type</plan_id_type>
+    <plan_id>plan_name</plan_id>
+    <plan_id>plan_id_type</plan_id>
+    <plan_id>plan_market_type</plan_id>
+    <plan_market_type>plan_name</plan_market_type>
+    <plan_market_type>plan_id_type</plan_market_type>
+    <plan_market_type>plan_id</plan_market_type>
+</dependentRequired>

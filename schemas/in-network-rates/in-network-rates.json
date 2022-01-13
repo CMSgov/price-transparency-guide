@@ -30,7 +30,8 @@
             "HIPPS",
             "LOCAL",
             "EAPG",
-            "CDT"
+            "CDT",
+            "RC"
           ]
         },
         "billing_code_type_version": {
@@ -124,13 +125,26 @@
       "type": "object",
       "properties": {
         "provider_group_id": { "type": "number" },
-        "provider_group": {
-          "$ref": "#/definitions/providers"
+        "provider_groups": {
+           "type": "array",
+           "items": {
+             "$ref": "#/definitions/providers"
+           },
+           "uniqueItems": true,
+           "default": []
+        },
+        "location": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
         }
       },
+      "anyOf": [
+         { "required": ["location"] },
+         { "required": ["provider_groups"] }
+       ],
       "required": [
-        "provider_group_id",
-        "provider_group"
+        "provider_group_id"
       ]
     },
     "providers": {
@@ -225,6 +239,14 @@
             "derived",
             "fee schedule"
           ]
+        },
+        "billing_class_modifier": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "default": []
         },
         "negotiated_rate": {
           "type": "number"

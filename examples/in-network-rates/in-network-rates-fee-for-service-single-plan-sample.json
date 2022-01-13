@@ -9,22 +9,22 @@
   "version": "1.0.0",
   "provider_references":[{
     "provider_group_id": 1,
-    "provider_group": {
+    "provider_groups": [{
       "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
       "tin":{
         "type": "ein",
         "value": "11-1111111"
       }
-    }
-  },{
-    "provider_group_id": 2,
-    "provider_group": {
-      "npi": [1111111111],
-      "tin": {
+    },{
+      "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+      "tin":{
         "type": "ein",
         "value": "22-2222222"
       }
-    }
+    }]
+  },{
+    "provider_group_id": 2,
+    "location": "https://www.cms.gov/some_provider_group.json"
   }],
   "in_network": [{
     "negotiation_arrangement": "ffs",
@@ -52,7 +52,8 @@
         "negotiated_rate": 123.45,
         "expiration_date": "2022-01-01",
         "service_code": ["18", "19", "11"],
-        "billing_class": "professional"
+        "billing_class": "professional",
+        "billing_code_modifier": ["AS"]
       },{
         "negotiated_type": "negotiated",
         "negotiated_rate": 1230.45,
