@@ -30,7 +30,8 @@
             "HIPPS",
             "LOCAL",
             "EAPG",
-            "CDT"
+            "CDT",
+            "RC"
           ]
         },
         "billing_code_type_version": {
