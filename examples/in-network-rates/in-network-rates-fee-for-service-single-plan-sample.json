@@ -24,13 +24,7 @@
     }]
   },{
     "provider_group_id": 2,
-    "provider_groups": [{
-      "npi": [1111111111],
-      "tin": {
-        "type": "ein",
-        "value": "22-2222222"
-      }
-    }]
+    "location": "https://www.cms.gov/some_provider_group.json"
   }],
   "in_network": [{
     "negotiation_arrangement": "ffs",

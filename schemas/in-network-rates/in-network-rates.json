@@ -30,7 +30,8 @@
             "HIPPS",
             "LOCAL",
             "EAPG",
-            "CDT"
+            "CDT",
+            "RC"
           ]
         },
         "billing_code_type_version": {
@@ -131,11 +132,19 @@
            },
            "uniqueItems": true,
            "default": []
-         }
+        },
+        "location": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        }
       },
+      "anyOf": [
+         { "required": ["location"] },
+         { "required": ["provider_groups"] }
+       ],
       "required": [
-        "provider_group_id",
-        "provider_groups"
+        "provider_group_id"
       ]
     },
     "providers": {

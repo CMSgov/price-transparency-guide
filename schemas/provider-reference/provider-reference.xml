@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<_schema>http://json-schema.org/draft-07/schema#</_schema>
+<definitions>
+    <providers>
+        <type>object</type>
+        <properties>
+            <npi>
+                <type>array</type>
+                <items>
+                    <type>number</type>
+                </items>
+                <uniqueItems>true</uniqueItems>
+            </npi>
+            <tin>
+                <type>object</type>
+                <properties>
+                    <type>
+                        <type>string</type>
+                        <enum>ein</enum>
+                        <enum>npi</enum>
+                    </type>
+                    <value>
+                        <type>string</type>
+                    </value>
+                </properties>
+                <required>type</required>
+                <required>value</required>
+            </tin>
+        </properties>
+        <required>npi</required>
+        <required>tin</required>
+    </providers>
+</definitions>
+<type>object</type>
+<properties>
+    <provider_groups>
+        <type>array</type>
+        <items>
+            <_ref>#/definitions/providers</_ref>
+        </items>
+    </provider_groups>
+</properties>
+<required>provider_groups</required>

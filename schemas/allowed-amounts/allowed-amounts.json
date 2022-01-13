@@ -5,7 +5,26 @@
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "billing_code_type": { "enum": [ "CPT", "HCPCS", "ICD", "MS-DRG", "R-DRG", "S-DRG", "APS-DRG", "AP-DRG", "APR-DRG", "APC",  "NDC", "HIPPS", "LOCAL", "EAPG", "CDT" ] },
+        "billing_code_type": { 
+          "enum": [
+             "CPT",
+             "HCPCS",
+             "ICD",
+             "MS-DRG",
+             "R-DRG",
+             "S-DRG",
+             "APS-DRG",
+             "AP-DRG",
+             "APR-DRG",
+             "APC",
+             "NDC",
+             "HIPPS",
+             "LOCAL",
+             "EAPG",
+             "CDT",
+             "RC"
+          ]
+        },
         "billing_code_type_version": { "type": "string" },
         "billing_code": { "type": "string" },
         "description": { "type": "string" },

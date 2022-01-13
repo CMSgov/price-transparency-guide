@@ -74,7 +74,7 @@ Dates should be strings in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8
 Different Flat Files
 --------------------
 
-There are three required flat files associated with Transparency in Coverage:
+There are two required flat files associated with Transparency in Coverage:
 * In-Network Negotiated Rates
 * Out-Of-Network Allowed Amounts
 
@@ -110,14 +110,6 @@ For example, the following would be the required naming for CMS building a JSON 
 An example of a plan named `healthcare 100` with an issuer's name `issuer abc` producing a JSON file, the following would be the naming output:
 * `2020-01-05_issuer-abc_healthcare-100_in-network-rates.json`
 * `2020-01-05_issuer-abc_healthcare-100_allowed-amounts.json`
-
-#### Multiple Plans Per File
-If multiple plans are to be included in a single file, a `table-of-contents` file will be required. The naming standard will be applied to the `table-of-contents` file and both the `in-network` and `allowed-amounts` files will not have any naming standards.
-
-The following is the required naming standard for the `table-of-contents` file: `<YYYY-MM-DD>_<payer or issuer name>_index.<file extension>`
-
-For example, the following would be the required naming for CMS building a JSON file that includes Medicare and Medicaid plans:
-* `2020-01-05_cms_index.json`
 
 #### Multiple Plans Per File
 If multiple plans are to be included in a single file, a `table-of-contents` file will be required. The naming standard will be applied to the `table-of-contents` file and both the `in-network` and `allowed-amounts` files will not have any naming standards.
