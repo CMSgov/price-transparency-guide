@@ -28,6 +28,7 @@
                 <enum>LOCAL</enum>
                 <enum>EAPG</enum>
                 <enum>CDT</enum>
+                <enum>RC</enum>
             </billing_code_type>
             <billing_code_type_version>
                 <type>string</type>
