@@ -37,7 +37,6 @@ The allowed amounts object documents the entity or business and service code in 
 | **tin** | Tax Identification Number | Object | The [tax identifier object](#tas-identifier-object) contains tax information on the place of business | Yes |
 | **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided. When attribute of `billing_class` has the value of "professional", `service_code` is required.  | No |
 | **billing_class** | Billing Class | String | Allowed values: "professional", "institutional" | Yes |
-| **billing_code_modifier** | Billing Code Modifier | Array | An array of strings. There are certain billing code types that allow for modifiers (e.g. The CPT coding type allows for modifiers). If a negotiated rate for a billing code type is dependent on a modifier for the reported item or service, then an additional negotiated price object should be included to represent the difference. | No |
 | **payments** | Payments |	Array | An array of [out-of-network payments objects](#out-of-network-payment-object) | Yes |
 
 #### Tax Identifier Object
