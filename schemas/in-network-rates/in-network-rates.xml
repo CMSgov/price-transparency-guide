@@ -305,13 +305,13 @@
                 <enum>derived</enum>
                 <enum>fee schedule</enum>
             </negotiated_type>
-            <billing_class_modifier>
+            <billing_code_modifier>
                 <type>array</type>
                 <items>
                     <type>string</type>
                 </items>
                 <uniqueItems>true</uniqueItems>
-            </billing_class_modifier>
+            </billing_code_modifier>
             <negotiated_rate>
                 <type>number</type>
             </negotiated_rate>

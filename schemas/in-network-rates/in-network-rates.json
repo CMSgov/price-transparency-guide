@@ -240,7 +240,7 @@
             "fee schedule"
           ]
         },
-        "billing_class_modifier": {
+        "billing_code_modifier": {
           "type": "array",
           "items": {
             "type": "string"

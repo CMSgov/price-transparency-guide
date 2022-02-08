@@ -87,6 +87,13 @@
             <allowed_amount>
                 <type>number</type>
             </allowed_amount>
+            <billing_code_modifier>
+                <type>array</type>
+                <items>
+                    <type>string</type>
+                </items>
+                <uniqueItems>true</uniqueItems>
+            </billing_code_modifier>
             <providers>
                 <type>array</type>
                 <items>
