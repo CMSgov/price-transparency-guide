@@ -141,7 +141,11 @@ There are custom `billing_code_type`s defined for the Transparency in Coverage r
 
 
 ##### Additional Notes Concerning `billing_code`
-The following are custom defined billing codes that can be applied to any `billing_code_type`s.
+The following are custom defined billing codes that can be applied to any `billing_code_type`s:
+
+| Reporting Value | Additional Information |
+| --------------- | ---------------------- |
+| CSTM-00 | Represents all possible `billing_code` values for the defined `billing_code_type`. Typically this can be used when a negotiated arrangement applies to all codes under a `billing_code_type` |
 
 The following would applied the `negotiated_price` object(s) to all CPT codes:
 ```json
@@ -198,6 +202,3 @@ The following would applied the `negotiated_price` object(s) to each `billing_co
  }
 ```
 
-| Reporting Value | Additional Information |
-| --------------- | ---------------------- |
-| CSTM-00 | Represents all possible `billing_code` values for the defined `billing_code_type`. Typically this can be used when a negotiated arrangement applies to all codes under a `billing_code_type` |
