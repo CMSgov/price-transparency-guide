@@ -31,7 +31,8 @@
             "LOCAL",
             "EAPG",
             "CDT",
-            "RC"
+            "RC",
+            "CSTM-ALL"
           ]
         },
         "billing_code_type_version": {

@@ -29,6 +29,7 @@
                 <enum>EAPG</enum>
                 <enum>CDT</enum>
                 <enum>RC</enum>
+                <enum>CSTM-ALL</enum>
             </billing_code_type>
             <billing_code_type_version>
                 <type>string</type>
