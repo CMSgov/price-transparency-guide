@@ -175,7 +175,7 @@ The following would applied the `negotiated_price` object(s) to all CPT codes:
 ```
 
 The following would applied the `negotiated_price` object(s) to each `billing_code_type` defined at [here](#additional-notes-concerning-billing_code_type). NOTE: the `billing_code_type_version` would apply to the current plan's year.
-##### Additional Notes Concerning `billing_code_type`
+
 ```json
 {
  "negotiation_arrangement": "ffs",
