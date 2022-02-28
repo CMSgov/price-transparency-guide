@@ -319,6 +319,10 @@
                 <type>string</type>
                 <description>This is a date format of YYYY-MM-DD</description>
             </expiration_date>
+            <additional_information>
+                <type>string</type>
+                <description>In situations in which alternative reimbursement arrangements can neither be expressed as a dollar amount nor as a percentage, this open text field can be used to provide information such as, a description of the formula, variables, methodology or other information necessary to understand the arrangement. The open text field may be utilized for reporting only if a plan or issuer cannot disclose its in-network rates as a dollar amount or a percentage.</description>
+            </additional_information>
         </properties>
         <required>negotiated_type</required>
         <required>billing_class</required>
