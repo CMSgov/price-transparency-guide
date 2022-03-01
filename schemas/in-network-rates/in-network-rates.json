@@ -31,7 +31,8 @@
             "LOCAL",
             "EAPG",
             "CDT",
-            "RC"
+            "RC",
+            "CSTM-ALL"
           ]
         },
         "billing_code_type_version": {
@@ -237,7 +238,8 @@
           "enum": [
             "negotiated",
             "derived",
-            "fee schedule"
+            "fee schedule",
+            "percentage"
           ]
         },
         "billing_code_modifier": {
