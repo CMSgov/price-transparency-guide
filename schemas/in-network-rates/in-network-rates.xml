@@ -8,6 +8,7 @@
                 <enum>ffs</enum>
                 <enum>bundle</enum>
                 <enum>capitation</enum>
+                <enum>percentage</enum>
             </negotiation_arrangement>
             <name>
                 <type>string</type>
