@@ -20,6 +20,7 @@
       },
       "service_code": ["01", "02", "03"],
       "billing_class": "professional",
+      "billing_code_modifier": ["25"],
       "payments": [{
         "allowed_amount": 25.00,
         "billing_code_modifier": ["25"],
