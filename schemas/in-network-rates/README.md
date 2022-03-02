@@ -22,11 +22,11 @@ This type defines an in-network object.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **negotiation_arrangement** | Negotiation Arrangement | String | An indication as to whether a reimbursement arrangement other than a standard fee-for-service model applies. Allowed values: "ffs", "bundle" or "capitation" | Yes |
+| **negotiation_arrangement** | Negotiation Arrangement | String | An indication as to whether a reimbursement arrangement other than a standard fee-for-service model applies. Allowed values: "ffs", "bundle", or "capitation" | Yes |
 | **name** | Name | String | This is name of the item/service that is offered | Yes |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
 | **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
-| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. | Yes |
+| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code) |  Yes |
 | **description** | Description | String | Brief description of the item/service | No |
 | **negotiated_rates** | Negotiated Rates | Array | This is an array of [negotiated rate details object types](#negotiated-rate-details-object) | Yes |
 | **bundled_codes** | Bundled Codes | Array | This is an array of [bundle code objects](#bundle-code-object). This array contains all the different codes in a bundle if `bundle` is selected for `negotiation_arrangement` | No |
@@ -37,7 +37,7 @@ This type defines an in-network object.
 | ----- | ---- | ---- | ---------- | -------- |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
 | **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
-| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. | Yes |
+| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code)| Yes |
 | **description** | Description | String | Brief description of the item/service | Yes |
 
 #### Covered Services Object
@@ -45,7 +45,7 @@ This type defines an in-network object.
 | ----- | ---- | ---- | ---------- | -------- |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
 | **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
-| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. | Yes |
+| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code)| Yes |
 | **description** | Description | String | Brief description of the item/service | Yes |
 
 #### Negotiated Rate Details Object
@@ -96,18 +96,21 @@ The negotiated price object contains negotiated pricing information that the typ
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", and "fee schedule". See additional notes. | Yes |
-| **negotiated_rate** | Negotiated Rate | Number | The dollar amount based on the `negotiation_type` | Yes |
+| **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", "fee schedule", "percentage", and "per diem". See [additional notes](#additional-notes-1). | Yes |
+| **negotiated_rate** | Negotiated Rate | Number | The dollar or percentage amount based on the `negotiation_type` | Yes |
 | **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD). See additional notes. | Yes |
 | **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided. When attribute of `billing_class` has the value of "professional", `service_code` is required.  | No |
 | **billing_class** | Billing Class | String | Allowed values: "professional", "institutional" | Yes |
 | **billing_code_modifier** | Billing Code Modifier | Array | An array of strings. There are certain billing code types that allow for modifiers (e.g. The CPT coding type allows for modifiers). If a negotiated rate for a billing code type is dependent on a modifier for the reported item or service, then an additional negotiated price object should be included to represent the difference. | No |
+| **additional_information** | Additional Information | String | The additional information text field can be used to provide context for negotiated arrangements that do not fit the existing schema format. Please open a Github discussion to ask a question about your situation if you plan to use this attribute. | No |
 
 ##### Additional Notes
-For `negotiated_type` there are three allowable values: "negotiated", "derived", and "fee schedule". The value are defined as:
+For `negotiated_type` there are five allowable values: "negotiated", "derived", "fee schedule", "percentage", and "per diem". The value are defined as:
 * `negotiated`: If applicable, the negotiated rate, reflected as a dollar amount, for each covered item or service under the plan or coverage that the plan or issuer has contractually agreed to pay an in-network provider, except for prescription drugs that are subject to a fee-for-service reimbursement arrangement, which must be reported in the prescription drug machine-readable file. If the negotiated rate is subject to change based upon participant, beneficiary, or enrollee-specific characteristics, these dollar amounts should be reflected as the base negotiated rate applicable to the item or service prior to adjustments for participant, beneficiary, or enrollee-specific characteristics.
 * `derived`: If applicable, the price that a plan or issuer assigns to an item or service for the purpose of internal accounting, reconciliation with providers or submitting data in accordance with the requirements of 45 CFR 153.710(c).
 * `fee schedule`: If applicable, the rate for a covered item or service from a particular in-network provider, or providers that a group health plan or health insurance issuer uses to determine a participant’s, beneficiary’s, or enrollee’s cost-sharing liability for the item or service, when that rate is different from the negotiated rate.
+* `percentage`: If applicable, the negotiated percentage value for a covered item or service from a particular in-network provider for a percentage of billed charges arrangement.
+* `per diem`: If applicable, the per diem daily rate, reflected as a dollar amount, for each covered item or service under the plan or coverage that the plan or issuer has contractually agreed to pay an in-network provider.
 
 For `expiration_date`, there may be a situation when a contract arrangement is "[evergreen](https://www.investopedia.com/terms/e/evergreen.asp)". For evergreen contracts that automatically renew on a date provided in the contract, the expiration date you include should be the day immediately before the day of the automatic renewal.
 
@@ -116,6 +119,8 @@ In situation where there is not expiration date ([see discussion here](https://g
 
 ##### Additional Notes Concerning `billing_code_type`
 Negotiated rates for items and services can come from a variety of billing code standards. The list of possible allowed values is in the following table with the name of the standard and the values representing that standard that would be expected if being reported on. For standards that are used for negotiated rate that are not in the following table, please open a [discussion](https://github.com/CMSgov/price-transparency-guide/discussions) to potentially add a new standard to the table.
+
+There are custom `billing_code_type`s defined for the Transparency in Coverage rule. These coding types are prefixed with `CTSM-`. These coding types are meant to help with generic reporting. The complete list can be found the in following table.
 
 | Standard Name | Reporting Value | Additional Information |
 | ------------- | --------------- | ---------------------- |
@@ -135,3 +140,68 @@ Negotiated rates for items and services can come from a variety of billing code 
 | Enhanced Ambulatory Patient Grouping | EAPG | [EAPG](https://www.3m.com/3M/en_US/health-information-systems-us/drive-value-based-care/patient-classification-methodologies/enhanced-apgs/) |
 | Health Insurance Prospective Payment System | HIPPS | [HIPPS](https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/ProspMedicareFeeSvcPmtGen/HIPPSCodes) |
 | Current Dental Terminology | CDT | [CDT](https://www.ada.org/en/publications/cdt) |
+| Custom Code Type: All | CSTM-ALL | This is a custom coding type defined for the Transparency in Coverage rule. This value represents all possible coding types under the contractual arrangement |
+
+
+##### Additional Notes Concerning `billing_code`
+The following are custom defined billing codes that can be applied to any `billing_code_type`s:
+
+| Reporting Value | Additional Information |
+| --------------- | ---------------------- |
+| CSTM-00 | Represents all possible `billing_code` values for the defined `billing_code_type`. Typically this can be used when a negotiated arrangement applies to all codes under a `billing_code_type` |
+
+The following would applied the `negotiated_price` object(s) to all CPT codes:
+```json
+{
+ "negotiation_arrangement": "ffs",
+ "name": "CPT codes",
+ "billing_code_type": "CPT",
+ "billing_code_type_version": "2020",
+ "billing_code": "CSTM-00",
+ "description": "All CPT codes",
+ "negotiated_rates": [{
+   "provider_groups": [{
+     "npi": [6666666666],
+     "tin":{
+       "type": "npi",
+       "value": "6666666666"
+     }
+   }],
+   "negotiated_prices": [{
+     "negotiated_type": "negotiated",
+     "negotiated_rate": 12.45,
+     "expiration_date": "2022-01-01",
+     "service_code": ["18", "19", "11"],
+     "billing_class": "institutional"
+   }]
+ }
+```
+
+The following would applied the `negotiated_price` object(s) to each `billing_code_type` defined at [here](#additional-notes-concerning-billing_code_type). NOTE: the `billing_code_type_version` would apply to the current plan's year.
+
+```json
+{
+ "negotiation_arrangement": "ffs",
+ "name": "All coding types",
+ "billing_code_type": "CSTM-ALL",
+ "billing_code_type_version": "2022",
+ "billing_code": "CSTM-00",
+ "description": "All codes possible",
+ "negotiated_rates": [{
+   "provider_groups": [{
+     "npi": [6666666666],
+     "tin":{
+       "type": "npi",
+       "value": "6666666666"
+     }
+   }],
+   "negotiated_prices": [{
+     "negotiated_type": "negotiated",
+     "negotiated_rate": 12.45,
+     "expiration_date": "2022-01-01",
+     "service_code": ["18", "19", "11"],
+     "billing_class": "institutional"
+   }]
+ }
+```
+

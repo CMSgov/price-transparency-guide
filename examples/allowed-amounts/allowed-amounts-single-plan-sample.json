@@ -20,9 +20,9 @@
       },
       "service_code": ["01", "02", "03"],
       "billing_class": "professional",
-      "billing_code_modifier": ["25"],
       "payments": [{
         "allowed_amount": 25.00,
+        "billing_code_modifier": ["25"],
         "providers": [{
           "billed_charge": 50.00,
           "npi": [1234567891,1234567892,1234567893]

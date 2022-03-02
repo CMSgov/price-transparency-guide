@@ -8,6 +8,8 @@
                 <enum>ffs</enum>
                 <enum>bundle</enum>
                 <enum>capitation</enum>
+                <enum>percentage</enum>
+                <enum>per diem</enum>
             </negotiation_arrangement>
             <name>
                 <type>string</type>
@@ -29,6 +31,7 @@
                 <enum>EAPG</enum>
                 <enum>CDT</enum>
                 <enum>RC</enum>
+                <enum>CSTM-ALL</enum>
             </billing_code_type>
             <billing_code_type_version>
                 <type>string</type>
@@ -305,13 +308,13 @@
                 <enum>derived</enum>
                 <enum>fee schedule</enum>
             </negotiated_type>
-            <billing_class_modifier>
+            <billing_code_modifier>
                 <type>array</type>
                 <items>
                     <type>string</type>
                 </items>
                 <uniqueItems>true</uniqueItems>
-            </billing_class_modifier>
+            </billing_code_modifier>
             <negotiated_rate>
                 <type>number</type>
             </negotiated_rate>
@@ -319,6 +322,10 @@
                 <type>string</type>
                 <description>This is a date format of YYYY-MM-DD</description>
             </expiration_date>
+            <additional_information>
+                <type>string</type>
+                <description>In situations in which alternative reimbursement arrangements can neither be expressed as a dollar amount nor as a percentage, this open text field can be used to provide information such as, a description of the formula, variables, methodology or other information necessary to understand the arrangement. The open text field may be utilized for reporting only if a plan or issuer cannot disclose its in-network rates as a dollar amount or a percentage.</description>
+            </additional_information>
         </properties>
         <required>negotiated_type</required>
         <required>billing_class</required>
