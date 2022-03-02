@@ -239,7 +239,8 @@
             "negotiated",
             "derived",
             "fee schedule",
-            "percentage"
+            "percentage",
+            "per diem"
           ]
         },
         "billing_code_modifier": {

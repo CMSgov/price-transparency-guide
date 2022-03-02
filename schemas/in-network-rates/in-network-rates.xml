@@ -9,6 +9,7 @@
                 <enum>bundle</enum>
                 <enum>capitation</enum>
                 <enum>percentage</enum>
+                <enum>per diem</enum>
             </negotiation_arrangement>
             <name>
                 <type>string</type>
