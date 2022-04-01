@@ -1,0 +1,87 @@
+name: Validator
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  allowed_amounts_examples:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: checkout guide repository to the github runner
+        uses: actions/checkout@v2
+      -
+        name: checkout validator repository to the github runner in a separate directory
+        uses: actions/checkout@v2
+        with:
+          repository: CMSgov/price-transparency-guide-validator
+          path: ./validator
+
+      -
+        name: compile & update the validator
+        run: |
+          cd validator
+          docker build -t validator .
+          npm install -g cms-mrf-validator
+          cms-mrf-validator update
+      -
+        name: allowed amounts multiple plan empty sample
+        run: cms-mrf-validator validate ../examples/allowed-amounts/allowed-amounts-multiple-plan-empty-sample.json v1.0.0 -t allowed-amounts
+        working-directory: validator
+      -
+        name: allowed amounts multiple plan sample
+        run: cms-mrf-validator validate ../examples/allowed-amounts/allowed-amounts-multiple-plan-sample.json v1.0.0 -t allowed-amounts
+        working-directory: validator
+      -
+        name: allowed amounts sinple plan empty sample
+        run: cms-mrf-validator validate ../examples/allowed-amounts/allowed-amounts-single-plan-empty-sample.json v1.0.0 -t allowed-amounts
+        working-directory: validator
+      -
+        name: allowed amounts single plan sample
+        run: cms-mrf-validator validate ../examples/allowed-amounts/allowed-amounts-single-plan-sample.json v1.0.0 -t allowed-amounts
+        working-directory: validator
+      -
+        name: multiplan empty example
+        run: cms-mrf-validator validate ../examples/allowed-amounts/multiplan-empty-example.json v1.0.0 -t allowed-amounts
+        working-directory: validator
+
+  in_network_rate_examples:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: checkout guide repository to the github runner
+        uses: actions/checkout@v2
+      -
+        name: checkout validator repository to the github runner in a separate directory
+        uses: actions/checkout@v2
+        with:
+          repository: CMSgov/price-transparency-guide-validator
+          path: ./validator
+      -
+        name: compile & update the validator
+        run: |
+          cd validator
+          docker build -t validator .
+          npm install -g cms-mrf-validator
+          cms-mrf-validator update
+      -
+        name: in network rates bundle single plan sample
+        run: cms-mrf-validator validate ../examples/in-network-rates/in-network-rates-bundle-single-plan-sample.json v1.0.0
+        working-directory: validator
+      -
+        name: in network rates capitation single plan sample
+        run: cms-mrf-validator validate ../examples/in-network-rates/in-network-rates-capitation-single-plan-sample.json v1.0.0
+        working-directory: validator
+      -
+        name: in network rates fee for service sinle plan sample
+        run: cms-mrf-validator validate ../examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json v1.0.0
+        working-directory: validator
+      -
+        name: in network rates multiple plans sample
+        run: cms-mrf-validator validate ../examples/in-network-rates/in-network-rates-multiple-plans-sample.json v1.0.0
+        working-directory: validator
