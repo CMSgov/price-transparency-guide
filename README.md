@@ -69,12 +69,12 @@ This is typically follows the format of `<meta name="robots" content="noindex, n
 Special Data Types
 ------------------
 
-Dates should be strings in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601) (e.g. YYYY-MM-DD).
+Dates should be strings in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601) (i.e. YYYY-MM-DD).
 
-Different Flat Files
---------------------
+Different Machine-Readable Files
+--------------------------------
 
-There are two required flat files associated with Transparency in Coverage:
+There are two required machine-readable files associated with Transparency in Coverage:
 * In-Network Negotiated Rates
 * Out-Of-Network Allowed Amounts
 
@@ -87,6 +87,10 @@ Under the finalized rules, a plan or issuer must disclose certain data elements 
 The associated names for those files are:
 * `in-network-rates`
 * `allowed-amounts`
+
+Timing Updates For Machine-Readable Files
+-----------------------------------------
+According to the [TiC Final Rules](https://www.federalregister.gov/d/2020-24591/p-1516) and the schema requirements, plans and issuers are required to update the machine-readable files monthly and populate the attribute `last_updated_on`. The Departments consider “monthly” to refer to reasonably consistent periods of approximately 30 days, but are not specifying a particular day of the month.
 
 File Naming Convention  
 -------------------------
@@ -148,3 +152,8 @@ MINOR version when attributes/values are introduced or removed in a backwards co
 PATCH version when backwards compatible bug fixes are introduced.
 
 The major version will be finalized to 1.0.0 for the schema to adhere to the July 2022 implementation date. Versioning of the schema can be tracked in the VERSION.md file.
+
+Schema Validator Tool
+=====================
+
+CMS developed a [downloadable schema validator tool](https://github.com/CMSgov/price-transparency-guide-validator) that plans and developers can use to assess whether their machine readable files are compliant with the Transparency in Coverage JSON schema. The validator tool and instructions can be accessed here. The tool can be used to validate in-network and allowed amount files, as well as provider references and table of contents files. Note that the tool tests for attributes required under version 1.0 of the JSON schema and for syntax errors, but does not test the accuracy of the data in the schema. It is designed to run on local computers and can be used to validate files of any size (there is no file size limit). At this point in time, the validator tool can only be used to validate JSON files.
