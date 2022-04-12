@@ -90,7 +90,7 @@ The associated names for those files are:
 
 Timing Updates For Machine-Readable Files
 -----------------------------------------
-According to the [TiC Final Rules](https://www.federalregister.gov/documents/2020/11/12/2020-24591/transparency-in-coverage#p-1272) and the schema requirements, plans and issuers are required to update the machine-readable files monthly and populate the attribute `last_updated_on`. The Departments consider “monthly” to refer to reasonably consistent periods of approximately 30 days, but are not specifying a particular day of the month.
+According to the [TiC Final Rules](https://www.federalregister.gov/d/2020-24591/p-1516) and the schema requirements, plans and issuers are required to update the machine-readable files monthly and populate the attribute `last_updated_on`. The Departments consider “monthly” to refer to reasonably consistent periods of approximately 30 days, but are not specifying a particular day of the month.
 
 File Naming Convention  
 -------------------------
