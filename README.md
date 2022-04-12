@@ -69,12 +69,12 @@ This is typically follows the format of `<meta name="robots" content="noindex, n
 Special Data Types
 ------------------
 
-Dates should be strings in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601) (e.g. YYYY-MM-DD).
+Dates should be strings in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601) (i.e. YYYY-MM-DD).
 
-Different Flat Files
---------------------
+Different Machine-Readable Files
+--------------------------------
 
-There are two required flat files associated with Transparency in Coverage:
+There are two required machine-readable files associated with Transparency in Coverage:
 * In-Network Negotiated Rates
 * Out-Of-Network Allowed Amounts
 
@@ -87,6 +87,10 @@ Under the finalized rules, a plan or issuer must disclose certain data elements 
 The associated names for those files are:
 * `in-network-rates`
 * `allowed-amounts`
+
+Timing Updates For Machine-Readable Files
+-----------------------------------------
+According to the [TiC Final Rules](https://www.federalregister.gov/documents/2020/11/12/2020-24591/transparency-in-coverage#p-1272) and the schema requirements, plans and issuers are required to update the machine-readable files monthly and populate the attribute `last_updated_on`. The Departments consider “monthly” to refer to reasonably consistent periods of approximately 30 days, but are not specifying a particular day of the month.
 
 File Naming Convention  
 -------------------------

@@ -10,7 +10,7 @@
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
 | **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
-| **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD) | Yes |
+| **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
 | **version** | Version | String | The version of the schema for the produced information | No |
 
 ##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`
@@ -98,7 +98,7 @@ The negotiated price object contains negotiated pricing information that the typ
 | ----- | ---- | ---- | ---------- | -------- |
 | **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", "fee schedule", "percentage", and "per diem". See [additional notes](#additional-notes-1). | Yes |
 | **negotiated_rate** | Negotiated Rate | Number | The dollar or percentage amount based on the `negotiation_type` | Yes |
-| **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (e.g. YYYY-MM-DD). See additional notes. | Yes |
+| **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD). See additional notes. | Yes |
 | **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided. When attribute of `billing_class` has the value of "professional", `service_code` is required.  | No |
 | **billing_class** | Billing Class | String | Allowed values: "professional", "institutional" | Yes |
 | **billing_code_modifier** | Billing Code Modifier | Array | An array of strings. There are certain billing code types that allow for modifiers (e.g. The CPT coding type allows for modifiers). If a negotiated rate for a billing code type is dependent on a modifier for the reported item or service, then an additional negotiated price object should be included to represent the difference. | No |
