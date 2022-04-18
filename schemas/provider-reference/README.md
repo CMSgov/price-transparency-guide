@@ -9,8 +9,8 @@ The schema has a single root object vs an array to accommodate formats that may 
 #### Providers Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **npi** | NPI | Array | An array of individual (type 1) provider identification numbers (NPI). | Yes |
-| **tin** | Tax Identification Number | Object | The [tax identifier object](#tas-identifier-object) contains tax information on the place of business | Yes |
+| **npi** | NPI | Array | An array of National Provider Identifiers (NPIs). The NPI array attribute can contain a mix of Type 1 and Type 2 NPIs, both of which must be provided, if available. In contractual arrangements with Type 2 NPIs where Type 1 NPIs are unknown or otherwise unavailable, only the Type 2 NPIs must be reported. | Yes |
+| **tin** | Tax Identification Number | Object | The [tax identifier object](#tax-identifier-object) contains tax information on the place of business | Yes |
 
 #### Tax Identifier Object
 | Field | Name | Type | Definition | Required |
