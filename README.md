@@ -31,6 +31,7 @@ Guidance
 Transparency in Coverage rule guidance is released on [CMS'](https://www.cms.gov) website. You can find recently released guidance here:
 * [https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs#Affordable_Care_Act](https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs#Affordable_Care_Act)
 * [https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf](https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf)
+* [https://www.cms.gov/sites/default/files/2022-04/FAQ-Affordable-Care-Act-Implementation-Part-53.pdf](https://www.cms.gov/sites/default/files/2022-04/FAQ-Affordable-Care-Act-Implementation-Part-53.pdf)
 
 Developer Documentation
 =======================
