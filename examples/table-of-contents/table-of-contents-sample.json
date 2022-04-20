@@ -5,12 +5,12 @@
      "reporting_plans": [{
        "plan_name": "medicaid",
        "plan_id_type": "hios",
-       "plan_id": "11111111111",
+       "plan_id": "1111111111",
        "plan_market_type": "individual"
      },{
        "plan_name": "medicare",
        "plan_id_type": "hios",
-       "plan_id": "0000000000",
+       "plan_id": "000000000",
        "plan_market_type": "individual"
      }],
      "in_network_files": [{
@@ -28,7 +28,7 @@
      "reporting_plans": [{
        "plan_name": "chip",
        "plan_id_type": "hios",
-       "plan_id": "33333333333",
+       "plan_id": "3333333333",
        "plan_market_type": "group"
      }],
      "in_network_files": [{

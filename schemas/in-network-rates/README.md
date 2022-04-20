@@ -6,7 +6,7 @@
 | **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
 | **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company. | No |
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
-| **plan_id** | Plan ID | String | The 14-digit Health Insurance Oversight System (HIOS) identifier, or, if the 14-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for each plan or coverage offered by a plan or issuer. | No |
+| **plan_id** | Plan ID | String | The 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for each plan or coverage offered by a plan or issuer. | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
 | **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
@@ -64,7 +64,7 @@ Either a `provider_groups` or `provider_references` attribute will be required i
 #### Providers Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **npi** | NPI | Array | An array of individual (type 1) provider identification numbers (NPI). | Yes |
+| **npi** | NPI | Array | An array of National Provider Identifiers (NPIs). The NPI array attribute can contain a mix of Type 1 and Type 2 NPIs, both of which must be provided, if available. In contractual arrangements with Type 2 NPIs where Type 1 NPIs are unknown or otherwise unavailable, only the Type 2 NPIs must be reported. | Yes |
 | **tin** | Tax Identification Number | Object | The [tax identifier object](#tas-identifier-object) contains tax information on the place of business | Yes |
 
 #### Tax Identifier Object
@@ -79,13 +79,13 @@ For most businesses reporting cases, a tax identification number (tin) is used t
 
 #### Provider Reference Object
 
-This type defines a provider reference object. This object is used in the `provider_references` array found on the root object of the in-network object. The Provider Group Id is a unique interger ID that is defined by the user to be referenced in the [Negotiated Rate Details Object](#negotiated-rate-details-object) in the `provider_references` array. An example of using provider references can be found in the definition of [provider reference objects](https://github.com/CMSgov/price-transparency-guide/blob/documentation-fix/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L28) and then the usages of the `provider_group_id`s in the [negotiated rate object](https://github.com/CMSgov/price-transparency-guide/blob/documentation-fix/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L86).
+This type defines a provider reference object. This object is used in the `provider_references` array found on the root object of the in-network object. The Provider Group Id is a unique interger ID that is defined by the user to be referenced in the [Negotiated Rate Details Object](#negotiated-rate-details-object) in the `provider_references` array. An example of using provider references can be found in the definition of [provider reference objects](https://github.com/CMSgov/price-transparency-guide/blob/c3ba257f41f4b289b574557e2fcf0833c36ef79f/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L28) and then the usages of the `provider_group_id`s in the [negotiated rate object](https://github.com/CMSgov/price-transparency-guide/blob/c3ba257f41f4b289b574557e2fcf0833c36ef79f/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L86).
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **provider_group_id** | Provider Group Id |	Number | The unique, primary key for the associated `provider_group` object | Yes |
 | **provider_groups** | Provider Groups | Array  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | No |
-| **location** | Location | String  | A fully qualified domain name on where the provider group data can be downloaded. The file must validate against the requirements found in the [provider reference](https://github.com/CMSgov/price-transparency-guide/tree/external-references/schemas/provider-reference). Examples can be found [here](https://github.com/CMSgov/price-transparency-guide/blob/external-references/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L13) that would link to a valid provider reference file such as one found [here](https://github.com/CMSgov/price-transparency-guide/blob/external-references/examples/provider-reference/provider-reference.json). | No |
+| **location** | Location | String  | A fully qualified domain name on where the provider group data can be downloaded. The file must validate against the requirements found in the [provider reference](https://github.com/CMSgov/price-transparency-guide/tree/master/examples/provider-reference). Examples can be found [here](https://github.com/CMSgov/price-transparency-guide/blob/574caa73dd0a1f49c7b4696f585dc6f8b087d67a/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L25-L28) that would link to a valid provider reference file such as one found [here](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/provider-reference/provider-reference.json). | No |
 
 ##### Additional Notes Concerning `provider_group`, `location`
 Either a `provider_group` or `location` attribute will be required in the Provider Reference Object.

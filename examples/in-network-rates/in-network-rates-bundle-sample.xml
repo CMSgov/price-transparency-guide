@@ -2,7 +2,7 @@
 <root>
   <reporting_plans>
     <item>
-      <plan_id>11111111111</plan_id>
+      <plan_id>1111111111</plan_id>
       <plan_id_type>HIOS</plan_id_type>
       <plan_market_type>individual</plan_market_type>
       <plan_name>medicaid</plan_name>
