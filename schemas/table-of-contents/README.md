@@ -30,7 +30,7 @@ At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/sc
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **description** | Description | String | Description of the file included | Yes | 
-| **location** | Description | String | A full fully qualified domain name on where the in-network data can be downloaded | Yes | 
+| **location** | Description | String | The URL of the  file. Examples: **"https://somesite.domain/somepath/07012022_plan123_in_network.json"** (if the file is on a remote server), **"07012022_plan123_in_network.json.json"** (file is in the same directory as the index file that refers to it), **"./in-network/07012022_plan123_in_network.json"** (path relative to the index json file that refers to it)   | Yes | 
 
 In the following example:
 * `Plan A` and `Plan B` have identical negotiated rates for all items/services for the **in-network** file. (in-network-file-1.json)
