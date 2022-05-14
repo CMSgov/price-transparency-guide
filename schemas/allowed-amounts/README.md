@@ -10,7 +10,7 @@
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **out_of_network** | Out Of Network | Array | An array of [out-of-network object types](#out-of-network-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
-| **version** | Version | String | The version of the schema for the produced information | No |
+| **version** | Version | String | The version of the schema for the produced information | Yes |
 
 ##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`
 These attributes are not required for files that will be reporting multiple plans per file but ARE REQUIRED for single plans that are being reported that do not wish to create a table-of-content file. For payers/issuers that will be reporting multiple plans per file, these attributes will be required in a table-of-contents file.

@@ -388,6 +388,7 @@
 <required>reporting_entity_type</required>
 <required>last_updated_on</required>
 <required>in_network</required>
+<required>version<required>
 <dependentRequired>
     <plan_name>plan_id_type</plan_name>
     <plan_name>plan_id</plan_name>

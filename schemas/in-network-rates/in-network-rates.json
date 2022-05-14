@@ -330,7 +330,8 @@
     "reporting_entity_name",
     "reporting_entity_type",
     "last_updated_on",
-    "in_network"
+    "in_network",
+    "version"
   ],
   "dependentRequired": {
     "plan_name": ["plan_id_type", "plan_id", "plan_market_type"],
