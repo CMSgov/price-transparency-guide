@@ -11,7 +11,7 @@
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
 | **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
-| **version** | Version | String | The version of the schema for the produced information | No |
+| **version** | Version | String | The version of the schema for the produced information | Yes |
 
 ##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`
 These attributes are not required for files that will be reporting multiple plans per file but ARE REQUIRED for single plans that are being reported that do not wish to create a table-of-content file. For payers/issuers that will be reporting multiple plans per file, these attributes will be required in a table-of-contents file.
