@@ -124,6 +124,9 @@ The following is the required naming standard for the `table-of-contents` file: 
 For example, the following would be the required naming for CMS building a JSON file that includes Medicare and Medicaid plans:
 * `2020-01-05_cms_index.json`
 
+#### File Size
+If a single file is above 100 Gigabytes, the file should be split into downloadable blobs, or divided into a separate file for each locality (State or Census Division) to achieve a reasonable download size. 
+
 Schemas
 =======
 * [In-Network Rates](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/in-network-rates)
