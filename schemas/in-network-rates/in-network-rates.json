@@ -154,7 +154,7 @@
         "npi": {
           "type": "array",
           "items": {
-            "type": "number"
+            "type": "integer"
           },
           "uniqueItems": true,
           "default": []
