@@ -27,4 +27,10 @@ describe "in network schema" do
 
     expect(json_data).to match_response_schema("in-network-rates/in-network-rates")
   end
+
+  it "has valid JSON no NPI example" do
+    json_data = JSON.parse(File.read("../examples/in-network-rates/in-network-rates-no-npi.json"))
+
+    expect(json_data).to match_response_schema("in-network-rates/in-network-rates")
+  end
 end
