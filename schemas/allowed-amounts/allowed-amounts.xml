@@ -175,4 +175,5 @@
 <required>reporting_entity_name</required>
 <required>reporting_entity_type</required>
 <required>last_update_on</required>
+<required>version</required>
 

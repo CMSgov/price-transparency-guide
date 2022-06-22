@@ -11,7 +11,7 @@
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
 | **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
-| **version** | Version | String | The version of the schema for the produced information | No |
+| **version** | Version | String | The version of the schema for the produced information | Yes |
 
 ##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`
 These attributes are not required for files that will be reporting multiple plans per file but ARE REQUIRED for single plans that are being reported that do not wish to create a table-of-content file. For payers/issuers that will be reporting multiple plans per file, these attributes will be required in a table-of-contents file.
@@ -77,9 +77,10 @@ Either a `provider_groups` or `provider_references` attribute will be required i
 
 For most businesses reporting cases, a tax identification number (tin) is used to represent a business. There are situations where a provider's social security number is still used as a tin. In order to keep private personally identifiable information out of these files, substitute the provider's npi number for the social security number. When a npi number is used, it is assumed that the provider would otherwise be reporting by their social security number.
 
+In contractual arrangements that are only made at the TIN level, where NPIs are unknown or otherwise unavailable, the value "0" should be reported for the NPI field. In contractual arrangements where both the NPI and TIN are available, both are required to be disclosed.
 #### Provider Reference Object
 
-This type defines a provider reference object. This object is used in the `provider_references` array found on the root object of the in-network object. The Provider Group Id is a unique interger ID that is defined by the user to be referenced in the [Negotiated Rate Details Object](#negotiated-rate-details-object) in the `provider_references` array. An example of using provider references can be found in the definition of [provider reference objects](https://github.com/CMSgov/price-transparency-guide/blob/c3ba257f41f4b289b574557e2fcf0833c36ef79f/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L28) and then the usages of the `provider_group_id`s in the [negotiated rate object](https://github.com/CMSgov/price-transparency-guide/blob/c3ba257f41f4b289b574557e2fcf0833c36ef79f/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L86).
+This type defines a provider reference object. This object is used in the `provider_references` array found on the root object of the in-network schema. The Provider Group Id is a unique interger ID that is defined by the user to be referenced in the [Negotiated Rate Details Object](#negotiated-rate-details-object) in the `provider_references` array. An example of using provider references can be found in the definition of [provider reference objects](https://github.com/CMSgov/price-transparency-guide/blob/c3ba257f41f4b289b574557e2fcf0833c36ef79f/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L28) and then the usages of the `provider_group_id`s in the [negotiated rate object](https://github.com/CMSgov/price-transparency-guide/blob/c3ba257f41f4b289b574557e2fcf0833c36ef79f/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L86).
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
@@ -115,6 +116,8 @@ For `negotiated_type` there are five allowable values: "negotiated", "derived", 
 For `expiration_date`, there may be a situation when a contract arrangement is "[evergreen](https://www.investopedia.com/terms/e/evergreen.asp)". For evergreen contracts that automatically renew on a date provided in the contract, the expiration date you include should be the day immediately before the day of the automatic renewal.
 
 In situation where there is not expiration date ([see discussion here](https://github.com/CMSgov/price-transparency-guide/discussions/42)), the value `9999-12-31` would be entered.
+
+For `service_code`, if a negotiated rate for either "professional" or "institutional" `billing_class` is the same for all `service_code`s, the custom value of `CSTM-00` can be used to avoid listing all possible service codes.
 
 
 ##### Additional Notes Concerning `billing_code_type`
