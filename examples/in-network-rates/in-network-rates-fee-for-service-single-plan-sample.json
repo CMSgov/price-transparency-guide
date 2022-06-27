@@ -89,7 +89,7 @@
         "negotiated_type": "negotiated",
         "negotiated_rate": 12003.45,
         "expiration_date": "2022-01-01",
-        "service_code": ["18", "19", "11"],
+        "service_code": ["CSTM-00"],
         "billing_class": "professional"
       }]
     },{
