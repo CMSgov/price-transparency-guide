@@ -80,7 +80,7 @@
       "type": "object",
       "properties": {
         "billing_code_type": {
-         "enum": [
+          "enum": [
             "CPT",
             "HCPCS",
             "ICD",
@@ -122,24 +122,24 @@
       "properties": {
         "billing_code_type": {
          "enum": [
-            "CPT",
-            "HCPCS",
-            "ICD",
-            "MS-DRG",
-            "R-DRG",
-            "S-DRG",
-            "APS-DRG",
-            "AP-DRG",
-            "APR-DRG",
-            "APC",
-            "NDC",
-            "HIPPS",
-            "LOCAL",
-            "EAPG",
-            "CDT",
-            "RC",
-            "CSTM-ALL"
-          ]
+           "CPT",
+           "HCPCS",
+           "ICD",
+           "MS-DRG",
+           "R-DRG",
+           "S-DRG",
+           "APS-DRG",
+           "AP-DRG",
+           "APR-DRG",
+           "APC",
+           "NDC",
+           "HIPPS",
+           "LOCAL",
+           "EAPG",
+           "CDT",
+           "RC",
+           "CSTM-ALL"
+         ]
         },
         "billing_code_type_version": {
           "type": "string"
