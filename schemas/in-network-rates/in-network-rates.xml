@@ -73,7 +73,23 @@
         <type>object</type>
         <properties>
             <billing_code_type>
-                <type>string</type>
+                <enum>CPT</enum>
+                <enum>HCPCS</enum>
+                <enum>ICD</enum>
+                <enum>MS-DRG</enum>
+                <enum>R-DRG</enum>
+                <enum>S-DRG</enum>
+                <enum>APS-DRG</enum>
+                <enum>AP-DRG</enum>
+                <enum>APR-DRG</enum>
+                <enum>APC</enum>
+                <enum>NDC</enum>
+                <enum>HIPPS</enum>
+                <enum>LOCAL</enum>
+                <enum>EAPG</enum>
+                <enum>CDT</enum>
+                <enum>RC</enum>
+                <enum>CSTM-ALL</enum>
             </billing_code_type>
             <billing_code_type_version>
                 <type>string</type>
@@ -94,7 +110,23 @@
         <type>object</type>
         <properties>
             <billing_code_type>
-                <type>string</type>
+                <enum>CPT</enum>
+                <enum>HCPCS</enum>
+                <enum>ICD</enum>
+                <enum>MS-DRG</enum>
+                <enum>R-DRG</enum>
+                <enum>S-DRG</enum>
+                <enum>APS-DRG</enum>
+                <enum>AP-DRG</enum>
+                <enum>APR-DRG</enum>
+                <enum>APC</enum>
+                <enum>NDC</enum>
+                <enum>HIPPS</enum>
+                <enum>LOCAL</enum>
+                <enum>EAPG</enum>
+                <enum>CDT</enum>
+                <enum>RC</enum>
+                <enum>CSTM-ALL</enum>
             </billing_code_type>
             <billing_code_type_version>
                 <type>string</type>
