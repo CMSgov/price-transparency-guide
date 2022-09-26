@@ -25,7 +25,7 @@ This type defines an in-network object.
 | **negotiation_arrangement** | Negotiation Arrangement | String | An indication as to whether a reimbursement arrangement other than a standard fee-for-service model applies. Allowed values: "ffs", "bundle", or "capitation" | Yes |
 | **name** | Name | String | This is name of the item/service that is offered | Yes |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
-| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
+| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2. If there is no version available for the `billing_code_type`, use the current plan's year `YYYY` that is being disclosed.  | Yes |
 | **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code) |  Yes |
 | **description** | Description | String | Brief description of the item/service | Yes |
 | **negotiated_rates** | Negotiated Rates | Array | This is an array of [negotiated rate details object types](#negotiated-rate-details-object) | Yes |
@@ -36,7 +36,7 @@ This type defines an in-network object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
-| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
+| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2. If there is no version available for the `billing_code_type`, use the current plan's year `YYYY` that is being disclosed. | Yes |
 | **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code)| Yes |
 | **description** | Description | String | Brief description of the item/service | Yes |
 
@@ -44,7 +44,7 @@ This type defines an in-network object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
-| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2 | Yes |
+| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2. If there is no version available for the `billing_code_type`, use the current plan's year `YYYY` that is being disclosed. | Yes |
 | **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code)| Yes |
 | **description** | Description | String | Brief description of the item/service | Yes |
 
