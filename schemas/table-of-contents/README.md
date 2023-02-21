@@ -34,7 +34,7 @@ At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/sc
 
 In the following example:
 * `Plan A` and `Plan B` have identical negotiated rates for all items/services for the **in-network** file. (in-network-file-1.json)
-* `Plan C` is unique with its negotiated rates. (in-network-file-2.json)
+* `Plan C` is unique with its negotiated rates. (BH-health-shared-0002.json)
 * `Plan A` and `Plan C` both didn't meet the 20 claim threshold for any services for the **allowed amounts** file. (allowed-amounts-file-empty.json)
 * `Plan B` met the 20 claim threshold for multiple services for the **allowed amounts** file. (allowed-amounts-file-1.json)
 * `Plan A`, `Plan B`, and `Plan C` all have different HIOS numbers, they are different products.
