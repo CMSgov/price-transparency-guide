@@ -119,6 +119,38 @@ In situation where there is not expiration date ([see discussion here](https://g
 
 For `service_code`, if a negotiated rate for either "professional" or "institutional" `billing_class` is the same for all `service_code`s, the custom value of `CSTM-00` can be used to avoid listing all possible service codes.
 
+ README.md
+ For `expiration_date`, there may be a situation when a contract arrangement is    "[evergreen](https://www.investopedia.com/terms/e/evergreen.asp)". For evergreen  contracts that automatically renew on a date provided in the contract, the        expiration date you include should be the day immediately before the day of the   automatic renewal.
+
+ In situation where there is not expiration date ([see discussion here](https://   github.com/CMSgov/price-transparency-guide/discussions/42)), the value `9999-12-  31` would be entered.
+
+ For `service_code`, if a negotiated rate for either "professional" or             "institutional" `billing_class` is the same for all `service_code`s, the custom   value of `CSTM-00` can be used to avoid listing all possible service codes.
+
+```json
+{
+ "negotiation_arrangement": "ffs",
+ "name": "Knee Replacement",
+ "billing_code_type": "CPT",
+ "billing_code_type_version": "2020",
+ "billing_code": "27447",
+ "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
+ "negotiated_rates": [{
+   "provider_groups": [{
+     "npi": [6666666666],
+     "tin":{
+       "type": "npi",
+       "value": "6666666666"
+     }
+   }],
+   "negotiated_prices": [{
+     "negotiated_type": "negotiated",
+     "negotiated_rate": 123.45,
+     "expiration_date": "2022-01-01",
+     "service_code": ["CSTM-00"],
+     "billing_class": "professional"
+   }]
+ }
+```
 
 ##### Additional Notes Concerning `billing_code_type`
 Negotiated rates for items and services can come from a variety of billing code standards. The list of possible allowed values is in the following table with the name of the standard and the values representing that standard that would be expected if being reported on. For standards that are used for negotiated rate that are not in the following table, please open a [discussion](https://github.com/CMSgov/price-transparency-guide/discussions) to potentially add a new standard to the table.
