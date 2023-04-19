@@ -119,13 +119,6 @@ In situation where there is not expiration date ([see discussion here](https://g
 
 For `service_code`, if a negotiated rate for either "professional" or "institutional" `billing_class` is the same for all `service_code`s, the custom value of `CSTM-00` can be used to avoid listing all possible service codes.
 
- README.md
- For `expiration_date`, there may be a situation when a contract arrangement is    "[evergreen](https://www.investopedia.com/terms/e/evergreen.asp)". For evergreen  contracts that automatically renew on a date provided in the contract, the        expiration date you include should be the day immediately before the day of the   automatic renewal.
-
- In situation where there is not expiration date ([see discussion here](https://   github.com/CMSgov/price-transparency-guide/discussions/42)), the value `9999-12-  31` would be entered.
-
- For `service_code`, if a negotiated rate for either "professional" or             "institutional" `billing_class` is the same for all `service_code`s, the custom   value of `CSTM-00` can be used to avoid listing all possible service codes.
-
 ```json
 {
  "negotiation_arrangement": "ffs",
