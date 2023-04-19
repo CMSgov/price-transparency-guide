@@ -74,6 +74,9 @@
     <reporting_entity_type>
         <type>string</type>
     </reporting_entity_type>
+    <last_updated_on>
+        <type>string</type>
+    </last_updated_on>
     <reporting_structure>
         <type>array</type>
         <items>
@@ -85,4 +88,5 @@
 <required>reporting_entity_name</required>
 <required>reporting_entity_type</required>
 <required>reporting_structure</required>
+<required>last_updated_on</required>
 

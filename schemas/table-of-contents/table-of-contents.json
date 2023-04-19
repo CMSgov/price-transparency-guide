@@ -82,6 +82,10 @@
     "reporting_entity_type":{
       "type":"string"
     },
+    "last_updated_on": {
+      "type": "string",
+      "description": "This is a date format of YYYY-MM-DD"
+    },
     "reporting_structure":{
       "type":"array",
       "items":{
@@ -94,6 +98,7 @@
   "required":[
     "reporting_entity_name",
     "reporting_entity_type",
-    "reporting_structure"
+    "reporting_structure",
+    "last_updated_on"
   ]
 }
