@@ -141,8 +141,9 @@ For `service_code`, if a negotiated rate for either "professional" or "instituti
      "expiration_date": "2022-01-01",
      "service_code": ["CSTM-00"],
      "billing_class": "professional"
-   }]
- }
+   }],
+ }]
+}
 ```
 
 ##### Additional Notes Concerning `billing_code_type`
