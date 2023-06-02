@@ -1,0 +1,80 @@
+<in_network_rates>
+root
+├── reporting_entity_name                                                       : required true  : string
+├── reporting_entity_type                                                       : required true  : string
+├── plan_name                                                                   : required false : string
+├── plan_id_type                                                                : required false : string
+├── plan_id                                                                     : required false : string
+├── plan_market_type                                                            : required false : string
+├── last_updated_on                                                             : required true  : string
+├── version                                                                     : required true  : string
+├── in_network                                                                  : required true  : array
+│   └──  [N]
+│        └──  {} object, in_network
+│             ├── negotiation_arrangement                                       : required true  : string
+│             ├── name                                                          : required true  : string
+│             ├── billing_code_type                                             : required true  : string
+│             ├── billing_code_type_version                                     : required true  : string
+│             ├── billing_code                                                  : required true  : string
+│             ├── description                                                   : required true  : string
+│             ├── bundled_codes                                                 : required false : array
+│             │   └──  [N]
+│             │        └──  {} object, bundle_code
+│             │             ├── billing_code_type                               : required true  : string
+│             │             ├── billing_code_type_version                       : required true  : string
+│             │             ├── billing_code                                    : required true  : string
+│             │             └── description                                     : required true  : string
+│             ├── covered_services                                              : required false : array
+│             │   └──  [N]
+│             │        └──  {} object, covered_services
+│             │             ├── billing_code_type                               : required true  : string
+│             │             ├── billing_code_type_version                       : required true  : string
+│             │             ├── billing_code                                    : required true  : string
+│             │             └── description                                     : required true  : string
+│             └── negotiated_rates                                              : required true  : array
+│                 └──  [N]
+│                      └──  {} object, negotiated_rate_details
+│                           ├── provider_groups                                 : required false : array
+│                           │   └──  [N]
+│                           │        └──  {} object, providers
+│                           │             ├── npi                               : required true  : array
+│                           │             └── tin                               : required true  : object
+│                           │                 └──  {} object, tax_identifier
+│                           │                      ├── type                     : required true  : string
+│                           │                      └── value                    : required true  : string
+│                           ├── provider_references                             : required false : array
+│                           │   └──  [N]
+│                           │        └──  {} object, provider_reference
+│                           │             ├── provider_group_id                 : required true  : number
+│                           │             ├── location                          : required false : string
+│                           │             └── provider_groups                   : required false : array
+│                           │                 └──  [N]
+│                           │                      └──  {} object, providers
+│                           │                           ├── npi                 : required true  : array
+│                           │                           └── tin                 : required true  : object
+│                           │                               └──  {} object, tax_identifier
+│                           │                                    ├── type       : required true  : string
+│                           │                                    └── value      : required true  : string
+│                           └── negotiated_prices    : required true  : array
+│                               └──  [N]
+│                                    └──  {} object, negotiated_price
+│                                         ├── negotiated_type                   : required true  : string
+│                                         ├── negotiated_rate                   : required true  : number
+│                                         ├── expiration_date                   : required true  : string
+│                                         ├── service_code                      : required false : string
+│                                         ├── billing_class                     : required true  : string
+│                                         ├── billing_code_modifier             : required false : array
+│                                         └── additional_information            : required false  : array
+└── provider_references                                                         : required false : array
+    └──  [N]
+         └──  {} object, provider_reference
+              ├── provider_group_id                                             : required true  : number
+              ├── location                                                      : required false : string
+              └── provider_groups                                               : required false : array
+                  └──  [N]
+                       └──  {} object, providers
+                            ├── npi                                             : required true  : array
+                            └── tin                                             : required true  : object
+                                └──  {} object, tax_identifier
+                                     ├── type                                   : required true  : string
+                                     └── value                                  : required true  : string
