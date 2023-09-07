@@ -389,7 +389,8 @@
         "billing_class": {
           "enum": [
             "professional",
-            "institutional"
+            "institutional",
+            "both"
           ]
         },
         "negotiated_type": {
