@@ -43,9 +43,13 @@
         "$ref": "#/definitions/providers"
       },
       "default": []
+    },
+    "version": {
+      "type": "string"
     }
   },
   "required": [
-    "provider_groups"
+    "provider_groups",
+    "version"
   ]
 }
