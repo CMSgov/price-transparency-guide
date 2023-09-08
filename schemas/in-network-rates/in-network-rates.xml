@@ -334,6 +334,7 @@
             <billing_class>
                 <enum>professional</enum>
                 <enum>institutional</enum>
+                <enum>both</enum>
             </billing_class>
             <negotiated_type>
                 <enum>negotiated</enum>

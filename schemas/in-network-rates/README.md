@@ -101,7 +101,7 @@ The negotiated price object contains negotiated pricing information that the typ
 | **negotiated_rate** | Negotiated Rate | Number | The dollar or percentage amount based on the `negotiation_type` | Yes |
 | **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD). See additional notes. | Yes |
 | **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided. When attribute of `billing_class` has the value of "professional", `service_code` is required.  | No |
-| **billing_class** | Billing Class | String | Allowed values: "professional", "institutional" | Yes |
+| **billing_class** | Billing Class | String | Allowed values: "professional", "institutional", "both" | Yes |
 | **billing_code_modifier** | Billing Code Modifier | Array | An array of strings. There are certain billing code types that allow for modifiers (e.g. The CPT coding type allows for modifiers). If a negotiated rate for a billing code type is dependent on a modifier for the reported item or service, then an additional negotiated price object should be included to represent the difference. | No |
 | **additional_information** | Additional Information | String | The additional information text field can be used to provide context for negotiated arrangements that do not fit the existing schema format. Please open a Github discussion to ask a question about your situation if you plan to use this attribute. | No |
 
@@ -117,8 +117,34 @@ For `expiration_date`, there may be a situation when a contract arrangement is "
 
 In situation where there is not expiration date ([see discussion here](https://github.com/CMSgov/price-transparency-guide/discussions/42)), the value `9999-12-31` would be entered.
 
-For `service_code`, if a negotiated rate for either "professional" or "institutional" `billing_class` is the same for all `service_code`s, the custom value of `CSTM-00` can be used to avoid listing all possible service codes.
+For `service_code`, if a negotiated rate for either "professional", "institutional", or "both" `billing_class` is the same for all `service_code`s, the custom value of `CSTM-00` can be used to avoid listing all possible service codes.
 
+```json
+{
+ "negotiation_arrangement": "ffs",
+ "name": "Knee Replacement",
+ "billing_code_type": "CPT",
+ "billing_code_type_version": "2020",
+ "billing_code": "27447",
+ "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
+ "negotiated_rates": [{
+   "provider_groups": [{
+     "npi": [6666666666],
+     "tin":{
+       "type": "npi",
+       "value": "6666666666"
+     }
+   }],
+   "negotiated_prices": [{
+     "negotiated_type": "negotiated",
+     "negotiated_rate": 123.45,
+     "expiration_date": "2022-01-01",
+     "service_code": ["CSTM-00"],
+     "billing_class": "professional"
+   }],
+ }]
+}
+```
 
 ##### Additional Notes Concerning `billing_code_type`
 Negotiated rates for items and services can come from a variety of billing code standards. The list of possible allowed values is in the following table with the name of the standard and the values representing that standard that would be expected if being reported on. For standards that are used for negotiated rate that are not in the following table, please open a [discussion](https://github.com/CMSgov/price-transparency-guide/discussions) to potentially add a new standard to the table.
