@@ -60,11 +60,6 @@ These machine-readable files must be made available to the public without restri
 
 The location of the these URLs *must* be provided over HTTPS to ensure the integrity of the data.
 
-Schema Validator Tool
-=====================
-
-CMS developed a [downloadable schema validator tool](https://github.com/CMSgov/price-transparency-guide-validator) that plans and developers can use to assess whether their machine readable files are compliant with the Transparency in Coverage JSON schema. The validator tool and instructions can be accessed here. The tool can be used to validate in-network and allowed amount files, as well as provider references and table of contents files. Note that the tool tests for attributes required under version 1.0 of the JSON schema and for syntax errors, but does not test the accuracy of the data in the schema. It is designed to run on local computers and can be used to validate files of any size (there is no file size limit). At this point in time, the validator tool can only be used to validate JSON files.
-
 Robots.txt
 ----------
 
@@ -139,11 +134,17 @@ The following is the required naming standard for the `table-of-contents` file: 
 For example, the following would be the required naming for CMS building a JSON file that includes Medicare and Medicaid plans:
 * `2020-01-05_cms_index.json`
 
+Schema Validator Tool
+=====================
+
+CMS developed a [downloadable schema validator tool](https://github.com/CMSgov/price-transparency-guide-validator) that plans and developers can use to assess whether their machine readable files are compliant with the Transparency in Coverage JSON schema. The validator tool and instructions can be accessed here. The tool can be used to validate in-network and allowed amount files, as well as provider references and table of contents files. Note that the tool tests for attributes required under version 1.0 of the JSON schema and for syntax errors, but does not test the accuracy of the data in the schema. It is designed to run on local computers and can be used to validate files of any size (there is no file size limit). At this point in time, the validator tool can only be used to validate JSON files.
+
 Schemas
 =======
 * [In-Network Rates](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/in-network-rates)
 * [Allowed Amounts](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/allowed-amounts)
-
+* [Table of Contents](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/table-of-contents)
+* [Provider Reference](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/provider-reference)
 
 Examples
 ========
