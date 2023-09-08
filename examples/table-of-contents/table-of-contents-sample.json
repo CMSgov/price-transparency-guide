@@ -1,6 +1,7 @@
 {
    "reporting_entity_name": "medicare",
    "reporting_entity_type": "medicare",
+   "version": "1.4.0",
    "reporting_structure": [{
      "reporting_plans": [{
        "plan_name": "medicaid",

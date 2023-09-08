@@ -39,5 +39,9 @@
             <_ref>#/definitions/providers</_ref>
         </items>
     </provider_groups>
+    <version>
+        <type>string</type>
+    </version>
 </properties>
 <required>provider_groups</required>
+<required>version</required>
