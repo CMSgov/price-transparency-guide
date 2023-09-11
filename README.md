@@ -89,12 +89,12 @@ The associated names for those files are:
 * `in-network-rates`
 * `allowed-amounts`
 
-There are also two optional machine-readalbe files that can be leveraged to significantly decrease file sizes of the required mahcine-readable files:
+There are also two optional machine-readable files that can be leveraged to significantly decrease file sizes of the required machine-readable files:
 * [Table of Contents](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/table-of-contents)
 * [Provider Reference](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/provider-reference)
 
 **Table of Contents File**
-The Table of Contents file can be leverage to combine common negotiated rates across multiple in-network files. By breaking out [common negotiated rates into separate files](https://github.com/CMSgov/price-transparency-guide/blob/master/README.md#multiple-plans-per-file) to used in multiple In-Network files, plans can avoid having to duplicate data.
+The Table of Contents file can be leveraged to combine common negotiated rates across multiple in-network files. By breaking out [common negotiated rates into separate files](https://github.com/CMSgov/price-transparency-guide/blob/master/README.md#multiple-plans-per-file) to use in multiple In-Network files, plans can avoid having to duplicate data.
 
 **Provider Reference**
 Defining provider networks outside of the In-Network file can have significant benefits in the overall file size that is produced. The provider reference file allows the user to define common provider networks externally to the In-Network file that can be referenced from within the In-Network file. This allows large provider networks to be defined once and be used in multiple locations.
