@@ -5,6 +5,7 @@ The schema has a single root object vs an array to accommodate formats that may 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **provider_groups** | Provider Groups | Array | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
+| **version** | Version | String | The version of the schema for the produced information | Yes |
 
 #### Providers Object
 | Field | Name | Type | Definition | Required |

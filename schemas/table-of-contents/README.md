@@ -5,6 +5,7 @@
 | **reporting_entity_name** | Entity Name | String | The legal name of the entity publishing the machine-readable file. | Yes |
 | **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
 | **reporting_structure** | Reporting Structure | Array | An array of [reporting structure object types](#reporting-structure-object) | Yes |
+| **version** | Version | String | The version of the schema for the produced information | Yes |
 
 #### Reporting Structure Object
 The Reporting Structure object maps assoicated plans to their in-network and allowed amount files.
