@@ -1,4 +1,5 @@
 ### Provider Reference File
+**The Provider Reference File is an optional file that can be leveraged to significantly decrease file sizes of the required machine-readable files. The Transparency in Coverage final rules do not require plans and issuers to publish a Provider Reference file.**
 
 The schema has a single root object vs an array to accommodate formats that may not allow for multiple root nodes, such as XML.
 
