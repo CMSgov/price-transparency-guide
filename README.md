@@ -1,9 +1,9 @@
 [![CMS Transparency in Coverage](resources/images/TiC_banner.png?raw=true "Transparency in Coverage")](https://www.cms.gov/healthplan-price-transparency)
 
 # Transparency in Coverage
-This is the technical implementation guide for the machine readable files as required by the [Transparency in Coverage](https://www.federalregister.gov/documents/2019/11/27/2019-25011/transparency-in-coverag) final rules ([85 FR 72158](https://www.govinfo.gov/app/details/FR-2020-11-12/2020-24591)). 
+This is the technical implementation guide for the machine readable files as required by the [Transparency in Coverage](https://www.federalregister.gov/documents/2020/11/12/2020-24591/transparency-in-coverage) final rules ([85 FR 72158](https://www.govinfo.gov/app/details/FR-2020-11-12/2020-24591)). 
 
-If you are looking for the technical implementation guide for the machine readable files required by the [Hospital Price Transaprency](https://www.cms.gov/priorities/key-initiatives/hospital-price-transparency) final rules ([45 CFR 180](https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-E/part-180)), please go to https://github.com/CMSgov/hospital-price-transparency.
+If you are looking for the technical implementation guide for the machine readable files required by the [Hospital Price Transparency](https://www.cms.gov/priorities/key-initiatives/hospital-price-transparency) final rules ([45 CFR 180](https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-E/part-180)), please go to https://github.com/CMSgov/hospital-price-transparency.
 
 Overview
 ========
