@@ -1,1 +1,3 @@
+# Prevent MacOS desktop service store files from getting committed to this repository
 .DS_Store
+**/.DS_Store
