@@ -410,6 +410,14 @@
           "uniqueItems": true,
           "default": []
         },
+        "diagnosis_code": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
         "negotiated_rate": {
           "type": "number"
         },
