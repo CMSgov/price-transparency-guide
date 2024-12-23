@@ -449,6 +449,15 @@
               ]
             }
           }
+        },
+        {
+          "properties": {
+            "billing_class": {
+              "enum": [
+                "both"
+              ]
+            }
+          }
         }
       ]
     }
