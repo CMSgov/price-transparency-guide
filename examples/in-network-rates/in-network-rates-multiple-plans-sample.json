@@ -51,6 +51,11 @@
         "expiration_date": "2022-01-01",
         "service_code": ["05", "06", "07"],
         "billing_class": "professional"
+      },{
+        "negotiated_type": "derived",
+        "negotiated_rate": 120.45,
+        "expiration_date": "2022-01-01",
+        "billing_class": "both"
       }]
     }]
   },{

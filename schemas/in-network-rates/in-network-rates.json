@@ -445,7 +445,8 @@
           "properties": {
             "billing_class": {
               "enum": [
-                "institutional"
+                "institutional",
+                "both"
               ]
             }
           }
