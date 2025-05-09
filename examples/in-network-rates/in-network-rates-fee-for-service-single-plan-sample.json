@@ -24,7 +24,13 @@
     }]
   },{
     "provider_group_id": 2,
-    "location": "https://www.cms.gov/some_provider_group.json"
+    "provider_groups": [{
+      "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+      "tin":{
+        "type": "ein",
+        "value": "22-2222222"
+      }
+    }]
   }],
   "in_network": [{
     "negotiation_arrangement": "ffs",
@@ -34,19 +40,7 @@
     "billing_code": "27447",
     "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
     "negotiated_rates": [{
-      "provider_groups": [{
-        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-        "tin":{
-          "type": "ein",
-          "value": "11-1111111"
-        }
-      },{
-        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-        "tin":{
-          "type": "ein",
-          "value": "22-2222222"
-        }
-      }],
+      "provider_references": [1],
       "negotiated_prices": [{
         "setting": "inpatient",
         "negotiated_type": "negotiated",
@@ -63,13 +57,7 @@
         "billing_class": "institutional"
       }]
       },{
-      "provider_groups": [{
-        "npi": [6666666666, 7777777777, 8888888888, 9999999999],
-        "tin":{
-          "type": "ein",
-          "value": "22-2222222"
-        }
-      }],
+      "provider_references": [1],
       "negotiated_prices": [{
         "setting": "inpatient",
         "negotiated_type": "negotiated",
@@ -97,13 +85,7 @@
         "billing_class": "professional"
       }]
     },{
-      "provider_groups": [{
-        "npi": [6666666666],
-        "tin":{
-          "type": "npi",
-          "value": "6666666666"
-        }
-      }],
+      "provider_references": [1],
       "negotiated_prices": [{
         "setting": "inpatient",
         "negotiated_type": "negotiated",

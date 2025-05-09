@@ -171,26 +171,10 @@
           },
           "uniqueItems": true,
           "default": []
-        },
-        "location": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https://"
         }
       },
-      "anyOf": [
-        {
-          "required": [
-            "location"
-          ]
-        },
-        {
-          "required": [
-            "provider_groups"
-          ]
-        }
-      ],
       "required": [
+        "provider_groups",
         "provider_group_id"
       ]
     },
@@ -241,14 +225,6 @@
           "uniqueItems": true,
           "default": []
         },
-        "provider_groups": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/providers"
-          },
-          "uniqueItems": true,
-          "default": []
-        },
         "provider_references": {
           "type": "array",
           "items": {
@@ -258,19 +234,8 @@
           "default": []
         }
       },
-      "oneOf": [
-        {
-          "required": [
-            "provider_references"
-          ]
-        },
-        {
-          "required": [
-            "provider_groups"
-          ]
-        }
-      ],
       "required": [
+        "provider_references",
         "negotiated_prices"
       ]
     },
