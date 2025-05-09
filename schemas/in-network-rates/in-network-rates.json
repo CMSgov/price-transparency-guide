@@ -393,6 +393,13 @@
             "both"
           ]
         },
+        "setting": {
+          "enum": [
+            "inpatient",
+            "outpatient",
+            "both"
+          ]
+        },
         "negotiated_type": {
           "enum": [
             "negotiated",
@@ -426,7 +433,8 @@
         "negotiated_type",
         "billing_class",
         "negotiated_rate",
-        "expiration_date"
+        "expiration_date",
+        "setting"
       ],
       "oneOf": [
         {

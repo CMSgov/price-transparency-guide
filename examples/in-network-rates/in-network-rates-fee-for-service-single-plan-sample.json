@@ -48,6 +48,7 @@
         }
       }],
       "negotiated_prices": [{
+        "setting": "inpatient",
         "negotiated_type": "negotiated",
         "negotiated_rate": 123.45,
         "expiration_date": "2022-01-01",
@@ -55,6 +56,7 @@
         "billing_class": "professional",
         "billing_code_modifier": ["AS"]
       },{
+        "setting": "inpatient",
         "negotiated_type": "negotiated",
         "negotiated_rate": 1230.45,
         "expiration_date": "2022-01-01",
@@ -69,6 +71,7 @@
         }
       }],
       "negotiated_prices": [{
+        "setting": "inpatient",
         "negotiated_type": "negotiated",
         "negotiated_rate": 120.45,
         "expiration_date": "2022-01-01",
@@ -86,6 +89,7 @@
     "negotiated_rates": [{
       "provider_references": [1],
       "negotiated_prices": [{
+        "setting": "inpatient",
         "negotiated_type": "negotiated",
         "negotiated_rate": 12003.45,
         "expiration_date": "2022-01-01",
@@ -101,6 +105,7 @@
         }
       }],
       "negotiated_prices": [{
+        "setting": "inpatient",
         "negotiated_type": "negotiated",
         "negotiated_rate": 12.45,
         "expiration_date": "2022-01-01",

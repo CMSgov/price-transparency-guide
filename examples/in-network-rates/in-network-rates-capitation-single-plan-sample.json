@@ -29,6 +29,7 @@
          }
       }],
       "negotiated_prices": [{
+        "setting": "inpatient",
         "negotiated_type": "negotiated",
         "negotiated_rate": 20000.00,
         "expiration_date": "2022-01-01",
@@ -43,6 +44,7 @@
          }
       }],
       "negotiated_prices": [{
+        "setting": "inpatient",
         "negotiated_type": "negotiated",
         "negotiated_rate": 25000.00,
         "expiration_date": "2022-01-01",
