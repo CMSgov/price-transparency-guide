@@ -438,8 +438,14 @@
     "plan_name": {
       "type": "string"
     },
-    "plan_id_type": {
+    "plan_sponsor_name": {
       "type": "string"
+    },
+    "plan_id_type": {
+      "enum":[
+        "ein",
+        "hios"
+      ]
     },
     "plan_id": {
       "type": "string"
@@ -486,6 +492,20 @@
       },
       "default": []
     }
+  },
+  "if": {
+    "properties": {
+      "plan_id_type": {
+        "enum": [
+          "ein"
+        ]
+      }
+    }
+  },
+  "then": {
+    "required": [
+      "plan_sponsor_name"
+    ]
   },
   "required": [
     "reporting_entity_name",

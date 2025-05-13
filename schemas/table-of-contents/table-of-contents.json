@@ -55,8 +55,14 @@
         "plan_name":{
           "type":"string"
         },
-        "plan_id_type":{
-          "type":"string"
+        "plan_sponsor_name": {
+          "type": "string"
+        },
+        "plan_id_type": {
+          "enum":[
+            "ein",
+            "hios"
+          ]
         },
         "plan_id":{
           "type":"string"
@@ -82,7 +88,21 @@
           "Platinum",
           "FFS"
         ]
-      },      
+      },
+      "if": {
+        "properties": {
+          "plan_id_type": {
+            "enum": [
+              "ein"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "plan_sponsor_name"
+        ]
+      },    
       "required":[
         "plan_name",
         "plan_id_type",
