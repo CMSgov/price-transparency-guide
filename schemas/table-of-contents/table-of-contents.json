@@ -68,11 +68,27 @@
           ]
         }
       },
+      "product_network_type": {
+        "enum": [
+          "HMO",
+          "PPO",
+          "EPO",
+          "POS",
+          "HDHP",
+          "Catastrophic",
+          "Bronze",
+          "Silver",
+          "Gold",
+          "Platinum",
+          "FFS"
+        ]
+      },      
       "required":[
         "plan_name",
         "plan_id_type",
         "plan_id",
-        "plan_market_type"
+        "plan_market_type",
+        "product_network_type"
       ]
     }
   },
