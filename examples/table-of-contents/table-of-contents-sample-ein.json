@@ -1,0 +1,49 @@
+{
+   "reporting_entity_name": "medicare",
+   "reporting_entity_type": "medicare",
+   "version": "2.0",
+   "reporting_structure": [{
+     "reporting_plans": [{
+       "plan_name": "PPO example",
+       "plan_sponsor_name": "Plan ABC example",
+       "plan_id_type": "ein",
+       "plan_id": "111111111",
+       "plan_market_type": "individual",
+       "product_network_type": "PPO"
+     },{
+       "plan_name": "PPO Part ABC",
+       "plan_sponsor_name": "ABC Plan Sponsor"
+       "plan_id_type": "ein",
+       "plan_id": "999999999",
+       "plan_market_type": "individual",
+       "product_network_type": "PPO"
+     }],
+     "in_network_files": [{
+       "description": "in-network file",
+       "location": "https://www.some_site.com/files/in-network-file-123456.json"
+     },{
+       "description": "behavioral in-network shared file",
+       "location": "https://www.some_site.com/files/behavioral-health-0000.json"
+     }],
+     "allowed_amount_file": {
+       "description": "allowed amount file",
+       "location": "https://www.some_site.com/files/allowed-amount-file-987665.json"
+     }
+  },{
+     "reporting_plans": [{
+       "plan_name": "chip",
+       "plan_id_type": "hios",
+       "plan_id": "3333333333",
+       "plan_market_type": "group",
+       "product_network_type": "Gold"
+     }],
+     "in_network_files": [{
+       "description": "in-network file",
+       "location": "https://www.some_site.com/files/chip-in-network-file.json"
+     }],
+     "allowed_amount_file": {
+       "description": "allowed amount file",
+       "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"
+     }
+  }]
+}
