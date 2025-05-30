@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/provider-reference/provider-reference.json",
   "definitions": {
     "providers": {
       "type": "object",
@@ -10,7 +11,8 @@
             "type": "number"
           },
           "uniqueItems": true,
-          "default": []
+          "default": [],
+          "minItems": 1
         },
         "tin": {
           "type": "object",
@@ -20,36 +22,46 @@
               "enum": ["ein", "npi"]
             },
             "value": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1
             }
           },
-          "required": [
-            "type",
-            "value"
-          ]
+          "required": ["type", "value"]
         }
       },
-      "required": [
-        "npi",
-        "tin"
-      ]
+      "required": ["npi", "tin"]
+    },
+    "provider_references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider_group_id": {
+            "type": "number"
+          },
+          "provider_groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/providers"
+            },
+            "default": [],
+            "minItems": 1
+          }
+        },
+        "required": ["provider_group_id", "provider_groups"]
+      },
+      "minLength": 1
     }
   },
   "type": "object",
   "properties": {
-    "provider_groups": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/providers"
-      },
-      "default": []
+    "provider_references": {
+      "$ref": "#/definitions/provider_references"
     },
     "version": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     }
   },
-  "required": [
-    "provider_groups",
-    "version"
-  ]
+  "required": ["provider_references", "version"]
 }

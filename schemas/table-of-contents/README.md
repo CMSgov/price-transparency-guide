@@ -32,7 +32,7 @@ At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/sc
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **description** | Description | String | Description of the file included | Yes | 
-| **location** | Description | String | A full fully qualified domain name on where the in-network data can be downloaded | Yes | 
+| **location** | Description | String | A full HTTPS URL indicating where the data file can be downloaded | Yes | 
 
 In the following example:
 * `Plan A`, `Plan B`, and `Plan C` have identical negotiated rates for all items/services for the **in-network** file. (in-network-file-1.json)
