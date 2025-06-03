@@ -30,5 +30,10 @@ jobs:
         run: npm install -g cms-mrf-validator
       - name: update validator schemas
         run: cms-mrf-validator update
-      - name: test in-network rates example
-        run: cms-mrf-validator validate main/examples/in-network-rates-fee-for-service-single-plan-sample.json --schema-version v1.6.1 -y
+      - name: test in-network rates examples
+        run: |
+          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-bundle-single-plan-sample.json --schema-version v1.6.1 -y
+          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-capitation-single-plan-sample.json --schema-version v1.6.1 -y
+          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json --schema-version v1.6.1 -y
+          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-multiple-plans-sample.json --schema-version v1.6.1 -y
+          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-no-npi.json --schema-version v1.6.1 -y
