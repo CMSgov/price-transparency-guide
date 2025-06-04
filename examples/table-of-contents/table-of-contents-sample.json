@@ -7,13 +7,11 @@
        "plan_name": "medicaid",
        "plan_id_type": "hios",
        "plan_id": "1111111111",
-       "product_network_type": "Silver",
        "plan_market_type": "individual"
      },{
        "plan_name": "medicare",
        "plan_id_type": "hios",
        "plan_id": "000000000",
-       "product_network_type": "Bronze",
        "plan_market_type": "individual"
      }],
      "in_network_files": [{
@@ -32,7 +30,6 @@
        "plan_name": "chip",
        "plan_id_type": "hios",
        "plan_id": "3333333333",
-       "product_network_type": "Gold",
        "plan_market_type": "group"
      }],
      "in_network_files": [{
