@@ -450,21 +450,6 @@
     "plan_id": {
       "type": "string"
     },
-    "product_network_type": {
-      "enum": [
-        "HMO",
-        "PPO",
-        "EPO",
-        "POS",
-        "HDHP",
-        "Catastrophic",
-        "Bronze",
-        "Silver",
-        "Gold",
-        "Platinum",
-        "FFS"
-      ]
-    },
     "plan_market_type": {
       "enum": [
         "group",
@@ -518,32 +503,22 @@
     "plan_name": [
       "plan_id_type",
       "plan_id",
-      "plan_market_type",
-      "product_network_type"
+      "plan_market_type"
     ],
     "plan_id_type": [
       "plan_name",
       "plan_id",
-      "plan_market_type",
-      "product_network_type"
+      "plan_market_type"
     ],
     "plan_id": [
       "plan_name",
       "plan_id_type",
-      "plan_market_type",
-      "product_network_type"
+      "plan_market_type"
     ],
     "plan_market_type": [
       "plan_name",
       "plan_id_type",
-      "plan_id",
-      "product_network_type"
-    ],
-    "product_network_type": [
-      "plan_name",
-      "plan_id_type",
-      "plan_id",
-      "plan_market_type"
+      "plan_id"
     ]
   }
 }
