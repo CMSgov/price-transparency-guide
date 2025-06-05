@@ -90,7 +90,6 @@ This type defines a provider reference object. This object is used in the `provi
 | ----- | ---- | ---- | ---------- | -------- |
 | **provider_group_id** | Provider Group Id |	Number | The unique, primary key for the associated `provider_group` object | Yes |
 | **provider_groups** | Provider Groups | Array  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | No |
-| **location** | Location | String  | A fully qualified domain name on where the provider group data can be downloaded. The file must validate against the requirements found in the [provider reference](https://github.com/CMSgov/price-transparency-guide/tree/master/examples/provider-reference). Examples can be found [here](https://github.com/CMSgov/price-transparency-guide/blob/574caa73dd0a1f49c7b4696f585dc6f8b087d67a/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L25-L28) that would link to a valid provider reference file such as one found [here](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/provider-reference/provider-reference.json). | No |
 
 ##### Additional Notes Concerning `provider_group`, `location`
 Either a `provider_group` or `location` attribute will be required in the Provider Reference Object.
