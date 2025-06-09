@@ -141,22 +141,6 @@
     "plan_name": { "type": "string", "minLength": 1 },
     "plan_id_type": { "enum": ["ein", "hios"] },
     "plan_id": { "type": "string", "minLength": 1 },
-    "product_network_type": {
-      "enum": [
-        "HMO",
-        "PPO",
-        "EPO",
-        "POS",
-        "HDHP",
-        "Catastrophic",
-        "Bronze",
-        "Silver",
-        "Gold",
-        "Platinum",
-        "FFS"
-      ],
-      "description": "do we need this in allowed amounts?"
-    },
     "plan_market_type": { "enum": ["group", "individual"] },
     "last_updated_on": {
       "type": "string",

@@ -187,6 +187,47 @@
         "required": ["service_code"]
       }
     },
+    "providers": {
+      "type": "object",
+      "properties": {
+        "npi": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "uniqueItems": true,
+          "default": [],
+          "minItems": 1
+        },
+        "tin": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["ein", "npi"]
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "if": {
+            "properties": {
+              "type": { "const": "ein" }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "pattern": "\\d{2}-?\\d{7}"
+              }
+            }
+          },
+          "required": ["type", "value"]
+        }
+      },
+      "required": ["npi", "tin"]
+    },
     "billing_code_types": {
       "enum": [
         "CPT",
@@ -234,21 +275,6 @@
       "type": "string",
       "minLength": 1
     },
-    "product_network_type": {
-      "enum": [
-        "HMO",
-        "PPO",
-        "EPO",
-        "POS",
-        "HDHP",
-        "Catastrophic",
-        "Bronze",
-        "Silver",
-        "Gold",
-        "Platinum",
-        "FFS"
-      ]
-    },
     "plan_market_type": {
       "enum": ["group", "individual"]
     },
@@ -264,7 +290,25 @@
       "minLength": 1
     },
     "provider_references": {
-      "$ref": "https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/provider-reference/provider-reference.json#/definitions/provider_references"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider_group_id": {
+            "type": "integer"
+          },
+          "provider_groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/providers"
+            },
+            "default": [],
+            "minItems": 1
+          }
+        },
+        "required": ["provider_group_id", "provider_groups"]
+      },
+      "minLength": 1
     },
     "in_network": {
       "type": "array",
@@ -294,35 +338,9 @@
     "version"
   ],
   "dependencies": {
-    "plan_name": [
-      "plan_id_type",
-      "plan_id",
-      "plan_market_type",
-      "product_network_type"
-    ],
-    "plan_id_type": [
-      "plan_name",
-      "plan_id",
-      "plan_market_type",
-      "product_network_type"
-    ],
-    "plan_id": [
-      "plan_name",
-      "plan_id_type",
-      "plan_market_type",
-      "product_network_type"
-    ],
-    "plan_market_type": [
-      "plan_name",
-      "plan_id_type",
-      "plan_id",
-      "product_network_type"
-    ],
-    "product_network_type": [
-      "plan_name",
-      "plan_id_type",
-      "plan_id",
-      "plan_market_type"
-    ]
+    "plan_name": ["plan_id_type", "plan_id", "plan_market_type"],
+    "plan_id_type": ["plan_name", "plan_id", "plan_market_type"],
+    "plan_id": ["plan_name", "plan_id_type", "plan_market_type"],
+    "plan_market_type": ["plan_name", "plan_id_type", "plan_id"]
   }
 }
