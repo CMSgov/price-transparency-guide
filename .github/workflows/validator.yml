@@ -30,10 +30,11 @@ jobs:
         run: npm install -g cms-mrf-validator
       - name: update validator schemas
         run: cms-mrf-validator update
-      - name: test in-network rates examples
-        run: |
-          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-bundle-single-plan-sample.json --schema-version v1.6.1 -y
-          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-capitation-single-plan-sample.json --schema-version v1.6.1 -y
-          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json --schema-version v1.6.1 -y
-          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-multiple-plans-sample.json --schema-version v1.6.1 -y
-          cms-mrf-validator validate main/examples/in-network-rates/in-network-rates-no-npi.json --schema-version v1.6.1 -y
+      - name: test allowed-amounts examples
+        run: find main/examples/allowed-amounts/ -name *.json -print0 | xargs -0 -n 1 cms-mrf-validator validate --schema-version v1.6.1 -t allowed-amounts -y
+      - name: test in-network-rates examples
+        run: find main/examples/in-network-rates/ -name *.json -print0 | xargs -0 -n 1 cms-mrf-validator validate --schema-version v1.6.1 -t in-network-rates -y
+      - name: test provider-reference examples
+        run: find main/examples/provider-reference/ -name *.json -print0 | xargs -0 -n 1 cms-mrf-validator validate --schema-version v1.6.1 -t provider-reference -y
+      - name: test table-of-contents examples
+        run: find main/examples/table-of-contents/ -name *.json -print0 | xargs -0 -n 1 cms-mrf-validator validate --schema-version v1.6.1 -t table-of-contents -y
