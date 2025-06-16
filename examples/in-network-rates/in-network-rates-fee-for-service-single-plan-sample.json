@@ -1,10 +1,11 @@
 {
   "reporting_entity_name": "medicare",
   "reporting_entity_type": "medicare",
-  "plan_name": "medicaid",
-  "plan_id_type": "hios",
+  "plan_name": "Plan A PPO",
+  "plan_sponsor_name": "ACME small auto shop",
+  "plan_id_type": "ein",
   "plan_id": "1111111111",
-  "plan_market_type": "individual",
+  "plan_market_type": "group",
   "last_updated_on": "2020-08-27",
   "version": "1.2.0",
   "provider_references":[{
