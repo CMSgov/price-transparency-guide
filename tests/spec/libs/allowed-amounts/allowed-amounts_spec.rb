@@ -13,17 +13,17 @@ describe "allowed amounts schema" do
     end
   end
 
-  it "validates the allowed amounts example" do
+  it "validates the allowed amounts single plan example" do
     schema_path = Pathname.new("../schemas/allowed-amounts/allowed-amounts.json")
     schemer = JSONSchemer.schema(schema_path)
     json_data = JSON.parse(File.read("../examples/allowed-amounts/allowed-amounts-single-plan-sample.json"))
     expect(schemer.valid?(json_data)).to be_truthy
   end
 
-  it "validates the allowed amounts empty example" do
+  it "validates the allowed amounts multiple plan example" do
     schema_path = Pathname.new("../schemas/allowed-amounts/allowed-amounts.json")
     schemer = JSONSchemer.schema(schema_path)
-    json_data = JSON.parse(File.read("../examples/allowed-amounts/allowed-amounts-single-plan-empty-sample.json"))
+    json_data = JSON.parse(File.read("../examples/allowed-amounts/allowed-amounts-multiple-plan-sample.json"))
     expect(schemer.valid?(json_data)).to be_truthy
   end
 end

@@ -124,7 +124,7 @@
         "billed_charge": { "type": "number", "minimum": 0 },
         "npi": {
           "type": "array",
-          "items": { "type": "number" },
+          "items": { "type": "integer" },
           "default": [],
           "uniqueItems": true,
           "minItems": 1
