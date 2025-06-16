@@ -70,7 +70,6 @@
           "enum": ["group", "individual"]
         }
       },
-
       "if": {
         "properties": {
           "plan_id_type": {
