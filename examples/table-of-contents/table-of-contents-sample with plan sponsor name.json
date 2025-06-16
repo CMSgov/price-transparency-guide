@@ -27,18 +27,19 @@
      }
   },{
      "reporting_plans": [{
-       "plan_name": "chip",
-       "plan_id_type": "hios",
-       "plan_id": "3333333333",
-       "plan_market_type": "group"
+       "plan_name": "plan abc",
+       "plan_id_type": "ein",
+       "plan_id": "222222222",
+       "plan_market_type": "group",
+        "plan_sponsor_name": "amco abc sport"
      }],
      "in_network_files": [{
        "description": "in-network file",
-       "location": "https://www.some_site.com/files/chip-in-network-file.json"
+       "location": "https://www.some_site.com/files/abc-in-network-file.json"
      }],
      "allowed_amount_file": {
        "description": "allowed amount file",
-       "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"
+       "location": "https://www.some_site.com/files/abc-allowed-amount-file.json"
      }
   }]
 }
