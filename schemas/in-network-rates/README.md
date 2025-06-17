@@ -29,18 +29,10 @@ This type defines an in-network object.
 | **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code) |  Yes |
 | **description** | Description | String | Brief description of the item/service | Yes |
 | **negotiated_rates** | Negotiated Rates | Array | This is an array of [negotiated rate details object types](#negotiated-rate-details-object) | Yes |
-| **bundled_codes** | Bundled Codes | Array | This is an array of [bundle code objects](#bundle-code-object). This array contains all the different codes in a bundle if `bundle` is selected for `negotiation_arrangement` | No |
-| **covered_services** | Covered Service | Array | This is an array of [covered services objects](#covered-services-object). This array contains all the different codes in a capitation arrangement if `capitation` is selected for `negotiation_arrangement` | No |
+| **bundled_codes** | Bundled Codes | Array | This is an array of [contained billing code objects](#contained-billing-code-object). This array contains all the different codes in a bundle if `bundle` is selected for `negotiation_arrangement` | No |
+| **covered_services** | Covered Service | Array | This is an array of [contained billing code objects](#contained-billing-code-object). This array contains all the different codes in a capitation arrangement if `capitation` is selected for `negotiation_arrangement` | No |
 
-#### Bundle Code Object
-| Field | Name | Type | Definition | Required |
-| ----- | ---- | ---- | ---------- | -------- |
-| **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
-| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2. If there is no version available for the `billing_code_type`, use the current plan's year `YYYY` that is being disclosed. | Yes |
-| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code)| Yes |
-| **description** | Description | String | Brief description of the item/service | Yes |
-
-#### Covered Services Object
+#### Contained Billing Code Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
@@ -149,7 +141,7 @@ For `service_code`, if a negotiated rate for either "professional", "institution
 ##### Additional Notes Concerning `billing_code_type`
 Negotiated rates for items and services can come from a variety of billing code standards. The list of possible allowed values is in the following table with the name of the standard and the values representing that standard that would be expected if being reported on. For standards that are used for negotiated rate that are not in the following table, please open a [discussion](https://github.com/CMSgov/price-transparency-guide/discussions) to potentially add a new standard to the table.
 
-There are custom `billing_code_type`s defined for the Transparency in Coverage rule. These coding types are prefixed with `CTSM-`. These coding types are meant to help with generic reporting. The complete list can be found the in following table.
+There are custom `billing_code_type`s defined for the Transparency in Coverage rule. These coding types are prefixed with `CSTM-`. These coding types are meant to help with generic reporting. The complete list can be found the in following table.
 
 | Standard Name | Reporting Value | Additional Information |
 | ------------- | --------------- | ---------------------- |
