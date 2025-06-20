@@ -8,13 +8,14 @@
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
 | **plan_id** | Plan ID | String | The 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for each plan or coverage offered by a plan or issuer. | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
+| **plan_sponsor_name** | Plan Sponsor Name | String | The Plan Sponsor Name when Plan ID Type is "ein" | No |
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
 | **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
 | **version** | Version | String | The version of the schema for the produced information | Yes |
 
-##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`
-These attributes are not required for files that will be reporting multiple plans per file but ARE REQUIRED for single plans that are being reported that do not wish to create a table-of-content file. For payers/issuers that will be reporting multiple plans per file, these attributes will be required in a table-of-contents file.
+##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`, 'plan_sponsor_name'
+These attributes are not required for files that will be reporting multiple plans per file but ARE REQUIRED for single plans that are being reported that do not wish to create a table-of-content file. For payers/issuers that will be reporting multiple plans per file, these attributes will be required in a table-of-contents file.  The 'plan_sponsor_name' is only required when 'plan_id_type' is "ein".
 
 #### In-Network Object
 
@@ -92,6 +93,7 @@ The negotiated price object contains negotiated pricing information that the typ
 | **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", "fee schedule", "percentage", and "per diem". See [additional notes](#additional-notes-1). | Yes |
 | **negotiated_rate** | Negotiated Rate | Number | The dollar or percentage amount based on the `negotiation_type` | Yes |
 | **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD). See additional notes. | Yes |
+| **setting** | Setting | String | Allowed values: "inpatient", "outpatient", "both" | Yes |
 | **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided. When attribute of `billing_class` has the value of "professional", `service_code` is required.  | No |
 | **billing_class** | Billing Class | String | Allowed values: "professional", "institutional", "both" | Yes |
 | **billing_code_modifier** | Billing Code Modifier | Array | An array of strings. There are certain billing code types that allow for modifiers (e.g. The CPT coding type allows for modifiers). If a negotiated rate for a billing code type is dependent on a modifier for the reported item or service, then an additional negotiated price object should be included to represent the difference. | No |
@@ -131,6 +133,7 @@ For `service_code`, if a negotiated rate for either "professional", "institution
      "negotiated_type": "negotiated",
      "negotiated_rate": 123.45,
      "expiration_date": "2022-01-01",
+     "setting": "inpatient",
      "service_code": ["CSTM-00"],
      "billing_class": "professional"
    }],
@@ -192,6 +195,7 @@ The following would applied the `negotiated_price` object(s) to all CPT codes:
      "negotiated_type": "negotiated",
      "negotiated_rate": 12.45,
      "expiration_date": "2022-01-01",
+     "setting": "inpatient",
      "service_code": ["18", "19", "11"],
      "billing_class": "institutional"
    }]
@@ -220,6 +224,7 @@ The following would applied the `negotiated_price` object(s) to each `billing_co
      "negotiated_type": "negotiated",
      "negotiated_rate": 12.45,
      "expiration_date": "2022-01-01",
+     "setting": "inpatient",
      "service_code": ["18", "19", "11"],
      "billing_class": "institutional"
    }]
