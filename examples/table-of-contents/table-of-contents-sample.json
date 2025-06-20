@@ -1,7 +1,7 @@
 {
   "reporting_entity_name": "medicare",
   "reporting_entity_type": "medicare",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "reporting_structure": [
     {
       "reporting_plans": [
@@ -36,21 +36,22 @@
     {
       "reporting_plans": [
         {
-          "plan_name": "chip",
-          "plan_id_type": "hios",
-          "plan_id": "3333333333",
-          "plan_market_type": "group"
+          "plan_name": "example A",
+          "plan_id_type": "ein",
+          "plan_id": "333333333",
+          "plan_market_type": "group",
+          "plan_sponsor_name": "ABC example A sponsor"
         }
       ],
       "in_network_files": [
         {
           "description": "in-network file",
-          "location": "https://www.some_site.com/files/chip-in-network-file.json"
+          "location": "https://www.some_site.com/files/examA-in-network-file.json"
         }
       ],
       "allowed_amount_file": {
         "description": "allowed amount file",
-        "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"
+        "location": "https://www.some_site.com/files/examA-allowed-amount-file.json"
       }
     }
   ]
