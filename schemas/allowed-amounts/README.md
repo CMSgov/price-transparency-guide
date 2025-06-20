@@ -8,6 +8,7 @@
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
 | **plan_id** | Plan ID | String | The 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for    each plan or coverage offered by a plan or issuer. | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
+| **plan_sponsor_name** | Plan Sponsor Name | String | Plan Sponsor Name is required when plan_id_type = "ein"| No |
 | **out_of_network** | Out Of Network | Array | An array of [out-of-network object types](#out-of-network-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
 | **version** | Version | String | The version of the schema for the produced information | Yes |
