@@ -27,6 +27,7 @@ At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/sc
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | Yes |
 | **plan_id** | Plan ID | String | The 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for each plan or coverage offered by a plan or issuer. | Yes |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
+| **plan_sponsor_name** | Plan Sponsor Name | String | Plan Sponsor Name, when Plan ID Type is equal to "EIN"| No |
 
 #### File Location Object
 | Field | Name | Type | Definition | Required |
@@ -40,6 +41,7 @@ In the following example:
 * `Plan A` and `Plan C` both didn't meet the 20 claim threshold for any services for the **allowed amounts** file. (allowed-amounts-file-empty.json)
 * `Plan B` met the 20 claim threshold for multiple services for the **allowed amounts** file. (allowed-amounts-file-1.json)
 * `Plan A`, `Plan B`, and `Plan C` all have different HIOS numbers, they are different products.
+* 'Plan E' is EIN and will define Plan Sponsor Name
 
 ```json
 {
@@ -93,6 +95,18 @@ In the following example:
         "description":"allowed amount file",
         "location":"https://www.some_site.com/files/allowed-amounts-file-empty.json"
       }
+    },{
+      "reporting_plans":[{
+          "plan_name":"Plan E",
+          "plan_id_type":"ein",
+          "plan_id":"111111111",
+          "plan_market_type":"individual",
+          "plan_sponsor_name":"Plan ABC and E company"
+        }],
+      "in_network_files":[{
+        "description":"in-network file",
+        "location":"https://www.some_site.com/files/in-network-file-abc-E.json"
+      }]
     },{
       "reporting_plans":[
         {
