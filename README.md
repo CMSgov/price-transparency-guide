@@ -35,6 +35,7 @@ Transparency in Coverage rule guidance is released on [CMS'](https://www.cms.gov
 * [https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf](https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf)
 * [https://www.cms.gov/sites/default/files/2022-04/FAQ-Affordable-Care-Act-Implementation-Part-53.pdf](https://www.cms.gov/sites/default/files/2022-04/FAQ-Affordable-Care-Act-Implementation-Part-53.pdf)
 * [https://www.cms.gov/files/document/faqs-about-affordable-care-act-implementation-part-61.pdf](https://www.cms.gov/files/document/faqs-about-affordable-care-act-implementation-part-61.pdf)
+* [https://www.cms.gov/files/document/aca-faqs-part-70.pdf](https://www.cms.gov/files/document/aca-faqs-part-70.pdf)
 
 Developer Documentation
 =======================
