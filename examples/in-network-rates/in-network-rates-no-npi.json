@@ -2,6 +2,7 @@
   "reporting_entity_name": "medicare",
   "reporting_entity_type": "medicare",
   "plan_name": "medicaid",
+  "issuer_name": "ACME Issuer",
   "plan_id_type": "ein",
   "plan_sponsor_name": "plan sponsor",
   "plan_id": "1111111111",
