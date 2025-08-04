@@ -2,6 +2,7 @@
   "reporting_entity_name": "cms",
   "reporting_entity_type": "cms",
   "plan_name": "medicare",
+  "issuer_name": "ACME Issuer",
   "plan_id_type": "hios",
   "plan_id": "0000000000",
   "plan_market_type": "individual",

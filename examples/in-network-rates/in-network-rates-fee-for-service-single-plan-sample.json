@@ -2,6 +2,7 @@
   "reporting_entity_name": "medicare",
   "reporting_entity_type": "medicare",
   "plan_name": "Plan A PPO",
+  "issuer_name": "ACME Issuer",
   "plan_sponsor_name": "ACME small auto shop",
   "plan_id_type": "ein",
   "plan_id": "1111111111",
