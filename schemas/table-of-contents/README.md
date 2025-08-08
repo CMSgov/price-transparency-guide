@@ -47,7 +47,7 @@ In the following example:
 {
   "reporting_entity_name":"...",
   "reporting_entity_type":"...",
-  "version":"v2.0.0",
+  "version":"2.0.0",
   "reporting_structure":[
     {
       "reporting_plans":[{
