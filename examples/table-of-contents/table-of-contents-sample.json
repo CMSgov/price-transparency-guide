@@ -1,15 +1,17 @@
 {
    "reporting_entity_name": "medicare",
    "reporting_entity_type": "medicare",
-   "version": "1.4.0",
+   "version": "2.0.0",
    "reporting_structure": [{
      "reporting_plans": [{
        "plan_name": "medicaid",
+       "issuer_name": "Issuer Ex1 Name",
        "plan_id_type": "hios",
        "plan_id": "1111111111",
        "plan_market_type": "individual"
      },{
        "plan_name": "medicare",
+       "issuer_name": "Issuer Ex2 Name",
        "plan_id_type": "hios",
        "plan_id": "000000000",
        "plan_market_type": "individual"
@@ -28,6 +30,7 @@
   },{
      "reporting_plans": [{
        "plan_name": "chip",
+       "issuer_name": "Issuer Ex3 Name",
        "plan_id_type": "hios",
        "plan_id": "3333333333",
        "plan_market_type": "group"
@@ -39,6 +42,23 @@
      "allowed_amount_file": {
        "description": "allowed amount file",
        "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"
+     }
+  },{
+     "reporting_plans": [{
+       "plan_name": "EIN example",
+       "issuer_name": "Issuer EIN Ex Name",
+       "plan_id_type": "ein",
+       "plan_id": "33-3333333",
+       "plan_sponsor_name": "Sponsor Name Example"
+       "plan_market_type": "group"
+     }],
+     "in_network_files": [{
+       "description": "in-network file",
+       "location": "https://www.some_site.com/files/cEIN-in-network-file.json"
+     }],
+     "allowed_amount_file": {
+       "description": "allowed amount file",
+       "location": "https://www.some_site.com/files/cEIN-allowed-amount-file.json"
      }
   }]
 }
