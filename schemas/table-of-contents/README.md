@@ -23,9 +23,11 @@ At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/sc
 #### Reporting Plans Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company. | Yes |
+| **plan_name** | Plan Name | String | The plan name and/or insurance company. | Yes |
+| **issuer_name** | Issuer Name | String | The name of the plan's issuer. | Yes |
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | Yes |
 | **plan_id** | Plan ID | String | The 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for each plan or coverage offered by a plan or issuer. | Yes |
+| **plan_sponsor_name** | Plan Sponsor Name | String | If the plan_id_type is "ein", the common business name of the plan sponssor. | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
 
 #### File Location Object
@@ -45,15 +47,18 @@ In the following example:
 {
   "reporting_entity_name":"...",
   "reporting_entity_type":"...",
+  "version":"v2.0.0",
   "reporting_structure":[
     {
       "reporting_plans":[{
           "plan_name":"Plan A",
+          "issuer_name": "ACME Issuer Name",
           "plan_id_type":"hios",
           "plan_id":"0000000000",
           "plan_market_type":"individual"
         },{
           "plan_name":"Plan B",
+          "issuer_name": "B example Issuer Name",
           "plan_id_type":"hios",
           "plan_id":"11111111111",
           "plan_market_type":"individual"
@@ -65,6 +70,7 @@ In the following example:
     },{
       "reporting_plans":[{
           "plan_name":"Plan C",
+          "issuer_name": "C example Issuer Name",
           "plan_id_type":"hios",
           "plan_id":"222222222",
           "plan_market_type":"individual"
@@ -84,7 +90,8 @@ In the following example:
     },{
       "reporting_plans":[
         {
-          "plan_name":"Plan A",
+          "plan_name":"Plan A1",
+          "issuer_name": "A1 example Issuer Name",
           "plan_id_type":"hios",
           "plan_id":"0000000000",
           "plan_market_type":"individual"
@@ -96,9 +103,11 @@ In the following example:
     },{
       "reporting_plans":[
         {
-          "plan_name":"Plan B",
-          "plan_id_type":"hios",
-          "plan_id":"11111111111",
+          "plan_name":"Plan B1",
+          "issuer_name": "B1 example Issuer Name",
+          "plan_id_type":"ein",
+          "plan_id":"11-1111111",
+          "plan_sponsor_name": "B1 Sponsor Name",
           "plan_market_type":"individual"
         }],
       "allowed_amount_file":{
