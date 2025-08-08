@@ -1,57 +1,87 @@
 {
-  "reporting_entity_name": "medicare",
-  "reporting_entity_type": "medicare",
-  "version": "1.4.0",
-  "reporting_structure": [
-    {
-      "reporting_plans": [
+    "reporting_entity_name": "entity name ex",
+    "reporting_entity_type": "entity type ex",
+    "version": "2.0.0",
+    "reporting_structure": [
         {
-          "plan_name": "medicaid",
-          "plan_id_type": "hios",
-          "plan_id": "1111111111",
-          "plan_market_type": "individual"
+            "reporting_plans": [
+                {
+                    "plan_name": "Plan A",
+                    "issuer_name": "ACME Issuer Name",
+                    "plan_id_type": "hios",
+                    "plan_id": "0200000000",
+                    "plan_market_type": "individual"
+                },
+                {
+                    "plan_name": "Plan B",
+                    "issuer_name": "B example Issuer Name",
+                    "plan_id_type": "hios",
+                    "plan_id": "11111111111",
+                    "plan_market_type": "individual"
+                }
+            ],
+            "in_network_files": [
+                {
+                    "description": "in-network file",
+                    "location": "https://www.some_site.com/files/in-network-file-1.json"
+                }
+            ]
         },
         {
-          "plan_name": "medicare",
-          "plan_id_type": "hios",
-          "plan_id": "000000000",
-          "plan_market_type": "individual"
-        }
-      ],
-      "in_network_files": [
-        {
-          "description": "in-network file",
-          "location": "https://www.some_site.com/files/in-network-file-123456.json"
+            "reporting_plans": [
+                {
+                    "plan_name": "Plan C",
+                    "issuer_name": "C example Issuer Name",
+                    "plan_id_type": "hios",
+                    "plan_id": "222222222",
+                    "plan_market_type": "individual"
+                }
+            ],
+            "in_network_files": [
+                {
+                    "description": "in-network file primary",
+                    "location": "https://www.some_site.com/files/in-network-file-1Ca.json"
+                },
+                {
+                    "description": "behavioral health shared file",
+                    "location": "https://www.some_site.com/files/BH-health-shared-0002.json"
+                }
+            ],
+            "allowed_amount_file": {
+                "description": "allowed amount file",
+                "location": "https://www.some_site.com/files/allowed-amounts-file-empty.json"
+            }
         },
         {
-          "description": "behavioral in-network shared file",
-          "location": "https://www.some_site.com/files/behavioral-health-0000.json"
-        }
-      ],
-      "allowed_amount_file": {
-        "description": "allowed amount file",
-        "location": "https://www.some_site.com/files/allowed-amount-file-987665.json"
-      }
-    },
-    {
-      "reporting_plans": [
+            "reporting_plans": [
+                {
+                    "plan_name": "Plan A1",
+                    "issuer_name": "A1 example Issuer Name",
+                    "plan_id_type": "hios",
+                    "plan_id": "8800000000",
+                    "plan_market_type": "individual"
+                }
+            ],
+            "allowed_amount_file": {
+                "description": "allowed amount file",
+                "location": "https://www.some_site.com/files/allowed-amounts-file-empty.json"
+            }
+        },
         {
-          "plan_name": "chip",
-          "plan_id_type": "hios",
-          "plan_id": "3333333333",
-          "plan_market_type": "group"
+            "reporting_plans": [
+                {
+                    "plan_name": "Plan B1",
+                    "issuer_name": "B1 example Issuer Name",
+                    "plan_id_type": "ein",
+                    "plan_id": "777777777",
+                    "plan_sponsor_name": "B1 Sponsor Name",
+                    "plan_market_type": "individual"
+                }
+            ],
+            "allowed_amount_file": {
+                "description": "allowed amount file",
+                "location": "https://www.some_site.com/files/allowed-amounts-file-sponsor1.json"
+            }
         }
-      ],
-      "in_network_files": [
-        {
-          "description": "in-network file",
-          "location": "https://www.some_site.com/files/chip-in-network-file.json"
-        }
-      ],
-      "allowed_amount_file": {
-        "description": "allowed amount file",
-        "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"
-      }
-    }
-  ]
+    ]
 }
