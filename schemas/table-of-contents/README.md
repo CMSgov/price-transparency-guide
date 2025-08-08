@@ -106,7 +106,7 @@ In the following example:
           "plan_name":"Plan B1",
           "issuer_name": "B1 example Issuer Name",
           "plan_id_type":"ein",
-          "plan_id":"11-1111111",
+          "plan_id":"777777777",
           "plan_sponsor_name": "B1 Sponsor Name",
           "plan_market_type":"individual"
         }],
