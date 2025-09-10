@@ -209,6 +209,10 @@
             "value": {
               "type": "string",
               "minLength": 1
+            },
+            "business_name": {
+              "type": "string",
+              "minLength": 1
             }
           },
           "if": {
@@ -221,7 +225,8 @@
               "value": {
                 "pattern": "\\d{2}-?\\d{7}"
               }
-            }
+            },
+            "required": ["business_name"]
           },
           "required": ["type", "value"]
         }

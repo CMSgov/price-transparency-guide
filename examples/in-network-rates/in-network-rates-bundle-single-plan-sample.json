@@ -16,14 +16,16 @@
           "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
           "tin": {
             "type": "ein",
-            "value": "11-1111111"
+            "value": "11-1111111",
+            "business_name": "ACME Provider Group"
           }
         },
         {
           "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
           "tin": {
             "type": "ein",
-            "value": "22-2222222"
+            "value": "22-2222222",
+            "business_name": "Midland Medical Group"
           }
         }
       ]
@@ -35,7 +37,8 @@
           "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
           "tin": {
             "type": "ein",
-            "value": "22-2222222"
+            "value": "22-2222222",
+            "business_name": "Midland Medical Group"
           }
         }
       ]
