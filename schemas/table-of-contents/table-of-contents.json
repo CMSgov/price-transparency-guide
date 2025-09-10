@@ -97,6 +97,13 @@
       "type": "string",
       "minLength": 1
     },
+    "last_updated_on": {
+      "type": "string",
+      "format": "date",
+      "description": "This is a date format of YYYY-MM-DD",
+      "minLength": 10,
+      "maxLength": 10
+    },
     "reporting_structure": {
       "type": "array",
       "items": {
@@ -111,6 +118,7 @@
     "reporting_entity_name",
     "reporting_entity_type",
     "reporting_structure",
+    "last_updated_on",
     "version"
   ]
 }
