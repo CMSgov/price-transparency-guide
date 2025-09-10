@@ -12,6 +12,7 @@
   "provider_references": [
     {
       "provider_group_id": 1,
+      "network_name": "ACME Choice Provider Group",
       "provider_groups": [
         {
           "npi": [0],

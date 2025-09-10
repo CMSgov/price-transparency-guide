@@ -308,9 +308,13 @@
             },
             "default": [],
             "minItems": 1
+          },
+          "network_name": {
+            "type": "string",
+            "minLength": 1
           }
         },
-        "required": ["provider_group_id", "provider_groups"]
+        "required": ["provider_group_id", "provider_groups", "network_name"]
       },
       "minLength": 1
     },
