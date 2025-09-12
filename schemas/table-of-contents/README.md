@@ -24,8 +24,9 @@ At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/sc
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company. | Yes |
-| **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | Yes |
-| **plan_id** | Plan ID | String | The 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for each plan or coverage offered by a plan or issuer. | Yes |
+| **plan_id_type** | Plan Id Type | String | Allowed values: "ein" and "hios" | Yes |
+| **plan_sponsor_name** | Plan Sponsor Name | String | 	If the `plan_id_type` is "ein", the common business name of the plan sponsor | No |
+| **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
 
 #### File Location Object
