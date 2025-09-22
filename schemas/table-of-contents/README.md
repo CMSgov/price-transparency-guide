@@ -6,6 +6,7 @@
 | **reporting_entity_name** | Entity Name | String | The legal name of the entity publishing the machine-readable file. | Yes |
 | **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
 | **reporting_structure** | Reporting Structure | Array | An array of [reporting structure object types](#reporting-structure-object) | Yes |
+| **last_updated_on** | Last Updated On | String | The date of the last published nformation | Yes |
 | **version** | Version | String | The version of the schema for the produced information | Yes |
 
 #### Reporting Structure Object
@@ -23,10 +24,13 @@ At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/sc
 #### Reporting Plans Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company. | Yes |
+| **issuer_name** | Issuer Name | String | The issuer name. | Yes |
+| **plan_name** | Plan Name | String | The plan name. | Yes |
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | Yes |
 | **plan_id** | Plan ID | String | The 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for each plan or coverage offered by a plan or issuer. | Yes |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | Yes |
+| **plan_sponsor_name** | Plan Sponsor Name | String | The name of the plan sponsor when the plan id type equals 'ein' | No |
+
 
 #### File Location Object
 | Field | Name | Type | Definition | Required |
@@ -48,11 +52,13 @@ In the following example:
   "reporting_structure":[
     {
       "reporting_plans":[{
+          "issuer_name": "Issuer A name",
           "plan_name":"Plan A",
           "plan_id_type":"hios",
           "plan_id":"0000000000",
           "plan_market_type":"individual"
         },{
+          "issuer_name": "Issuer B name",
           "plan_name":"Plan B",
           "plan_id_type":"hios",
           "plan_id":"11111111111",
@@ -64,6 +70,7 @@ In the following example:
       }]
     },{
       "reporting_plans":[{
+          "issuer_name":  "Issuer C name",
           "plan_name":"Plan C",
           "plan_id_type":"hios",
           "plan_id":"222222222",
@@ -84,6 +91,7 @@ In the following example:
     },{
       "reporting_plans":[
         {
+          "issuer_name": "Plan A Allowed",
           "plan_name":"Plan A",
           "plan_id_type":"hios",
           "plan_id":"0000000000",
@@ -96,6 +104,7 @@ In the following example:
     },{
       "reporting_plans":[
         {
+          "issuer_name": "Issuer B name"
           "plan_name":"Plan B",
           "plan_id_type":"hios",
           "plan_id":"11111111111",
