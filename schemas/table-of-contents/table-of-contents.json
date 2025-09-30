@@ -59,6 +59,10 @@
           "type": "string",
           "minLength": 1
         },
+        "issuer_name": {
+          "type": "string",
+          "minLength": 1
+        },
         "plan_id_type": {
           "enum": ["ein", "hios"]
         },
@@ -80,7 +84,7 @@
       "then": {
         "required": ["plan_sponsor_name"]
       },
-      "required": ["plan_name", "plan_id_type", "plan_id", "plan_market_type"]
+      "required": ["plan_name", "plan_id_type", "plan_id", "plan_market_type", "issuer_name"]
     }
   },
   "type": "object",
