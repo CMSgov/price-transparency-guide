@@ -58,7 +58,7 @@ In the following example:
         },{
           "plan_name":"Plan B",
           "plan_id_type":"hios",
-          "plan_id":"11111111111",,
+          "plan_id":"11111111111",
           "issuer_name": "ACME Payer 2",
           "plan_market_type":"individual"
         }],
