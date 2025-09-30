@@ -4,16 +4,18 @@
 | ----- | ---- | ---- | ---------- | -------- |
 | **reporting_entity_name** | Entity Name | String | The legal name of the entity publishing the machine-readable file. | Yes |
 | **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
-| **plan_name** | Plan Name | String | The plan name and name of plan sponsor and/or insurance company. | No |
+| **issuer_name** | Issuer Name | String | The name of the plan's issuer. | No |
+| **plan_name** | Plan Name | String | The plan's name. | No |
 | **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
-| **plan_id** | Plan ID | String | The 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier, or if no HIOS identifier is available, the Employer Identification Number (EIN)for each plan or coverage offered by a plan or issuer. | No |
+| **plan_id** | Plan ID | String | If the `plan_id_type`'s value is "HIOS", the 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier. If the `plan_id_type`'s value is "EIN", the Employer Identification Number (EIN) of the plan sponsor. | No |
+| **plan_sponsor_name** | Plan Sponsor Name | String | If the `plan_id_type` is "EIN", the common business name of the plan sponsor | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
 | **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
 | **version** | Version | String | The version of the schema for the produced information | Yes |
 
-##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`
+##### Additional Notes Concerning `plan_name`, `plan_id_type`, `plan_id`, `plan_market_type`, `issuer_name`, `plan_sponsor_name`
 These attributes are not required for files that will be reporting multiple plans per file but ARE REQUIRED for single plans that are being reported that do not wish to create a table-of-content file. For payers/issuers that will be reporting multiple plans per file, these attributes will be required in a table-of-contents file.
 
 #### In-Network Object
@@ -26,21 +28,14 @@ This type defines an in-network object.
 | **name** | Name | String | This is name of the item/service that is offered | Yes |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
 | **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2. If there is no version available for the `billing_code_type`, use the current plan's year `YYYY` that is being disclosed.  | Yes |
+| **severity_of_illness** | Severity Of Illness | String | Various DRG billing code type negotiated rates are dependent on a severity of illness (SOI). If a DRG's negotiated rates is based on a SOI, the SOI value is to be included. | No |
 | **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code) |  Yes |
 | **description** | Description | String | Brief description of the item/service | Yes |
 | **negotiated_rates** | Negotiated Rates | Array | This is an array of [negotiated rate details object types](#negotiated-rate-details-object) | Yes |
-| **bundled_codes** | Bundled Codes | Array | This is an array of [bundle code objects](#bundle-code-object). This array contains all the different codes in a bundle if `bundle` is selected for `negotiation_arrangement` | No |
-| **covered_services** | Covered Service | Array | This is an array of [covered services objects](#covered-services-object). This array contains all the different codes in a capitation arrangement if `capitation` is selected for `negotiation_arrangement` | No |
+| **bundled_codes** | Bundled Codes | Array | This is an array of [contained billing code objects](#contained-billing-code-object). This array contains all the different codes in a bundle if `bundle` is selected for `negotiation_arrangement` | No |
+| **covered_services** | Covered Service | Array | This is an array of [contained billing code objects](#contained-billing-code-object). This array contains all the different codes in a capitation arrangement if `capitation` is selected for `negotiation_arrangement` | No |
 
-#### Bundle Code Object
-| Field | Name | Type | Definition | Required |
-| ----- | ---- | ---- | ---------- | -------- |
-| **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
-| **billing_code_type_version** | Billing Code Type Version | String | There might be versions associated with the `billing_code_type`. For example, Medicare's current (as of 5/24/21) MS-DRG version is 37.2. If there is no version available for the `billing_code_type`, use the current plan's year `YYYY` that is being disclosed. | Yes |
-| **billing_code** | Billing Code | String | The code used by a plan or issuer or its in-network providers to identify health care items or services for purposes of billing, adjudicating, and paying claims for a covered item or service. If a custom code is used for `billing_code_type`, please refer to [custom billing code values](#additional-notes-concerning-billing_code)| Yes |
-| **description** | Description | String | Brief description of the item/service | Yes |
-
-#### Covered Services Object
+#### Contained Billing Code Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **billing_code_type** | Billing Code Type | String | Common billing code types. Please see a list of the [currently allowed codes](#additional-notes-concerning-billing_code_type) at the bottom of this document. | Yes |
@@ -54,12 +49,8 @@ This type defines a negotiated rate object.
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **negotiated_prices** | Negotiated Prices |	Array | An array of [negotiated price objects](#negotiated-price-object) defines information about the type of negotiated rate as well as the dollar amount of the negotiated rate | Yes |
-| **provider_groups** | Provider Groups | Array | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | No |
-| **provider_references** | Provider References | Array | An array of `provider_group_id`s defined in the [provider reference Object.](#provider-reference-object) | No |
-
-##### Additional Notes Concerning `provider_groups`, `provider_references`
-Either a `provider_groups` or `provider_references` attribute will be required in the Negotiated Rate Object to map the provider network to the item/service that is being documented. The schema requirements can be found [here](https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/in-network-rates/in-network-rates.json#L197-L200).
+| **negotiated_prices** | Negotiated Prices | Array | An array of [negotiated price objects](#negotiated-price-object) defines information about the type of negotiated rate as well as the dollar amount of the negotiated rate | Yes |
+| **provider_references** | Provider References | Array | An array of `provider_group_id`s defined in the [provider reference Object.](#provider-reference-object) | Yes |
 
 #### Providers Object
 | Field | Name | Type | Definition | Required |
@@ -84,12 +75,8 @@ This type defines a provider reference object. This object is used in the `provi
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **provider_group_id** | Provider Group Id |	Number | The unique, primary key for the associated `provider_group` object | Yes |
-| **provider_groups** | Provider Groups | Array  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | No |
-| **location** | Location | String  | A fully qualified domain name on where the provider group data can be downloaded. The file must validate against the requirements found in the [provider reference](https://github.com/CMSgov/price-transparency-guide/tree/master/examples/provider-reference). Examples can be found [here](https://github.com/CMSgov/price-transparency-guide/blob/574caa73dd0a1f49c7b4696f585dc6f8b087d67a/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L25-L28) that would link to a valid provider reference file such as one found [here](https://github.com/CMSgov/price-transparency-guide/blob/master/examples/provider-reference/provider-reference.json). | No |
-
-##### Additional Notes Concerning `provider_group`, `location`
-Either a `provider_group` or `location` attribute will be required in the Provider Reference Object.
+| **provider_group_id** | Provider Group Id | Number | The unique, primary key for the associated `provider_group` object | Yes |
+| **provider_groups** | Provider Groups | Array  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
 
 #### Negotiated Price Object
 
@@ -97,11 +84,12 @@ The negotiated price object contains negotiated pricing information that the typ
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **negotiated_type** | Negotiated Type |	String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", "fee schedule", "percentage", and "per diem". See [additional notes](#additional-notes-1). | Yes |
+| **negotiated_type** | Negotiated Type | String | There are a few ways in which negotiated rates can happen. Allowed values: "negotiated", "derived", "fee schedule", "percentage", and "per diem". See [additional notes](#additional-notes-1). | Yes |
 | **negotiated_rate** | Negotiated Rate | Number | The dollar or percentage amount based on the `negotiation_type` | Yes |
 | **expiration_date** | Expiration Date | String | The date in which the agreement for the `negotiated_price` based on the `negotiated_type` ends. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD). See additional notes. | Yes |
 | **service_code** | Place of Service Code | An array of two-digit strings | The [CMS-maintained two-digit code](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set) that is placed on a professional claim to indicate the setting in which a service was provided. When attribute of `billing_class` has the value of "professional", `service_code` is required.  | No |
-| **billing_class** | Billing Class | String | Allowed values: "professional", "institutional" | Yes |
+| **billing_class** | Billing Class | String | Allowed values: "professional", "institutional", "both" | Yes |
+| **setting** | Setting | String | Allowed values: "inpatient", "outpatient", "both" | Yes |
 | **billing_code_modifier** | Billing Code Modifier | Array | An array of strings. There are certain billing code types that allow for modifiers (e.g. The CPT coding type allows for modifiers). If a negotiated rate for a billing code type is dependent on a modifier for the reported item or service, then an additional negotiated price object should be included to represent the difference. | No |
 | **additional_information** | Additional Information | String | The additional information text field can be used to provide context for negotiated arrangements that do not fit the existing schema format. Please open a Github discussion to ask a question about your situation if you plan to use this attribute. | No |
 
@@ -117,13 +105,39 @@ For `expiration_date`, there may be a situation when a contract arrangement is "
 
 In situation where there is not expiration date ([see discussion here](https://github.com/CMSgov/price-transparency-guide/discussions/42)), the value `9999-12-31` would be entered.
 
-For `service_code`, if a negotiated rate for either "professional" or "institutional" `billing_class` is the same for all `service_code`s, the custom value of `CSTM-00` can be used to avoid listing all possible service codes.
+For `service_code`, if a negotiated rate for either "professional", "institutional", or "both" `billing_class` is the same for all `service_code`s, the custom value of `CSTM-00` can be used to avoid listing all possible service codes.
 
+```json
+{
+ "negotiation_arrangement": "ffs",
+ "name": "Knee Replacement",
+ "billing_code_type": "CPT",
+ "billing_code_type_version": "2020",
+ "billing_code": "27447",
+ "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
+ "negotiated_rates": [{
+   "provider_groups": [{
+     "npi": [6666666666],
+     "tin":{
+       "type": "npi",
+       "value": "6666666666"
+     }
+   }],
+   "negotiated_prices": [{
+     "negotiated_type": "negotiated",
+     "negotiated_rate": 123.45,
+     "expiration_date": "2022-01-01",
+     "service_code": ["CSTM-00"],
+     "billing_class": "professional"
+   }],
+ }]
+}
+```
 
 ##### Additional Notes Concerning `billing_code_type`
 Negotiated rates for items and services can come from a variety of billing code standards. The list of possible allowed values is in the following table with the name of the standard and the values representing that standard that would be expected if being reported on. For standards that are used for negotiated rate that are not in the following table, please open a [discussion](https://github.com/CMSgov/price-transparency-guide/discussions) to potentially add a new standard to the table.
 
-There are custom `billing_code_type`s defined for the Transparency in Coverage rule. These coding types are prefixed with `CTSM-`. These coding types are meant to help with generic reporting. The complete list can be found the in following table.
+There are custom `billing_code_type`s defined for the Transparency in Coverage rule. These coding types are prefixed with `CSTM-`. These coding types are meant to help with generic reporting. The complete list can be found the in following table.
 
 | Standard Name | Reporting Value | Additional Information |
 | ------------- | --------------- | ---------------------- |
@@ -131,7 +145,7 @@ There are custom `billing_code_type`s defined for the Transparency in Coverage r
 | National Drug Code | NDC | [FDA NDC Background](https://www.fda.gov/drugs/development-approval-process-drugs/national-drug-code-database-background-information) |
 | Healthcare Common Procedural Coding System | HCPCS | [CMS HCPCS](https://www.cms.gov/Medicare/Coding/MedHCPCSGenInfo) |
 | Revenue Code | RC | [What is a revenue code](https://www.e2emedicalbilling.com/blog/what-is-revenue-code/) |
-| International Classification of Diseases |	ICD	| [ICD background](https://en.wikipedia.org/wiki/International_Classification_of_Diseases) |
+| International Classification of Diseases |  ICD | [ICD background](https://en.wikipedia.org/wiki/International_Classification_of_Diseases) |
 | Medicare Severity Diagnosis Related Groups | MS-DRG | [CMS DRGs](https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/AcuteInpatientPPS/MS-DRG-Classifications-and-Software) |
 | Refined Diagnosis Related Groups | R-DRG | |
 | Severity Diagnosis Related Groups | S-DRG | |
@@ -163,13 +177,7 @@ The following would applied the `negotiated_price` object(s) to all CPT codes:
  "billing_code": "CSTM-00",
  "description": "All CPT codes",
  "negotiated_rates": [{
-   "provider_groups": [{
-     "npi": [6666666666],
-     "tin":{
-       "type": "npi",
-       "value": "6666666666"
-     }
-   }],
+   "provider_references": [1],
    "negotiated_prices": [{
      "negotiated_type": "negotiated",
      "negotiated_rate": 12.45,
@@ -191,13 +199,7 @@ The following would applied the `negotiated_price` object(s) to each `billing_co
  "billing_code": "CSTM-00",
  "description": "All codes possible",
  "negotiated_rates": [{
-   "provider_groups": [{
-     "npi": [6666666666],
-     "tin":{
-       "type": "npi",
-       "value": "6666666666"
-     }
-   }],
+   "provider_references": [1],
    "negotiated_prices": [{
      "negotiated_type": "negotiated",
      "negotiated_rate": 12.45,
@@ -207,4 +209,5 @@ The following would applied the `negotiated_price` object(s) to each `billing_co
    }]
  }
 ```
+
 

@@ -1,7 +1,9 @@
 [![CMS Transparency in Coverage](resources/images/TiC_banner.png?raw=true "Transparency in Coverage")](https://www.cms.gov/healthplan-price-transparency)
 
 # Transparency in Coverage
-The technical implementation guide for the machine readable files as required by the [Transparency in Coverage](https://www.federalregister.gov/documents/2019/11/27/2019-25011/transparency-in-coverag) final rules ([85 FR 72158](https://www.govinfo.gov/app/details/FR-2020-11-12/2020-24591)).
+This is the technical implementation guide for the machine readable files as required by the [Transparency in Coverage](https://www.federalregister.gov/documents/2020/11/12/2020-24591/transparency-in-coverage) final rules (85 FR 72158). 
+
+If you are looking for the technical implementation guide for the machine readable files required by the [Hospital Price Transparency](https://www.cms.gov/priorities/key-initiatives/hospital-price-transparency) final rules (45 CFR 180), please go to https://github.com/CMSgov/hospital-price-transparency.
 
 Overview
 ========
@@ -32,6 +34,8 @@ Transparency in Coverage rule guidance is released on [CMS'](https://www.cms.gov
 * [https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs#Affordable_Care_Act](https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs#Affordable_Care_Act)
 * [https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf](https://www.cms.gov/CCIIO/Resources/Fact-Sheets-and-FAQs/Downloads/FAQs-Part-49.pdf)
 * [https://www.cms.gov/sites/default/files/2022-04/FAQ-Affordable-Care-Act-Implementation-Part-53.pdf](https://www.cms.gov/sites/default/files/2022-04/FAQ-Affordable-Care-Act-Implementation-Part-53.pdf)
+* [https://www.cms.gov/files/document/faqs-about-affordable-care-act-implementation-part-61.pdf](https://www.cms.gov/files/document/faqs-about-affordable-care-act-implementation-part-61.pdf)
+* [https://www.cms.gov/files/document/aca-faqs-part-70.pdf](https://www.cms.gov/files/document/aca-faqs-part-70.pdf)
 
 Developer Documentation
 =======================
@@ -76,8 +80,8 @@ Different Machine-Readable Files
 --------------------------------
 
 There are two required machine-readable files associated with Transparency in Coverage:
-* In-Network Negotiated Rates
-* Out-Of-Network Allowed Amounts
+* [In-Network Negotiated Rates](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/in-network-rates)
+* [Out-Of-Network Allowed Amounts](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/allowed-amounts)
 
 **In-Network Negotiated Rates File**
 Under the finalized rules, a plan or issuer must disclose in-network provider negotiated rates for all items and services through a machine-readable file.
@@ -88,6 +92,16 @@ Under the finalized rules, a plan or issuer must disclose certain data elements 
 The associated names for those files are:
 * `in-network-rates`
 * `allowed-amounts`
+
+There are also two optional machine-readable files that can be leveraged to significantly decrease file sizes of the required machine-readable files:
+* [Table of Contents](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/table-of-contents)
+* [Provider Reference](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/provider-reference)
+
+**Table of Contents File**
+The Table of Contents file can be leveraged to combine common negotiated rates across multiple in-network files. By breaking out [common negotiated rates into separate files](https://github.com/CMSgov/price-transparency-guide/blob/master/README.md#multiple-plans-per-file) to use in multiple In-Network files, plans can avoid having to duplicate data.
+
+**Provider Reference**
+Defining provider networks outside of the In-Network file can have significant benefits in the overall file size that is produced. The provider reference file allows the user to define common provider networks externally to the In-Network file that can be referenced from within the In-Network file. This allows large provider networks to be defined once and be used in multiple locations.
 
 Timing Updates For Machine-Readable Files
 -----------------------------------------
@@ -124,11 +138,17 @@ The following is the required naming standard for the `table-of-contents` file: 
 For example, the following would be the required naming for CMS building a JSON file that includes Medicare and Medicaid plans:
 * `2020-01-05_cms_index.json`
 
+Schema Validator Tool
+=====================
+
+CMS developed a [downloadable schema validator tool](https://github.com/CMSgov/price-transparency-guide-validator) that plans and developers can use to assess whether their machine readable files are compliant with the Transparency in Coverage JSON schema. The validator tool and instructions can be accessed here. The tool can be used to validate in-network and allowed amount files, as well as provider references and table of contents files. Note that the tool tests for attributes required under version 1.0 of the JSON schema and for syntax errors, but does not test the accuracy of the data in the schema. It is designed to run on local computers and can be used to validate files of any size (there is no file size limit). At this point in time, the validator tool can only be used to validate JSON files.
+
 Schemas
 =======
 * [In-Network Rates](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/in-network-rates)
 * [Allowed Amounts](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/allowed-amounts)
-
+* [Table of Contents](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/table-of-contents)
+* [Provider Reference](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/provider-reference)
 
 Examples
 ========
@@ -153,8 +173,3 @@ MINOR version when attributes/values are introduced or removed in a backwards co
 PATCH version when backwards compatible bug fixes are introduced.
 
 The major version will be finalized to 1.0.0 for the schema to adhere to the July 2022 implementation date. Versioning of the schema can be tracked in the VERSION.md file.
-
-Schema Validator Tool
-=====================
-
-CMS developed a [downloadable schema validator tool](https://github.com/CMSgov/price-transparency-guide-validator) that plans and developers can use to assess whether their machine readable files are compliant with the Transparency in Coverage JSON schema. The validator tool and instructions can be accessed here. The tool can be used to validate in-network and allowed amount files, as well as provider references and table of contents files. Note that the tool tests for attributes required under version 1.0 of the JSON schema and for syntax errors, but does not test the accuracy of the data in the schema. It is designed to run on local computers and can be used to validate files of any size (there is no file size limit). At this point in time, the validator tool can only be used to validate JSON files.

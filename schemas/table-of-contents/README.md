@@ -1,4 +1,5 @@
 ### Table of Contents File
+**The Table of Contents File is an optional file that can be leveraged to significantly decrease file sizes of the required machine-readable files. The Transparency in Coverage final rules do not require plans and issuers to publish a Table of Contents file.**
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
@@ -6,6 +7,7 @@
 | **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
 | **reporting_structure** | Reporting Structure | Array | An array of [reporting structure object types](#reporting-structure-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
+| **version** | Version | String | The version of the schema for the produced information | Yes |
 
 #### Reporting Structure Object
 The Reporting Structure object maps assoicated plans to their in-network and allowed amount files.
@@ -31,10 +33,10 @@ At [least one](https://github.com/CMSgov/price-transparency-guide/blob/master/sc
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **description** | Description | String | Description of the file included | Yes | 
-| **location** | Description | String | A full fully qualified domain name on where the in-network data can be downloaded | Yes | 
+| **location** | Description | String | A full HTTPS URL indicating where the data file can be downloaded | Yes | 
 
 In the following example:
-* `Plan A` and `Plan B` have identical negotiated rates for all items/services for the **in-network** file. (in-network-file-1.json)
+* `Plan A`, `Plan B`, and `Plan C` have identical negotiated rates for all items/services for the **in-network** file. (in-network-file-1.json)
 * `Plan C` is unique with its negotiated rates. (BH-health-shared-0002.json)
 * `Plan A` and `Plan C` both didn't meet the 20 claim threshold for any services for the **allowed amounts** file. (allowed-amounts-file-empty.json)
 * `Plan B` met the 20 claim threshold for multiple services for the **allowed amounts** file. (allowed-amounts-file-1.json)
