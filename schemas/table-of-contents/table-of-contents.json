@@ -97,10 +97,14 @@
       "type": "string",
       "minLength": 1
     },
-    "reporting_structure": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/reporting_structure"
+    "last_updated_on": {
+      "type": "string",
+      "description": "This is a date format of YYYY-MM-DD"
+    },
+    "reporting_structure":{
+      "type":"array",
+      "items":{
+        "$ref":"#/definitions/reporting_structure"
       },
       "uniqueItems": true,
       "default": [],
@@ -111,6 +115,7 @@
     "reporting_entity_name",
     "reporting_entity_type",
     "reporting_structure",
+    "last_updated_on",
     "version"
   ]
 }

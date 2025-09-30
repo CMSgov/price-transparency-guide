@@ -1,6 +1,7 @@
 {
   "reporting_entity_name": "medicare",
   "reporting_entity_type": "medicare",
+  "last_updated_on": "2023-04-19",
   "version": "1.4.0",
   "reporting_structure": [
     {
