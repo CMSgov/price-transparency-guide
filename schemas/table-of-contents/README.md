@@ -53,11 +53,13 @@ In the following example:
           "plan_name":"Plan A",
           "plan_id_type":"hios",
           "plan_id":"0000000000",
+          "issuer_name": "ACME Payer 1",
           "plan_market_type":"individual"
         },{
           "plan_name":"Plan B",
           "plan_id_type":"hios",
           "plan_id":"11111111111",
+          "issuer_name": "ACME Payer 2",
           "plan_market_type":"individual"
         }],
       "in_network_files":[{
@@ -69,6 +71,7 @@ In the following example:
           "plan_name":"Plan C",
           "plan_id_type":"hios",
           "plan_id":"222222222",
+          "issuer_name": "ACME Payer 3",
           "plan_market_type":"individual"
         }],
       "in_network_files":[{
@@ -89,6 +92,7 @@ In the following example:
           "plan_name":"Plan A",
           "plan_id_type":"hios",
           "plan_id":"0000000000",
+          "issuer_name": "ACME Payer 1",
           "plan_market_type":"individual"
         }],
       "allowed_amount_file":{
@@ -101,6 +105,7 @@ In the following example:
           "plan_name":"Plan B",
           "plan_id_type":"hios",
           "plan_id":"11111111111",
+          "issuer_name": "ACME Payer 2",
           "plan_market_type":"individual"
         }],
       "allowed_amount_file":{
