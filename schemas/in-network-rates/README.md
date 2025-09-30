@@ -63,6 +63,7 @@ This type defines a negotiated rate object.
 | ----- | ---- | ---- | ---------- | -------- |
 | **type** | Type | String | Allowed values: "ein" and "npi". | Yes |
 | **value** | Value | String | Either the unique identification number issued by the Internal Revenue Service (IRS) for type "ein" or the provider's npi for type "npi". | Yes |
+| **business_name** | Business Name | String | The common business name that is assoicated with the EIN reported for the `value` attribute. This field is only required if the `value` attribute has the value of `ein` | No |
 
 ##### Additional Notes
 

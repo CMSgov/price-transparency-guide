@@ -15,10 +15,10 @@
       "network_name": ["ACME Choice Provider Group"],
       "provider_groups": [
         {
-          "npi": [0],
+          "npi": [1111111111],
           "tin": {
-            "type": "ein",
-            "value": "11-1111111"
+            "type": "npi",
+            "value": "0"
           }
         }
       ]
