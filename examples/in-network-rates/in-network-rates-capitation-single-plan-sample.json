@@ -10,7 +10,7 @@
   "provider_references": [
     {
       "provider_group_id": 1,
-      "network_name": "ACME Choice Provider Group",
+      "network_name": ["ACME Choice Provider Group"],
       "provider_groups": [
         {
           "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
@@ -30,7 +30,7 @@
     },
     {
       "provider_group_id": 2,
-      "network_name": "ACME Choice Provider Group Plus",
+      "network_name": ["ACME Choice Provider Group Plus"],
       "provider_groups": [
         {
           "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
