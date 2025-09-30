@@ -9,12 +9,14 @@
         {
           "plan_name": "medicaid",
           "plan_id_type": "hios",
+          "issuer_name": "CMS",
           "plan_id": "1111111111",
           "plan_market_type": "individual"
         },
         {
           "plan_name": "medicare",
           "plan_id_type": "hios",
+          "issuer_name": "CMS",
           "plan_id": "000000000",
           "plan_market_type": "individual"
         }
@@ -39,6 +41,7 @@
         {
           "plan_name": "chip",
           "plan_id_type": "hios",
+          "issuer_name": "CMS",
           "plan_id": "3333333333",
           "plan_market_type": "group"
         }
