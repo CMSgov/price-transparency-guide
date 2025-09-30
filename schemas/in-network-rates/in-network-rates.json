@@ -15,6 +15,10 @@
         "billing_code_type": {
           "$ref": "#/definitions/billing_code_types"
         },
+        "severity_of_illness": {
+          "type": "string",
+          "minLength": 1
+        },
         "billing_code_type_version": {
           "type": "string",
           "minLength": 1
