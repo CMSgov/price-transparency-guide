@@ -2,32 +2,50 @@
   "reporting_entity_name": "medicare",
   "reporting_entity_type": "medicare",
   "plan_name": "medicaid",
-  "plan_id_type": "hios",
+  "issuer_name": "ACME Issuer",
+  "plan_id_type": "ein",
+  "plan_sponsor_name": "plan sponsor",
   "plan_id": "1111111111",
   "plan_market_type": "individual",
   "last_updated_on": "2020-08-27",
   "version": "1.0.0",
-  "in_network": [{
-    "negotiation_arrangement": "ffs",
-    "name": "Knee Replacement",
-    "billing_code_type": "CPT",
-    "billing_code_type_version": "2020",
-    "billing_code": "27447",
-    "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
-    "negotiated_rates": [{
-      "provider_groups": [{
-        "npi": [0],
-        "tin":{
-          "type": "ein",
-          "value": "11-1111111"
+  "provider_references": [
+    {
+      "provider_group_id": 1,
+      "network_name": ["ACME Choice Provider Group"],
+      "provider_groups": [
+        {
+          "npi": [1111111111],
+          "tin": {
+            "type": "npi",
+            "value": "0"
+          }
         }
-      }],
-      "negotiated_prices": [{
-        "negotiated_type": "negotiated",
-        "negotiated_rate": 123.45,
-        "expiration_date": "2022-01-01",
-        "billing_class": "institutional"
-      }]
-    }]
-  }]
+      ]
+    }
+  ],
+  "in_network": [
+    {
+      "negotiation_arrangement": "ffs",
+      "name": "Knee Replacement",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2020",
+      "billing_code": "27447",
+      "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
+      "negotiated_rates": [
+        {
+          "provider_references": [1],
+          "negotiated_prices": [
+            {
+              "setting": "inpatient",
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 123.45,
+              "expiration_date": "2022-01-01",
+              "billing_class": "institutional"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

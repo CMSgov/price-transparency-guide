@@ -1,45 +1,61 @@
 {
-   "reporting_entity_name": "medicare",
-   "reporting_entity_type": "medicare",
-   "version": "1.4.0",
-   "reporting_structure": [{
-     "reporting_plans": [{
-       "plan_name": "medicaid",
-       "plan_id_type": "hios",
-       "plan_id": "1111111111",
-       "plan_market_type": "individual"
-     },{
-       "plan_name": "medicare",
-       "plan_id_type": "hios",
-       "plan_id": "000000000",
-       "plan_market_type": "individual"
-     }],
-     "in_network_files": [{
-       "description": "in-network file",
-       "location": "https://www.some_site.com/files/in-network-file-123456.json"
-     },{
-       "description": "behavioral in-network shared file",
-       "location": "https://www.some_site.com/files/behavioral-health-0000.json"
-     }],
-     "allowed_amount_file": {
-       "description": "allowed amount file",
-       "location": "https://www.some_site.com/files/allowed-amount-file-987665.json"
-     }
-  },{
-     "reporting_plans": [{
-       "plan_name": "chip",
-       "plan_id_type": "hios",
-       "plan_id": "3333333333",
-       "plan_market_type": "group"
-     }],
-     "in_network_files": [{
-       "description": "in-network file",
-       "location": "https://www.some_site.com/files/chip-in-network-file.json"
-     }],
-     "allowed_amount_file": {
-       "description": "allowed amount file",
-       "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"
-     }
-  }]
+  "reporting_entity_name": "medicare",
+  "reporting_entity_type": "medicare",
+  "last_updated_on": "2023-04-19",
+  "version": "2.0.0",
+  "reporting_structure": [
+    {
+      "reporting_plans": [
+        {
+          "plan_name": "medicaid",
+          "plan_id_type": "hios",
+          "issuer_name": "CMS",
+          "plan_id": "1111111111",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "medicare",
+          "plan_id_type": "hios",
+          "issuer_name": "CMS",
+          "plan_id": "000000000",
+          "plan_market_type": "individual"
+        }
+      ],
+      "in_network_files": [
+        {
+          "description": "in-network file",
+          "location": "https://www.some_site.com/files/in-network-file-123456.json"
+        },
+        {
+          "description": "behavioral in-network shared file",
+          "location": "https://www.some_site.com/files/behavioral-health-0000.json"
+        }
+      ],
+      "allowed_amount_file": {
+        "description": "allowed amount file",
+        "location": "https://www.some_site.com/files/allowed-amount-file-987665.json"
+      }
+    },
+    {
+      "reporting_plans": [
+        {
+          "plan_name": "chip",
+          "plan_id_type": "hios",
+          "issuer_name": "CMS",
+          "plan_id": "3333333333",
+          "plan_market_type": "group"
+        }
+      ],
+      "in_network_files": [
+        {
+          "description": "in-network file",
+          "location": "https://www.some_site.com/files/chip-in-network-file.json"
+        }
+      ],
+      "allowed_amount_file": {
+        "description": "allowed amount file",
+        "location": "https://www.some_site.com/files/chip-allowed-amount-file.json"
+      }
+    }
+  ]
 }
-
