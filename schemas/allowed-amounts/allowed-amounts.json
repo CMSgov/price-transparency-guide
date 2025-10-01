@@ -139,6 +139,8 @@
     "reporting_entity_name": { "type": "string", "minLength": 1 },
     "reporting_entity_type": { "type": "string", "minLength": 1 },
     "plan_name": { "type": "string", "minLength": 1 },
+    "issuer_name": { "type": "string", "minLength": 1 },
+    "plan_sponsor_name": { "type": "string", "minLength": 1 },
     "plan_id_type": { "enum": ["ein", "hios"] },
     "plan_id": { "type": "string", "minLength": 1 },
     "plan_market_type": { "enum": ["group", "individual"] },
@@ -157,6 +159,17 @@
       "minItems": 1
     }
   },
+  "if": {
+    "properties": {
+      "plan_id_type": {
+        "enum": ["ein"]
+      }
+    },
+    "required": ["plan_id_type"]
+  },
+  "then": {
+    "required": ["plan_sponsor_name"]
+  },
   "required": [
     "reporting_entity_name",
     "reporting_entity_type",
@@ -165,9 +178,10 @@
     "version"
   ],
   "dependentRequired": {
-    "plan_name": ["plan_id_type", "plan_id", "plan_market_type"],
-    "plan_id_type": ["plan_name", "plan_id", "plan_market_type"],
-    "plan_id": ["plan_name", "plan_id_type", "plan_market_type"],
-    "plan_market_type": ["plan_name", "plan_id_type", "plan_id"]
+    "plan_name": ["plan_id_type", "plan_id", "plan_market_type", "issuer_name"],
+    "plan_id_type": ["plan_name", "plan_id", "plan_market_type", "issuer_name"],
+    "plan_id": ["plan_name", "plan_id_type", "plan_market_type", "issuer_name"],
+    "plan_market_type": ["plan_name", "plan_id_type", "plan_id", "issuer_name"],
+    "issuer_name": ["plan_name", "plan_id_type", "plan_market_type", "plan_id"]
   }
 }
