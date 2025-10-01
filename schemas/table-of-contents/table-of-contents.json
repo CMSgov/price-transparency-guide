@@ -103,7 +103,10 @@
     },
     "last_updated_on": {
       "type": "string",
-      "description": "This is a date format of YYYY-MM-DD"
+      "format": "date",
+      "description": "This is a date format of YYYY-MM-DD",
+      "minLength": 10,
+      "maxLength": 10
     },
     "reporting_structure":{
       "type":"array",
