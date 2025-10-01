@@ -7,59 +7,93 @@
   "plan_market_type": "individual",
   "last_updated_on": "2020-08-27",
   "version": "1.0.0",
-  "in_network": [{ 
-    "negotiation_arrangement": "capitation",
-    "name": "Primary Care Capitation",
-    "description": "Typical items and services for a primary care provider",
-    "billing_code_type": "CPT",
-    "billing_code_type_version": "2020",
-    "billing_code": "27447",
-    "negotiated_rates": [{
-      "provider_groups": [{
-        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-         "tin":{
-           "type": "ein",
-           "value": "11-1111111"
-         }
-      },{
-        "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
-         "tin":{
-           "type": "ein",
-           "value": "22-2222222"
-         }
-      }],
-      "negotiated_prices": [{
-        "negotiated_type": "negotiated",
-        "negotiated_rate": 20000.00,
-        "expiration_date": "2022-01-01",
-        "billing_class": "institutional"
-      }]
-    },{
-      "provider_groups":[{
-        "npi": [6666666666, 7777777777, 8888888888, 9999999999],
-         "tin":{
-           "type": "ein",
-           "value": "22-2222222"
-         }
-      }],
-      "negotiated_prices": [{
-        "negotiated_type": "negotiated",
-        "negotiated_rate": 25000.00,
-        "expiration_date": "2022-01-01",
-        "service_code": ["05", "06", "07"],
-        "billing_class": "professional"
-      }]
-    }],
-    "covered_services": [{
+  "provider_references": [
+    {
+      "provider_group_id": 1,
+      "network_name": ["ACME Choice Provider Group"],
+      "provider_groups": [
+        {
+          "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+          "tin": {
+            "type": "ein",
+            "value": "11-1111111",
+            "business_name": "ACME Provider Group"
+          }
+        },
+        {
+          "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+          "tin": {
+            "type": "ein",
+            "value": "22-2222222",
+            "business_name": "Midland Medical Group"
+          }
+        }
+      ]
+    },
+    {
+      "provider_group_id": 2,
+      "network_name": ["ACME Choice Provider Group Plus"],
+      "provider_groups": [
+        {
+          "npi": [1111111111, 2222222222, 3333333333, 4444444444, 5555555555],
+          "tin": {
+            "type": "ein",
+            "value": "22-2222222",
+            "business_name": "Midland Medical Group"
+          }
+        }
+      ]
+    }
+  ],
+  "in_network": [
+    {
+      "negotiation_arrangement": "capitation",
+      "name": "Primary Care Capitation",
+      "description": "Typical items and services for a primary care provider",
       "billing_code_type": "CPT",
       "billing_code_type_version": "2020",
       "billing_code": "27447",
-      "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
-    },{
-      "billing_code_type": "CPT",
-      "billing_code_type_version": "2020",
-      "billing_code": "27446",
-      "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
-    }]
-  }]
+      "negotiated_rates": [
+        {
+          "provider_references": [1],
+          "negotiated_prices": [
+            {
+              "setting": "inpatient",
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 20000.0,
+              "expiration_date": "2022-01-01",
+              "billing_class": "institutional"
+            }
+          ]
+        },
+        {
+          "provider_references": [1],
+          "negotiated_prices": [
+            {
+              "setting": "inpatient",
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 25000.0,
+              "expiration_date": "2022-01-01",
+              "service_code": ["05", "06", "07"],
+              "billing_class": "professional"
+            }
+          ]
+        }
+      ],
+      "covered_services": [
+        {
+          "billing_code_type": "CPT",
+          "billing_code_type_version": "2020",
+          "billing_code": "27447",
+          "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
+        },
+        {
+          "billing_code_type": "CPT",
+          "billing_code_type_version": "2020",
+          "billing_code": "27446",
+          "description": "Under Repair, Revision, and/or Reconstruction Procedures on the Femur (Thigh Region) and Knee Joint"
+        }
+      ]
+    }
+  ]
 }

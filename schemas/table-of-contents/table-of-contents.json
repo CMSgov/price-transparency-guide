@@ -1,11 +1,13 @@
 {
-  "$schema":"http://json-schema.org/draft-07/schema#",
-  "definitions":{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/table-of-contents/table-of-contents.json",
+  "definitions": {
     "file_location": {
       "type": "object",
       "properties": {
         "description": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "location": {
           "type": "string",
@@ -13,93 +15,143 @@
           "pattern": "^https://"
         }
       },
-      "required":[
+      "required": [
         "description",
         "location"
       ]
     },
-    "reporting_structure":{
-      "type":"object",
-      "properties":{
-        "reporting_plans":{
-          "type":"array",
-          "items":{
-            "$ref":"#/definitions/reporting_plans"
+    "reporting_structure": {
+      "type": "object",
+      "properties": {
+        "reporting_plans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/reporting_plans"
           },
-          "uniqueItems":true,
-          "default":[]
+          "uniqueItems": true,
+          "default": [],
+          "minItems": 1
         },
-        "in_network_files":{
-          "type":"array",
-          "items":{
-            "$ref":"#/definitions/file_location"
+        "in_network_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/file_location"
           },
-          "uniqueItems":true,
-          "default":[]
+          "uniqueItems": true,
+          "default": [],
+          "minItems": 1
         },
-        "allowed_amount_file":{
-          "$ref":"#/definitions/file_location"
+        "allowed_amount_file": {
+          "$ref": "#/definitions/file_location"
         }
       },
       "anyOf": [
-        { "required": ["in_network_files"] },
-        { "required": ["allowed_amount_file"] }
+        {
+          "required": [
+            "in_network_files"
+          ]
+        },
+        {
+          "required": [
+            "allowed_amount_file"
+          ]
+        }
       ],
-      "required":[
+      "required": [
         "reporting_plans"
       ]
     },
-    "reporting_plans":{
-      "type":"object",
-      "properties":{
-        "plan_name":{
-          "type":"string"
+    "reporting_plans": {
+      "type": "object",
+      "properties": {
+        "plan_name": {
+          "type": "string",
+          "minLength": 1
         },
-        "plan_id_type":{
-          "type":"string"
+        "plan_sponsor_name": {
+          "type": "string",
+          "minLength": 1
         },
-        "plan_id":{
-          "type":"string"
+        "issuer_name": {
+          "type": "string",
+          "minLength": 1
         },
-        "plan_market_type":{
-          "enum":[
+        "plan_id_type": {
+          "enum": [
+            "ein",
+            "hios"
+          ]
+        },
+        "plan_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan_market_type": {
+          "enum": [
             "group",
             "individual"
           ]
         }
       },
-      "required":[
+      "if": {
+        "properties": {
+          "plan_id_type": {
+            "enum": [
+              "ein"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "plan_sponsor_name"
+        ]
+      },
+      "required": [
         "plan_name",
         "plan_id_type",
         "plan_id",
-        "plan_market_type"
+        "plan_market_type",
+        "issuer_name"
       ]
     }
   },
-  "type":"object",
-  "properties":{
-    "reporting_entity_name":{
-      "type":"string"
+  "type": "object",
+  "properties": {
+    "reporting_entity_name": {
+      "type": "string",
+      "minLength": 1
     },
-    "reporting_entity_type":{
-      "type":"string"
+    "reporting_entity_type": {
+      "type": "string",
+      "minLength": 1
     },
     "version": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
-    "reporting_structure":{
-      "type":"array",
-      "items":{
-        "$ref":"#/definitions/reporting_structure"
+    "last_updated_on": {
+      "type": "string",
+      "format": "date",
+      "description": "This is a date format of YYYY-MM-DD",
+      "minLength": 10,
+      "maxLength": 10
+    },
+    "reporting_structure": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/reporting_structure"
       },
-      "uniqueItems":true,
-      "default":[]
+      "uniqueItems": true,
+      "default": [],
+      "minItems": 1
     }
   },
-  "required":[
+  "required": [
     "reporting_entity_name",
     "reporting_entity_type",
     "reporting_structure",
+    "last_updated_on",
     "version"
   ]
 }
