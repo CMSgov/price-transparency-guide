@@ -15,7 +15,10 @@
           "pattern": "^https://"
         }
       },
-      "required": ["description", "location"]
+      "required": [
+        "description",
+        "location"
+      ]
     },
     "reporting_structure": {
       "type": "object",
@@ -43,10 +46,20 @@
         }
       },
       "anyOf": [
-        { "required": ["in_network_files"] },
-        { "required": ["allowed_amount_file"] }
+        {
+          "required": [
+            "in_network_files"
+          ]
+        },
+        {
+          "required": [
+            "allowed_amount_file"
+          ]
+        }
       ],
-      "required": ["reporting_plans"]
+      "required": [
+        "reporting_plans"
+      ]
     },
     "reporting_plans": {
       "type": "object",
@@ -64,27 +77,43 @@
           "minLength": 1
         },
         "plan_id_type": {
-          "enum": ["ein", "hios"]
+          "enum": [
+            "ein",
+            "hios"
+          ]
         },
         "plan_id": {
           "type": "string",
           "minLength": 1
         },
         "plan_market_type": {
-          "enum": ["group", "individual"]
+          "enum": [
+            "group",
+            "individual"
+          ]
         }
       },
       "if": {
         "properties": {
           "plan_id_type": {
-            "enum": ["ein"]
+            "enum": [
+              "ein"
+            ]
           }
         }
       },
       "then": {
-        "required": ["plan_sponsor_name"]
+        "required": [
+          "plan_sponsor_name"
+        ]
       },
-      "required": ["plan_name", "plan_id_type", "plan_id", "plan_market_type", "issuer_name"]
+      "required": [
+        "plan_name",
+        "plan_id_type",
+        "plan_id",
+        "plan_market_type",
+        "issuer_name"
+      ]
     }
   },
   "type": "object",
@@ -108,10 +137,10 @@
       "minLength": 10,
       "maxLength": 10
     },
-    "reporting_structure":{
-      "type":"array",
-      "items":{
-        "$ref":"#/definitions/reporting_structure"
+    "reporting_structure": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/reporting_structure"
       },
       "uniqueItems": true,
       "default": [],

@@ -6,7 +6,11 @@
       "type": "object",
       "properties": {
         "negotiation_arrangement": {
-          "enum": ["ffs", "bundle", "capitation"]
+          "enum": [
+            "ffs",
+            "bundle",
+            "capitation"
+          ]
         },
         "name": {
           "type": "string",
@@ -114,7 +118,10 @@
           "minItems": 1
         }
       },
-      "required": ["provider_references", "negotiated_prices"]
+      "required": [
+        "provider_references",
+        "negotiated_prices"
+      ]
     },
     "negotiated_price": {
       "type": "object",
@@ -135,10 +142,18 @@
           "uniqueItems": true
         },
         "billing_class": {
-          "enum": ["professional", "institutional", "both"]
+          "enum": [
+            "professional",
+            "institutional",
+            "both"
+          ]
         },
         "setting": {
-          "enum": ["inpatient", "outpatient", "both"]
+          "enum": [
+            "inpatient",
+            "outpatient",
+            "both"
+          ]
         },
         "negotiated_type": {
           "enum": [
@@ -184,11 +199,15 @@
       ],
       "if": {
         "properties": {
-          "billing_class": { "const": "professional" }
+          "billing_class": {
+            "const": "professional"
+          }
         }
       },
       "then": {
-        "required": ["service_code"]
+        "required": [
+          "service_code"
+        ]
       }
     },
     "providers": {
@@ -208,7 +227,10 @@
           "properties": {
             "type": {
               "type": "string",
-              "enum": ["ein", "npi"]
+              "enum": [
+                "ein",
+                "npi"
+              ]
             },
             "value": {
               "type": "string",
@@ -221,7 +243,9 @@
           },
           "if": {
             "properties": {
-              "type": { "const": "ein" }
+              "type": {
+                "const": "ein"
+              }
             }
           },
           "then": {
@@ -230,12 +254,20 @@
                 "pattern": "\\d{2}-?\\d{7}"
               }
             },
-            "required": ["business_name"]
+            "required": [
+              "business_name"
+            ]
           },
-          "required": ["type", "value"]
+          "required": [
+            "type",
+            "value"
+          ]
         }
       },
-      "required": ["npi", "tin"]
+      "required": [
+        "npi",
+        "tin"
+      ]
     },
     "billing_code_types": {
       "enum": [
@@ -282,14 +314,20 @@
       "minLength": 1
     },
     "plan_id_type": {
-      "enum": ["ein", "hios"]
+      "enum": [
+        "ein",
+        "hios"
+      ]
     },
     "plan_id": {
       "type": "string",
       "minLength": 1
     },
     "plan_market_type": {
-      "enum": ["group", "individual"]
+      "enum": [
+        "group",
+        "individual"
+      ]
     },
     "last_updated_on": {
       "type": "string",
@@ -323,10 +361,14 @@
             "items": {
               "type": "string",
               "minLength": 1
-            }           
+            }
           }
         },
-        "required": ["provider_group_id", "provider_groups", "network_name"]
+        "required": [
+          "provider_group_id",
+          "provider_groups",
+          "network_name"
+        ]
       },
       "minLength": 1
     },
@@ -342,13 +384,19 @@
   "if": {
     "properties": {
       "plan_id_type": {
-        "enum": ["ein"]
+        "enum": [
+          "ein"
+        ]
       }
     },
-    "required": ["plan_id_type"]
+    "required": [
+      "plan_id_type"
+    ]
   },
   "then": {
-    "required": ["plan_sponsor_name"]
+    "required": [
+      "plan_sponsor_name"
+    ]
   },
   "required": [
     "reporting_entity_name",
@@ -358,11 +406,35 @@
     "version"
   ],
   "dependencies": {
-    "plan_name": ["plan_id_type", "plan_id", "plan_market_type", "issuer_name"],
-    "plan_id_type": ["plan_name", "plan_id", "plan_market_type", "issuer_name"],
-    "plan_id": ["plan_name", "plan_id_type", "plan_market_type", "issuer_name"],
-    "plan_market_type": ["plan_name", "plan_id_type", "plan_id", "issuer_name"],
-    "issuer_name": ["plan_name", "plan_id_type", "plan_market_type", "plan_id"]
+    "plan_name": [
+      "plan_id_type",
+      "plan_id",
+      "plan_market_type",
+      "issuer_name"
+    ],
+    "plan_id_type": [
+      "plan_name",
+      "plan_id",
+      "plan_market_type",
+      "issuer_name"
+    ],
+    "plan_id": [
+      "plan_name",
+      "plan_id_type",
+      "plan_market_type",
+      "issuer_name"
+    ],
+    "plan_market_type": [
+      "plan_name",
+      "plan_id_type",
+      "plan_id",
+      "issuer_name"
+    ],
+    "issuer_name": [
+      "plan_name",
+      "plan_id_type",
+      "plan_market_type",
+      "plan_id"
+    ]
   }
 }
-

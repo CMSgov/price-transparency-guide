@@ -5,7 +5,10 @@
     "out_of_network": {
       "type": "object",
       "properties": {
-        "name": { "type": "string", "minLength": 1 },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
         "billing_code_type": {
           "enum": [
             "CPT",
@@ -26,12 +29,23 @@
             "RC"
           ]
         },
-        "billing_code_type_version": { "type": "string", "minLength": 1 },
-        "billing_code": { "type": "string", "minLength": 1 },
-        "description": { "type": "string", "minLength": 1 },
+        "billing_code_type_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "billing_code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
         "allowed_amounts": {
           "type": "array",
-          "items": { "$ref": "#/definitions/allowed_amounts" },
+          "items": {
+            "$ref": "#/definitions/allowed_amounts"
+          },
           "default": [],
           "minItems": 1
         }
@@ -45,7 +59,6 @@
         "description"
       ]
     },
-
     "allowed_amounts": {
       "type": "object",
       "properties": {
@@ -54,7 +67,10 @@
           "properties": {
             "type": {
               "type": "string",
-              "enum": ["ein", "npi"]
+              "enum": [
+                "ein",
+                "npi"
+              ]
             },
             "value": {
               "type": "string",
@@ -71,33 +87,52 @@
           "uniqueItems": true
         },
         "billing_class": {
-          "enum": ["professional", "institutional"]
+          "enum": [
+            "professional",
+            "institutional"
+          ]
         },
         "setting": {
-          "enum": ["inpatient", "outpatient"]
+          "enum": [
+            "inpatient",
+            "outpatient"
+          ]
         },
         "payments": {
           "type": "array",
-          "items": { "$ref": "#/definitions/payments" },
+          "items": {
+            "$ref": "#/definitions/payments"
+          },
           "default": [],
           "minItems": 1
         }
       },
-      "required": ["tin", "billing_class", "setting", "payments"],
+      "required": [
+        "tin",
+        "billing_class",
+        "setting",
+        "payments"
+      ],
       "if": {
         "properties": {
-          "billing_class": { "const": "professional" }
+          "billing_class": {
+            "const": "professional"
+          }
         }
       },
       "then": {
-        "required": ["service_code"]
+        "required": [
+          "service_code"
+        ]
       }
     },
-
     "payments": {
       "type": "object",
       "properties": {
-        "allowed_amount": { "type": "number", "minimum": 0 },
+        "allowed_amount": {
+          "type": "number",
+          "minimum": 0
+        },
         "billing_code_modifier": {
           "type": "array",
           "items": {
@@ -110,40 +145,79 @@
         },
         "providers": {
           "type": "array",
-          "items": { "$ref": "#/definitions/providers" },
+          "items": {
+            "$ref": "#/definitions/providers"
+          },
           "default": [],
           "minItems": 1
         }
       },
-      "required": ["allowed_amount", "providers"]
+      "required": [
+        "allowed_amount",
+        "providers"
+      ]
     },
-
     "providers": {
       "type": "object",
       "properties": {
-        "billed_charge": { "type": "number", "minimum": 0 },
+        "billed_charge": {
+          "type": "number",
+          "minimum": 0
+        },
         "npi": {
           "type": "array",
-          "items": { "type": "integer" },
+          "items": {
+            "type": "integer"
+          },
           "default": [],
           "uniqueItems": true,
           "minItems": 1
         }
       },
-      "required": ["billed_charge", "npi"]
+      "required": [
+        "billed_charge",
+        "npi"
+      ]
     }
   },
-
   "type": "object",
   "properties": {
-    "reporting_entity_name": { "type": "string", "minLength": 1 },
-    "reporting_entity_type": { "type": "string", "minLength": 1 },
-    "plan_name": { "type": "string", "minLength": 1 },
-    "issuer_name": { "type": "string", "minLength": 1 },
-    "plan_sponsor_name": { "type": "string", "minLength": 1 },
-    "plan_id_type": { "enum": ["ein", "hios"] },
-    "plan_id": { "type": "string", "minLength": 1 },
-    "plan_market_type": { "enum": ["group", "individual"] },
+    "reporting_entity_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reporting_entity_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "plan_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "issuer_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "plan_sponsor_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "plan_id_type": {
+      "enum": [
+        "ein",
+        "hios"
+      ]
+    },
+    "plan_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "plan_market_type": {
+      "enum": [
+        "group",
+        "individual"
+      ]
+    },
     "last_updated_on": {
       "type": "string",
       "format": "date",
@@ -151,10 +225,14 @@
       "minLength": 10,
       "maxLength": 10
     },
-    "version": { "type": "string" },
+    "version": {
+      "type": "string"
+    },
     "out_of_network": {
       "type": "array",
-      "items": { "$ref": "#/definitions/out_of_network" },
+      "items": {
+        "$ref": "#/definitions/out_of_network"
+      },
       "default": [],
       "minItems": 1
     }
@@ -162,13 +240,19 @@
   "if": {
     "properties": {
       "plan_id_type": {
-        "enum": ["ein"]
+        "enum": [
+          "ein"
+        ]
       }
     },
-    "required": ["plan_id_type"]
+    "required": [
+      "plan_id_type"
+    ]
   },
   "then": {
-    "required": ["plan_sponsor_name"]
+    "required": [
+      "plan_sponsor_name"
+    ]
   },
   "required": [
     "reporting_entity_name",
@@ -178,10 +262,35 @@
     "version"
   ],
   "dependentRequired": {
-    "plan_name": ["plan_id_type", "plan_id", "plan_market_type", "issuer_name"],
-    "plan_id_type": ["plan_name", "plan_id", "plan_market_type", "issuer_name"],
-    "plan_id": ["plan_name", "plan_id_type", "plan_market_type", "issuer_name"],
-    "plan_market_type": ["plan_name", "plan_id_type", "plan_id", "issuer_name"],
-    "issuer_name": ["plan_name", "plan_id_type", "plan_market_type", "plan_id"]
+    "plan_name": [
+      "plan_id_type",
+      "plan_id",
+      "plan_market_type",
+      "issuer_name"
+    ],
+    "plan_id_type": [
+      "plan_name",
+      "plan_id",
+      "plan_market_type",
+      "issuer_name"
+    ],
+    "plan_id": [
+      "plan_name",
+      "plan_id_type",
+      "plan_market_type",
+      "issuer_name"
+    ],
+    "plan_market_type": [
+      "plan_name",
+      "plan_id_type",
+      "plan_id",
+      "issuer_name"
+    ],
+    "issuer_name": [
+      "plan_name",
+      "plan_id_type",
+      "plan_market_type",
+      "plan_id"
+    ]
   }
 }
