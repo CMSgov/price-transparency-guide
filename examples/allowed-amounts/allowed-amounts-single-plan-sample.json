@@ -24,7 +24,6 @@
           },
           "service_code": ["01", "02", "03"],
           "billing_class": "professional",
-          "setting": "outpatient",
           "payments": [
             {
               "allowed_amount": 25.0,
