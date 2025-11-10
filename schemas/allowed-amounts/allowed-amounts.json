@@ -46,8 +46,7 @@
           "items": {
             "$ref": "#/definitions/allowed_amounts"
           },
-          "default": [],
-          "minItems": 1
+          "default": []
         }
       },
       "required": [
