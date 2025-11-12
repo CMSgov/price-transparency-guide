@@ -14,7 +14,8 @@
         {
           "tin": {
             "type": "ein",
-            "value": "1234567890"
+            "value": "1234567890",
+            "business_name": "ACME Provider Group"
           },
           "service_code": ["01", "02", "03"],
           "billing_class": "professional",
