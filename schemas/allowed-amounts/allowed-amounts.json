@@ -92,12 +92,6 @@
             "institutional"
           ]
         },
-        "setting": {
-          "enum": [
-            "inpatient",
-            "outpatient"
-          ]
-        },
         "payments": {
           "type": "array",
           "items": {
@@ -110,7 +104,6 @@
       "required": [
         "tin",
         "billing_class",
-        "setting",
         "payments"
       ],
       "if": {
