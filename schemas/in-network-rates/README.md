@@ -11,7 +11,7 @@
 | **plan_sponsor_name** | Plan Sponsor Name | String | If the `plan_id_type` is "EIN", the common business name of the plan sponsor | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
-| **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
+| **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
 | **version** | Version | String | The version of the schema for the produced information | Yes |
 
