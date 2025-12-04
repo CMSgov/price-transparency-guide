@@ -127,19 +127,24 @@
       "type": "object",
       "properties": {
         "service_code": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "oneOf": [
-              {
-                "pattern": "^([1-9][0-9]|[0-9][1-9])$"
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(0[1-9]|[0-9][1-9])$"
               },
-              {
-                "const": "CSTM-00"
-              }
-            ]
-          },
-          "uniqueItems": true
+              "uniqueItems": true
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^CSTM-00$"
+              },
+              "uniqueItems": true
+            }
+          ]
         },
         "billing_class": {
           "enum": [
