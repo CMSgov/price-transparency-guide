@@ -132,7 +132,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "pattern": "^(0[1-9]|[0-9][1-9])$"
+                "pattern": "^(0[1-9]|[1-9][0-9])$"
               },
               "uniqueItems": true
             },
