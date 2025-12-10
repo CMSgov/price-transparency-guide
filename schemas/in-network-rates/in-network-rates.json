@@ -251,7 +251,7 @@
           "then": {
             "properties": {
               "value": {
-                "pattern": "\\d{2}-?\\d{7}"
+                "pattern": "^\\d{2}-?\\d{7}$"
               }
             },
             "required": [
