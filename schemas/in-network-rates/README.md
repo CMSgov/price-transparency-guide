@@ -11,7 +11,7 @@
 | **plan_sponsor_name** | Plan Sponsor Name | String | If the `plan_id_type` is "EIN", the common business name of the plan sponsor | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
-| **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
+| **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
 | **version** | Version | String | The version of the schema for the produced information | Yes |
 
@@ -77,7 +77,7 @@ This type defines a provider reference object. This object is used in the `provi
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **provider_group_id** | Provider Group Id | Number | The unique, primary key for the associated `provider_group` object | Yes |
-| **network_name** | Network Name | Array | An array of strings. The issuer's common provider network name that the provider group is part of. | Yes |
+| **network_name** | Network Name | Array | An array of strings. The common provider network name of which the provider group is a part. This is the name most familiar to members and the public. | Yes |
 | **provider_groups** | Provider Groups | Array  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
 
 #### Negotiated Price Object
