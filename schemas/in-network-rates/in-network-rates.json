@@ -126,7 +126,7 @@
     "negotiated_price": {
       "type": "object",
       "properties": {
-      "service_code": {
+        "service_code": {
           "oneOf": [
             {
               "type": "array",
