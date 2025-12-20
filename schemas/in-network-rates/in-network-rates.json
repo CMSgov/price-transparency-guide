@@ -145,7 +145,8 @@
               "maxItems": 1
             }
           ]
-        },        "billing_class": {
+        },
+        "billing_class": {
           "enum": [
             "professional",
             "institutional",
