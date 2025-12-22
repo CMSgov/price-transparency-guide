@@ -219,15 +219,28 @@
       "type": "object",
       "properties": {
         "npi": {
-          "type": "array",
-          "items": {
-            "type": "number",
-            "minimum": 1000000000,
-            "maximum": 9999999999
-          },
-          "uniqueItems": true,
-          "default": [],
-          "minItems": 1
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 1000000000,
+                "maximum": 9999999999
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0
+              },
+              "minItems": 1,
+              "maxItems": 1
+            }
+          ]
         },
         "tin": {
           "type": "object",
@@ -236,9 +249,7 @@
               "type": "string"
             },
             "value": {
-              "type": "string",
-              "minLength": 9,
-              "maxLength": 10
+              "type": "string"
             },
             "business_name": {
               "type": "string",
