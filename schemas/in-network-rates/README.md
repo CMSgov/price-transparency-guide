@@ -6,9 +6,9 @@
 | **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
 | **issuer_name** | Issuer Name | String | The name of the plan's issuer. | No |
 | **plan_name** | Plan Name | String | The plan's name. | No |
-| **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
-| **plan_id** | Plan ID | String | If the `plan_id_type`'s value is "HIOS", the 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier. If the `plan_id_type`'s value is "EIN", the Employer Identification Number (EIN) of the plan sponsor. | No |
-| **plan_sponsor_name** | Plan Sponsor Name | String | If the `plan_id_type` is "EIN", the common business name of the plan sponsor | No |
+| **plan_id_type** | Plan Id Type | String | Allowed values: "ein" and "hios" | No |
+| **plan_id** | Plan ID | String | If the `plan_id_type`'s value is "hios", the 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier. If the `plan_id_type`'s value is "ein", the Employer Identification Number (EIN) of the plan sponsor. | No |
+| **plan_sponsor_name** | Plan Sponsor Name | String | If the `plan_id_type` is "ein", the common business name of the plan sponsor | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
 | **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | Yes |
