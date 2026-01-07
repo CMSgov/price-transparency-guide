@@ -2,6 +2,7 @@
   "reporting_entity_name": "cms",
   "reporting_entity_type": "cms",
   "plan_name": "medicaid",
+  "issuer_name": "CMS Medicaid Issuer",
   "plan_id_type": "hios",
   "plan_id": "1111111111",
   "plan_market_type": "individual",
