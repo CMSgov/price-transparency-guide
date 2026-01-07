@@ -93,15 +93,11 @@ The associated names for those files are:
 * `in-network-rates`
 * `allowed-amounts`
 
-There are also two optional machine-readable files that can be leveraged to significantly decrease file sizes of the required machine-readable files:
+There is also one optional machine-readable file that can be leveraged to significantly decrease file sizes of the required machine-readable files:
 * [Table of Contents](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/table-of-contents)
-* [Provider Reference](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/provider-reference)
 
 **Table of Contents File**
 The Table of Contents file can be leveraged to combine common negotiated rates across multiple in-network files. By breaking out [common negotiated rates into separate files](https://github.com/CMSgov/price-transparency-guide/blob/master/README.md#multiple-plans-per-file) to use in multiple In-Network files, plans can avoid having to duplicate data.
-
-**Provider Reference**
-Defining provider networks outside of the In-Network file can have significant benefits in the overall file size that is produced. The provider reference file allows the user to define common provider networks externally to the In-Network file that can be referenced from within the In-Network file. This allows large provider networks to be defined once and be used in multiple locations.
 
 Timing Updates For Machine-Readable Files
 -----------------------------------------
@@ -141,14 +137,13 @@ For example, the following would be the required naming for CMS building a JSON 
 Schema Validator Tool
 =====================
 
-CMS developed a [downloadable schema validator tool](https://github.com/CMSgov/price-transparency-guide-validator) that plans and developers can use to assess whether their machine readable files are compliant with the Transparency in Coverage JSON schema. The validator tool and instructions can be accessed here. The tool can be used to validate in-network and allowed amount files, as well as provider references and table of contents files. Note that the tool tests for attributes required under version 1.0 of the JSON schema and for syntax errors, but does not test the accuracy of the data in the schema. It is designed to run on local computers and can be used to validate files of any size (there is no file size limit). At this point in time, the validator tool can only be used to validate JSON files.
+CMS developed a [downloadable schema validator tool](https://github.com/CMSgov/price-transparency-guide-validator) that plans and developers can use to assess whether their machine readable files are compliant with the Transparency in Coverage JSON schema. The validator tool and instructions can be accessed here. The tool can be used to validate in-network and allowed amount files, as well as table of contents files. Note that the tool tests for attributes required under version 1.0 of the JSON schema and for syntax errors, but does not test the accuracy of the data in the schema. It is designed to run on local computers and can be used to validate files of any size (there is no file size limit). At this point in time, the validator tool can only be used to validate JSON files.
 
 Schemas
 =======
 * [In-Network Rates](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/in-network-rates)
 * [Allowed Amounts](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/allowed-amounts)
 * [Table of Contents](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/table-of-contents)
-* [Provider Reference](https://github.com/CMSgov/price-transparency-guide/tree/master/schemas/provider-reference)
 
 Examples
 ========
