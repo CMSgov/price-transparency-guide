@@ -1,5 +1,5 @@
 ### Table of Contents File
-**The Table of Contents File is an optional file that can be leveraged to significantly decrease file sizes of the required machine-readable files. The Transparency in Coverage final rules do not require plans and issuers to publish a Table of Contents file.**
+**The Table of Contents File is a file that can be leveraged to significantly decrease file sizes of the required machine-readable files. The Transparency in Coverage final rules do not require plans and issuers to publish a Table of Contents file.**
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
