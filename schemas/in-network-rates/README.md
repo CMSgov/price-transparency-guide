@@ -6,12 +6,12 @@
 | **reporting_entity_type** | Entity Type | String | The type of entity that is publishing the machine-readable file (a group health plan, health insurance issuer, or a third party with which the plan or issuer has contracted to provide the required information, such as a third-party administrator, a health care claims clearinghouse, or a health insurance issuer that has contracted with a group health plan sponsor). | Yes |
 | **issuer_name** | Issuer Name | String | The name of the plan's issuer. | No |
 | **plan_name** | Plan Name | String | The plan's name. | No |
-| **plan_id_type** | Plan Id Type | String | Allowed values: "EIN" and "HIOS" | No |
-| **plan_id** | Plan ID | String | If the `plan_id_type`'s value is "HIOS", the 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier. If the `plan_id_type`'s value is "EIN", the Employer Identification Number (EIN) of the plan sponsor. | No |
-| **plan_sponsor_name** | Plan Sponsor Name | String | If the `plan_id_type` is "EIN", the common business name of the plan sponsor | No |
+| **plan_id_type** | Plan Id Type | String | Allowed values: "ein" and "hios" | No |
+| **plan_id** | Plan ID | String | If the `plan_id_type`'s value is "hios", the 10-digit Health Insurance Oversight System (HIOS) identifier, or, if the 10-digit HIOS identifier is not available, the 5-digit HIOS identifier. If the `plan_id_type`'s value is "ein", the Employer Identification Number (EIN) of the plan sponsor. | No |
+| **plan_sponsor_name** | Plan Sponsor Name | String | If the `plan_id_type` is "ein", the common business name of the plan sponsor | No |
 | **plan_market_type** | Market Type | String | Allowed values: "group" and "individual" | No |
 | **in_network** | In-Network Negotiated Rates | Array | An array of [in-network object types](#in-network-object) | Yes |
-| **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | No |
+| **provider_references** | Provider References | Array | An array of [provider reference object types.](#provider-reference-object) | Yes |
 | **last_updated_on** | Last Updated On | String | The date in which the file was last updated. Date must be in an ISO 8601 format (i.e. YYYY-MM-DD) | Yes |
 | **version** | Version | String | The version of the schema for the produced information | Yes |
 
@@ -56,7 +56,7 @@ This type defines a negotiated rate object.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **npi** | NPI | Array | An array of National Provider Identifiers (NPIs). The NPI array attribute can contain a mix of Type 1 and Type 2 NPIs, both of which must be provided, if available. In contractual arrangements with Type 2 NPIs where Type 1 NPIs are unknown or otherwise unavailable, only the Type 2 NPIs must be reported. | Yes |
-| **tin** | Tax Identification Number | Object | The [tax identifier object](#tas-identifier-object) contains tax information on the place of business | Yes |
+| **tin** | Tax Identification Number | Object | The [tax identifier object](#tax-identifier-object) contains tax information on the place of business | Yes |
 
 #### Tax Identifier Object
 | Field | Name | Type | Definition | Required |
@@ -69,7 +69,9 @@ This type defines a negotiated rate object.
 
 For most businesses reporting cases, a tax identification number (tin) is used to represent a business. There are situations where a provider's social security number is still used as a tin. In order to keep private personally identifiable information out of these files, substitute the provider's npi number for the social security number. When a npi number is used, it is assumed that the provider would otherwise be reporting by their social security number.
 
-In contractual arrangements that are only made at the TIN level, where NPIs are unknown or otherwise unavailable, the value "0" should be reported for the NPI field. In contractual arrangements where both the NPI and TIN are available, both are required to be disclosed.
+**Important:** The `tin.value` field must contain a valid 10-digit NPI (starting with 1-9) when `tin.type` is "npi", or a valid EIN format when `tin.type` is "ein". The value "0" is NOT a valid `tin.value`.
+
+In contractual arrangements that are only made at the TIN level, where NPIs are unknown or otherwise unavailable, the value `0` should be reported in the **`npi` array field** (e.g., `"npi": [0]`), NOT in the `tin.value` field. In contractual arrangements where both the NPI and TIN are available, both are required to be disclosed.
 #### Provider Reference Object
 
 This type defines a provider reference object. This object is used in the `provider_references` array found on the root object of the in-network schema. The Provider Group Id is a unique interger ID that is defined by the user to be referenced in the [Negotiated Rate Details Object](#negotiated-rate-details-object) in the `provider_references` array. An example of using provider references can be found in the definition of [provider reference objects](https://github.com/CMSgov/price-transparency-guide/blob/c3ba257f41f4b289b574557e2fcf0833c36ef79f/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L10-L28) and then the usages of the `provider_group_id`s in the [negotiated rate object](https://github.com/CMSgov/price-transparency-guide/blob/c3ba257f41f4b289b574557e2fcf0833c36ef79f/examples/in-network-rates/in-network-rates-fee-for-service-single-plan-sample.json#L86).
@@ -77,7 +79,7 @@ This type defines a provider reference object. This object is used in the `provi
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **provider_group_id** | Provider Group Id | Number | The unique, primary key for the associated `provider_group` object | Yes |
-| **network_name** | Network Name | Array | An array of strings. The issuer's common provider network name that the provider group is part of. | Yes |
+| **network_name** | Network Name | Array | An array of strings. The common provider network name of which the provider group is a part. This is the name most familiar to members and the public. | Yes |
 | **provider_groups** | Provider Groups | Array  | The [providers object](#providers-object) defines information about the provider and their associated TIN related to the negotiated price. | Yes |
 
 #### Negotiated Price Object

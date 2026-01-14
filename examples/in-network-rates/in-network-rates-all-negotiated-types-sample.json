@@ -1,0 +1,208 @@
+{
+  "reporting_entity_name": "Comprehensive Health Insurance",
+  "reporting_entity_type": "health insurance issuer",
+  "plan_name": "Plan D PPO",
+  "issuer_name": "Comprehensive Health Issuer",
+  "plan_sponsor_name": "Comprehensive Employee Group",
+  "plan_id_type": "ein",
+  "plan_id": "4444444444",
+  "plan_market_type": "group",
+  "last_updated_on": "2024-01-15",
+  "version": "2.0.0",
+  "provider_references": [
+    {
+      "provider_group_id": 1,
+      "network_name": ["Comprehensive Health Network"],
+      "provider_groups": [
+        {
+          "npi": [1234567890, 2345678901, 3456789012],
+          "tin": {
+            "type": "ein",
+            "value": "12-3456789",
+            "business_name": "Premier Medical Associates"
+          }
+        },
+        {
+          "npi": [4567890123],
+          "tin": {
+            "type": "ein",
+            "value": "23-4567890",
+            "business_name": "Regional Healthcare Group"
+          }
+        }
+      ]
+    },
+    {
+      "provider_group_id": 2,
+      "network_name": ["Comprehensive Health Plus Network"],
+      "provider_groups": [
+        {
+          "npi": [5678901234, 6789012345],
+          "tin": {
+            "type": "ein",
+            "value": "34-5678901",
+            "business_name": "City General Hospital"
+          }
+        }
+      ]
+    }
+  ],
+  "in_network": [
+    {
+      "negotiation_arrangement": "ffs",
+      "name": "Office Visit, Established Patient, Moderate Complexity",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2024",
+      "billing_code": "99214",
+      "description": "Office or other outpatient visit for evaluation and management of an established patient",
+      "negotiated_rates": [
+        {
+          "provider_references": [1],
+          "negotiated_prices": [
+            {
+              "setting": "outpatient",
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 150.00,
+              "expiration_date": "2024-12-31",
+              "service_code": ["11"],
+              "billing_class": "professional",
+              "additional_information": "Standard negotiated rate for established patient office visits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "ffs",
+      "name": "Outpatient Physical Therapy",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2024",
+      "billing_code": "97110",
+      "description": "Therapeutic exercises to develop strength, endurance, range of motion and flexibility",
+      "negotiated_rates": [
+        {
+          "provider_references": [1],
+          "negotiated_prices": [
+            {
+              "setting": "outpatient",
+              "negotiated_type": "percentage",
+              "negotiated_rate": 65.0,
+              "expiration_date": "2024-12-31",
+              "service_code": ["11", "22"],
+              "billing_class": "professional",
+              "additional_information": "65% of billed charges arrangement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "ffs",
+      "name": "Medical/Surgical Intensive Care Unit (ICU) Daily Rate",
+      "billing_code_type": "RC",
+      "billing_code_type_version": "2024",
+      "billing_code": "0200",
+      "description": "Intensive Care Unit - General Classification",
+      "negotiated_rates": [
+        {
+          "provider_references": [2],
+          "negotiated_prices": [
+            {
+              "setting": "inpatient",
+              "negotiated_type": "per diem",
+              "negotiated_rate": 5500.00,
+              "expiration_date": "2024-12-31",
+              "billing_class": "institutional",
+              "additional_information": "Daily per diem rate for ICU stay"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "ffs",
+      "name": "Laboratory Test - Comprehensive Metabolic Panel",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2024",
+      "billing_code": "80053",
+      "description": "Comprehensive metabolic panel blood test",
+      "negotiated_rates": [
+        {
+          "provider_references": [1],
+          "negotiated_prices": [
+            {
+              "setting": "outpatient",
+              "negotiated_type": "derived",
+              "negotiated_rate": 45.00,
+              "expiration_date": "2024-12-31",
+              "service_code": ["11", "81"],
+              "billing_class": "professional",
+              "additional_information": "Derived price for internal accounting and reconciliation purposes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "ffs",
+      "name": "Knee Replacement Surgery",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2024",
+      "billing_code": "27447",
+      "description": "Arthroplasty, knee condyle and plateau, medial and lateral compartments",
+      "negotiated_rates": [
+        {
+          "provider_references": [1, 2],
+          "negotiated_prices": [
+            {
+              "setting": "inpatient",
+              "negotiated_type": "fee schedule",
+              "negotiated_rate": 8500.00,
+              "expiration_date": "2024-12-31",
+              "service_code": ["21", "22"],
+              "billing_class": "professional",
+              "additional_information": "Fee schedule rate used to determine participant cost-sharing liability"
+            },
+            {
+              "setting": "inpatient",
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 12000.00,
+              "expiration_date": "2024-12-31",
+              "billing_class": "institutional"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "ffs",
+      "name": "Emergency Department Visit, High Severity",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2024",
+      "billing_code": "99285",
+      "description": "Emergency department visit for evaluation and management of a patient with high severity",
+      "negotiated_rates": [
+        {
+          "provider_references": [2],
+          "negotiated_prices": [
+            {
+              "setting": "outpatient",
+              "negotiated_type": "percentage",
+              "negotiated_rate": 75.5,
+              "expiration_date": "2024-12-31",
+              "service_code": ["23"],
+              "billing_class": "professional"
+            },
+            {
+              "setting": "outpatient",
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 2500.00,
+              "expiration_date": "2024-12-31",
+              "billing_class": "institutional"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

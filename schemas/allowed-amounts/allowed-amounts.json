@@ -46,8 +46,7 @@
           "items": {
             "$ref": "#/definitions/allowed_amounts"
           },
-          "default": [],
-          "minItems": 1
+          "default": []
         }
       },
       "required": [
@@ -92,12 +91,6 @@
             "institutional"
           ]
         },
-        "setting": {
-          "enum": [
-            "inpatient",
-            "outpatient"
-          ]
-        },
         "payments": {
           "type": "array",
           "items": {
@@ -110,7 +103,6 @@
       "required": [
         "tin",
         "billing_class",
-        "setting",
         "payments"
       ],
       "if": {
