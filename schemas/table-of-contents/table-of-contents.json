@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "$id": "https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/table-of-contents/table-of-contents.json",
   "definitions": {
     "file_location": {
@@ -68,21 +68,26 @@
           "type": "string",
           "minLength": 1
         },
-        "plan_sponsor_name": {
-          "type": "string",
-          "minLength": 1
-        },
         "issuer_name": {
           "type": "string",
           "minLength": 1
         },
         "plan_id_type": {
-          "enum": [
-            "ein",
-            "hios"
+          "oneOf": [
+              {
+                  "enum": ["ein"],
+                  "required": ["plan_sponsor_name"]
+              },
+              {
+                  "enum": ["hios"]
+              }
           ]
         },
         "plan_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan_sponsor_name": {
           "type": "string",
           "minLength": 1
         },
@@ -92,20 +97,6 @@
             "individual"
           ]
         }
-      },
-      "if": {
-        "properties": {
-          "plan_id_type": {
-            "enum": [
-              "ein"
-            ]
-          }
-        }
-      },
-      "then": {
-        "required": [
-          "plan_sponsor_name"
-        ]
       },
       "required": [
         "plan_name",
