@@ -406,6 +406,7 @@
     "version"
   ],
   "oneOf": [
+    {"not": {"required": ["plan_id_type"]}},
     {
       "properties": {
         "plan_id_type": { "enum": ["ein"] }
