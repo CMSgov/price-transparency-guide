@@ -334,15 +334,8 @@
       "minLength": 1
     },
     "plan_id_type": {
-      "oneOf": [
-          {
-              "enum": ["ein"],
-              "required": ["plan_sponsor_name"]
-          },
-          {
-              "enum": ["hios"]
-          }
-      ]
+      "type": "string",
+      "enum": ["ein","hios"]
     },
     "plan_id": {
       "type": "string",
@@ -411,6 +404,41 @@
     "last_updated_on",
     "in_network",
     "version"
+  ],
+  "oneOf": [
+    {
+      "properties": {
+        "plan_id_type": { "enum": ["ein"] }
+      },
+      "required": [
+        "reporting_entity_name",
+        "reporting_entity_type",
+        "last_updated_on",
+        "in_network",
+        "version",
+        "plan_id_type",
+        "plan_id",
+        "plan_market_type",
+        "issuer_name",
+        "plan_sponsor_name"
+      ]
+    },
+    {
+      "properties": {
+        "plan_id_type": { "enum": ["hios"] }
+      },
+      "required": [
+        "reporting_entity_name",
+        "reporting_entity_type",
+        "last_updated_on",
+        "in_network",
+        "version",
+        "plan_id_type",
+        "plan_id",
+        "plan_market_type",
+        "issuer_name"
+      ]
+    }
   ],
   "dependencies": {
     "plan_name": [
