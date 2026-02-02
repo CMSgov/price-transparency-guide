@@ -225,8 +225,7 @@
       "items": {
         "$ref": "#/definitions/out_of_network"
       },
-      "default": [],
-      "minItems": 1
+      "default": []
     }
   },
   "if": {
