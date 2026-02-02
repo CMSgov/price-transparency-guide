@@ -116,10 +116,10 @@ describe "allowed amounts schema" do
       expect(schemer.valid?(invalid_data)).to be_falsey
     end
 
-    it "rejects empty out_of_network array" do
+    it "allows for an empty out_of_network array" do
       invalid_data = valid_data.dup
       invalid_data["out_of_network"] = []
-      expect(schemer.valid?(invalid_data)).to be_falsey
+      expect(schemer.valid?(invalid_data)).to be_truthy
     end
 
     it "rejects empty payments array" do
