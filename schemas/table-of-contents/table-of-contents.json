@@ -1,7 +1,283 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/table-of-contents/table-of-contents.json",
-  "definitions": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CMSgov/price-transparency-guide/schemas/table-of-contents.json",
+  "title": "Table of Contents File",
+  "description": "Required index, structured as a normalized registry. Networks and plans are each listed exactly once and joined by identifier, rather than repeating full plan identity inside every network entry. This supports both directions of lookup: network to files, and plan to network. This is the only place plan information appears anywhere in the schema set.",
+  "type": "object",
+  "$defs": {
+    "network_reference": {
+      "type": "object",
+      "properties": {
+        "network_id": {
+          "description": "Resolved against the networks array of this file.",
+          "type": "string",
+          "minLength": 1
+        },
+        "precedence": {
+          "description": "The order in which this plan's networks are consulted to find the negotiated rate that applies to a claim. For a given provider and billing code, the rate comes from the network with the lowest precedence whose In-Network Rate File prices that provider for that code. Required on every reference, including a plan's only network, so the order is always stated rather than inferred from array position. Unique among one plan's references; uniqueness is not expressible in JSON Schema and must be enforced outside of the schema. Precedence is not tier: tier is the cost-sharing level the member pays and exists only on tiered products, precedence is which contract prices the claim and exists on every plan.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "tier": {
+          "description": "The cost-sharing level the member pays when using this network, for tiered products only. Omit on plans that are not tiered; a non-tiered plan has no tier, not tier 1. 1 is the most preferred tier. Tier does not determine which rate applies; precedence does.",
+          "$ref": "#/$defs/tier"
+        },
+        "tier_label": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "network_id",
+        "precedence"
+      ],
+      "dependentRequired": {
+        "tier": [
+          "tier_label"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "plan_entry": {
+      "type": "object",
+      "description": "One plan and the networks it uses: plan identity, the network association that reaches an in-network rate file, the market segment that reaches an allowed-amount file, and the tier position of each network for this plan. Note what is absent: no file locations. Those live in the networks and allowed_amount_files arrays and are reached through network_id and market_segment, so a roster change never rewrites a URL and a moved file never rewrites the roster.",
+      "properties": {
+        "plan": {
+          "$ref": "#/$defs/plan"
+        },
+        "network_references": {
+          "description": "The networks this plan uses, each optionally carrying its tier position. Omit this property entirely when the plan contracts with no provider network and therefore has no negotiated rates to report, as with a traditional indemnity product. Absence means no in-network rate file exists for this plan, and the plan's entire disclosure is the allowed-amount file its market_segment resolves to; an empty array is not a way to say this and remains invalid. That a plan reachable by neither route is an error is not expressible in JSON Schema and must be enforced out of band.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/network_reference"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "plan"
+      ],
+      "additionalProperties": false
+    },
+    "attestation": {
+      "type": "object",
+      "description": "The attestation required by 26 CFR 54.9815-2715A3(b)(1)(iv), 29 CFR 2590.715-2715A3(b)(1)(iv), and 45 CFR 147.212(b)(1)(iv) in every In-network Rate, Allowed Amount, Prescription Drug, Utilization, Table of Contents, and Taxonomy file. The root TXT file does not carry it. 'The date in the file' is last_updated_on.",
+      "properties": {
+        "statements": {
+          "description": "The attestation, verbatim, once for each regulation the plans and coverage in this file are subject to. The three Departments' regulations require the same statement differing only in the citation, and one file can cover plans under more than one of them, as with a third-party administrator's file aggregating private-employer and non-federal governmental plans.",
+          "type": "array",
+          "items": {
+            "enum": [
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 26 CFR 54.9815-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 29 CFR 2590.715-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 45 CFR 147.212, and the information encoded is true, accurate, and complete as of the date in the file."
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "attester": {
+          "type": "object",
+          "description": "The senior official designated to oversee the encoding of true, accurate, and complete data.",
+          "properties": {
+            "name": {
+              "description": "The official's name.",
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "description": "The official's title.",
+              "type": "string",
+              "minLength": 1
+            },
+            "organization": {
+              "description": "Legal name of the organization the official belongs to.",
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "name",
+            "title"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "statements",
+        "attester"
+      ],
+      "additionalProperties": false
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "https_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "reporting_entity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Legal name of the entity that created the file, not the entity hosting it.",
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "group_health_plan",
+            "health_insurance_issuer",
+            "third_party_administrator",
+            "claims_clearinghouse",
+            "other_third_party"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "date_range": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/date"
+        },
+        "end": {
+          "$ref": "#/$defs/date"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "market_segment": {
+      "enum": [
+        "large_group",
+        "small_group",
+        "individual",
+        "self_insured"
+      ]
+    },
+    "product_type": {
+      "enum": [
+        "hmo",
+        "ppo",
+        "epo",
+        "pos",
+        "hdhp",
+        "indemnity",
+        "other"
+      ]
+    },
+    "plan_identifier": {
+      "type": "object",
+      "description": "Exactly one of hios or ein is present. An ein requires plan_sponsor_name, because an EIN identifies the sponsor rather than the plan; with hios, plan_sponsor_name is optional. Discriminating on which key is present lets that rule be a single dependentRequired keyword instead of the if/then on plan_id_type that v2.x carries in reporting_plans.",
+      "properties": {
+        "hios": {
+          "description": "Either a 5-digit HIOS issuer ID or a full 14-character HIOS plan ID (5-digit issuer, 2-letter state, 3-digit product, 4-digit component).",
+          "type": "string",
+          "pattern": "^[0-9]{5}([A-Z]{2}[0-9]{7})?$"
+        },
+        "ein": {
+          "type": "string",
+          "pattern": "^[0-9]{2}-[0-9]{7}$"
+        },
+        "plan_sponsor_name": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "hios"
+          ]
+        },
+        {
+          "required": [
+            "ein"
+          ]
+        }
+      ],
+      "dependentRequired": {
+        "ein": [
+          "plan_sponsor_name"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "plan": {
+      "type": "object",
+      "properties": {
+        "plan_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "issuer_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan_identifier": {
+          "$ref": "#/$defs/plan_identifier"
+        },
+        "plan_market_type": {
+          "enum": [
+            "group",
+            "individual"
+          ]
+        },
+        "market_segment": {
+          "$ref": "#/$defs/market_segment"
+        },
+        "product_type": {
+          "$ref": "#/$defs/product_type"
+        }
+      },
+      "required": [
+        "plan_name",
+        "issuer_name",
+        "plan_identifier",
+        "plan_market_type",
+        "market_segment",
+        "product_type"
+      ],
+      "additionalProperties": false
+    },
+    "network_identity": {
+      "type": "object",
+      "properties": {
+        "network_id": {
+          "description": "An identifier joining the In-Network Rate, Utilization, and Provider Taxonomy Mapping files for one network.",
+          "type": "string",
+          "minLength": 1
+        },
+        "network_name": {
+          "description": "Common provider network names most familiar to members and the public.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "network_id",
+        "network_name"
+      ],
+      "additionalProperties": false
+    },
     "file_location": {
       "type": "object",
       "properties": {
@@ -10,148 +286,147 @@
           "minLength": 1
         },
         "location": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https://"
+          "$ref": "#/$defs/https_url"
         }
       },
       "required": [
         "description",
         "location"
-      ]
+      ],
+      "additionalProperties": false
     },
-    "reporting_structure": {
+    "negotiated_by": {
       "type": "object",
+      "description": "Who negotiated the rates in this network, and how the reporting entity's members come to be paid at them. Exactly one of arrangement or arrangement_description is present: a listed arrangement, or a description of one that is not listed. There is no 'other' value, because 'other' without a description says nothing.",
       "properties": {
-        "reporting_plans": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/reporting_plans"
-          },
-          "uniqueItems": true,
-          "default": [],
-          "minItems": 1
+        "name": {
+          "description": "Legal name of the entity that negotiated these rates with the providers: the reporting entity or the affiliate that negotiated them for 'own', the network vendor for 'rented', the specialty vendor for 'carve_out_vendor', the local licensee for 'host_plan', and the employer or other plan sponsor for 'plan_sponsor_direct'.",
+          "type": "string",
+          "minLength": 1
         },
-        "in_network_files": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/file_location"
-          },
-          "uniqueItems": true,
-          "default": [],
-          "minItems": 1
+        "arrangement": {
+          "description": "How the rates came to apply to the reporting entity's members. 'own': the reporting entity, or an affiliate under common ownership or control with it, negotiated directly with the providers. 'rented': the reporting entity pays for access to a network another entity assembled and holds the provider contracts for, without that entity managing the benefit; this includes arrangements described as leased or wrap networks. 'carve_out_vendor': a vendor administers a defined category of benefits, such as behavioral health, under its own provider contracts, and manages that benefit on the plan's behalf. 'host_plan': the rates were negotiated by another member of an inter-plan program in whose service area the care is delivered, and apply to the reporting entity's members through that program. 'plan_sponsor_direct': the plan sponsor contracted directly with the providers, and the reporting entity reports those rates on the sponsor's behalf.",
+          "enum": [
+            "own",
+            "rented",
+            "carve_out_vendor",
+            "host_plan",
+            "plan_sponsor_direct"
+          ]
         },
-        "allowed_amount_file": {
-          "$ref": "#/definitions/file_location"
+        "arrangement_description": {
+          "description": "Plain-language description of an arrangement none of the listed values describes: who negotiated the rates, and on what terms the reporting entity's members are paid at them.",
+          "type": "string",
+          "minLength": 1
         }
       },
-      "anyOf": [
+      "required": [
+        "name"
+      ],
+      "oneOf": [
         {
           "required": [
-            "in_network_files"
+            "arrangement"
           ]
         },
         {
           "required": [
-            "allowed_amount_file"
+            "arrangement_description"
           ]
         }
       ],
-      "required": [
-        "reporting_plans"
-      ]
+      "additionalProperties": false
     },
-    "reporting_plans": {
+    "network_file_entry": {
       "type": "object",
+      "description": "One network and the three files that describe it, as listed in the Table of Contents.",
       "properties": {
-        "plan_name": {
-          "type": "string",
-          "minLength": 1
+        "network": {
+          "$ref": "#/$defs/network_identity"
         },
-        "plan_sponsor_name": {
-          "type": "string",
-          "minLength": 1
+        "negotiated_by": {
+          "$ref": "#/$defs/negotiated_by"
         },
-        "issuer_name": {
-          "type": "string",
-          "minLength": 1
+        "in_network_file": {
+          "$ref": "#/$defs/file_location"
         },
-        "plan_id_type": {
-          "enum": [
-            "ein",
-            "hios"
-          ]
+        "utilization_file": {
+          "description": "Location of this network's Utilization File. Optional in this release: the Utilization File is a Phase 2 requirement under (b)(2)(i), applicable from September 6, 2027 and first posted July 1, 2028. Populate it once the file exists. Whether it is required depends on the date, which JSON Schema cannot evaluate.",
+          "$ref": "#/$defs/file_location"
         },
-        "plan_id": {
-          "type": "string",
-          "minLength": 1
-        },
-        "plan_market_type": {
-          "enum": [
-            "group",
-            "individual"
-          ]
+        "taxonomy_mapping_file": {
+          "description": "Location of the Taxonomy File used to prepare this network's In-network Rate File. Optional in this release: the Taxonomy File is a Phase 2 requirement under (b)(2)(ii), applicable from September 6, 2027 and first posted October 1, 2027. Populate it once the file exists. Whether it is required depends on the date, which JSON Schema cannot evaluate.",
+          "$ref": "#/$defs/file_location"
         }
-      },
-      "if": {
-        "properties": {
-          "plan_id_type": {
-            "enum": [
-              "ein"
-            ]
-          }
-        }
-      },
-      "then": {
-        "required": [
-          "plan_sponsor_name"
-        ]
       },
       "required": [
-        "plan_name",
-        "plan_id_type",
-        "plan_id",
-        "plan_market_type",
-        "issuer_name"
-      ]
+        "network",
+        "negotiated_by",
+        "in_network_file"
+      ],
+      "additionalProperties": false
+    },
+    "tier": {
+      "description": "Tier position within a tiered arrangement. 1 is the most preferred tier; higher numbers are progressively less preferred. This number is needed due to a bare label not being able to be ranked, compared across payers.",
+      "type": "integer",
+      "minimum": 1
     }
   },
-  "type": "object",
   "properties": {
-    "reporting_entity_name": {
+    "schema_version": {
       "type": "string",
       "minLength": 1
     },
-    "reporting_entity_type": {
-      "type": "string",
-      "minLength": 1
+    "reporting_entity": {
+      "$ref": "#/$defs/reporting_entity"
     },
-    "version": {
-      "type": "string",
-      "minLength": 1
+    "reporting_period": {
+      "description": "The quarterly period the indexed files cover.",
+      "$ref": "#/$defs/date_range"
     },
     "last_updated_on": {
-      "type": "string",
-      "format": "date",
-      "description": "This is a date format of YYYY-MM-DD",
-      "minLength": 10,
-      "maxLength": 10
+      "$ref": "#/$defs/date"
     },
-    "reporting_structure": {
+    "attestation": {
+      "$ref": "#/$defs/attestation"
+    },
+    "networks": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/reporting_structure"
+        "$ref": "#/$defs/network_file_entry"
       },
-      "uniqueItems": true,
-      "default": [],
       "minItems": 1
+    },
+    "plans": {
+      "description": "Each plan or policy, listed once, with the networks it uses.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/plan_entry"
+      },
+      "minItems": 1
+    },
+    "allowed_amount_files": {
+      "description": "Keyed by market segment, so each segment maps to exactly one Allowed Amount File: a JSON object cannot hold the same key twice, and propertyNames restricts the keys to the four segments. A plan's market_segment is looked up here directly. RFC 8259 says object keys SHOULD be unique rather than MUST; a file that repeats a key is still JSON, and common parsers silently keep the last occurrence. A producer serializing from a map cannot emit a duplicate.",
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/market_segment"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/file_location"
+      },
+      "minProperties": 1
     }
   },
   "required": [
-    "reporting_entity_name",
-    "reporting_entity_type",
-    "reporting_structure",
+    "schema_version",
+    "reporting_entity",
+    "reporting_period",
     "last_updated_on",
-    "version"
-  ]
+    "attestation",
+    "networks",
+    "plans",
+    "allowed_amount_files"
+  ],
+  "additionalProperties": false
 }
+
