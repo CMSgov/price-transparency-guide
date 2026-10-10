@@ -124,7 +124,7 @@
       "type": "object",
       "properties": {
         "name": {
-          "description": "Legal name of the entity that created the file, not the entity hosting it.",
+          "description": "Legal name of the entity that published the file as the plan or issuer, or as the party providing the information under a written agreement with the plan or issuer. Not a contractor that builds or hosts the file on that entity's behalf.",
           "type": "string",
           "minLength": 1
         },
@@ -169,14 +169,14 @@
       ]
     },
     "product_type": {
+      "description": "The plan's or policy's product type, from the common product types. A coverage option none of them describes carries product_type_description instead. The terms are illustrative of benefit design at the plan or policy level, not network-level designations.",
       "enum": [
         "hmo",
         "ppo",
         "epo",
         "pos",
         "hdhp",
-        "indemnity",
-        "other"
+        "indemnity"
       ]
     },
     "plan_identifier": {
@@ -241,6 +241,11 @@
         },
         "product_type": {
           "$ref": "#/$defs/product_type"
+        },
+        "product_type_description": {
+          "description": "Plain-language description of the coverage option's product type, used when none of the listed product types describes it.",
+          "type": "string",
+          "minLength": 1
         }
       },
       "required": [
@@ -248,8 +253,19 @@
         "issuer_name",
         "plan_identifier",
         "plan_market_type",
-        "market_segment",
-        "product_type"
+        "market_segment"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "product_type"
+          ]
+        },
+        {
+          "required": [
+            "product_type_description"
+          ]
+        }
       ],
       "additionalProperties": false
     },
@@ -347,8 +363,14 @@
         "negotiated_by": {
           "$ref": "#/$defs/negotiated_by"
         },
-        "in_network_file": {
-          "$ref": "#/$defs/file_location"
+        "in_network_files": {
+          "description": "Locations of this network's In-network Rate File. More than one location means the network's rates are segmented across several files, which the final rule's preamble (section III.C.1) says plans and issuers may do for large networks and the schema will continue to allow. Each segment is an ordinary In-network Rate File carrying this network's identifier.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/file_location"
+          },
+          "minItems": 1,
+          "uniqueItems": true
         },
         "utilization_file": {
           "description": "Location of this network's Utilization File. Optional in this release: the Utilization File is a Phase 2 requirement under (b)(2)(i), applicable from September 6, 2027 and first posted July 1, 2028. Populate it once the file exists. Whether it is required depends on the date, which JSON Schema cannot evaluate.",
@@ -362,7 +384,7 @@
       "required": [
         "network",
         "negotiated_by",
-        "in_network_file"
+        "in_network_files"
       ],
       "additionalProperties": false
     },
