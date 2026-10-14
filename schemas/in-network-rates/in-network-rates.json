@@ -1,27 +1,413 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/in-network-rates/in-network-rates.json",
-  "definitions": {
-    "in_network": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CMSgov/price-transparency-guide/schemas/in-network-rates.json",
+  "title": "In-network Rate File",
+  "description": "An In-network Rate File contains the negotiated rates for covered items and services with the providers in one provider network. The plans that use the network are listed in the Table of Contents.",
+  "type": "object",
+  "$defs": {
+    "provider_group": {
+      "type": "object",
+      "properties": {
+        "provider_group_id": {
+          "description": "Unique within this file. Referenced by negotiated_rates.provider_group_ids and capitation_arrangements.provider_group_ids.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "providers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/provider"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "provider_group_id",
+        "providers"
+      ],
+      "additionalProperties": false
+    },
+    "provision_trigger": {
+      "type": "object",
+      "description": "The condition that activates a payment provision. Read as: the provision applies once measure exceeds threshold.",
+      "properties": {
+        "measure": {
+          "$ref": "#/$defs/threshold_measure"
+        },
+        "threshold": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "measure",
+        "threshold"
+      ],
+      "additionalProperties": false
+    },
+    "cost_to_charge_ratio": {
+      "type": "object",
+      "description": "A facility's cost-to-charge ratio, as used by a payment provision.",
+      "properties": {
+        "npi": {
+          "description": "The facility's organizational (Type 2) NPI.",
+          "type": "string",
+          "pattern": "^[1-9][0-9]{9}$"
+        },
+        "ratio": {
+          "description": "The ratio converting the facility's billed charges to estimated cost: estimated cost is billed charges multiplied by this ratio.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "npi",
+        "ratio"
+      ],
+      "additionalProperties": false
+    },
+    "provision_method": {
+      "type": "object",
+      "description": "How payment is computed once the trigger is met.",
+      "properties": {
+        "negotiated_type": {
+          "$ref": "#/$defs/negotiated_type"
+        },
+        "rate": {
+          "type": "number"
+        },
+        "basis": {
+          "$ref": "#/$defs/payment_basis"
+        },
+        "application": {
+          "description": "Whether the rate applies to the whole claim or only to the portion above the threshold. This has no safe default and changes the payment materially: 80 percent of a 300,000 claim and 80 percent of the 150,000 above a 150,000 threshold are different numbers.",
+          "enum": [
+            "full_amount",
+            "amount_above_threshold"
+          ]
+        },
+        "relation_to_rate": {
+          "description": "How the amount computed by this method relates to the otherwise applicable rate of the price the provision governs. 'in_addition_to_rate': paid on top of that rate. 'in_place_of_rate': replaces that rate. 'greater_of_rate': whichever is higher, that rate or the computed amount, is paid. 'lesser_of_rate': whichever is lower, that rate or the computed amount, is paid. Like application, this has no safe default: an outlier paid on top of a case rate and a stop-loss paid in place of it differ by the full case rate.",
+          "enum": [
+            "in_addition_to_rate",
+            "in_place_of_rate",
+            "greater_of_rate",
+            "lesser_of_rate"
+          ]
+        }
+      },
+      "required": [
+        "negotiated_type",
+        "rate",
+        "basis",
+        "application",
+        "relation_to_rate"
+      ],
+      "additionalProperties": false
+    },
+    "payment_provision": {
+      "type": "object",
+      "description": "The contract term that impacts how payment is computed when a threshold is met: outlier clauses, stop-loss provisions, etc. Declared once for the file. A provision with applies_to 'all_rates' names no billing code and describes no item or service",
+      "properties": {
+        "provision_id": {
+          "description": "Unique provision_id integer this file. Used by negotiated_price.payment_provision_ids.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "provision_type": {
+          "enum": [
+            "outlier",
+            "stop_loss",
+            "other"
+          ]
+        },
+        "applies_to": {
+          "description": "'all_rates' is the general provision: it governs every negotiated price in this file and is tied to no item or service. 'referenced_rates' governs only the prices naming this provision_id, which is how a provision that varies by provider group or by code is expressed.",
+          "enum": [
+            "all_rates",
+            "referenced_rates"
+          ]
+        },
+        "cost_to_charge_ratios": {
+          "description": "The cost-to-charge ratio of each facility the provision governs, keyed by the facility's NPI. Required when the trigger's measure or the method's basis is estimated_cost; without it the provision cannot be evaluated from the file alone.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cost_to_charge_ratio"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "trigger": {
+          "$ref": "#/$defs/provision_trigger"
+        },
+        "method": {
+          "$ref": "#/$defs/provision_method"
+        },
+        "contract_text": {
+          "description": "The provision as written in the agreement. Required even when trigger and method are populated: the structured fields make the provision computable, the text makes it auditable against the contract.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provision_id",
+        "provision_type",
+        "applies_to",
+        "trigger",
+        "method",
+        "contract_text"
+      ],
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "trigger": {
+                "properties": {
+                  "measure": {
+                    "const": "estimated_cost"
+                  }
+                },
+                "required": [
+                  "measure"
+                ]
+              }
+            },
+            "required": [
+              "trigger"
+            ]
+          },
+          {
+            "properties": {
+              "method": {
+                "properties": {
+                  "basis": {
+                    "const": "estimated_cost"
+                  }
+                },
+                "required": [
+                  "basis"
+                ]
+              }
+            },
+            "required": [
+              "method"
+            ]
+          }
+        ]
+      },
+      "then": {
+        "required": [
+          "cost_to_charge_ratios"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "capitation_arrangement": {
+      "type": "object",
+      "properties": {
+        "capitation_id": {
+          "description": "Unique capitation_id integer this file.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "description": {
+          "description": "A plain-language description of the arrangement.",
+          "type": "string",
+          "minLength": 1
+        },
+        "provider_group_ids": {
+          "description": "Integer references to provider_group_id values declared in this file: the provider groups paid under this arrangement.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "rate": {
+          "description": "The dollar amount paid each month for each attributed member (per member per month, or PMPM). When the contract states the amount for another period, such as per member per year, report the monthly equivalent.",
+          "type": "number",
+          "minimum": 0
+        },
+        "covered_services": {
+          "description": "The items and services the arrangement covers, as specific codes or inclusive ranges of codes.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/billing_code_scope"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "expiration_date": {
+          "description": "The date the rate expires. Use 9999-12-31 when the contract has no set expiration date.",
+          "$ref": "#/$defs/date"
+        },
+        "additional_information": {
+          "description": "Terms the other fields cannot express, such as rates that vary by member age, sex, or risk score.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "capitation_id",
+        "description",
+        "provider_group_ids",
+        "rate",
+        "covered_services",
+        "expiration_date"
+      ],
+      "additionalProperties": false
+    },
+    "billing_code_scope": {
+      "type": "object",
+      "description": "A specific code or an inclusive range of codes within one code type.",
+      "properties": {
+        "billing_code_type": {
+          "$ref": "#/$defs/billing_code_type"
+        },
+        "billing_code_type_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "billing_code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "range_start": {
+          "type": "string",
+          "minLength": 1
+        },
+        "range_end": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "billing_code_type",
+        "billing_code_type_version"
+      ],
+      "dependentRequired": {
+        "range_start": [
+          "range_end"
+        ],
+        "range_end": [
+          "range_start"
+        ]
+      },
+      "oneOf": [
+        {
+          "required": [
+            "billing_code"
+          ]
+        },
+        {
+          "required": [
+            "range_start"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "negotiated_price": {
+      "type": "object",
+      "properties": {
+        "negotiated_type": {
+          "$ref": "#/$defs/negotiated_type"
+        },
+        "negotiated_rate": {
+          "type": "number"
+        },
+        "billing_class": {
+          "$ref": "#/$defs/billing_class"
+        },
+        "setting": {
+          "$ref": "#/$defs/setting"
+        },
+        "service_code": {
+          "$ref": "#/$defs/service_code"
+        },
+        "service_code_set_id": {
+          "description": "Integer reference to the service_code_set_id of a service_code_set declared in this file, used instead of restating the places inline. Never present alongside service_code; omitting both means the rate applies regardless of place of service.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "billing_code_modifiers": {
+          "$ref": "#/$defs/billing_code_modifiers"
+        },
+        "expiration_date": {
+          "description": "The date the rate expires. Use 9999-12-31 when the contract has no set expiration date.",
+          "$ref": "#/$defs/date"
+        },
+        "payment_provision_ids": {
+          "description": "Integer references to provision_id values declared in this file. Present only for provisions whose applies_to is 'referenced_rates'; a provision applying to all rates governs this price without being named here.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "additional_information": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "negotiated_type",
+        "negotiated_rate",
+        "billing_class",
+        "setting",
+        "expiration_date"
+      ],
+      "additionalProperties": false,
+      "not": {
+        "required": [
+          "service_code",
+          "service_code_set_id"
+        ]
+      }
+    },
+    "negotiated_rate_detail": {
+      "type": "object",
+      "properties": {
+        "provider_group_ids": {
+          "description": "Integer references to provider_group_id values declared in this file.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "negotiated_prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/negotiated_price"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "provider_group_ids",
+        "negotiated_prices"
+      ],
+      "additionalProperties": false
+    },
+    "in_network_item": {
       "type": "object",
       "properties": {
         "negotiation_arrangement": {
           "enum": [
             "ffs",
-            "bundle",
-            "capitation"
+            "bundle"
           ]
         },
-        "name": {
-          "type": "string",
-          "minLength": 1
-        },
         "billing_code_type": {
-          "$ref": "#/definitions/billing_code_types"
-        },
-        "severity_of_illness": {
-          "type": "string",
-          "minLength": 1
+          "$ref": "#/$defs/billing_code_type"
         },
         "billing_code_type_version": {
           "type": "string",
@@ -32,266 +418,252 @@
           "minLength": 1
         },
         "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity_of_illness": {
           "type": "string",
           "minLength": 1
         },
         "negotiated_rates": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/negotiated_rates"
+            "$ref": "#/$defs/negotiated_rate_detail"
           },
-          "default": [],
-          "minItems": 1
-        },
-        "covered_services": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/contained_billing_code"
-          },
-          "default": [],
-          "minItems": 1
+          "minItems": 1,
+          "uniqueItems": true
         },
         "bundled_codes": {
+          "description": "Present only when negotiation_arrangement is 'bundle'.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/contained_billing_code"
+            "$ref": "#/$defs/bundled_code"
           },
-          "default": [],
-          "minItems": 1
+          "minItems": 1,
+          "uniqueItems": true
         }
       },
       "required": [
         "negotiation_arrangement",
-        "name",
         "billing_code_type",
         "billing_code_type_version",
         "billing_code",
-        "negotiated_rates",
-        "description"
-      ]
-    },
-    "contained_billing_code": {
-      "type": "object",
-      "properties": {
-        "billing_code_type": {
-          "$ref": "#/definitions/billing_code_types"
-        },
-        "billing_code_type_version": {
-          "type": "string",
-          "minLength": 1
-        },
-        "billing_code": {
-          "type": "string",
-          "minLength": 1
-        },
-        "description": {
-          "type": "string",
-          "minLength": 1
-        }
-      },
-      "required": [
-        "billing_code_type",
-        "billing_code_type_version",
-        "billing_code",
-        "description"
-      ]
-    },
-    "negotiated_rates": {
-      "type": "object",
-      "properties": {
-        "negotiated_prices": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/negotiated_price"
-          },
-          "uniqueItems": true,
-          "default": [],
-          "minItems": 1
-        },
-        "provider_references": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "uniqueItems": true,
-          "default": [],
-          "minItems": 1
-        }
-      },
-      "required": [
-        "provider_references",
-        "negotiated_prices"
-      ]
-    },
-    "negotiated_price": {
-      "type": "object",
-      "properties": {
-        "service_code": {
-          "oneOf": [
-            {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "pattern": "^(0[1-9]|1[0-9]|2[0-7]|3[1-4]|4[1-2]|4[9]|5[0-8]|6[0-2]|6[5-6]|7[1-2]|81|99)$"
-              },
-              "uniqueItems": true
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "pattern": "^CSTM-00$"
-              },
-              "maxItems": 1
-            }
-          ]
-        },
-        "billing_class": {
-          "enum": [
-            "professional",
-            "institutional",
-            "both"
-          ]
-        },
-        "setting": {
-          "enum": [
-            "inpatient",
-            "outpatient",
-            "both"
-          ]
-        },
-        "negotiated_type": {
-          "enum": [
-            "negotiated",
-            "derived",
-            "fee schedule",
-            "percentage",
-            "per diem"
-          ]
-        },
-        "billing_code_modifier": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "uniqueItems": true,
-          "default": [],
-          "minItems": 1
-        },
-        "negotiated_rate": {
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "expiration_date": {
-          "type": "string",
-          "format": "date",
-          "description": "This is a date format of YYYY-MM-DD",
-          "minLength": 10,
-          "maxLength": 10
-        },
-        "additional_information": {
-          "type": "string",
-          "description": "In situations in which alternative reimbursement arrangements can neither be expressed as a dollar amount nor as a percentage, this open text field can be used to provide information such as, a description of the formula, variables, methodology or other information necessary to understand the arrangement. The open text field may be utilized for reporting only if a plan or issuer cannot disclose its in-network rates as a dollar amount or a percentage.",
-          "minLength": 1
-        }
-      },
-      "required": [
-        "negotiated_type",
-        "billing_class",
-        "negotiated_rate",
-        "expiration_date",
-        "setting"
+        "description",
+        "negotiated_rates"
       ],
       "if": {
+        "required": [
+          "bundled_codes"
+        ]
+      },
+      "then": {
         "properties": {
-          "billing_class": {
-            "const": "professional"
+          "negotiation_arrangement": {
+            "const": "bundle"
           }
         }
       },
-      "then": {
-        "required": [
-          "service_code"
-        ]
-      }
+      "additionalProperties": false
     },
-    "providers": {
+    "service_code_set": {
+      "type": "object",
+      "description": "A set of places of service declared once for the whole file. A rate that applies at many places can reference this set instead of listing the places on every rate.",
+      "properties": {
+        "service_code_set_id": {
+          "description": "Unique service_code_set_id integer this file. Referenced by negotiated_price.service_code_set_id.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "service_code": {
+          "$ref": "#/$defs/service_code"
+        }
+      },
+      "required": [
+        "service_code_set_id",
+        "service_code"
+      ],
+      "additionalProperties": false
+    },
+    "attestation": {
+      "type": "object",
+      "description": "The attestation required by 26 CFR 54.9815-2715A3(b)(1)(iv), 29 CFR 2590.715-2715A3(b)(1)(iv), and 45 CFR 147.212(b)(1)(iv) in every In-network Rate, Allowed Amount, Prescription Drug, Utilization, Table of Contents, and Taxonomy file. 'The date in the file' is last_updated_on.",
+      "properties": {
+        "statements": {
+          "description": "The attestation, verbatim, once for each regulation the plans and coverage in this file are subject to. The three Departments' regulations require the same statement differing only in the citation, and one file can cover plans under more than one of them, as with a third-party administrator's file aggregating private-employer and non-federal governmental plans.",
+          "type": "array",
+          "items": {
+            "enum": [
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 26 CFR 54.9815-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 29 CFR 2590.715-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 45 CFR 147.212, and the information encoded is true, accurate, and complete as of the date in the file."
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "attester": {
+          "type": "object",
+          "description": "The senior official designated to oversee the encoding of true, accurate, and complete data.",
+          "properties": {
+            "name": {
+              "description": "The official's name.",
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "description": "The official's title.",
+              "type": "string",
+              "minLength": 1
+            },
+            "organization": {
+              "description": "Legal name of the organization the official belongs to.",
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "name",
+            "title"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "statements",
+        "attester"
+      ],
+      "additionalProperties": false
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "https_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "reporting_entity": {
       "type": "object",
       "properties": {
+        "name": {
+          "description": "Legal name of the entity that published the file as the plan or issuer, or as the party providing the information under a written agreement with the plan or issuer. Not a contractor that builds or hosts the file on that entity's behalf.",
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "group_health_plan",
+            "health_insurance_issuer",
+            "third_party_administrator",
+            "claims_clearinghouse",
+            "other_third_party"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "date_range": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/date"
+        },
+        "end": {
+          "$ref": "#/$defs/date"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "tin": {
+      "type": "object",
+      "description": "The provider's tax identifier. Either ein, the Employer Identification Number, with business_name, or npi in place of a provider who would otherwise be identified by a Social Security number as their TIN. Exactly one of ein or npi.",
+      "properties": {
+        "ein": {
+          "type": "string",
+          "pattern": "^[0-9]{2}-?[0-9]{7}$"
+        },
         "npi": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{9}$"
+        },
+        "business_name": {
+          "description": "Legal entity name associated with the EIN. Per Technical Clarification Q40 this is the name of the NPI Type 2 entity, not of individual practitioners.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "ein"
+          ]
+        },
+        {
+          "required": [
+            "npi"
+          ]
+        }
+      ],
+      "dependentRequired": {
+        "ein": [
+          "business_name"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "npi_list": {
+      "description": "National Provider Identifiers, each a 10-digit string.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[1-9][0-9]{9}$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "provider": {
+      "type": "object",
+      "properties": {
+        "tin": {
+          "$ref": "#/$defs/tin"
+        },
+        "npi": {
+          "description": "The NPIs of the providers under this tax identifier that the provider group's rates apply to. Use [\"0\"] when the contract is at the TIN level and NPIs are not available.",
           "oneOf": [
             {
-              "type": "array",
-              "items": {
-                "type": "number",
-                "minimum": 1000000000,
-                "maximum": 9999999999
-              },
-              "uniqueItems": true,
-              "minItems": 1
+              "$ref": "#/$defs/npi_list"
             },
             {
               "type": "array",
               "items": {
-                "type": "number",
-                "minimum": 0,
-                "maximum": 0
+                "const": "0"
               },
               "minItems": 1,
               "maxItems": 1
             }
           ]
-        },
-        "tin": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string"
-            },
-            "value": {
-              "type": "string"
-            },
-            "business_name": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          "oneOf": [
-            {
-              "properties": {
-                "type": {
-                  "pattern": "^ein$"
-                },
-                "value": {
-                  "pattern": "^[0-9]{2}-?[0-9]{7}$"
-                }
-              },
-              "required": ["type", "value", "business_name"]
-            },
-            {
-              "properties": {
-                "type": {
-                  "pattern": "^npi$"
-                },
-                "value": {
-                  "pattern": "^[1-9][0-9]{9}$"
-                }
-              },
-              "required": ["type", "value"]
-            }
-          ]
         }
       },
       "required": [
-        "npi",
-        "tin"
-      ]
+        "tin",
+        "npi"
+      ],
+      "additionalProperties": false
     },
-    "billing_code_types": {
+    "billing_code_type": {
       "enum": [
         "CPT",
         "HCPCS",
-        "ICD",
         "MS-DRG",
         "R-DRG",
         "S-DRG",
@@ -304,155 +676,230 @@
         "LOCAL",
         "EAPG",
         "CDT",
-        "RC",
-        "CSTM-ALL"
-      ]
-    }
-  },
-  "type": "object",
-  "properties": {
-    "reporting_entity_name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "reporting_entity_type": {
-      "type": "string",
-      "minLength": 1
-    },
-    "plan_name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "issuer_name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "plan_sponsor_name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "plan_id_type": {
-      "enum": [
-        "ein",
-        "hios"
+        "RC"
       ]
     },
-    "plan_id": {
-      "type": "string",
-      "minLength": 1
+    "bundled_code": {
+      "type": "object",
+      "description": "A specific billing code for an item or service included in a bundle.",
+      "properties": {
+        "billing_code_type": {
+          "$ref": "#/$defs/billing_code_type"
+        },
+        "billing_code_type_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "billing_code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "billing_code_type",
+        "billing_code_type_version",
+        "billing_code"
+      ],
+      "additionalProperties": false
     },
-    "plan_market_type": {
-      "enum": [
-        "group",
-        "individual"
-      ]
-    },
-    "last_updated_on": {
-      "type": "string",
-      "format": "date",
-      "description": "This is a date format of YYYY-MM-DD",
-      "minLength": 10,
-      "maxLength": 10
-    },
-    "version": {
-      "type": "string",
-      "minLength": 1
-    },
-    "provider_references": {
+    "billing_code_modifiers": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "provider_group_id": {
-            "type": "integer"
-          },
-          "provider_groups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/providers"
-            },
-            "default": [],
-            "minItems": 1
-          },
-          "network_name": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
-        "required": [
-          "provider_group_id",
-          "provider_groups",
-          "network_name"
-        ]
+        "type": "string",
+        "minLength": 1
       },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "service_code": {
+      "description": "CMS place of service codes to which a rate or amount applies.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(0[1-9]|1[0-9]|2[0-7]|3[1-4]|4[1-2]|4[9]|5[0-8]|6[0-2]|6[5-6]|7[1-2]|81|99)$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "billing_class": {
+      "description": "The type of claim the rate applies to: professional or institutional. Use both when the same rate applies to either.",
+      "enum": [
+        "professional",
+        "institutional",
+        "both"
+      ]
+    },
+    "setting": {
+      "description": "Whether the rate applies to inpatient or outpatient services. Use both when the same rate applies to either.",
+      "enum": [
+        "inpatient",
+        "outpatient",
+        "both"
+      ]
+    },
+    "negotiated_type": {
+      "description": "How a rate was determined. Used by negotiated_price and by the method of a payment provision.",
+      "enum": [
+        "negotiated",
+        "derived",
+        "fee schedule",
+        "percentage",
+        "per diem"
+      ]
+    },
+    "threshold_measure": {
+      "description": "The quantity a payment provision's trigger is compared against. Kept separate from payment_basis because a trigger can be a count of days, while a rate is always applied to a dollar quantity.",
+      "enum": [
+        "billed_charges",
+        "estimated_cost",
+        "allowed_amount",
+        "negotiated_rate",
+        "length_of_stay_days"
+      ]
+    },
+    "payment_basis": {
+      "description": "The dollar quantity a rate is applied to. estimated_cost means billed charges multiplied by a cost-to-charge ratio, the formulation Medicare uses for cost outliers and that most hospital outlier clauses mirror.",
+      "enum": [
+        "billed_charges",
+        "estimated_cost",
+        "allowed_amount",
+        "negotiated_rate",
+        "fee_schedule"
+      ]
+    },
+    "network_identity": {
+      "type": "object",
+      "properties": {
+        "network_id": {
+          "description": "An identifier joining the In-Network Rate, Utilization, and Provider Taxonomy Mapping files for one network.",
+          "type": "string",
+          "minLength": 1
+        },
+        "network_name": {
+          "description": "Common provider network names most familiar to members and the public.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "network_id",
+        "network_name"
+      ],
+      "additionalProperties": false
+    },
+    "file_location": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "location": {
+          "$ref": "#/$defs/https_url"
+        }
+      },
+      "required": [
+        "description",
+        "location"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "attestation": {
+      "$ref": "#/$defs/attestation"
+    },
+    "schema_version": {
+      "description": "The version of the schema the file conforms to, for example 3.0.0.",
+      "type": "string",
       "minLength": 1
+    },
+    "reporting_entity": {
+      "$ref": "#/$defs/reporting_entity"
+    },
+    "network": {
+      "$ref": "#/$defs/network_identity"
+    },
+    "reporting_period": {
+      "description": "The quarterly period this file covers.",
+      "$ref": "#/$defs/date_range"
+    },
+    "last_updated_on": {
+      "description": "The date the file was last updated. This is the \"date in the file\" that the attestation refers to.",
+      "$ref": "#/$defs/date"
+    },
+    "related_files": {
+      "type": "object",
+      "description": "Locations of the Utilization File and Provider Taxonomy Mapping File for this network, so a consumer holding only this file can reach both. Include each location once that file is posted.",
+      "properties": {
+        "utilization_file": {
+          "$ref": "#/$defs/file_location"
+        },
+        "taxonomy_mapping_file": {
+          "$ref": "#/$defs/file_location"
+        }
+      },
+      "minProperties": 1,
+      "additionalProperties": false
+    },
+    "provider_groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/provider_group"
+      },
+      "minItems": 1
+    },
+    "service_code_sets": {
+      "description": "Place-of-service sets referenced by negotiated prices. Omit when every rate states its places inline or applies regardless of place of service.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/service_code_set"
+      },
+      "minItems": 1
+    },
+    "payment_provisions": {
+      "description": "Outlier, stop-loss, and similar threshold provisions carried by the contracts in this file, declared once here rather than restated on every rate.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/payment_provision"
+      },
+      "minItems": 1
+    },
+    "capitation_arrangements": {
+      "description": "Capitation contracts for providers in this network. Omit when there are none.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/capitation_arrangement"
+      },
+      "minItems": 1
     },
     "in_network": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/in_network"
+        "$ref": "#/$defs/in_network_item"
       },
-      "default": [],
       "minItems": 1
     }
   },
-  "if": {
-    "properties": {
-      "plan_id_type": {
-        "enum": [
-          "ein"
-        ]
-      }
-    },
-    "required": [
-      "plan_id_type"
-    ]
-  },
-  "then": {
-    "required": [
-      "plan_sponsor_name"
-    ]
-  },
   "required": [
-    "reporting_entity_name",
-    "reporting_entity_type",
+    "attestation",
+    "schema_version",
+    "reporting_entity",
+    "network",
+    "reporting_period",
     "last_updated_on",
-    "in_network",
-    "version"
+    "provider_groups",
+    "in_network"
   ],
-  "dependencies": {
-    "plan_name": [
-      "plan_id_type",
-      "plan_id",
-      "plan_market_type",
-      "issuer_name"
-    ],
-    "plan_id_type": [
-      "plan_name",
-      "plan_id",
-      "plan_market_type",
-      "issuer_name"
-    ],
-    "plan_id": [
-      "plan_name",
-      "plan_id_type",
-      "plan_market_type",
-      "issuer_name"
-    ],
-    "plan_market_type": [
-      "plan_name",
-      "plan_id_type",
-      "plan_id",
-      "issuer_name"
-    ],
-    "issuer_name": [
-      "plan_name",
-      "plan_id_type",
-      "plan_market_type",
-      "plan_id"
-    ]
-  }
+  "additionalProperties": false
 }
+
