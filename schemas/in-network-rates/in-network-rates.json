@@ -47,12 +47,16 @@
     },
     "cost_to_charge_ratio": {
       "type": "object",
-      "description": "A facility's cost-to-charge ratio, as used by a payment provision.",
+      "description": "A cost-to-charge ratio used by a payment provision, for one facility (npi) or for every facility under one tax identifier (tin). Exactly one of npi or tin.",
       "properties": {
         "npi": {
           "description": "The facility's organizational (Type 2) NPI.",
           "type": "string",
           "pattern": "^[1-9][0-9]{9}$"
+        },
+        "tin": {
+          "description": "The tax identifier of the facilities this ratio applies to. Use only when one ratio applies to every facility under the tax identifier.",
+          "$ref": "#/$defs/tin"
         },
         "ratio": {
           "description": "The ratio converting the facility's billed charges to estimated cost: estimated cost is billed charges multiplied by this ratio.",
@@ -61,8 +65,19 @@
         }
       },
       "required": [
-        "npi",
         "ratio"
+      ],
+      "oneOf": [
+        {
+          "required": [
+            "npi"
+          ]
+        },
+        {
+          "required": [
+            "tin"
+          ]
+        }
       ],
       "additionalProperties": false
     },
@@ -74,13 +89,14 @@
           "$ref": "#/$defs/negotiated_type"
         },
         "rate": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0
         },
         "basis": {
           "$ref": "#/$defs/payment_basis"
         },
         "application": {
-          "description": "Whether the rate applies to the whole claim or only to the portion above the threshold. This has no safe default and changes the payment materially: 80 percent of a 300,000 claim and 80 percent of the 150,000 above a 150,000 threshold are different numbers.",
+          "description": "Whether the rate applies to the whole claim or only to the portion above the threshold. Required when negotiated_type is percentage, and not allowed otherwise. This has no safe default and changes the payment materially: 80 percent of a 300,000 claim and 80 percent of the 150,000 above a 150,000 threshold are different numbers.",
           "enum": [
             "full_amount",
             "amount_above_threshold"
@@ -99,18 +115,48 @@
       "required": [
         "negotiated_type",
         "rate",
-        "basis",
-        "application",
         "relation_to_rate"
       ],
+      "if": {
+        "properties": {
+          "negotiated_type": {
+            "const": "percentage"
+          }
+        },
+        "required": [
+          "negotiated_type"
+        ]
+      },
+      "then": {
+        "required": [
+          "basis",
+          "application"
+        ]
+      },
+      "else": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "basis"
+              ]
+            },
+            {
+              "required": [
+                "application"
+              ]
+            }
+          ]
+        }
+      },
       "additionalProperties": false
     },
     "payment_provision": {
       "type": "object",
-      "description": "The contract term that impacts how payment is computed when a threshold is met: outlier clauses, stop-loss provisions, etc. Declared once for the file. A provision with applies_to 'all_rates' names no billing code and describes no item or service",
+      "description": "The contract term that impacts how payment is computed when a threshold is met: outlier clauses, stop-loss provisions, etc. Declared once for the file. A provision with applies_to 'all_rates' names no billing code and describes no item or service.",
       "properties": {
         "provision_id": {
-          "description": "Unique provision_id integer this file. Used by negotiated_price.payment_provision_ids.",
+          "description": "Unique within this file. Referenced by negotiated_price.payment_provision_ids.",
           "type": "integer",
           "minimum": 0
         },
@@ -129,7 +175,7 @@
           ]
         },
         "cost_to_charge_ratios": {
-          "description": "The cost-to-charge ratio of each facility the provision governs, keyed by the facility's NPI. Required when the trigger's measure or the method's basis is estimated_cost; without it the provision cannot be evaluated from the file alone.",
+          "description": "The cost-to-charge ratio of each facility the provision governs, keyed by the facility's NPI, or by tax identifier when one ratio applies to every facility under it. Required when the trigger's measure or the method's basis is estimated_cost; without it the provision cannot be evaluated from the file alone.",
           "type": "array",
           "items": {
             "$ref": "#/$defs/cost_to_charge_ratio"
@@ -144,7 +190,7 @@
           "$ref": "#/$defs/provision_method"
         },
         "contract_text": {
-          "description": "The provision as written in the agreement. Required even when trigger and method are populated: the structured fields make the provision computable, the text makes it auditable against the contract.",
+          "description": "The provision as written in the contract. The structured fields make the provision computable; the text makes it checkable against the contract.",
           "type": "string",
           "minLength": 1
         }
@@ -154,8 +200,7 @@
         "provision_type",
         "applies_to",
         "trigger",
-        "method",
-        "contract_text"
+        "method"
       ],
       "if": {
         "anyOf": [
@@ -206,7 +251,7 @@
       "type": "object",
       "properties": {
         "capitation_id": {
-          "description": "Unique capitation_id integer this file.",
+          "description": "Unique within this file.",
           "type": "integer",
           "minimum": 0
         },
@@ -244,7 +289,7 @@
           "$ref": "#/$defs/date"
         },
         "additional_information": {
-          "description": "Terms the other fields cannot express, such as rates that vary by member age, sex, or risk score.",
+          "description": "Terms the other fields cannot express.",
           "type": "string",
           "minLength": 1
         }
@@ -316,7 +361,8 @@
           "$ref": "#/$defs/negotiated_type"
         },
         "negotiated_rate": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0
         },
         "billing_class": {
           "$ref": "#/$defs/billing_class"
@@ -328,7 +374,7 @@
           "$ref": "#/$defs/service_code"
         },
         "service_code_set_id": {
-          "description": "Integer reference to the service_code_set_id of a service_code_set declared in this file, used instead of restating the places inline. Never present alongside service_code; omitting both means the rate applies regardless of place of service.",
+          "description": "Integer reference to the service_code_set_id of a service_code_set declared in this file, used instead of restating the places inline. Do not include it alongside service_code. One of the two is required when billing_class is professional or both.",
           "type": "integer",
           "minimum": 0
         },
@@ -366,6 +412,33 @@
         "required": [
           "service_code",
           "service_code_set_id"
+        ]
+      },
+      "if": {
+        "properties": {
+          "billing_class": {
+            "enum": [
+              "professional",
+              "both"
+            ]
+          }
+        },
+        "required": [
+          "billing_class"
+        ]
+      },
+      "then": {
+        "anyOf": [
+          {
+            "required": [
+              "service_code"
+            ]
+          },
+          {
+            "required": [
+              "service_code_set_id"
+            ]
+          }
         ]
       }
     },
@@ -434,7 +507,7 @@
           "uniqueItems": true
         },
         "bundled_codes": {
-          "description": "Present only when negotiation_arrangement is 'bundle'.",
+          "description": "The codes included in the bundle. Required when negotiation_arrangement is 'bundle'.",
           "type": "array",
           "items": {
             "$ref": "#/$defs/bundled_code"
@@ -452,15 +525,25 @@
         "negotiated_rates"
       ],
       "if": {
-        "required": [
-          "bundled_codes"
-        ]
-      },
-      "then": {
         "properties": {
           "negotiation_arrangement": {
             "const": "bundle"
           }
+        },
+        "required": [
+          "negotiation_arrangement"
+        ]
+      },
+      "then": {
+        "required": [
+          "bundled_codes"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "bundled_codes"
+          ]
         }
       },
       "additionalProperties": false
@@ -470,7 +553,7 @@
       "description": "A set of places of service declared once for the whole file. A rate that applies at many places can reference this set instead of listing the places on every rate.",
       "properties": {
         "service_code_set_id": {
-          "description": "Unique service_code_set_id integer this file. Referenced by negotiated_price.service_code_set_id.",
+          "description": "Unique within this file. Referenced by negotiated_price.service_code_set_id.",
           "type": "integer",
           "minimum": 0
         },
@@ -503,7 +586,7 @@
         },
         "attester": {
           "type": "object",
-          "description": "The senior official designated to oversee the encoding of true, accurate, and complete data.",
+          "description": "The chief executive officer, president, or senior official designated to oversee the encoding of true, accurate, and complete data, of the plan or issuer, or of the party attesting on its behalf under a written agreement.",
           "properties": {
             "name": {
               "description": "The official's name.",
@@ -844,7 +927,7 @@
         "utilization_file": {
           "$ref": "#/$defs/file_location"
         },
-        "taxonomy_mapping_file": {
+        "taxonomy_file": {
           "$ref": "#/$defs/file_location"
         }
       },
@@ -859,7 +942,7 @@
       "minItems": 1
     },
     "service_code_sets": {
-      "description": "Place-of-service sets referenced by negotiated prices. Omit when every rate states its places inline or applies regardless of place of service.",
+      "description": "Place-of-service sets referenced by negotiated prices. Omit when no price references a set.",
       "type": "array",
       "items": {
         "$ref": "#/$defs/service_code_set"
