@@ -22,9 +22,9 @@ Each of the following tables has various requirements for individual attribute d
 | **last_updated_on** | Last Updated On | String | The date the file was last updated, in ISO 8601 format (YYYY-MM-DD). This is the "date in the file" that the attestation refers to. | Yes |
 | **attestation** | Attestation | Object | The attestation of accuracy and completeness, and the official responsible for it. See the [attestation object](#attestation-object). | Yes |
 | **related_files** | Related Files | Object | The locations of this network's Utilization File and Taxonomy File. Each location is required once that file is first posted; see the Table of Contents' [applicability dates](../table-of-contents/README.md#applicability-dates). See the [related files object](#related-files-object). | Conditional |
-| **provider_groups** | Provider Groups | Array | The providers whose rates this file reports, grouped and declared once, then referenced by ID. An array of [provider group objects](#provider-group-object). | Yes |
+| **provider_references** | Provider References | Array | The providers whose rates this file reports, grouped and declared once, then referenced by ID. An array of [provider reference objects](#provider-reference-object). | Yes |
 | **service_code_sets** | Service Code Sets | Array | Sets of places of service declared once and referenced by ID from negotiated prices. Omit when no price references a set. An array of [service code set objects](#service-code-set-object). | No |
-| **payment_provisions** | Payment Provisions | Array | Outlier, stop-loss, and similar contract terms that change how payment is computed once a threshold is crossed, declared once for the file. Omit when the contracts carry none. An array of [payment provision objects](#payment-provision-object). | No |
+| **payment_provisions** | Payment Provisions | Array | Outlier, stop-loss, and similar contract terms that change how payment is computed once a threshold is crossed, declared once for the file. Optional until Phase 2 applies; from then on, include every such provision the contracts carry, and omit the array only when they carry none. See the Table of Contents' [applicability dates](../table-of-contents/README.md#applicability-dates). An array of [payment provision objects](#payment-provision-object). | Conditional |
 | **capitation_arrangements** | Capitation Arrangements | Array | Capitation contracts with providers in this network. Omit when there are none. An array of [capitation arrangement objects](#capitation-arrangement-object). | No |
 | **in_network** | In-network | Array | Each covered item or service with negotiated rates. An array of [in-network item objects](#in-network-item-object). | Yes |
 
@@ -90,13 +90,13 @@ The locations of this network's other files, so someone holding only this file c
 | **description** | Description | String | A short description of the file, such as the network and the period it covers. | Yes |
 | **location** | Location | String | The full URL where the file can be downloaded. It must begin with `https://`, and the file must be downloadable without an account, password, or other credentials. | Yes |
 
-#### Provider Group Object
+#### Provider Reference Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **provider_group_id** | Provider Group ID | Integer | An identifier for the group, 0 or greater. It must be unique within this file. Negotiated rates and capitation arrangements refer to the group by this ID. | Yes |
-| **providers** | Providers | Array | The providers in the group, grouped by tax identification number. An array of one or more [provider objects](#provider-object). | Yes |
+| **provider_groups** | Provider Groups | Array | The providers in this group, as an array of [provider group objects](#provider-group-object), each a tax identifier and the NPIs under it. | Yes |
 
-#### Provider Object
+#### Provider Group Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **tin** | Tax Identifier | Object | The tax identifier the providers bill under. See the [tax identifier object](#tax-identifier-object). | Yes |
@@ -157,7 +157,7 @@ Each negotiated rate details object pairs a set of prices with the provider grou
 
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **provider_group_ids** | Provider Group IDs | Array | The provider groups these prices apply to, as a unique list of one or more `provider_group_id` values. Each must match a [provider group](#provider-group-object) declared in this file. | Yes |
+| **provider_references** | Provider References | Array | The provider groups these prices apply to, as a unique list of one or more `provider_group_id` values. Each must match a [provider reference](#provider-reference-object) declared in this file. | Yes |
 | **negotiated_prices** | Negotiated Prices | Array | The prices negotiated with these provider groups for the item or service. A unique list of one or more [negotiated price objects](#negotiated-price-object). | Yes |
 
 #### Negotiated Price Object
@@ -290,7 +290,7 @@ Each capitation arrangement is a fixed monthly payment for each member attribute
 | ----- | ---- | ---- | ---------- | -------- |
 | **capitation_id** | Capitation ID | Integer | An identifier for the arrangement, 0 or greater. It must be unique within this file. | Yes |
 | **description** | Description | String | A plain-language description of the arrangement. | Yes |
-| **provider_group_ids** | Provider Group IDs | Array | The provider groups paid under this arrangement, as a unique list of one or more `provider_group_id` values. Each must match a [provider group](#provider-group-object) declared in this file. | Yes |
+| **provider_references** | Provider References | Array | The provider groups paid under this arrangement, as a unique list of one or more `provider_group_id` values. Each must match a [provider reference](#provider-reference-object) declared in this file. | Yes |
 | **rate** | Rate | Number | The dollar amount paid each month for each attributed member (per member per month, or PMPM), 0 or greater. See [additional notes concerning capitation `rate`](#additional-notes-concerning-capitation-rate). | Yes |
 | **covered_services** | Covered Services | Array | The items and services the arrangement covers. A unique list of one or more [billing code scope objects](#billing-code-scope-object). | Yes |
 | **expiration_date** | Expiration Date | String | The date the arrangement expires, in ISO 8601 format (YYYY-MM-DD). See [additional notes concerning `expiration_date`](#additional-notes-concerning-expiration_date). | Yes |

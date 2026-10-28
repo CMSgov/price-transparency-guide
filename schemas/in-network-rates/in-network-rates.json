@@ -5,25 +5,25 @@
   "description": "An In-network Rate File contains the negotiated rates for covered items and services with the providers in one provider network. The plans that use the network are listed in the Table of Contents.",
   "type": "object",
   "$defs": {
-    "provider_group": {
+    "provider_reference": {
       "type": "object",
       "properties": {
         "provider_group_id": {
-          "description": "Unique within this file. Referenced by negotiated_rates.provider_group_ids and capitation_arrangements.provider_group_ids.",
+          "description": "Unique within this file. Referenced by negotiated_rates.provider_references and capitation_arrangements.provider_references.",
           "type": "integer",
           "minimum": 0
         },
-        "providers": {
+        "provider_groups": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/provider"
+            "$ref": "#/$defs/provider_group"
           },
           "minItems": 1
         }
       },
       "required": [
         "provider_group_id",
-        "providers"
+        "provider_groups"
       ],
       "additionalProperties": false
     },
@@ -260,7 +260,7 @@
           "type": "string",
           "minLength": 1
         },
-        "provider_group_ids": {
+        "provider_references": {
           "description": "Integer references to provider_group_id values declared in this file: the provider groups paid under this arrangement.",
           "type": "array",
           "items": {
@@ -297,7 +297,7 @@
       "required": [
         "capitation_id",
         "description",
-        "provider_group_ids",
+        "provider_references",
         "rate",
         "covered_services",
         "expiration_date"
@@ -445,7 +445,7 @@
     "negotiated_rate_detail": {
       "type": "object",
       "properties": {
-        "provider_group_ids": {
+        "provider_references": {
           "description": "Integer references to provider_group_id values declared in this file.",
           "type": "array",
           "items": {
@@ -465,7 +465,7 @@
         }
       },
       "required": [
-        "provider_group_ids",
+        "provider_references",
         "negotiated_prices"
       ],
       "additionalProperties": false
@@ -714,7 +714,7 @@
       "minItems": 1,
       "uniqueItems": true
     },
-    "provider": {
+    "provider_group": {
       "type": "object",
       "properties": {
         "tin": {
@@ -934,10 +934,10 @@
       "minProperties": 1,
       "additionalProperties": false
     },
-    "provider_groups": {
+    "provider_references": {
       "type": "array",
       "items": {
-        "$ref": "#/$defs/provider_group"
+        "$ref": "#/$defs/provider_reference"
       },
       "minItems": 1
     },
@@ -980,7 +980,7 @@
     "network",
     "reporting_period",
     "last_updated_on",
-    "provider_groups",
+    "provider_references",
     "in_network"
   ],
   "additionalProperties": false
