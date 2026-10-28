@@ -62,7 +62,7 @@
     },
     "attestation": {
       "type": "object",
-      "description": "The attestation required by 26 CFR 54.9815-2715A3(b)(1)(iv), 29 CFR 2590.715-2715A3(b)(1)(iv), and 45 CFR 147.212(b)(1)(iv) in every In-network Rate, Allowed Amount, Prescription Drug, Utilization, Table of Contents, and Taxonomy file. The root TXT file does not carry it. 'The date in the file' is last_updated_on.",
+      "description": "The attestation required by 26 CFR 54.9815-2715A3(b)(1)(iv), 29 CFR 2590.715-2715A3(b)(1)(iv), and 45 CFR 147.212(b)(1)(iv) in every In-network Rate, Allowed Amount, Prescription Drug, Utilization, Table of Contents, and Taxonomy file. 'The date in the file' is last_updated_on.",
       "properties": {
         "statements": {
           "description": "The attestation, verbatim, once for each regulation the plans and coverage in this file are subject to. The three Departments' regulations require the same statement differing only in the citation, and one file can cover plans under more than one of them, as with a third-party administrator's file aggregating private-employer and non-federal governmental plans.",
@@ -79,7 +79,7 @@
         },
         "attester": {
           "type": "object",
-          "description": "The senior official designated to oversee the encoding of true, accurate, and complete data.",
+          "description": "The chief executive officer, president, or senior official designated to oversee the encoding of true, accurate, and complete data, of the plan or issuer, or of the party attesting on its behalf under a written agreement.",
           "properties": {
             "name": {
               "description": "The official's name.",
@@ -190,7 +190,7 @@
         },
         "ein": {
           "type": "string",
-          "pattern": "^[0-9]{2}-[0-9]{7}$"
+          "pattern": "^[0-9]{2}-?[0-9]{7}$"
         },
         "plan_sponsor_name": {
           "type": "string",
@@ -246,6 +246,16 @@
           "description": "Plain-language description of the coverage option's product type, used when none of the listed product types describes it.",
           "type": "string",
           "minLength": 1
+        },
+        "group_numbers": {
+          "description": "The group numbers of the employer groups enrolled in this plan, as printed on members' ID cards. A group enrolled in more than one plan is listed under each. Omit when the plan has no group numbers, as with individual coverage.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
         }
       },
       "required": [
@@ -376,7 +386,7 @@
           "description": "Location of this network's Utilization File. Optional in this release: the Utilization File is a Phase 2 requirement under (b)(2)(i), applicable from September 6, 2027 and first posted July 1, 2028. Populate it once the file exists. Whether it is required depends on the date, which JSON Schema cannot evaluate.",
           "$ref": "#/$defs/file_location"
         },
-        "taxonomy_mapping_file": {
+        "taxonomy_file": {
           "description": "Location of the Taxonomy File used to prepare this network's In-network Rate File. Optional in this release: the Taxonomy File is a Phase 2 requirement under (b)(2)(ii), applicable from September 6, 2027 and first posted October 1, 2027. Populate it once the file exists. Whether it is required depends on the date, which JSON Schema cannot evaluate.",
           "$ref": "#/$defs/file_location"
         }

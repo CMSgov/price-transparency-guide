@@ -8,7 +8,7 @@ Each of the following tables has various requirements for individual attribute d
 | ----- | ------- |
 | Yes | Must always be present. |
 | No | May be omitted. Where omission has a specific meaning, the Definition says so. |
-| Conditional | Required only under the condition stated in the Definition: when another field is present, or from a date set by the final rule. |
+| Conditional | Required only under the condition stated in the Definition: when another field is present or has a particular value, or from a date set by the final rule. |
 | One of | Include one field from a pair, but not both. The object's additional notes name the pair and say when to use each. |
 
 #### Table of Contents Root Level Object
@@ -39,13 +39,13 @@ Each of the following tables has various requirements for individual attribute d
 #### Attestation Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **statements** | Statements | Array | The attestation statement, word for word, once for each regulation the plans and coverage in this file are subject to. At least one statement; none may repeat. See [allowed attestation statement values](#allowed-attestation-statement-values). | Yes |
+| **statements** | Statements | Array | A unique list of one or more attestation statements, each word for word, one for each regulation the plans and coverage in this file are subject to. See [allowed attestation statement values](#allowed-attestation-statement-values). | Yes |
 | **attester** | Attester | Object | The official responsible for the attestation. See the [attester object](#attester-object). | Yes |
 
 #### Attester Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **name** | Name | String | The name of the senior official designated to oversee the encoding of true, accurate, and complete data. When another party attests on the plan's or issuer's behalf under a written agreement, this is that party's official. | Yes |
+| **name** | Name | String | The name of the chief executive officer, president, or senior official designated to oversee the encoding of true, accurate, and complete data. When another party attests on the plan's or issuer's behalf under a written agreement, this is that party's chief executive officer, president, or designated senior official. | Yes |
 | **title** | Title | String | The official's title. | Yes |
 | **organization** | Organization | String | The legal name of the organization the official belongs to. Populate it when that organization is not the reporting entity. | No |
 
@@ -75,13 +75,13 @@ One provider network and the files that describe it. Each network appears once i
 | **negotiated_by** | Negotiated By | Object | Who negotiated the rates in this network. See the [negotiated by object](#negotiated-by-object). | Yes |
 | **in_network_files** | In-Network Files | Array | The location of this network's In-network Rate File, as an array of [file location objects](#file-location-object) with at least one entry. More than one location means the network's rates are split across several files. Each is an In-network Rate File carrying this network's `network_id`. | Yes |
 | **utilization_file** | Utilization File | Object | The location of this network's Utilization File, as a [file location object](#file-location-object). Required once the Utilization File is first posted. See [applicability dates](#applicability-dates). | Conditional |
-| **taxonomy_mapping_file** | Taxonomy File | Object | The location of the Taxonomy File used to prepare this network's In-network Rate File, as a [file location object](#file-location-object). Required once the Taxonomy File is first posted. See [applicability dates](#applicability-dates). | Conditional |
+| **taxonomy_file** | Taxonomy File | Object | The location of the Taxonomy File used to prepare this network's In-network Rate File, as a [file location object](#file-location-object). Required once the Taxonomy File is first posted. See [applicability dates](#applicability-dates). | Conditional |
 
 #### Network Identity Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **network_id** | Network ID | String | The provider network identifier. It ties together the In-network Rate, Utilization, and Taxonomy Files for one network, and plans reference the network by it. See [additional notes concerning `network_id`](#additional-notes-concerning-network_id). | Yes |
-| **network_name** | Network Name | Array | The common provider network names most familiar to members and the public, as an array of strings. At least one; none may repeat. | Yes |
+| **network_name** | Network Name | Array | A unique list of one or more common provider network names most familiar to members and the public. | Yes |
 
 ##### Additional Notes Concerning `network_id`
 Use the identifier you already use to track the network internally. If none exists, assign one that is:
@@ -133,6 +133,7 @@ A plan's `product_type` doesn't decide this: an indemnity plan that uses a rente
 | **market_segment** | Market Segment | String | The health insurance market the plan belongs to. This identifies the Allowed Amount File that covers it. See [allowed market segment values](#allowed-market-segment-values). | Yes |
 | **product_type** | Product Type | String | The plan's or policy's product type. See [allowed product type values](#allowed-product-type-values) and [additional notes concerning `product_type` and `product_type_description`](#additional-notes-concerning-product_type-and-product_type_description). | One of |
 | **product_type_description** | Product Type Description | String | A plain-language description of the product type, when none of the allowed product type values describes it. See [additional notes concerning `product_type` and `product_type_description`](#additional-notes-concerning-product_type-and-product_type_description). | One of |
+| **group_numbers** | Group Numbers | Array | A unique list of the group numbers of the employer groups enrolled in this plan, as printed on members' ID cards. A group enrolled in more than one plan is listed under each. Omit when the plan has no group numbers, as with individual coverage. | No |
 
 ##### Additional Notes Concerning `product_type` and `product_type_description`
 Include either `product_type` or `product_type_description`, but not both.
@@ -145,7 +146,7 @@ Product type describes the plan's or policy's benefit design, not its network.
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
 | **hios** | HIOS ID | String | The plan's Health Insurance Oversight System identifier: either the 5-digit HIOS issuer ID, or the 14-character HIOS plan ID (5-digit issuer ID, 2-letter state, 3-digit product number, 4-digit component). See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
-| **ein** | EIN | String | The plan sponsor's Employer Identification Number, in the format `NN-NNNNNNN`. See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
+| **ein** | EIN | String | The plan sponsor's Employer Identification Number, either as `NN-NNNNNNN` or `NNNNNNNNN`. See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
 | **plan_sponsor_name** | Plan Sponsor Name | String | The common business name of the plan sponsor. Required when `ein` is present; optional with `hios`. | Conditional |
 
 ##### Additional Notes Concerning `hios` and `ein`
@@ -312,7 +313,7 @@ The final rule applies in two phases. Fields marked Conditional because they poi
 | Phase | Files | First posted | Fields in this file |
 | ----- | ----- | ------------ | ------------------- |
 | 1 | Table of Contents, In-network Rate Files, Allowed Amount Files, and their attestations | April 1, 2027, then quarterly | Everything not listed below |
-| 2 | Taxonomy File | October 1, 2027, then quarterly | `taxonomy_mapping_file` |
+| 2 | Taxonomy File | October 1, 2027, then quarterly | `taxonomy_file` |
 | 2 | Utilization File | July 1, 2028, then annually | `utilization_file` |
 
 ### Example
