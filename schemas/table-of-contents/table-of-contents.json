@@ -184,9 +184,9 @@
       "description": "Exactly one of hios or ein is present. An ein requires plan_sponsor_name, because an EIN identifies the sponsor rather than the plan; with hios, plan_sponsor_name is optional. Discriminating on which key is present lets that rule be a single dependentRequired keyword instead of the if/then on plan_id_type that v2.x carries in reporting_plans.",
       "properties": {
         "hios": {
-          "description": "Either a 5-digit HIOS issuer ID or a full 14-character HIOS plan ID (5-digit issuer, 2-letter state, 3-digit product, 4-digit component).",
+          "description": "Either a 5-digit HIOS issuer ID or the 10-character HIOS ID.",
           "type": "string",
-          "pattern": "^[0-9]{5}([A-Z]{2}[0-9]{7})?$"
+          "pattern": "^[0-9]{5}([A-Z]{2}[0-9]{3})?$"
         },
         "ein": {
           "type": "string",

@@ -145,7 +145,7 @@ Product type describes the plan's or policy's benefit design, not its network.
 #### Plan Identifier Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **hios** | HIOS ID | String | The plan's Health Insurance Oversight System identifier: either the 5-digit HIOS issuer ID, or the 14-character HIOS plan ID (5-digit issuer ID, 2-letter state, 3-digit product number, 4-digit component). See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
+| **hios** | HIOS ID | String | The plan's Health Insurance Oversight System identifier: either the 5-digit HIOS issuer ID, or the 10-character HIOS plan ID (5-digit issuer ID, 2-letter state, 3-digit product number, 4-digit component). See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
 | **ein** | EIN | String | The plan sponsor's Employer Identification Number, either as `NN-NNNNNNN` or `NNNNNNNNN`. See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
 | **plan_sponsor_name** | Plan Sponsor Name | String | The common business name of the plan sponsor. Required when `ein` is present; optional with `hios`. | Conditional |
 
@@ -392,7 +392,7 @@ In the following example, ACME Health Plan, Inc. reports four networks and five 
       "plan": {
         "plan_name": "ACME Gold PPO 1000",
         "issuer_name": "ACME Health Plan, Inc.",
-        "plan_identifier": {"hios": "45821WA0080001"},
+        "plan_identifier": {"hios": "45821"},
         "plan_market_type": "group",
         "market_segment": "large_group",
         "product_type": "ppo"
@@ -417,7 +417,7 @@ In the following example, ACME Health Plan, Inc. reports four networks and five 
       "plan": {
         "plan_name": "ACME Premier Tiered POS 500",
         "issuer_name": "ACME Health Plan, Inc.",
-        "plan_identifier": {"hios": "45821WA0090002"},
+        "plan_identifier": {"hios": "45821"},
         "plan_market_type": "group",
         "market_segment": "large_group",
         "product_type": "pos"
@@ -441,7 +441,7 @@ In the following example, ACME Health Plan, Inc. reports four networks and five 
       "plan": {
         "plan_name": "ACME Classic Indemnity 80/20",
         "issuer_name": "ACME Health Plan, Inc.",
-        "plan_identifier": {"hios": "45821WA0080002"},
+        "plan_identifier": {"hios": "45821"},
         "plan_market_type": "group",
         "market_segment": "large_group",
         "product_type": "indemnity"
@@ -451,7 +451,7 @@ In the following example, ACME Health Plan, Inc. reports four networks and five 
       "plan": {
         "plan_name": "ACME Classic Indemnity Plus 80/20",
         "issuer_name": "ACME Health Plan, Inc.",
-        "plan_identifier": {"hios": "45821WA0080003"},
+        "plan_identifier": {"hios": "45821"},
         "plan_market_type": "group",
         "market_segment": "large_group",
         "product_type": "indemnity"
