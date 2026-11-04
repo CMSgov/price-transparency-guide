@@ -145,7 +145,7 @@ Product type describes the plan's or policy's benefit design, not its network.
 #### Plan Identifier Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **hios** | HIOS ID | String | The plan's Health Insurance Oversight System identifier: either the 5-digit HIOS issuer ID, or the 10-character HIOS plan ID (5-digit issuer ID, 2-letter state, 3-digit product number, 4-digit component). See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
+| **hios** | HIOS ID | String | The plan's Health Insurance Oversight System identifier: either the 5-digit HIOS issuer ID, or the 10-character HIOS plan ID (5-digit issuer ID, 2-letter state, 3-digit product number). See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
 | **ein** | EIN | String | The plan sponsor's Employer Identification Number, either as `NN-NNNNNNN` or `NNNNNNNNN`. See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
 | **plan_sponsor_name** | Plan Sponsor Name | String | The common business name of the plan sponsor. Required when `ein` is present; optional with `hios`. | Conditional |
 
