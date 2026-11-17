@@ -1,0 +1,496 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CMSgov/price-transparency-guide/schemas/prescription-drugs.json",
+  "title": "Prescription Drug File",
+  "description": "A Prescription Drug File contains the negotiated rates and historical net prices for prescription drugs paid on a fee-for-service basis with the pharmacies and other providers in one provider network. The plans that use the network are listed in the Table of Contents.",
+  "type": "object",
+  "properties": {
+    "attestation": {
+      "$ref": "#/$defs/attestation"
+    },
+    "schema_version": {
+      "description": "The version of the schema the file conforms to, for example 3.0.0.",
+      "type": "string",
+      "minLength": 1
+    },
+    "reporting_entity": {
+      "$ref": "#/$defs/reporting_entity"
+    },
+    "network": {
+      "$ref": "#/$defs/network_identity"
+    },
+    "benefit": {
+      "description": "The benefit under which every drug in this file is covered. A network that covers drugs under both benefits has a separate file for each.",
+      "$ref": "#/$defs/benefit"
+    },
+    "reporting_period": {
+      "description": "The calendar month this file covers.",
+      "$ref": "#/$defs/date_range"
+    },
+    "historical_net_price_period": {
+      "description": "The 90-day period, beginning 180 days before the file is published, over which the historical net prices in this file are calculated.",
+      "$ref": "#/$defs/date_range"
+    },
+    "last_updated_on": {
+      "description": "The date the file was last updated. This is the \"date in the file\" that the attestation refers to.",
+      "$ref": "#/$defs/date"
+    },
+    "provider_references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/provider_reference"
+      },
+      "minItems": 1
+    },
+    "drugs": {
+      "description": "Each covered prescription drug with its prices.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/drug"
+      }
+    }
+  },
+  "required": [
+    "attestation",
+    "schema_version",
+    "reporting_entity",
+    "network",
+    "benefit",
+    "reporting_period",
+    "historical_net_price_period",
+    "last_updated_on",
+    "provider_references",
+    "drugs"
+  ],
+  "additionalProperties": false,
+  "if": {
+    "properties": {
+      "benefit": {
+        "const": "pharmacy"
+      }
+    },
+    "required": [
+      "benefit"
+    ]
+  },
+  "then": {
+    "properties": {
+      "provider_references": {
+        "items": {
+          "required": [
+            "channel"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "attestation": {
+      "type": "object",
+      "description": "The attestation required by 26 CFR 54.9815-2715A3(b)(1)(iv), 29 CFR 2590.715-2715A3(b)(1)(iv), and 45 CFR 147.212(b)(1)(iv) in every In-network Rate, Allowed Amount, Prescription Drug, Utilization, Table of Contents, and Taxonomy file. 'The date in the file' is last_updated_on.",
+      "properties": {
+        "statements": {
+          "description": "The attestation, verbatim, once for each regulation the plans and coverage in this file are subject to. The three Departments' regulations require the same statement differing only in the citation, and one file can cover plans under more than one of them, as with a third-party administrator's file aggregating private-employer and non-federal governmental plans.",
+          "type": "array",
+          "items": {
+            "enum": [
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 26 CFR 54.9815-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 29 CFR 2590.715-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 45 CFR 147.212, and the information encoded is true, accurate, and complete as of the date in the file."
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "attester": {
+          "type": "object",
+          "description": "The chief executive officer, president, or senior official designated to oversee the encoding of true, accurate, and complete data, of the plan or issuer, or of the party attesting on its behalf under a written agreement.",
+          "properties": {
+            "name": {
+              "description": "The official's name.",
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "description": "The official's title.",
+              "type": "string",
+              "minLength": 1
+            },
+            "organization": {
+              "description": "Legal name of the organization the official belongs to.",
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "name",
+            "title"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "statements",
+        "attester"
+      ],
+      "additionalProperties": false
+    },
+    "benefit": {
+      "description": "The benefit under which a drug is covered.",
+      "enum": [
+        "medical",
+        "pharmacy"
+      ]
+    },
+    "channel": {
+      "description": "The pharmacy channel (\"pharmacy service type\" in NCPDP's terms) under which the pharmacies in a provider group are paid the prices that reference it. Values follow the NCPDP Pharmacy Service Type code set and must be checked against the current NCPDP standard.",
+      "enum": [
+        "community_retail",
+        "compounding",
+        "home_infusion",
+        "institutional",
+        "long_term_care",
+        "mail_order",
+        "managed_care_organization",
+        "specialty",
+        "other"
+      ]
+    },
+    "contracting_organization": {
+      "type": "object",
+      "description": "A chain or pharmacy services administrative organization that signed a network contract for its pharmacies.",
+      "properties": {
+        "ncpdp_relationship_id": {
+          "description": "The organization's NCPDP relationship ID (formerly the chain code).",
+          "type": "string",
+          "minLength": 1
+        },
+        "ein": {
+          "description": "The organization's Employer Identification Number.",
+          "type": "string",
+          "pattern": "^[0-9]{2}-?[0-9]{7}$"
+        },
+        "business_name": {
+          "description": "The organization's legal business name.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "ncpdp_relationship_id",
+        "ein",
+        "business_name"
+      ],
+      "additionalProperties": false
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "date_range": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/date"
+        },
+        "end": {
+          "$ref": "#/$defs/date"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "days_supply": {
+      "type": "object",
+      "description": "The range of days' supply a price applies to. maximum must be no less than minimum.",
+      "properties": {
+        "minimum": {
+          "description": "The fewest days' supply the price applies to.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximum": {
+          "description": "The most days' supply the price applies to.",
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ],
+      "additionalProperties": false
+    },
+    "drug": {
+      "type": "object",
+      "description": "One NDC and its prices in this network.",
+      "properties": {
+        "billing_code_type": {
+          "enum": [
+            "NDC"
+          ]
+        },
+        "billing_code": {
+          "description": "The drug's National Drug Code, without hyphens.",
+          "type": "string",
+          "pattern": "^([0-9]{9}|[0-9]{11})$"
+        },
+        "proprietary_name": {
+          "description": "The proprietary name the FDA lists for this NDC.",
+          "type": "string",
+          "minLength": 1
+        },
+        "nonproprietary_name": {
+          "description": "The nonproprietary name the FDA lists for this NDC.",
+          "type": "string",
+          "minLength": 1
+        },
+        "drug_type": {
+          "enum": [
+            "branded",
+            "generic"
+          ]
+        },
+        "billing_unit": {
+          "description": "The NCPDP Billing Unit Standard unit every price for this drug is stated in.",
+          "enum": [
+            "EA",
+            "ML",
+            "GM"
+          ]
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/drug_price"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "billing_code_type",
+        "billing_code",
+        "proprietary_name",
+        "nonproprietary_name",
+        "drug_type",
+        "billing_unit",
+        "prices"
+      ],
+      "additionalProperties": false
+    },
+    "drug_price": {
+      "type": "object",
+      "description": "One set of prices for a drug, paid to the pharmacies and other providers in the referenced provider groups. All amounts are dollars per the drug's billing unit.",
+      "properties": {
+        "provider_references": {
+          "description": "Integer references to provider_group_id values declared in this file.",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "service_code": {
+          "$ref": "#/$defs/service_code"
+        },
+        "days_supply": {
+          "description": "The range of days' supply the price applies to. Omit when the price does not depend on days' supply.",
+          "$ref": "#/$defs/days_supply"
+        },
+        "negotiated_rate": {
+          "description": "The dollar amount per billing unit the plan or issuer has contractually agreed to pay, directly or through a pharmacy benefit manager.",
+          "type": "number",
+          "minimum": 0
+        },
+        "expiration_date": {
+          "description": "The date the rate expires. Use 9999-12-31 when the contract has no set expiration date.",
+          "$ref": "#/$defs/date"
+        },
+        "historical_net_price": {
+          "description": "The average dollar amount per billing unit paid over the historical_net_price_period, net of reasonably allocated rebates, discounts, chargebacks, fees, and other price concessions. Omit when it would be calculated using fewer than 20 different claims for payment.",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "provider_references",
+        "service_code",
+        "negotiated_rate",
+        "expiration_date"
+      ],
+      "additionalProperties": false
+    },
+    "network_identity": {
+      "type": "object",
+      "properties": {
+        "network_id": {
+          "description": "An identifier joining the In-Network Rate, Utilization, and Provider Taxonomy Mapping files for one network.",
+          "type": "string",
+          "minLength": 1
+        },
+        "network_name": {
+          "description": "Common provider network names most familiar to members and the public.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "network_id",
+        "network_name"
+      ],
+      "additionalProperties": false
+    },
+    "npi_list": {
+      "description": "National Provider Identifiers, each a 10-digit string.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[1-9][0-9]{9}$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "provider_group": {
+      "type": "object",
+      "properties": {
+        "tin": {
+          "$ref": "#/$defs/tin"
+        },
+        "npi": {
+          "description": "The NPIs of the providers under this tax identifier that the provider group's rates apply to. Use [\"0\"] when the contract is at the TIN level and NPIs are not available.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/npi_list"
+            },
+            {
+              "type": "array",
+              "items": {
+                "const": "0"
+              },
+              "minItems": 1,
+              "maxItems": 1
+            }
+          ]
+        }
+      },
+      "required": [
+        "tin",
+        "npi"
+      ],
+      "additionalProperties": false
+    },
+    "provider_reference": {
+      "type": "object",
+      "properties": {
+        "provider_group_id": {
+          "description": "Unique within this file. Referenced by the drug prices that apply to this group.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "channel": {
+          "description": "The pharmacy channel (\"pharmacy service type\" in NCPDP's terms) under which these pharmacies are paid the prices that reference this group. Omit for physicians, facilities, and other providers of drugs covered under the medical benefit.",
+          "$ref": "#/$defs/channel"
+        },
+        "contracting_organization": {
+          "description": "The chain or pharmacy services administrative organization (PSAO) that signed the network contract for the pharmacies in this group. Omit when the pharmacies contracted directly.",
+          "$ref": "#/$defs/contracting_organization"
+        },
+        "provider_groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/provider_group"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "provider_group_id",
+        "provider_groups"
+      ],
+      "additionalProperties": false
+    },
+    "reporting_entity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Legal name of the entity that published the file as the plan or issuer, or as the party providing the information under a written agreement with the plan or issuer. Not a contractor that builds or hosts the file on that entity's behalf.",
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "group_health_plan",
+            "health_insurance_issuer",
+            "third_party_administrator",
+            "claims_clearinghouse",
+            "other_third_party"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "service_code": {
+      "description": "CMS place of service codes to which a rate or amount applies.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(0[1-9]|1[0-9]|2[0-7]|3[1-4]|4[1-2]|4[9]|5[0-8]|6[0-2]|6[5-6]|7[1-2]|81|99)$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "tin": {
+      "type": "object",
+      "description": "The provider's tax identifier. Either ein, the Employer Identification Number, with business_name, or npi in place of a provider who would otherwise be identified by a Social Security number as their TIN. Exactly one of ein or npi.",
+      "properties": {
+        "ein": {
+          "type": "string",
+          "pattern": "^[0-9]{2}-?[0-9]{7}$"
+        },
+        "npi": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{9}$"
+        },
+        "business_name": {
+          "description": "Legal entity name associated with the EIN. Per Technical Clarification Q40 this is the name of the NPI Type 2 entity, not of individual practitioners.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "ein"
+          ]
+        },
+        {
+          "required": [
+            "npi"
+          ]
+        }
+      ],
+      "dependentRequired": {
+        "ein": [
+          "business_name"
+        ]
+      },
+      "additionalProperties": false
+    }
+  }
+}
+
