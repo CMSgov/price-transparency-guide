@@ -1,0 +1,145 @@
+{
+  "schema_version": "3.0.0",
+  "reporting_entity": {
+    "name": "ACME Health Plan, Inc.",
+    "type": "health_insurance_issuer"
+  },
+  "market_segment": "self_insured",
+  "reporting_period": {
+    "start": "2026-07-01",
+    "end": "2026-12-31"
+  },
+  "lookback_period": {
+    "start": "2026-07-01",
+    "end": "2027-03-31"
+  },
+  "last_updated_on": "2027-04-01",
+  "attestation": {
+    "statements": [
+      "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 26 CFR 54.9815-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+      "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 29 CFR 2590.715-2715A3, and the information encoded is true, accurate, and complete as of the date in the file."
+    ],
+    "attester": {
+      "name": "Jane Doe",
+      "title": "Chief Executive Officer",
+      "organization": "ACME Health Plan, Inc."
+    }
+  },
+  "out_of_network": [
+    {
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2026",
+      "billing_code": "99213",
+      "description": "Office or other outpatient visit for the evaluation and management of an established patient",
+      "allowed_amounts": [
+        {
+          "tin": {
+            "ein": "07-1000003",
+            "business_name": "Example Family Health PLLC"
+          },
+          "billing_class": "professional",
+          "setting": "outpatient",
+          "service_code": "11",
+          "payments": [
+            {
+              "allowed_amount": 118.42,
+              "billed_charge": 240.0,
+              "npi": [
+                "2339810451"
+              ]
+            },
+            {
+              "allowed_amount": 118.42,
+              "billed_charge": 265.0,
+              "npi": [
+                "1607739152"
+              ]
+            }
+          ]
+        },
+        {
+          "tin": {
+            "ein": "07-1000003",
+            "business_name": "Example Family Health PLLC"
+          },
+          "billing_class": "professional",
+          "setting": "outpatient",
+          "service_code": "11",
+          "billing_code_modifiers": [
+            "25"
+          ],
+          "payments": [
+            {
+              "allowed_amount": 131.8,
+              "billed_charge": 310.0,
+              "npi": [
+                "2339810451"
+              ]
+            }
+          ]
+        },
+        {
+          "tin": {
+            "npi": "1000000038"
+          },
+          "billing_class": "professional",
+          "setting": "outpatient",
+          "service_code": "11",
+          "payments": [
+            {
+              "allowed_amount": 122.15,
+              "billed_charge": 255.0,
+              "npi": [
+                "1000000038"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2026",
+      "billing_code": "99285",
+      "description": "Emergency department visit for the evaluation and management of a patient, high level of medical decision making",
+      "allowed_amounts": [
+        {
+          "tin": {
+            "ein": "07-1000004",
+            "business_name": "Example Regional Medical Center"
+          },
+          "billing_class": "institutional",
+          "setting": "outpatient",
+          "payments": [
+            {
+              "allowed_amount": 1840.55,
+              "billed_charge": 4120.0,
+              "npi": [
+                "1550382919"
+              ]
+            }
+          ]
+        },
+        {
+          "tin": {
+            "ein": "07-1000004",
+            "business_name": "Example Regional Medical Center"
+          },
+          "billing_class": "professional",
+          "setting": "outpatient",
+          "service_code": "23",
+          "payments": [
+            {
+              "allowed_amount": 412.9,
+              "billed_charge": 890.0,
+              "npi": [
+                "1000000012"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
