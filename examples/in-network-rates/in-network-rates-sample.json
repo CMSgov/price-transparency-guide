@@ -1,0 +1,328 @@
+{
+  "schema_version": "3.0.0",
+  "reporting_entity": {
+    "name": "ACME Health Plan, Inc.",
+    "type": "health_insurance_issuer"
+  },
+  "network": {
+    "network_id": "NET-CHOICE-PPO",
+    "network_name": [
+      "ACME Choice PPO",
+      "ACME Choice Network"
+    ]
+  },
+  "reporting_period": {
+    "start": "2027-04-01",
+    "end": "2027-06-30"
+  },
+  "last_updated_on": "2027-04-01",
+  "attestation": {
+    "statements": [
+      "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 26 CFR 54.9815-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+      "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 29 CFR 2590.715-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+      "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 45 CFR 147.212, and the information encoded is true, accurate, and complete as of the date in the file."
+    ],
+    "attester": {
+      "name": "Jane Doe",
+      "title": "Chief Executive Officer",
+      "organization": "ACME Health Plan, Inc."
+    }
+  },
+  "provider_references": [
+    {
+      "provider_group_id": 1,
+      "provider_groups": [
+        {
+          "tin": {
+            "ein": "07-1000005",
+            "business_name": "Example Anesthesia Partners LLC"
+          },
+          "npi": [
+            "1000000020",
+            "1000000053"
+          ]
+        }
+      ]
+    },
+    {
+      "provider_group_id": 2,
+      "provider_groups": [
+        {
+          "tin": {
+            "ein": "07-1000004",
+            "business_name": "Example Regional Medical Center"
+          },
+          "npi": [
+            "1000000046"
+          ]
+        }
+      ]
+    },
+    {
+      "provider_group_id": 3,
+      "provider_groups": [
+        {
+          "tin": {
+            "ein": "07-1000006",
+            "business_name": "Example Primary Care Associates PS"
+          },
+          "npi": [
+            "1744920160",
+            "1188205342"
+          ]
+        },
+        {
+          "tin": {
+            "npi": "1607739152"
+          },
+          "npi": [
+            "1607739152"
+          ]
+        }
+      ]
+    },
+    {
+      "provider_group_id": 4,
+      "provider_groups": [
+        {
+          "tin": {
+            "ein": "07-1000007",
+            "business_name": "Example Community Hospital"
+          },
+          "npi": [
+            "0"
+          ]
+        }
+      ]
+    }
+  ],
+  "service_code_sets": [
+    {
+      "service_code_set_id": 0,
+      "service_code": [
+        "19",
+        "21",
+        "22",
+        "24"
+      ]
+    }
+  ],
+  "payment_provisions": [
+    {
+      "provision_id": 0,
+      "provision_type": "outlier",
+      "applies_to": "all_rates",
+      "cost_to_charge_ratios": [
+        {
+          "npi": "1000000046",
+          "ratio": 0.31
+        },
+        {
+          "tin": {
+            "ein": "07-1000007",
+            "business_name": "Example Community Hospital"
+          },
+          "ratio": 0.28
+        }
+      ],
+      "trigger": {
+        "measure": "estimated_cost",
+        "threshold": 175000
+      },
+      "method": {
+        "negotiated_type": "percentage",
+        "rate": 80,
+        "basis": "estimated_cost",
+        "application": "amount_above_threshold",
+        "relation_to_rate": "in_addition_to_rate"
+      },
+      "contract_text": "For any inpatient admission whose estimated cost, computed as billed charges multiplied by the facility cost-to-charge ratio, exceeds $175,000, Plan shall pay the otherwise applicable rate plus eighty percent (80%) of estimated cost in excess of that threshold."
+    },
+    {
+      "provision_id": 1,
+      "provision_type": "stop_loss",
+      "applies_to": "referenced_rates",
+      "trigger": {
+        "measure": "length_of_stay_days",
+        "threshold": 10
+      },
+      "method": {
+        "negotiated_type": "per diem",
+        "rate": 3000,
+        "relation_to_rate": "in_place_of_rate"
+      }
+    }
+  ],
+  "capitation_arrangements": [
+    {
+      "capitation_id": 0,
+      "description": "Primary care capitation for established-patient office visits",
+      "provider_references": [
+        3
+      ],
+      "rate": 42.6,
+      "covered_services": [
+        {
+          "billing_code_type": "CPT",
+          "billing_code_type_version": "2027",
+          "range_start": "99211",
+          "range_end": "99215"
+        }
+      ],
+      "expiration_date": "9999-12-31"
+    }
+  ],
+  "in_network": [
+    {
+      "negotiation_arrangement": "ffs",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2027",
+      "billing_code": "00560",
+      "description": "Anesthesia for procedures on heart, pericardial sac, and great vessels of chest",
+      "negotiated_rates": [
+        {
+          "provider_references": [
+            1
+          ],
+          "negotiated_prices": [
+            {
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 1412.75,
+              "billing_class": "professional",
+              "setting": "inpatient",
+              "service_code": [
+                "21"
+              ],
+              "expiration_date": "9999-12-31"
+            },
+            {
+              "negotiated_type": "fee schedule",
+              "negotiated_rate": 1300.0,
+              "billing_class": "professional",
+              "setting": "inpatient",
+              "service_code": [
+                "21"
+              ],
+              "expiration_date": "9999-12-31"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "ffs",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2027",
+      "billing_code": "00790",
+      "description": "Anesthesia for intraperitoneal procedures in upper abdomen",
+      "negotiated_rates": [
+        {
+          "provider_references": [
+            1
+          ],
+          "negotiated_prices": [
+            {
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 908.0,
+              "billing_class": "professional",
+              "setting": "both",
+              "service_code_set_id": 0,
+              "expiration_date": "9999-12-31"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "ffs",
+      "billing_code_type": "CPT",
+      "billing_code_type_version": "2027",
+      "billing_code": "99213",
+      "description": "Office or other outpatient visit for an established patient, low level of medical decision making",
+      "negotiated_rates": [
+        {
+          "provider_references": [
+            3
+          ],
+          "negotiated_prices": [
+            {
+              "negotiated_type": "derived",
+              "negotiated_rate": 95.0,
+              "billing_class": "professional",
+              "setting": "outpatient",
+              "service_code": [
+                "11"
+              ],
+              "expiration_date": "9999-12-31"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "ffs",
+      "billing_code_type": "RC",
+      "billing_code_type_version": "2027",
+      "billing_code": "0450",
+      "description": "Emergency room, general",
+      "negotiated_rates": [
+        {
+          "provider_references": [
+            4
+          ],
+          "negotiated_prices": [
+            {
+              "negotiated_type": "percentage",
+              "negotiated_rate": 55.0,
+              "billing_class": "institutional",
+              "setting": "outpatient",
+              "expiration_date": "2028-06-30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "negotiation_arrangement": "bundle",
+      "billing_code_type": "MS-DRG",
+      "billing_code_type_version": "44",
+      "billing_code": "470",
+      "description": "Major hip and knee joint replacement or reattachment of lower extremity without major complications or comorbidities",
+      "bundled_codes": [
+        {
+          "billing_code_type": "CPT",
+          "billing_code_type_version": "2027",
+          "billing_code": "27447",
+          "description": "Total knee arthroplasty"
+        },
+        {
+          "billing_code_type": "CPT",
+          "billing_code_type_version": "2027",
+          "billing_code": "01402",
+          "description": "Anesthesia for open procedures on knee joint"
+        }
+      ],
+      "negotiated_rates": [
+        {
+          "provider_references": [
+            2,
+            4
+          ],
+          "negotiated_prices": [
+            {
+              "negotiated_type": "negotiated",
+              "negotiated_rate": 31500.0,
+              "billing_class": "institutional",
+              "setting": "inpatient",
+              "expiration_date": "2028-12-31",
+              "payment_provision_ids": [
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
