@@ -1,103 +1,61 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/CMSgov/price-transparency-guide/blob/master/schemas/allowed-amounts/allowed-amounts.json",
-  "definitions": {
-    "out_of_network": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CMSgov/price-transparency-guide/schemas/allowed-amounts.json",
+  "title": "Allowed Amount File",
+  "description": "An Allowed Amount File contains both the billed and allowed amounts for out-of-network covered services. Each file represents a market segment (such as large group, individual, etc).",
+  "type": "object",
+  "$defs": {
+    "payment": {
       "type": "object",
       "properties": {
-        "name": {
-          "type": "string",
-          "minLength": 1
+        "allowed_amount": {
+          "description": "The dollar amount the plan or issuer paid the out-of-network provider for the item or service, plus the participant's, beneficiary's, or enrollee's share of the cost.",
+          "type": "number",
+          "minimum": 0
         },
-        "billing_code_type": {
-          "enum": [
-            "CPT",
-            "HCPCS",
-            "ICD",
-            "MS-DRG",
-            "R-DRG",
-            "S-DRG",
-            "APS-DRG",
-            "AP-DRG",
-            "APR-DRG",
-            "APC",
-            "NDC",
-            "HIPPS",
-            "LOCAL",
-            "EAPG",
-            "CDT",
-            "RC"
-          ]
+        "billed_charge": {
+          "description": "The total dollar amount the out-of-network provider charged for the item or service.",
+          "type": "number",
+          "minimum": 0
         },
-        "billing_code_type_version": {
-          "type": "string",
-          "minLength": 1
-        },
-        "billing_code": {
-          "type": "string",
-          "minLength": 1
-        },
-        "description": {
-          "type": "string",
-          "minLength": 1
-        },
-        "allowed_amounts": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/allowed_amounts"
-          },
-          "default": []
+        "npi": {
+          "description": "The NPIs of providers who submitted their billed charges and the allowed amounts reimbursed.",
+          "$ref": "#/$defs/npi_list"
         }
       },
       "required": [
-        "name",
-        "billing_code_type",
-        "billing_code_type_version",
-        "billing_code",
-        "allowed_amounts",
-        "description"
-      ]
+        "allowed_amount",
+        "billed_charge",
+        "npi"
+      ],
+      "additionalProperties": false
     },
-    "allowed_amounts": {
+    "allowed_amount_entry": {
       "type": "object",
       "properties": {
         "tin": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "ein",
-                "npi"
-              ]
-            },
-            "value": {
-              "type": "string",
-              "minLength": 1
-            }
-          }
-        },
-        "service_code": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^([1-9][0-9]|[0-9][1-9])$"
-          },
-          "uniqueItems": true
+          "$ref": "#/$defs/tin"
         },
         "billing_class": {
-          "enum": [
-            "professional",
-            "institutional"
-          ]
+          "$ref": "#/$defs/billing_class"
+        },
+        "setting": {
+          "$ref": "#/$defs/setting"
+        },
+        "service_code": {
+          "$ref": "#/$defs/service_code"
+        },
+        "billing_code_modifiers": {
+          "$ref": "#/$defs/billing_code_modifiers"
         },
         "payments": {
+          "description": "Each unique allowed amount paid under this entry, with its billed charge and the providers who were paid it.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/payments"
+            "$ref": "#/$defs/payment"
           },
-          "default": [],
-          "minItems": 1
+          "minItems": 1,
+          "uniqueItems": true
         }
       },
       "required": [
@@ -105,183 +63,311 @@
         "billing_class",
         "payments"
       ],
+      "additionalProperties": false,
       "if": {
         "properties": {
           "billing_class": {
             "const": "professional"
           }
-        }
+        },
+        "required": [
+          "billing_class"
+        ]
       },
       "then": {
         "required": [
           "service_code"
         ]
-      }
-    },
-    "payments": {
-      "type": "object",
-      "properties": {
-        "allowed_amount": {
-          "type": "number",
-          "minimum": 0
-        },
-        "billing_code_modifier": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "minLength": 1
-          },
-          "uniqueItems": true,
-          "default": [],
-          "minItems": 1
-        },
-        "providers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/providers"
-          },
-          "default": [],
-          "minItems": 1
-        }
       },
-      "required": [
-        "allowed_amount",
-        "providers"
-      ]
-    },
-    "providers": {
-      "type": "object",
-      "properties": {
-        "billed_charge": {
-          "type": "number",
-          "minimum": 0
-        },
-        "npi": {
-          "type": "array",
-          "items": {
-            "type": "integer"
-          },
-          "default": [],
-          "uniqueItems": true,
-          "minItems": 1
-        }
-      },
-      "required": [
-        "billed_charge",
-        "npi"
-      ]
-    }
-  },
-  "type": "object",
-  "properties": {
-    "reporting_entity_name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "reporting_entity_type": {
-      "type": "string",
-      "minLength": 1
-    },
-    "plan_name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "issuer_name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "plan_sponsor_name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "plan_id_type": {
-      "enum": [
-        "ein",
-        "hios"
-      ]
-    },
-    "plan_id": {
-      "type": "string",
-      "minLength": 1
-    },
-    "plan_market_type": {
-      "enum": [
-        "group",
-        "individual"
-      ]
-    },
-    "last_updated_on": {
-      "type": "string",
-      "format": "date",
-      "description": "This is a date format of YYYY-MM-DD",
-      "minLength": 10,
-      "maxLength": 10
-    },
-    "version": {
-      "type": "string"
-    },
-    "out_of_network": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/out_of_network"
-      },
-      "default": []
-    }
-  },
-  "if": {
-    "properties": {
-      "plan_id_type": {
-        "enum": [
-          "ein"
+      "else": {
+        "required": [
+          "setting"
         ]
       }
     },
-    "required": [
-      "plan_id_type"
-    ]
+    "out_of_network_item": {
+      "type": "object",
+      "properties": {
+        "billing_code_type": {
+          "$ref": "#/$defs/billing_code_type"
+        },
+        "billing_code_type_version": {
+          "description": "The version of the billing code type the claim was submitted under, for example the MS-DRG version.",
+          "type": "string",
+          "minLength": 1
+        },
+        "billing_code": {
+          "description": "The billing code for the item or service. For a prescription drug, an NDC.",
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "description": "A plain-language description of the billing code.",
+          "type": "string",
+          "minLength": 1
+        },
+        "allowed_amounts": {
+          "description": "The allowed amounts for this item, grouped by provider, claim type, place of service, and modifiers.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/allowed_amount_entry"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "billing_code_type",
+        "billing_code_type_version",
+        "billing_code",
+        "description",
+        "allowed_amounts"
+      ],
+      "additionalProperties": false
+    },
+    "attestation": {
+      "type": "object",
+      "description": "The attestation required by 26 CFR 54.9815-2715A3(b)(1)(iv), 29 CFR 2590.715-2715A3(b)(1)(iv), and 45 CFR 147.212(b)(1)(iv) in every In-network Rate, Allowed Amount, Prescription Drug, Utilization, Table of Contents, and Taxonomy file. The root TXT file does not carry it. 'The date in the file' is last_updated_on.",
+      "properties": {
+        "statements": {
+          "description": "The attestation, verbatim, once for each regulation the plans and coverage in this file are subject to. The three Departments' regulations require the same statement differing only in the citation, and one file can cover plans under more than one of them, as with a third-party administrator's file aggregating private-employer and non-federal governmental plans.",
+          "type": "array",
+          "items": {
+            "enum": [
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 26 CFR 54.9815-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 29 CFR 2590.715-2715A3, and the information encoded is true, accurate, and complete as of the date in the file.",
+              "To the best of its knowledge and belief, this plan or issuer has included all applicable information in accordance with the requirements of 45 CFR 147.212, and the information encoded is true, accurate, and complete as of the date in the file."
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "attester": {
+          "type": "object",
+          "description": "The senior official designated to oversee the encoding of true, accurate, and complete data.",
+          "properties": {
+            "name": {
+              "description": "The official's name.",
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "description": "The official's title.",
+              "type": "string",
+              "minLength": 1
+            },
+            "organization": {
+              "description": "Legal name of the organization the official belongs to.",
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "name",
+            "title"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "statements",
+        "attester"
+      ],
+      "additionalProperties": false
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "reporting_entity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Legal name of the entity that published the file as the plan or issuer, or as the party providing the information under a written agreement with the plan or issuer. Not a contractor that builds or hosts the file on that entity's behalf.",
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "group_health_plan",
+            "health_insurance_issuer",
+            "third_party_administrator",
+            "claims_clearinghouse",
+            "other_third_party"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "date_range": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/date"
+        },
+        "end": {
+          "$ref": "#/$defs/date"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "additionalProperties": false
+    },
+    "tin": {
+      "type": "object",
+      "description": "The provider's tax identifier. Either ein, the Employer Identification Number, with business_name, or npi in place of a provider who would otherwise be identified by a Social Security number. Exactly one of ein or npi.",
+      "properties": {
+        "ein": {
+          "type": "string",
+          "pattern": "^[0-9]{2}-?[0-9]{7}$"
+        },
+        "npi": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{9}$"
+        },
+        "business_name": {
+          "description": "Legal entity name associated with the EIN. Per Technical Clarification Q40 this is the name of the NPI Type 2 entity, not of individual practitioners.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "ein"
+          ]
+        },
+        {
+          "required": [
+            "npi"
+          ]
+        }
+      ],
+      "dependentRequired": {
+        "ein": [
+          "business_name"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "npi_list": {
+      "description": "National Provider Identifiers. Omit this property entirely when contracting is at TIN level and NPIs are unavailable. Replaces the 0 sentinel used in v2.x.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[1-9][0-9]{9}$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "billing_code_type": {
+      "enum": [
+        "CPT",
+        "HCPCS",
+        "MS-DRG",
+        "R-DRG",
+        "S-DRG",
+        "APS-DRG",
+        "AP-DRG",
+        "APR-DRG",
+        "APC",
+        "NDC",
+        "HIPPS",
+        "EAPG",
+        "CDT",
+        "RC"
+      ]
+    },
+    "billing_code_modifiers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "service_code": {
+      "description": "The CMS place of service code on the claims this entry reports. Required for professional claims; institutional claims do not carry a place of service code.",
+      "type": "string",
+      "pattern": "^(0[1-9]|1[0-9]|2[0-7]|3[1-4]|4[1-2]|4[9]|5[0-8]|6[0-2]|6[5-6]|7[1-2]|81|99)$"
+    },
+    "billing_class": {
+      "description": "Whether the claim was a professional or an institutional claim. A paid claim is one or the other, so the in-network file's 'both' is not allowed here.",
+      "enum": [
+        "professional",
+        "institutional"
+      ]
+    },
+    "setting": {
+      "description": "Whether the item or service was furnished inpatient or outpatient. Required for institutional claims, which carry no place of service code; optional for professional claims, where service_code already says where. A paid claim is one or the other, so the in-network file's 'both' is not allowed here.",
+      "enum": [
+        "inpatient",
+        "outpatient"
+      ]
+    },
+    "market_segment": {
+      "enum": [
+        "large_group",
+        "small_group",
+        "individual",
+        "self_insured"
+      ]
+    }
   },
-  "then": {
-    "required": [
-      "plan_sponsor_name"
-    ]
+  "properties": {
+    "attestation": {
+      "$ref": "#/$defs/attestation"
+    },
+    "schema_version": {
+      "description": "The version of the schema the file conforms to, for example 3.0.0.",
+      "type": "string",
+      "minLength": 1
+    },
+    "reporting_entity": {
+      "$ref": "#/$defs/reporting_entity"
+    },
+    "market_segment": {
+      "description": "The health insurance market this file covers. It matches the key this file is listed under in the Table of Contents' allowed_amount_files, and the market_segment of each plan the file covers.",
+      "$ref": "#/$defs/market_segment"
+    },
+    "reporting_period": {
+      "description": "The six months of service dates the allowed amounts cover, beginning nine months before the file's publication date (26 CFR 54.9815-2715A3(b)(1)(ii)(C) and parallel provisions).",
+      "$ref": "#/$defs/date_range"
+    },
+    "lookback_period": {
+      "description": "The nine months before the file's publication date. It starts on the same day as reporting_period and ends the day before publication.",
+      "$ref": "#/$defs/date_range"
+    },
+    "last_updated_on": {
+      "description": "The date the file was last updated. This is the \"date in the file\" that the attestation refers to.",
+      "$ref": "#/$defs/date"
+    },
+    "out_of_network": {
+      "description": "May be empty when no item or service met the reporting threshold. The file is still required in that case.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/out_of_network_item"
+      }
+    }
   },
   "required": [
-    "reporting_entity_name",
-    "reporting_entity_type",
+    "attestation",
+    "schema_version",
+    "reporting_entity",
+    "market_segment",
+    "reporting_period",
+    "lookback_period",
     "last_updated_on",
-    "out_of_network",
-    "version"
+    "out_of_network"
   ],
-  "dependentRequired": {
-    "plan_name": [
-      "plan_id_type",
-      "plan_id",
-      "plan_market_type",
-      "issuer_name"
-    ],
-    "plan_id_type": [
-      "plan_name",
-      "plan_id",
-      "plan_market_type",
-      "issuer_name"
-    ],
-    "plan_id": [
-      "plan_name",
-      "plan_id_type",
-      "plan_market_type",
-      "issuer_name"
-    ],
-    "plan_market_type": [
-      "plan_name",
-      "plan_id_type",
-      "plan_id",
-      "issuer_name"
-    ],
-    "issuer_name": [
-      "plan_name",
-      "plan_id_type",
-      "plan_market_type",
-      "plan_id"
-    ]
-  }
+  "additionalProperties": false
 }
+
