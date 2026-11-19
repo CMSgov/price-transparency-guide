@@ -178,7 +178,7 @@
       "billing_code_type": "CPT",
       "billing_code_type_version": "2027",
       "billing_code": "00560",
-      "description": "Anesthesia for procedures on heart, pericardial sac, and great vessels of chest",
+      "description": "Anesthesia for procedures on heart, pericardial sac, and great vessels of chest, without pump oxygenator",
       "negotiated_rates": [
         {
           "provider_references": [
@@ -299,7 +299,7 @@
           "billing_code_type": "CPT",
           "billing_code_type_version": "2027",
           "billing_code": "01402",
-          "description": "Anesthesia for open procedures on knee joint"
+          "description": "Anesthesia for open or surgical arthroscopic procedures on knee joint, total knee arthroplasty"
         }
       ],
       "negotiated_rates": [
