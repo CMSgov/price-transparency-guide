@@ -145,7 +145,7 @@ Product type describes the plan's or policy's benefit design, not its network.
 #### Plan Identifier Object
 | Field | Name | Type | Definition | Required |
 | ----- | ---- | ---- | ---------- | -------- |
-| **hios** | HIOS ID | String | The plan's Health Insurance Oversight System identifier: either the 5-digit HIOS issuer ID, or the 10-character HIOS plan ID (5-digit issuer ID, 2-letter state, 3-digit product number, 4-digit component). See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
+| **hios** | HIOS ID | String | The plan's Health Insurance Oversight System identifier: either the 5-digit HIOS issuer ID, or the 10-character HIOS product ID (5-digit issuer ID, 2-letter state, 3-digit product number). See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
 | **ein** | EIN | String | The plan sponsor's Employer Identification Number, either as `NN-NNNNNNN` or `NNNNNNNNN`. See [additional notes concerning `hios` and `ein`](#additional-notes-concerning-hios-and-ein). | One of |
 | **plan_sponsor_name** | Plan Sponsor Name | String | The common business name of the plan sponsor. Required when `ein` is present; optional with `hios`. | Conditional |
 
@@ -406,7 +406,7 @@ In the following example, ACME Health Plan, Inc. reports four networks and five 
       "plan": {
         "plan_name": "Example Manufacturing Employee Health Plan",
         "issuer_name": "ACME Health Plan, Inc.",
-        "plan_identifier": {"ein": "91-0442452", "plan_sponsor_name": "Example Manufacturing Company"},
+        "plan_identifier": {"ein": "07-1000001", "plan_sponsor_name": "Example Manufacturing Company"},
         "plan_market_type": "group",
         "market_segment": "self_insured",
         "product_type": "ppo"
@@ -461,13 +461,14 @@ In the following example, ACME Health Plan, Inc. reports four networks and five 
   ],
   "allowed_amount_files": {
     "self_insured": {
-      "description": "Allowed amounts, self insured market, 2027-01-01 to 2027-06-30",
+      "description": "Allowed amounts, self insured market, 2026-07-01 to 2026-12-31",
       "location": "https://mrf.acmehealth.example/2027-04/allowed-amounts-self-insured.json"
     },
     "large_group": {
-      "description": "Allowed amounts, large group market, 2027-01-01 to 2027-06-30",
+      "description": "Allowed amounts, large group market, 2026-07-01 to 2026-12-31",
       "location": "https://mrf.acmehealth.example/2027-04/allowed-amounts-large-group.json"
     }
   }
 }
 ```
+
