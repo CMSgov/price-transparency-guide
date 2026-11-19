@@ -30,7 +30,7 @@
       "billing_code_type": "CPT",
       "billing_code_type_version": "2026",
       "billing_code": "99213",
-      "description": "Office or other outpatient visit for the evaluation and management of an established patient",
+      "description": "Office or other outpatient visit for an established patient, low level of medical decision making",
       "allowed_amounts": [
         {
           "tin": {
